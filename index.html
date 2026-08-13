@@ -3,32 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savière Group | Healthcare & Consumer Operating Platform</title>
-    <meta name="description" content="Savière Group Private Limited is an apex healthcare, biotech, and consumer products operating platform based in Cyberabad, Hyderabad.">
+    <title>Savière Group | Healthcare, Sustainability & Infrastructure</title>
+    <meta name="description" content="Savière Group is an apex corporate operating platform dedicated to preventive healthcare, cruelty-free consumer goods, and sustainable infrastructure.">
     
-    <!-- Google Fonts -->
+    <!-- Conglomerate Typography: Playfair Display (Legacy/Trust) & Inter (Clinical Precision) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            900: '#134e4a',
-                            950: '#042f2e',
+                        corporate: {
+                            50: '#f8faf9',
+                            100: '#eef3ef',
+                            800: '#1a3324', /* Deep Forest/ESG Green */
+                            900: '#0f1a12',
+                            950: '#0a0a0a', /* Onyx Black */
                         }
                     }
                 }
@@ -36,273 +34,234 @@
         }
     </script>
     <style>
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            border-color: rgba(20, 184, 166, 0.3);
-            transform: translateY(-2px);
-        }
+        /* Institutional styling */
+        body { background-color: #f8faf9; color: #0a0a0a; }
+        .border-corporate { border-color: rgba(10, 10, 10, 0.1); }
+        .portfolio-card { transition: all 0.4s ease; }
+        .portfolio-card:hover { background-color: #1a3324; color: #f8faf9; }
+        .portfolio-card:hover p, .portfolio-card:hover span { color: rgba(255,255,255,0.8); }
+        .portfolio-card:hover .arrow { transform: translateX(4px) translateY(-4px); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-slate-950">
+<body class="antialiased selection:bg-corporate-800 selection:text-white">
 
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500 to-teal-700 flex items-center justify-center font-display font-bold text-slate-950 text-xl shadow-lg shadow-brand-500/20">
+    <!-- Minimalist Corporate Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-corporate-50/90 backdrop-blur-md border-b border-corporate">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-4 group">
+                <div class="w-10 h-10 bg-corporate-950 flex items-center justify-center text-white font-serif text-xl group-hover:bg-corporate-800 transition-colors">
                     S
                 </div>
-                <span class="font-display font-bold text-xl tracking-tight text-white">Savière Group</span>
+                <span class="font-serif font-semibold text-2xl tracking-wide text-corporate-950">Savière Group</span>
             </a>
             
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="#overview" class="hover:text-brand-500 transition-colors">Overview</a>
-                <a href="#architecture" class="hover:text-brand-500 transition-colors">Architecture</a>
-                <a href="#operating-units" class="hover:text-brand-500 transition-colors">Operating Units</a>
-                <a href="#governance" class="hover:text-brand-500 transition-colors">Governance</a>
+            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-widest text-gray-500">
+                <a href="#mandate" class="hover:text-corporate-950 transition-colors">The Mandate</a>
+                <a href="#portfolio" class="hover:text-corporate-950 transition-colors">Operating Portfolio</a>
+                <a href="#governance" class="hover:text-corporate-950 transition-colors">Governance</a>
             </nav>
 
-            <a href="mailto:tanmai@savieregroup.com" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-950 bg-brand-500 hover:bg-brand-600 transition-colors rounded-md shadow-md shadow-brand-500/10">
-                Enterprise Portal
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-950 hover:bg-corporate-800 transition-colors">
+                Corporate Portal
             </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="overview" class="relative pt-40 pb-24 md:pt-52 md:pb-36 overflow-hidden">
-        <!-- Subtle Glow Background -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-brand-500/20 text-brand-500 text-xs font-semibold tracking-wide uppercase mb-8">
-                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                    Apex Operating Platform • Cyberabad
-                </div>
-                
-                <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-8">
-                    Architecting High-Velocity Healthcare & FMCG Systems.
-                </h1>
-                
-                <p class="text-lg sm:text-xl text-slate-400 font-normal leading-relaxed mb-10">
-                    Savière Group Private Limited is the central nervous system overseeing clinical innovations, centralized technology infrastructure, and asset-light multi-vertical operating companies.
+    <!-- Institutional Hero Section -->
+    <section class="pt-48 pb-32 px-6 border-b border-corporate">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-corporate-800 mb-6">Cyberabad • Apex Holding Entity</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-corporate-950 leading-[1.05] tracking-tight max-w-5xl mb-12">
+                Architecting clinical scale & sustainable infrastructure.
+            </h1>
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl">
+                <p class="text-lg text-gray-600 leading-relaxed font-light">
+                    Savière Group is a multi-vertical corporate operating platform. We deploy capital and centralized infrastructure into preventive healthcare, cruelty-free consumer goods, and zero-waste ecosystems.
                 </p>
-
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#operating-units" class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-slate-950 bg-brand-500 hover:bg-brand-600 transition-colors rounded-lg shadow-lg shadow-brand-500/20">
-                        Explore Operating Units
-                    </a>
-                    <a href="#governance" class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-slate-300 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 transition-colors rounded-lg">
-                        Corporate Structure
+                <div class="flex flex-col items-start justify-center">
+                    <a href="#portfolio" class="group flex items-center gap-4 text-sm font-semibold uppercase tracking-widest text-corporate-950 border-b-2 border-corporate-950 pb-1 hover:text-corporate-800 hover:border-corporate-800 transition-colors">
+                        View Asset Portfolio
+                        <svg class="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stat Grid -->
-    <section class="border-y border-slate-800/60 bg-slate-950/50 py-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-                <p class="text-xs uppercase font-semibold text-slate-500 tracking-wider">Corporate Hub</p>
-                <p class="text-xl font-bold text-white mt-1">Cyberabad, Hyderabad</p>
-            </div>
-            <div>
-                <p class="text-xs uppercase font-semibold text-slate-500 tracking-wider">Focus Areas</p>
-                <p class="text-xl font-bold text-white mt-1">Biotech & FMCG</p>
-            </div>
-            <div>
-                <p class="text-xs uppercase font-semibold text-slate-500 tracking-wider">Operating Model</p>
-                <p class="text-xl font-bold text-white mt-1">Asset-Light Architecture</p>
-            </div>
-            <div>
-                <p class="text-xs uppercase font-semibold text-slate-500 tracking-wider">Clinical Moat</p>
-                <p class="text-xl font-bold text-white mt-1">MD-Led R&D</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Corporate Architecture Section -->
-    <section id="architecture" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
-                <h2 class="text-xs uppercase font-semibold text-brand-500 tracking-widest mb-3">Synergy Framework</h2>
-                <h3 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">The Conglomerate Structure</h3>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Group Level -->
-                <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-500 font-bold text-xl mb-6">
-                        01
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Savière Group</h4>
-                    <p class="text-sm font-semibold text-brand-500 mb-4">The Strategic Brain</p>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        Houses centralized executive management, top-tier HR, corporate legal council, and global M&A strategy. Charges centralized management services to all operating units.
+    <!-- The Corporate Mandate (ESG & Philosophy) -->
+    <section id="mandate" class="py-32 bg-corporate-950 text-corporate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-16">
+                <div class="lg:col-span-1">
+                    <h2 class="font-serif text-4xl md:text-5xl mb-6">The Savière<br>Mandate.</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        Profitability without systemic improvement is a corporate failure. Every subsidiary under the Savière umbrella must adhere to strict environmental, biological, and ethical parameters before market deployment.
                     </p>
                 </div>
-
-                <!-- Operating Level -->
-                <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
-                    <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 font-bold text-xl mb-6">
-                        02
+                
+                <div class="lg:col-span-2 grid sm:grid-cols-2 gap-12">
+                    <!-- Pillar 1 -->
+                    <div class="border-t border-gray-800 pt-6">
+                        <span class="text-corporate-800 font-mono text-xs mb-4 block">01</span>
+                        <h3 class="text-xl font-serif mb-3">Preventive Healthcare</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">We engineer interventions that target systemic pathogenesis at the source, shifting the model from reactive medical treatment to accessible, biological prevention.</p>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Operating Subsidiaries</h4>
-                    <p class="text-sm font-semibold text-teal-400 mb-4">The Commercial Engines</p>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        High-margin D2C and B2B consumer engines—such as The Dots Company—executing rapid product deployment, 3PL distribution, and market expansion.
-                    </p>
-                </div>
-
-                <!-- Vault Level -->
-                <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
-                    <div class="w-12 h-12 rounded-xl bg-slate-700/30 border border-slate-700/50 flex items-center justify-center text-slate-300 font-bold text-xl mb-6">
-                        03
+                    <!-- Pillar 2 -->
+                    <div class="border-t border-gray-800 pt-6">
+                        <span class="text-corporate-800 font-mono text-xs mb-4 block">02</span>
+                        <h3 class="text-xl font-serif mb-3">Vegan & Cruelty-Free</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">A strict ethical framework across all consumer goods. Zero animal derivatives and absolute zero animal testing in our pharmaceutical and lifestyle supply chains.</p>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Savière Estates</h4>
-                    <p class="text-sm font-semibold text-slate-400 mb-4">The Asset Vault</p>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        Isolated entity holding all intellectual property, medical patents, trademarks, hardware fleets, and clinical formulations, leasing assets securely to operating entities.
-                    </p>
+                    <!-- Pillar 3 -->
+                    <div class="border-t border-gray-800 pt-6">
+                        <span class="text-corporate-800 font-mono text-xs mb-4 block">03</span>
+                        <h3 class="text-xl font-serif mb-3">Asset-Light Sustainability</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">Executing rapid scale while aggressively minimizing carbon footprint. Deploying zero-waste, plastic-free packaging and optimizing regional quick-commerce logistics.</p>
+                    </div>
+                    <!-- Pillar 4 -->
+                    <div class="border-t border-gray-800 pt-6">
+                        <span class="text-corporate-800 font-mono text-xs mb-4 block">04</span>
+                        <h3 class="text-xl font-serif mb-3">Green Infrastructure</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">Pioneering clean-tech frameworks and eco-conscious hospitality models to prove that luxury and industrial scale can exist seamlessly with environmental preservation.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Operating Units Section -->
-    <section id="operating-units" class="py-24 bg-slate-900/30 border-t border-slate-800/60">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
-                <div>
-                    <h2 class="text-xs uppercase font-semibold text-brand-500 tracking-widest mb-3">Portfolio Operations</h2>
-                    <h3 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Active & Future Verticals</h3>
-                </div>
-                <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
-                    Built around zero-waste sustainability, clinical efficacy, and high-velocity digital distribution networks.
+    <!-- Operating Portfolio (The Subsidiaries) -->
+    <section id="portfolio" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 flex flex-col md:flex-row md:items-end justify-between border-b border-corporate pb-10">
+                <h2 class="font-serif text-4xl md:text-5xl text-corporate-950">Operating<br>Verticals.</h2>
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-500 max-w-xs md:text-right mt-6 md:mt-0">
+                    Active operations, IP vaults, and expansion frameworks.
                 </p>
             </div>
 
-            <!-- Active Unit Highlight -->
-            <div class="glass-card p-8 sm:p-12 rounded-3xl mb-8 border border-brand-500/30 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-slate-950">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-                    <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold uppercase tracking-wider mb-6">
-                            Flagship FMCG Unit
-                        </div>
-                        <h4 class="font-display text-3xl font-bold text-white mb-4">The Dots Company</h4>
-                        <p class="text-slate-300 text-base leading-relaxed mb-6">
-                            Re-engineering daily oral care through biomimetic 600mg Nano-Hydroxyapatite (Nano-HAp) solid-state tablets. Designed to replace standard plastic silica paste tubes, eliminate microplastic ingestion, and restore enamel integrity naturally.
-                        </p>
-                        <div class="flex flex-wrap gap-3 text-xs font-medium text-slate-400">
-                            <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700">Anhydrous Technology</span>
-                            <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700">Zero Microplastics</span>
-                            <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700">Quick Commerce Native</span>
-                        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-corporate">
+                
+                <!-- The Dots Company (Active) -->
+                <div class="portfolio-card p-10 border-r border-b border-corporate group cursor-pointer">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-corporate-800 group-hover:text-corporate-50">Active OpCo</span>
+                        <svg class="w-6 h-6 arrow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M17 7l-10 10M17 7v10M17 7H7"></path></svg>
                     </div>
-                    <div class="lg:w-72 flex-shrink-0 p-6 rounded-2xl bg-slate-950/80 border border-slate-800 text-center">
-                        <p class="text-xs uppercase font-semibold text-slate-500 tracking-wider mb-1">Commercial Status</p>
-                        <p class="text-lg font-bold text-white mb-4">Pre-Launch / R&D Phase</p>
-                        <a href="mailto:tanmai@savieregroup.com?subject=The%20Dots%20Company%20Inquiry" class="block w-full py-2.5 px-4 rounded-lg bg-brand-500 hover:bg-brand-600 text-slate-950 font-semibold text-xs transition-colors">
-                            Request Partner Deck
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Future Verticals Pipeline Grid -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass-card p-6 rounded-2xl">
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Expansion Vertical</p>
-                    <h5 class="text-lg font-bold text-white mb-2">Savière Hotels</h5>
-                    <p class="text-xs text-slate-400 leading-relaxed">Asset-light luxury hospitality management utilizing proprietary wellness protocols and zero-waste amenities.</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl">
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Expansion Vertical</p>
-                    <h5 class="text-lg font-bold text-white mb-2">Savière Hospitals</h5>
-                    <p class="text-xs text-slate-400 leading-relaxed">Specialized outpatient medical facilities focused on preventative health, systemic interventions, and clinical excellence.</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl">
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Expansion Vertical</p>
-                    <h5 class="text-lg font-bold text-white mb-2">Savière Green Energy</h5>
-                    <p class="text-xs text-slate-400 leading-relaxed">Clean-tech infrastructure partnerships driving carbon-neutral operations for industrial consumer manufacturing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Governance & Founder Section -->
-    <section id="governance" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-xs uppercase font-semibold text-brand-500 tracking-widest mb-3">Leadership & Vision</h2>
-                    <h3 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight mb-6">Medical Precision Meets Industrial Ambition</h3>
-                    <p class="text-slate-400 text-base leading-relaxed mb-6">
-                        Savière Group is founded on the principle that systemic health issues must be addressed through scientifically validated, everyday products. By combining medical doctor leadership with modern asset-light corporate geometry, we ensure maximum capital efficiency and institutional longevity.
+                    <h3 class="font-serif text-3xl mb-4">The Dots Company</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                        FMCG flagship engineered to replace plastic silica paste tubes. Delivering biomimetic Nano-HAp solid-state tablets for systemic oral healthcare.
                     </p>
-                    
-                    <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
-                        <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-1">Founder & Scientific Lead</p>
-                        <p class="text-xl font-bold text-white">Dr. Tanmai Aasrith Varma Ayenampudi, MBBS</p>
-                        <p class="text-xs text-slate-400 mt-1">Medical Doctor • Corporate Architect</p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] uppercase tracking-widest border border-current px-2 py-1">Zero-Plastic</span>
+                        <span class="text-[10px] uppercase tracking-widest border border-current px-2 py-1">Anhydrous</span>
                     </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl border border-slate-800">
-                    <h4 class="text-lg font-bold text-white mb-6">Statutory Compliance & Registration</h4>
-                    <ul class="space-y-4 text-sm text-slate-300">
-                        <li class="flex items-start gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2"></span>
-                            <div>
-                                <strong class="text-white block">Legal Entity Name:</strong>
-                                Saviere Group Private Limited
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2"></span>
-                            <div>
-                                <strong class="text-white block">Corporate Registration Jurisdiction:</strong>
-                                Registrar of Companies (ROC) — Telangana, Hyderabad
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2"></span>
-                            <div>
-                                <strong class="text-white block">Registered Head Office:</strong>
-                                Hitec City / Cyberabad Corridor, Hyderabad, Telangana
-                            </div>
-                        </li>
-                    </ul>
+                <!-- Savière Estates -->
+                <div class="portfolio-card p-10 border-r border-b border-corporate group">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-corporate-50">Asset Vault</span>
+                    </div>
+                    <h3 class="font-serif text-3xl mb-4">Savière Estates</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        The centralized holding entity isolating corporate risk. Manages and leases all intellectual property, medical patents, hardware fleets, and trademarks.
+                    </p>
                 </div>
+
+                <!-- Savière Hospitals -->
+                <div class="portfolio-card p-10 border-r border-b border-corporate group">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-corporate-50">Expansion Pipeline</span>
+                    </div>
+                    <h3 class="font-serif text-3xl mb-4">Savière Hospitals</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Next-generation medical facilities prioritizing outpatient preventive care, systemic health interventions, and clinical excellence under an asset-light model.
+                    </p>
+                </div>
+
+                <!-- Savière Hotels -->
+                <div class="portfolio-card p-10 border-r border-b border-corporate group">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-corporate-50">Expansion Pipeline</span>
+                    </div>
+                    <h3 class="font-serif text-3xl mb-4">Savière Hotels</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Hospitality management firm deploying proprietary eco-wellness protocols and zero-waste amenities into partnered luxury real estate properties.
+                    </p>
+                </div>
+
+                <!-- Savière Green Energy -->
+                <div class="portfolio-card p-10 border-r border-b border-corporate group">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-corporate-50">Expansion Pipeline</span>
+                    </div>
+                    <h3 class="font-serif text-3xl mb-4">Savière Green Energy</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Clean-tech infrastructure division driving carbon-neutral operations, solar deployment, and sustainable power allocation for industrial manufacturing.
+                    </p>
+                </div>
+
+                <!-- Savière Lifestyle & Watches -->
+                <div class="portfolio-card p-10 border-r border-b border-corporate group">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-corporate-50">Expansion Pipeline</span>
+                    </div>
+                    <h3 class="font-serif text-3xl mb-4">Savière Lifestyle</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Premium cruelty-free consumer division. Designing precision horology (Savière Watches) and high-end lifestyle products utilizing sustainable material science.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800/80 py-12 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-7 h-7 rounded-md bg-brand-500 flex items-center justify-center font-display font-bold text-slate-950 text-sm">
-                    S
+    <!-- Governance / Clinical Leadership -->
+    <section id="governance" class="py-32 bg-corporate-100 px-6 border-t border-corporate">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
+            <div>
+                <h2 class="font-serif text-4xl mb-8">Clinical Authority.<br>Industrial Execution.</h2>
+                <p class="text-gray-600 leading-relaxed mb-8">
+                    Savière Group is engineered on the principle that modern industrialism must be governed by scientific validity. By fusing the medical rigor of a licensed physician with aggressive, asset-light corporate geometry, we ensure that every product and service launched structurally improves the human condition.
+                </p>
+                <div class="border-l-2 border-corporate-950 pl-6 py-2">
+                    <p class="font-serif text-2xl text-corporate-950">Dr. Tanmai Aasrith Varma Ayenampudi</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-corporate-800 mt-2">MBBS • Founder & Medical Lead</p>
                 </div>
-                <span class="font-display font-bold text-white tracking-tight">Savière Group</span>
             </div>
             
-            <p class="text-xs text-slate-500 text-center md:text-right">
-                © 2026 Saviere Group Private Limited. All Rights Reserved. <br>
-                Official Corporate Address: Cyberabad, Hyderabad, Telangana.
-            </p>
+            <div class="bg-white p-10 border border-corporate shadow-sm">
+                <h4 class="font-serif text-2xl mb-8 border-b border-corporate pb-4">Corporate Registry</h4>
+                <ul class="space-y-6 text-sm text-gray-600">
+                    <li class="grid grid-cols-3">
+                        <span class="font-semibold text-corporate-950">Legal Entity</span>
+                        <span class="col-span-2">Saviere Group Private Limited</span>
+                    </li>
+                    <li class="grid grid-cols-3">
+                        <span class="font-semibold text-corporate-950">Jurisdiction</span>
+                        <span class="col-span-2">Registrar of Companies (ROC) — Telangana</span>
+                    </li>
+                    <li class="grid grid-cols-3">
+                        <span class="font-semibold text-corporate-950">Headquarters</span>
+                        <span class="col-span-2">Cyberabad / Hitec City, Hyderabad, India</span>
+                    </li>
+                    <li class="grid grid-cols-3 pt-6 border-t border-corporate">
+                        <span class="font-semibold text-corporate-950">Enterprise Contact</span>
+                        <a href="mailto:connect@savieregroup.com" class="col-span-2 text-corporate-800 hover:underline">connect@savieregroup.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer class="py-12 bg-corporate-950 text-gray-500 text-xs text-center border-t border-gray-900 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-white text-corporate-950 flex items-center justify-center font-serif text-sm">S</div>
+                <span class="font-serif text-white tracking-wide text-sm">Savière Group</span>
+            </div>
+            <p>© 2026 Saviere Group Private Limited. All Rights Reserved. Engineered in Hyderabad.</p>
         </div>
     </footer>
 
