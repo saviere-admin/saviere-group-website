@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sovereign Governance & Corporate Ethics | Savière Group</title>
-    <!-- Tailwind Setup (Same as index.html) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="manifest" href="./site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,9 +19,9 @@
                     colors: {
                         corporate: {
                             primary: '#821D30',
-                            50: '#fcf8f8',
-                            900: '#1a0509',
-                            950: '#0d0204',
+                            dark: '#54101e',
+                            50: '#fcf6f6',
+                            950: '#0a0103',
                         }
                     }
                 }
@@ -28,135 +29,140 @@
         }
     </script>
     <style>
-        body { background-color: #fcf8f8; color: #0d0204; }
-        .border-corporate { border-color: rgba(130, 29, 48, 0.15); }
+        body { background-color: #fcf8f8; color: #0a0103; }
+        .border-corporate { border-color: rgba(130, 29, 48, 0.14); }
     </style>
 </head>
-<body class="antialiased selection:bg-corporate-primary selection:text-white">
+<body class="antialiased selection:bg-corporate-primary selection:text-white flex flex-col min-h-screen">
 
-    <!-- Minimalist Corporate Header (Same as index.html) -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-corporate">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center">
-                <img src="./assets/SGLFullBurgundyRHorizontal.png" alt="Savière Group" class="h-10 w-auto">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-corporate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
+            <a href="index.html">
+                <img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
             </a>
-            
-            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-widest text-gray-500">
-                <a href="index.html#overview" class="hover:text-corporate-primary transition-colors">Overview</a>
-                <a href="#mandate" class="hover:text-corporate-primary transition-colors">Governance</a>
-                <a href="active-operations.html" class="hover:text-corporate-primary transition-colors">DOTS</a>
-                <a href="roadmap.html" class="hover:text-corporate-primary transition-colors">Pipeline</a>
+            <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">
+                <a href="index.html" class="hover:text-corporate-primary">Overview</a>
+                <a href="#mandate" class="text-corporate-primary font-bold">Governance</a>
+                <a href="active-operations.html" class="hover:text-corporate-primary">DOTS</a>
+                <a href="roadmap.html" class="hover:text-corporate-primary">Pipeline</a>
+                <a href="sitemap.html" class="hover:text-corporate-primary">Sitemap</a>
             </nav>
-
-            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:bg-corporate-900 transition-colors">
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-white bg-corporate-primary hover:bg-corporate-dark">
                 Corporate Portal
             </a>
         </div>
     </header>
 
-    <!-- Governance Hero -->
-    <section id="mandate" class="pt-48 pb-32 bg-corporate-primary text-corporate-50 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-3 gap-16">
-                <div class="lg:col-span-1">
-                    <h2 class="font-serif text-4xl md:text-5xl mb-6 text-white">Sovereign<br>Governance.</h2>
-                    <p class="text-white/80 text-sm leading-relaxed max-w-sm">
-                        Profitability without systemic improvement is a corporate failure. We adhere to an absolute ethical protocol: Biological Purity, Environmental Safety, and an Absolute Vegan Mandate. 
+    <main class="flex-grow pt-32 md:pt-48 pb-24">
+        <!-- Mandate Header -->
+        <section id="mandate" class="px-4 sm:px-6 lg:px-8 mb-20">
+            <div class="max-w-7xl mx-auto">
+                <p class="text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-4">The Ethical Framework</p>
+                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl text-corporate-950 leading-tight max-w-4xl mb-8">
+                    Governance, Ethics & The Savière Mandate.
+                </h1>
+                <p class="text-lg text-gray-700 leading-relaxed max-w-3xl font-light">
+                    Profitability without systemic biological and environmental improvement is an institutional failure. Savière Group operates on an unyielding four-pillar ethical charter.
+                </p>
+            </div>
+        </section>
+
+        <!-- 4 Pillars of Ethics -->
+        <section class="px-4 sm:px-6 lg:px-8 mb-24">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-10 border border-corporate">
+                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">PILLAR 01</span>
+                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Biological Health & Prevention</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Every product or vertical must structurally elevate human health. We treat the oral cavity as the systemic gateway to the cardiovascular and gastrointestinal systems, shifting healthcare from reactive disease management to active, accessible prevention.
                     </p>
                 </div>
-                
-                <div class="lg:col-span-2 grid sm:grid-cols-2 gap-12 text-gray-800">
-                    <div class="border-t border-white/20 pt-6 bg-white/5 p-6 rounded-xl">
-                        <span class="text-white font-mono text-xs mb-4 block">01</span>
-                        <h3 class="text-xl font-serif mb-3 text-white">Mission</h3>
-                        <p class="text-sm text-gray-300 leading-relaxed">To utilize asset-light infrastructure to deploy accessible, preventative healthcare protocols, clean energy systems, and luxury hospitality experiences that leave a net-zero footprint. Engineered to be safe for the Earth.</p>
-                    </div>
-                    <div class="border-t border-white/20 pt-6 bg-white/5 p-6 rounded-xl">
-                        <span class="text-white font-mono text-xs mb-4 block">02</span>
-                        <h3 class="text-xl font-serif mb-3 text-white">Vision</h3>
-                        <p class="text-sm text-gray-300 leading-relaxed">To establish a globally scalable industrial benchmark where the pursuit of massive profitability is structurally inseparable from the mandate for absolute environmental preservation, biological health, and animal welfare.</p>
-                    </div>
-                    <div class="border-t border-white/20 pt-6 bg-white/5 p-6 rounded-xl">
-                        <span class="text-white font-mono text-xs mb-4 block">03</span>
-                        <h3 class="text-xl font-serif mb-3 text-white">Ethics & ESG Mandate</h3>
-                        <p class="text-sm text-gray-300 leading-relaxed">We adhere to a brutalist, unyielding ethical protocol: Biological Purity, Environmental Safety, and an Absolute Vegan Mandate across all pharmaceutical and lifestyle supply chains. Safe for Earth.</p>
-                    </div>
-                    <div class="border-t border-white/20 pt-6 bg-white/5 p-6 rounded-xl">
-                        <span class="text-white font-mono text-xs mb-4 block">04</span>
-                        <h3 class="text-xl font-serif mb-3 text-white">Zero-Waste Commitment</h3>
-                        <p class="text-sm text-gray-300 leading-relaxed">Operations must be carbon efficient and safe for Earth from inception. We deploy clean energy and eliminate logistical water waste from D2C e-commerce systems.</p>
-                    </div>
+
+                <div class="bg-white p-10 border border-corporate">
+                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">PILLAR 02</span>
+                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Absolute Vegan & Cruelty-Free</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        A non-negotiable standard across all consumer and hospitality operations. Strictly zero animal derivatives and zero animal testing across pharmaceutical R&D, personal care products, and luxury hotel amenities.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border border-corporate">
+                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">PILLAR 03</span>
+                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Net-Zero & Carbon Efficient</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        We design logistics to eliminate water waste, packaging to eliminate single-use plastics, and facilities to harness clean energy. Our long-term goal is absolute ecological equilibrium across every operating subsidiary.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border border-corporate">
+                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">PILLAR 04</span>
+                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Asset-Light Industrial Discipline</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        We leverage specialized IP, contract manufacturing partners (CDMOs), and leased infrastructure to maximize operating leverage and allocate capital directly into R&D and customer value.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- The Founder Mandate -->
-    <section class="py-32 bg-white px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div>
-                    <img src="./assets/SGLFullBurgundyRHorizontal.png" alt="SGL Logo" class="h-10 w-auto mb-10 opacity-30">
-                    <h2 class="font-serif text-4xl mb-6 text-corporate-950">Biological Precision.<br>Industrial Execution.</h2>
-                    <p class="text-gray-600 leading-relaxed mb-8">
-                        The Savière Group was envisioned and is led by Chairman & Managing Director, Tanmai Aasrith Varma Ayenampudi. A medical doctor by profession and an avid long-distance runner, Tanmai applies extreme operational endurance and clinical discipline to building industrial infrastructure.
+        <!-- Founder Vision Section -->
+        <section id="founder" class="px-4 sm:px-6 lg:px-8 py-20 bg-white border-y border-corporate">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <p class="text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-3">Leadership Thesis</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-corporate-950 mb-6">Medical Rigor. Long-Distance Endurance.</h2>
+                    <p class="text-base text-gray-700 leading-relaxed mb-6 font-light">
+                        Savière Group was envisioned and is steered by Chairman & Managing Director, <strong class="text-corporate-950 font-semibold">Tanmai Aasrith Varma Ayenampudi</strong>. A licensed Medical Doctor by profession and an ardent environmental advocate, <strong class="text-corporate-950 font-semibold">Tanmai</strong> applies clinical pathology and diagnostic precision to industrial problem-solving.
                     </p>
-                    <p class="text-gray-600 leading-relaxed mb-8">
-                        Tanmai's mandate is clear: build a better, cleaner world where healthcare is accessible, cruelty-free, and operations are safe for the Earth. This clinical authority reduces Customer Acquisition Costs (CAC) by commanding automatic medical trust.
+                    <p class="text-base text-gray-700 leading-relaxed mb-8 font-light">
+                        As an avid long-distance runner, <strong class="text-corporate-950 font-semibold">Tanmai</strong> approaches corporate architecture with the same endurance, disciplined pacing, and long-term stamina required to build enduring multi-generational institutions.
                     </p>
                     <div class="border-l-2 border-corporate-primary pl-6 py-2">
                         <p class="font-serif text-2xl text-corporate-950">Dr. Tanmai Aasrith Varma Ayenampudi</p>
-                        <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mt-2">MBBS • CHAIRMAN & MANAGING DIRECTOR (CMD)</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mt-1">MBBS • CHAIRMAN & MANAGING DIRECTOR</p>
                     </div>
                 </div>
-
-                <div class="border border-corporate rounded-3xl p-12 bg-corporate-50">
-                    <h4 class="font-serif text-2xl mb-8 text-corporate-primary">The CMD's Running Mandate</h4>
-                    <p class="text-gray-600 leading-relaxed mb-8 text-sm">
-                        As an avid runner, Tanmai applies that exact same discipline, endurance, and long-term stamina to building the asset-light geometries of the Savière Group. This relentless stamina ensures that massive profitability is inseparable from absolute environmental preservation.
-                    </p>
+                <div class="lg:col-span-5 bg-corporate-50 border border-corporate p-8 sm:p-10">
+                    <h4 class="font-serif text-xl text-corporate-primary mb-4">Statutory Governance Seal</h4>
+                    <ul class="space-y-4 text-xs text-gray-600">
+                        <li class="flex justify-between border-b border-corporate pb-2">
+                            <span class="font-bold text-gray-900">Apex Entity</span>
+                            <span>Saviere Group Private Limited</span>
+                        </li>
+                        <li class="flex justify-between border-b border-corporate pb-2">
+                            <span class="font-bold text-gray-900">Jurisdiction</span>
+                            <span>ROC Telangana, Hyderabad</span>
+                        </li>
+                        <li class="flex justify-between border-b border-corporate pb-2">
+                            <span class="font-bold text-gray-900">Headquarters</span>
+                            <span>Cyberabad, Hyderabad, India</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="font-bold text-gray-900">Governance Model</span>
+                            <span>HoldCo / OpCo Asset-Light Vault</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Minimalist Footer (Repeated) -->
-    <footer class="bg-corporate-950 pt-20 pb-10 border-t border-gray-900 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 mb-16 text-sm">
-            <div class="col-span-2 md:col-span-1">
-                <img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group Limited" class="h-10 w-auto mb-6">
-                <p class="text-gray-400 leading-relaxed text-xs">Savière Group Private Limited.<br>Apex Operating Platform.<br>Cyberabad, Hyderabad, India.</p>
-            </div>
-            <div>
-                <h5 class="text-white font-serif mb-4">Operations</h5>
-                <ul class="space-y-2 text-gray-400 text-xs">
-                    <li><a href="active-operations.html" class="hover:text-corporate-primary">FMCG (Dots)</a></li>
-                    <li><a href="#" class="hover:text-corporate-primary">Estates (IP Vault)</a></li>
-                    <li><a href="roadmap.html#pipeline" class="hover:text-corporate-primary">Healthcare (Future)</a></li>
-                    <li><a href="roadmap.html#pipeline" class="hover:text-corporate-primary">Hospitality (Future)</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-white font-serif mb-4">Governance</h5>
-                <ul class="space-y-2 text-gray-400 text-xs">
-                    <li><a href="governance.html#mandate" class="hover:text-corporate-primary">Mission & Vision</a></li>
-                    <li><a href="governance.html#mandate" class="hover:text-corporate-primary">The Net-Zero Mandate</a></li>
-                    <li><a href="governance.html#mandate" class="hover:text-corporate-primary">Corporate Ethics</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-white font-serif mb-4">Portal</h5>
-                <ul class="space-y-2 text-gray-400 text-xs">
-                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-corporate-primary">Contact Group</a></li>
-                    <li><a href="#" class="hover:text-corporate-primary">B2B Dashboard (Secure)</a></li>
-                    <li><a href="#" class="hover:text-corporate-primary">Sitemap (XML)</a></li>
-                </ul>
+    <!-- Footer -->
+    <footer class="bg-corporate-primary text-white pt-16 pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/20 pb-12">
+            <a href="index.html">
+                <img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group" class="h-12 sm:h-16 w-auto object-contain">
+            </a>
+            <div class="flex gap-8 text-xs font-semibold uppercase tracking-widest text-white/80">
+                <a href="index.html" class="hover:text-white">Overview</a>
+                <a href="active-operations.html" class="hover:text-white">DOTS</a>
+                <a href="roadmap.html" class="hover:text-white">Roadmap</a>
+                <a href="sitemap.html" class="hover:text-white">Sitemap</a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto text-center border-t border-white/10 pt-8">
-            <p class="text-gray-500 text-xs selection:text-gray-400 selection:bg-gray-800">© 2026 Savière Group Private Limited. Net-Zero. Carbon Efficient. Animal Cruelty-Free. Safe for Earth. </p>
+        <div class="max-w-7xl mx-auto pt-8 text-center text-xs text-white/60">
+            © 2026 Savière Group Private Limited. Net-Zero. Carbon Efficient. Animal Cruelty-Free. Safe for Earth.
         </div>
     </footer>
-
 </body>
 </html>
