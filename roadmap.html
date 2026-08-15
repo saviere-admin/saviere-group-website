@@ -4,50 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pipeline | Savière Group</title>
+    
     <meta name="theme-color" content="#821D30">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+    <link rel="manifest" href="./assets/site.webmanifest">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body{background:#fff;color:#0d0204; cursor: none;} 
+        body{background:#fff;color:#0d0204; cursor: none; overflow-x: hidden;} 
         .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
         .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(130,29,48,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s; }
         @media (hover: none) and (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } }
-        .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);border-bottom:1px solid rgba(130,29,48,0.05);}
-        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.1; pointer-events: none; }
-        .content-layer { position: relative; z-index: 10; }
+        
+        .glass-header{background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(130,29,48,0.05);}
+        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        .nav-link:hover::after { width: 100%; }
+
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; }
         #mobile-menu.open { transform: translateY(0); }
+
+        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.1; pointer-events: none; }
+        .content-layer { position: relative; z-index: 10; }
     </style>
 </head>
 <body class="antialiased">
     <div class="cursor-dot"></div><div class="cursor-ring"></div>
     <canvas id="bg-geom"></canvas>
 
+    <!-- UNIFORM HEADER -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="hover-trigger relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10"></a>
+            <a href="index.html" class="hover-trigger relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="index.html" class="hover-trigger">Overview</a>
-                <a href="governance.html" class="hover-trigger">Governance</a>
-                <a href="active-operations.html" class="hover-trigger">DOTS</a>
-                <a href="roadmap.html" class="text-corporate-primary font-bold hover-trigger">Roadmap</a>
+                <a href="index.html" class="nav-link hover-trigger">Overview</a>
+                <a href="governance.html" class="nav-link hover-trigger">Governance</a>
+                <a href="active-operations.html" class="nav-link hover-trigger">DOTS</a>
+                <a href="roadmap.html" class="nav-link text-corporate-primary font-bold hover-trigger">Pipeline</a>
             </nav>
             <div class="flex items-center gap-4 relative z-50">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
                 <button id="menu-btn" class="md:hidden text-corporate-primary p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
     </header>
 
     <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8">
-        <a href="index.html" class="text-2xl font-serif text-corporate-900">Overview</a>
-        <a href="governance.html" class="text-2xl font-serif text-corporate-900">Governance</a>
-        <a href="active-operations.html" class="text-2xl font-serif text-corporate-900">The Dots Company</a>
-        <a href="roadmap.html" class="text-2xl font-serif text-corporate-primary font-bold">Roadmap</a>
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <a href="index.html" class="text-3xl font-serif text-corporate-900">Overview</a>
+        <a href="governance.html" class="text-3xl font-serif text-corporate-900">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-corporate-900">The Dots Company</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-corporate-primary font-bold">Pipeline</a>
     </div>
 
     <main class="content-layer pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
@@ -58,8 +74,8 @@
             <div class="relative hover-trigger bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-sm transition-all hover:shadow-xl hover:-translate-y-1">
                 <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-corporate-primary border-4 border-white"></div>
                 <span class="text-[10px] font-bold text-corporate-primary uppercase tracking-widest">Phase 1</span>
-                <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Consumer FMCG Engine</h3>
-                <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Scale The Dots Company, dominating the market with our anhydrous Nano-HAp clinical protocol.</p>
+                <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Consumer Healthcare Engine</h3>
+                <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Scale The Dots Company, dominating the market with our anhydrous clinical protocol.</p>
             </div>
             <div class="relative hover-trigger bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-sm transition-all hover:shadow-xl hover:-translate-y-1">
                 <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
@@ -73,35 +89,49 @@
                 <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Eco-Conscious Living</h3>
                 <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Launch Savière Hotels and Clean-Tech Energy, expanding into plant-based hospitality and green micro-grids.</p>
             </div>
-            <div class="relative hover-trigger bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-sm transition-all hover:shadow-xl hover:-translate-y-1">
-                <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phase 4</span>
-                <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Global Consolidation</h3>
-                <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Transition into global operational governance, paving the way for the Savière Philanthropic Foundation.</p>
-            </div>
         </div>
     </main>
 
+    <!-- UNIFORM FOOTER -->
     <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 relative z-20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div class="md:col-span-2 space-y-4">
-                <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
-                <p class="text-white/80 text-xs font-light max-w-xs">Pioneering Net-Zero infrastructure.<br>Cyberabad, India.</p>
+                <img src="./assets/TransBGWHorizontal.png" class="h-12 md:h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
+                <p class="text-white/80 text-xs md:text-sm font-light leading-relaxed max-w-xs">Pioneering Net-Zero infrastructure.<br>Cyberabad, Hyderabad, Telangana, India.</p>
+            </div>
+            <div>
+                <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Operations</h4>
+                <ul class="space-y-2 text-xs md:text-sm text-white/80 font-light">
+                    <li><a href="active-operations.html" class="hover:text-white transition-colors hover-trigger">The Dots Company</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hospitals</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Corporate</h4>
+                <ul class="space-y-2 text-xs md:text-sm text-white/80 font-light">
+                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance</a></li>
+                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory</a></li>
+                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
+                </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-6 text-[10px] text-white/60 tracking-widest uppercase">
-            <p>© 2026 Savière Group.</p>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
+            <p>© 2026 Savière Group. Safe for Earth.</p>
+            <div class="flex gap-4"><span>Net-Zero</span><span>Cruelty-Free</span></div>
         </div>
     </footer>
     
     <script>
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#821D30");
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
         let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2; let ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
-        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(130,29,48,0.1)'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; }); });
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(130,29,48,0.1)'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; }); });
 
-        document.getElementById('menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('translate-x-full'); });
+        const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); }); closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
 
         // Background Box geometries
         const canvas = document.getElementById('bg-geom'); const scene = new THREE.Scene();

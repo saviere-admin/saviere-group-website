@@ -4,39 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Directory | Savière Group</title>
+    
     <meta name="theme-color" content="#821D30">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+    <link rel="manifest" href="./assets/site.webmanifest">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
     <style>
-        body{background:#fff;color:#0d0204; cursor: none;} 
+        body{background:#fff;color:#0d0204; cursor: none; overflow-x: hidden;} 
         .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
         .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(130,29,48,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s; }
         @media (hover: none) and (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } }
-        .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px);border-bottom:1px solid rgba(130,29,48,0.05);}
+        .glass-header{background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(130,29,48,0.05);}
     </style>
 </head>
 <body class="antialiased">
     <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10"></a>
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest text-corporate-primary hover-trigger">&larr; Portal</a>
+        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+            <a href="index.html" class="hover-trigger relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain"></a>
+            <a href="index.html" class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-corporate-primary hover-trigger">&larr; Return</a>
         </div>
     </header>
 
-    <main class="pt-32 pb-24 px-6 max-w-4xl mx-auto min-h-screen">
-        <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Architecture</p>
-        <h1 class="font-serif text-4xl md:text-5xl text-gray-900 mb-12">Corporate Directory.</h1>
+    <main class="pt-40 pb-24 px-6 max-w-4xl mx-auto min-h-screen">
+        <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Architecture</p>
+        <h1 class="font-serif text-4xl md:text-5xl text-gray-900 mb-12 tracking-tight">Corporate Directory.</h1>
         <div class="space-y-6 text-xl md:text-3xl font-serif text-gray-900">
-            <a href="index.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all">Home Portal</a>
-            <a href="governance.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all">Governance & Ethics</a>
-            <a href="active-operations.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all">The Dots Company</a>
-            <a href="roadmap.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all">Legacy Plan</a>
-            <a href="sitemap.xml" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all">Sitemap (XML)</a>
+            <a href="index.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Home Portal</a>
+            <a href="governance.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Governance & Ethics</a>
+            <a href="active-operations.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">The Dots Company</a>
+            <a href="roadmap.html" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Legacy Plan</a>
+            <a href="sitemap.xml" class="block border-b border-gray-200 pb-4 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Sitemap (XML)</a>
         </div>
     </main>
 
@@ -47,10 +56,12 @@
     </footer>
     
     <script>
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#821D30");
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
         let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2; let ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(130,29,48,0.1)'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; }); });
     </script>
 </body>
 </html>
