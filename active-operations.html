@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=24">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=24">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=24">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=24">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=24">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=24">
-    <link rel="manifest" href="site.webmanifest?v=24">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=25">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=25">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=25">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=25">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=25">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=25">
+    <link rel="manifest" href="site.webmanifest?v=25">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -55,40 +55,37 @@
         }
 
         /* =========================================================
-           1:1 ASPECT RATIO BOUNDING BOX
+           THE 1:1 UNIVERSAL ASPECT RATIO BOX
            ========================================================= */
         .art-director { 
             position: relative; 
             width: 100%; height: 100%;
-            max-width: 65vh; max-height: 65vh; 
+            max-width: 65vh; max-height: 65vh; /* Desktop bounds */
             aspect-ratio: 1 / 1;
             margin: auto;
         }
 
-        /* All assets share exact dead-center origin */
         .seq-img {
-            position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             object-fit: contain;
             opacity: 0; visibility: hidden;
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
         }
 
-        /* Strict Proportions */
-        .img-jar    { width: 100%; height: 100%; }
-        .img-powder { width: 45%; height: 45%; }
-        .tab-asset  { width: 18%; height: 18%; } 
-
         /* Strict Z-Index Layering */
-        #v-jar-empty { z-index: 10; }
-        .tab-asset, #v-powder { z-index: 20; }
-        #v-jar-filled { z-index: 30; }
+        #v-jar-empty { z-index: 10; width: 100%; height: 100%; }
+        #v-jar-filled { z-index: 30; width: 100%; height: 100%; }
+        #v-powder { z-index: 20; width: 60%; height: 60%; }
+        
+        /* The exact scale needed to match the filledjar tablet sizes */
+        .tab-asset { z-index: 20; width: 18%; height: 18%; } 
 
         @media (max-width: 768px) {
             .ops-sticky { flex-direction: column-reverse; } 
             .text-col { width: 100%; height: 45vh; padding: 0 1.5rem; }
             .visual-col { width: 100%; height: 55vh; }
             .step-card { width: 100%; max-width: 100%; padding: 1.5rem; margin-top: -2rem; }
-            .art-director { max-width: 90vw; max-height: 90vw; } 
+            .art-director { max-width: 90vw; max-height: 90vw; } /* Mobile bounds */
         }
     </style>
 </head>
@@ -151,33 +148,25 @@
 
                 <div class="visual-col">
                     <div class="art-director">
-                        <img src="./assets/emptyjar.png?v=24" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
-                        <img src="./assets/tab-powder.png?v=24" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
+                        <img src="./assets/emptyjar.png?v=25" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
+                        <img src="./assets/tab-powder.png?v=25" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
                         
-                        <!-- Stack Order: Bottom Layer renders first, Hero renders last on top -->
-                        <!-- Layer 1 (Bottom Floor) -->
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <!-- Layer 2 -->
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <!-- Layer 3 -->
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <!-- Layer 4 -->
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=24" class="seq-img tab-asset tablet-item">
+                        <!-- 10 Tablet Stack Matrix (Matches Original Design Frame) -->
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r1-1">
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r1-2">
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r1-3">
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r1-4">
+
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r2-1">
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r2-2">
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r2-3">
+
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r3-1">
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-r3-2">
+
+                        <img src="./assets/dot.png?v=25" class="seq-img tab-asset" id="t-hero">
                         
-                        <!-- Hero Tablet (Peak of Pyramid) -->
-                        <img src="./assets/dot.png?v=24" alt="DOTS Tablet" class="seq-img tab-asset" id="v-tablet-hero">
-                        
-                        <img src="./assets/filledjar.png?v=24" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
+                        <img src="./assets/filledjar.png?v=25" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
                     </div>
                 </div>
 
@@ -221,43 +210,36 @@
             gsap.registerPlugin(ScrollTrigger);
 
             // ==========================================
-            // CLAMPED PYRAMID MATRIX
-            // Max xPercent is ±80 (Safely inside the glass walls).
-            // Max yPercent is 190 (Safely touching the glass floor).
+            // THE MATHEMATICAL 1-2-3-4 PYRAMID
+            // Exact anchor percentages map identical to the Figma frame
             // ==========================================
-            const pileCoords = [
-                // Layer 1 (Bottom Floor)
-                { x: -80, y: 190, rot: 12,  bounce: true },
-                { x: -40, y: 192, rot: -25, bounce: true },
-                { x: 0,   y: 188, rot: 40,  bounce: true },
-                { x: 40,  y: 191, rot: -15, bounce: true },
-                { x: 80,  y: 190, rot: 60,  bounce: true },
-                // Layer 2
-                { x: -60, y: 120, rot: -40, bounce: false },
-                { x: -20, y: 122, rot: 20,  bounce: false },
-                { x: 20,  y: 118, rot: -70, bounce: false },
-                { x: 60,  y: 120, rot: 30,  bounce: false },
+            const targetCoords = [
+                // Bottom Layer (Resting on glass floor at 82%)
+                { id: "#t-r1-1", top: 82, left: 32, rot: 15 },
+                { id: "#t-r1-2", top: 82, left: 44, rot: -20 },
+                { id: "#t-r1-3", top: 82, left: 56, rot: 10 },
+                { id: "#t-r1-4", top: 82, left: 68, rot: -15 },
+                // Layer 2 (Nesting perfectly into the gaps)
+                { id: "#t-r2-1", top: 73, left: 38, rot: -10 },
+                { id: "#t-r2-2", top: 73, left: 50, rot: 25 },
+                { id: "#t-r2-3", top: 73, left: 62, rot: -5 },
                 // Layer 3
-                { x: -40, y: 50,  rot: 75,  bounce: false },
-                { x: 0,   y: 52,  rot: -10, bounce: false },
-                { x: 40,  y: 48,  rot: 55,  bounce: false },
-                // Layer 4
-                { x: -20, y: -20, rot: -20, bounce: false },
-                { x: 20,  y: -18, rot: 60,  bounce: false }
+                { id: "#t-r3-1", top: 64, left: 44, rot: 15 },
+                { id: "#t-r3-2", top: 64, left: 56, rot: -25 }
             ];
 
-            // 1. Initial Visibility Setup (Jar and Powder are immediately visible)
+            // Setup Initials
             gsap.set(".step-card", { autoAlpha: 0, y: 30 });
             gsap.set("#card-1", { autoAlpha: 1, y: 0 });
-            
-            gsap.set("#v-jar-empty", { autoAlpha: 1, scale: 1 });
-            gsap.set("#v-powder", { autoAlpha: 1, scale: 1 }); 
+            gsap.set("#v-jar-empty", { autoAlpha: 0, scale: 0.95 });
             gsap.set("#v-jar-filled", { autoAlpha: 0 });
 
-            // 2. Hide all tablets way up off-screen
-            gsap.set(".tab-asset", { autoAlpha: 0, yPercent: -300, scale: 1 }); 
-            
-            const extraTabs = gsap.utils.toArray('.tablet-item');
+            // Powder starts centered
+            gsap.set("#v-powder", { autoAlpha: 1, scale: 1 }); 
+
+            // Permanent Anchor Lock: Place them exactly where they need to end up
+            gsap.set("#t-hero", { top: "55%", left: "50%", rotation: 0 }); 
+            targetCoords.forEach(c => gsap.set(c.id, { top: c.top + "%", left: c.left + "%", rotation: c.rot }));
 
             const tl = gsap.timeline({ 
                 scrollTrigger: { trigger: ".ops-wrapper", start: "top top", end: "bottom bottom", scrub: 1 }
@@ -265,31 +247,25 @@
 
             // PHASE 1: Compression
             tl.to("#card-1", { autoAlpha: 0, y: -20, duration: 1 }, 0)
-              // Powder compresses to 0
-              .to("#v-powder", { autoAlpha: 0, scale: 0.1, duration: 1 }, 0) 
-              // Hero Tablet replaces the powder, falling to the future peak of the pyramid
-              .to("#v-tablet-hero", { autoAlpha: 1, yPercent: -90, rotation: 15, duration: 1.5, ease: "bounce.out" }, 0.2)
+              // Powder compresses down to mimic a single tablet
+              .to("#v-powder", { scale: 0.25, autoAlpha: 0, duration: 1 }, 0)
+              // Hero tablet fades in at the top of the jar rim, falling down
+              .from("#t-hero", { top: "15%", autoAlpha: 0, duration: 1.5, ease: "power2.inOut" }, 0.5)
               .fromTo("#card-2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 0.5);
 
-            // PHASE 2: The Cascade Sequence
+            // PHASE 2: Empty Jar Appears, Rest of Pyramid falls
             tl.to("#card-2", { autoAlpha: 0, y: -20, duration: 1 }, 2)
+              .to("#v-jar-empty", { autoAlpha: 1, scale: 1, duration: 1.5, ease: "power2.out" }, 2)
               .fromTo("#card-3", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 2.5);
 
-            extraTabs.forEach((tab, i) => {
-                let coords = pileCoords[i];
-                let delay = 2.0 + (i * 0.08); 
-                let easeType = coords.bounce ? "bounce.out" : "power2.in";
-                let fallDuration = coords.bounce ? 1.5 : 1.2;
-
-                // Drops strictly from the sky to its clamped coordinate
-                tl.fromTo(tab, 
-                  { autoAlpha: 0, yPercent: -300, xPercent: coords.x, rotation: coords.rot - 90 },
-                  { autoAlpha: 1, yPercent: coords.y, rotation: coords.rot, duration: fallDuration, ease: easeType }, 
-                  delay
-                ).to(tab, { opacity: 0.95, duration: 0.1 }, delay + fallDuration - 0.1); 
+            // The Inverse Drop: Animate *from* outside the top of the jar *down* to their permanent anchors
+            targetCoords.forEach((c, i) => {
+                let delay = 2.0 + (i * 0.1); 
+                tl.from(c.id, { top: "10%", autoAlpha: 0, rotation: c.rot - 90, duration: 1.5, ease: "bounce.out" }, delay)
+                  .to(c.id, { opacity: 0.95, duration: 0.1 }, delay + 1.4); // Glass illusion
             });
 
-            // PHASE 3: Seamless Crossfade to Final Product
+            // PHASE 3: Seamless Blend
             tl.to("#card-3", { autoAlpha: 0, y: -20, duration: 1 }, 5)
               .to(".tab-asset, #v-jar-empty", { autoAlpha: 0, duration: 1 }, 5)
               .to("#v-jar-filled", { autoAlpha: 1, duration: 1 }, 5)
