@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=9">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=9">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=9">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=9">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=9">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=9">
-    <link rel="manifest" href="site.webmanifest?v=9">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=10">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=10">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=10">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=10">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=10">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=10">
+    <link rel="manifest" href="site.webmanifest?v=10">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,33 +39,39 @@
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 100; }
         #mobile-menu.open { transform: translateY(0); }
 
-        /* Apple-Tier Layout */
+        /* Apple-Tier Pinned Layout */
         .ops-pin-container { width: 100vw; height: 100dvh; display: flex; flex-direction: row; background: #fcfcfc; border-bottom: 1px solid rgba(130,29,48,0.1); overflow: hidden; }
         
-        .text-col { width: 45%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
-        .visual-col { width: 55%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        /* Centered Flex ensures Text Cards never fall off screen */
+        .text-col { width: 45%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; z-index: 40; }
+        .visual-col { width: 55%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
 
-        .step-card { position: absolute; width: 85%; max-width: 500px; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); opacity: 0; }
+        .step-card { position: absolute; left: 0; right: 0; margin: 0 auto; width: 85%; max-width: 500px; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); opacity: 0; }
 
         .seq-img { position: absolute; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15)); margin: auto; }
         
-        /* DESKTOP SCALING: Much Larger Tablets */
+        /* Strict Z-Index Stacking */
+        #v-jar-empty { z-index: 10; }
+        #v-powder, .img-tablet, .extra-tab { z-index: 20; }
+        #v-jar-filled { z-index: 30; }
+        
+        /* Scaling */
         .img-powder { width: 45vh; height: 45vh; }
-        .img-tablet { width: 25vh; height: 25vh; }
-        .extra-tab  { width: 18vh; height: 18vh; } 
-        .img-jar    { width: 60vh; height: 60vh; }
+        .img-tablet { width: 20vh; height: 20vh; }
+        .extra-tab  { width: 15vh; height: 15vh; } 
+        .img-jar    { width: 55vh; height: 55vh; }
 
-        /* MOBILE OVERRIDES */
+        /* FLawless Mobile Overrides */
         @media (max-width: 768px) {
             .ops-pin-container { flex-direction: column; }
-            .visual-col { width: 100%; height: 50dvh; }
-            .text-col { width: 100%; height: 50dvh; align-items: flex-start; padding-top: 2rem; }
-            .step-card { width: calc(100% - 3rem); padding: 1.5rem; top: 0; }
+            .visual-col { width: 100%; height: 55dvh; }
+            /* Text Col strictly claims the bottom 45% */
+            .text-col { width: 100%; height: 45dvh; padding: 0 1rem; }
+            .step-card { width: 95%; padding: 1.5rem; }
             
-            /* Mobile Sizing (Using VW so it fills the screen perfectly) */
             .img-powder { width: 60vw; height: 60vw; max-height: 40vh; }
-            .img-tablet { width: 35vw; height: 35vw; max-height: 30vh; }
-            .extra-tab  { width: 25vw; height: 25vw; max-height: 20vh; } 
+            .img-tablet { width: 30vw; height: 30vw; max-height: 30vh; }
+            .extra-tab  { width: 22vw; height: 22vw; max-height: 20vh; } 
             .img-jar    { width: 70vw; height: 70vw; max-height: 45vh; }
         }
         
@@ -127,21 +133,23 @@
                 </div>
             </div>
 
-            <!-- Fully Loaded PNG Matrix -->
+            <!-- Optical Compositing Matrix -->
             <div class="visual-col">
-                <img src="./assets/tab-powder.png?v=9" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
+                <img src="./assets/tab-powder.png?v=10" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
                 
-                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet-1">
+                <img src="./assets/dot.png?v=10" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet-1">
                 
                 <!-- Cascading Extras -->
-                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-2">
-                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-3">
-                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-4">
-                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-5">
+                <img src="./assets/dot.png?v=10" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-2">
+                <img src="./assets/dot.png?v=10" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-3">
+                <img src="./assets/dot.png?v=10" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-4">
+                <img src="./assets/dot.png?v=10" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-5">
                 
                 <!-- Vessels -->
-                <img src="./assets/emptyjar.png?v=9" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
-                <img src="./assets/filledjar.png?v=9" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
+                <img src="./assets/emptyjar.png?v=10" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
+                
+                <!-- Fills over everything at the end -->
+                <img src="./assets/filledjar.png?v=10" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
             </div>
             
         </section>
@@ -176,20 +184,20 @@
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
         window.addEventListener('mousemove', (e) => { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; });
 
-        document.getElementById('menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
+        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
 
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Set precise initial states
+            // 1. Initial States
             gsap.set("#v-powder", { opacity: 1, scale: 1, y: 0 });
             gsap.set("#v-tablet-1", { opacity: 0, scale: 1.5, y: "-20vh" });
             gsap.set(".extra-tab", { opacity: 0, scale: 0.8, y: "-40vh" }); 
-            gsap.set("#v-jar-empty", { opacity: 0, y: "40vh", scale: 1 });
-            gsap.set("#v-jar-filled", { opacity: 0, y: "5vh", scale: 1 });
+            gsap.set("#v-jar-empty", { opacity: 0, y: "30vh", scale: 1 });
+            gsap.set("#v-jar-filled", { opacity: 0, scale: 1 }); // Already positioned center
 
-            gsap.set(".step-card", { opacity: 0, y: 50 });
+            gsap.set(".step-card", { opacity: 0, y: 30 }); // Subtle Y offset so they stay in view
             gsap.set("#card-1", { opacity: 1, y: 0 });
 
             // Master Timeline
@@ -204,35 +212,41 @@
             });
 
             // Phase 1: Powder -> Hero Tablet
-            tl.to("#card-1", { opacity: 0, y: -50, duration: 1 }, 0)
+            tl.to("#card-1", { opacity: 0, y: -30, duration: 1 }, 0)
               .to("#v-powder", { opacity: 0, scale: 0.5, duration: 1 }, 0)
               .to("#v-tablet-1", { opacity: 1, scale: 1, y: 0, duration: 1, ease: "power2.out" }, 0)
               .to("#card-2", { opacity: 1, y: 0, duration: 1 }, 0);
 
-            // Phase 2: Tablet Drops, Jar Rises, Extras Rain Down
-            tl.to("#card-2", { opacity: 0, y: -50, duration: 1 }, 2)
+            // Phase 2: Tablet Drops, Empty Jar Rises, Extras Rain Down
+            tl.to("#card-2", { opacity: 0, y: -30, duration: 1 }, 2)
               .to("#v-jar-empty", { opacity: 1, y: "5vh", duration: 1.5, ease: "power2.out" }, 2)
               
+              // Hero drops and shifts to 95% opacity to look "inside" the jar
               .to("#v-tablet-1", { y: "20vh", scale: 0.8, duration: 1.5, ease: "power2.in" }, 2)
-              .to("#v-tablet-1", { opacity: 0, duration: 0.2 }, 3.3) 
+              .to("#v-tablet-1", { opacity: 0.95, duration: 0.1 }, 3.4) 
 
+              // Cascades drop and shift to 95% opacity
               .to("#v-tablet-2", { opacity: 1, duration: 0.1 }, 2.2)
               .to("#v-tablet-2", { y: "22vh", x: "4vw", rotation: 45, duration: 1.3, ease: "power2.in" }, 2.2)
-              .to("#v-tablet-2", { opacity: 0, duration: 0.2 }, 3.3)
+              .to("#v-tablet-2", { opacity: 0.95, duration: 0.1 }, 3.4)
 
               .to("#v-tablet-3", { opacity: 1, duration: 0.1 }, 2.4)
               .to("#v-tablet-3", { y: "18vh", x: "-3vw", rotation: -60, duration: 1.1, ease: "power2.in" }, 2.4)
-              .to("#v-tablet-3", { opacity: 0, duration: 0.2 }, 3.3)
+              .to("#v-tablet-3", { opacity: 0.95, duration: 0.1 }, 3.4)
 
               .to("#v-tablet-4", { opacity: 1, duration: 0.1 }, 2.6)
               .to("#v-tablet-4", { y: "20vh", x: "2vw", rotation: 120, duration: 0.9, ease: "power2.in" }, 2.6)
-              .to("#v-tablet-4", { opacity: 0, duration: 0.2 }, 3.3)
+              .to("#v-tablet-4", { opacity: 0.95, duration: 0.1 }, 3.4)
+
+              .to("#v-tablet-5", { opacity: 1, duration: 0.1 }, 2.8)
+              .to("#v-tablet-5", { y: "15vh", x: "-1vw", rotation: -30, duration: 0.7, ease: "power2.in" }, 2.8)
+              .to("#v-tablet-5", { opacity: 0.95, duration: 0.1 }, 3.4)
 
               .to("#card-3", { opacity: 1, y: 0, duration: 1 }, 3.5);
 
-            // Phase 3: Seamless Blend to Filled Jar
-            tl.to("#card-3", { opacity: 0, y: -50, duration: 1 }, 5)
-              .to("#v-jar-empty", { opacity: 0, duration: 1.5 }, 5)
+            // Phase 3 & 4: Seamless Blend into completely filled/sealed product
+            tl.to("#card-3", { opacity: 0, y: -30, duration: 1 }, 5)
+              // We just fade the filled jar (z-index 30) directly over the loose tablets and empty jar
               .to("#v-jar-filled", { opacity: 1, duration: 1.5 }, 5)
               .to("#card-4", { opacity: 1, y: 0, duration: 1 }, 6);
               
