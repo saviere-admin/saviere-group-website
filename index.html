@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savière Group | Architecting a Sustainable Biological Future</title>
-    <meta name="description" content="Savière Group is dedicated to preventive healthcare, cruelty-free consumer goods, and net-zero infrastructure.">
+    <title>Savière Group | A Sustainable Biological Future</title>
+    <meta name="description" content="Savière Group Private Limited is an apex conglomerate engineered for preventive healthcare, cruelty-free consumer goods, and net-zero infrastructure.">
 
     <!-- Favicon Suite -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -12,37 +12,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
     <link rel="manifest" href="./site.webmanifest">
-    <meta name="theme-color" content="#821D30">
+    <meta name="theme-color" content="#ffffff">
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Corporation",
-      "name": "Savière Group",
-      "legalName": "Saviere Group Private Limited",
-      "alternateName": ["Savière", "Saviere", "Saviere Group", "Savière Group Limited"],
-      "url": "https://savieregroup.com",
-      "logo": "https://savieregroup.com/assets/WhiteBGRHorizontal.png",
-      "founder": {
-        "@type": "Person",
-        "name": "Dr. Tanmai Aasrith Varma Ayenampudi",
-        "jobTitle": "Founder & Managing Director"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Cyberabad, Hyderabad",
-        "addressRegion": "Telangana",
-        "addressCountry": "IN"
-      }
-    }
-    </script>
-
-    <!-- Premium Typography & Framework -->
+    <!-- Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -50,7 +27,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['"The Seasons"', 'Playfair Display', 'Cinzel', 'serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                     },
                     colors: {
                         corporate: {
@@ -67,226 +44,248 @@
         }
     </script>
 
-    <!-- GSAP for Apple-tier Scroll Animations -->
+    <!-- Animation & WebGL Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
-        body { background-color: #fcf8f8; color: #0a0103; overflow-x: hidden; }
-        .border-corporate { border-color: rgba(130, 29, 48, 0.14); }
-        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 4px; }
-        .nav-link:hover::after { width: 100%; }
-        .card-hover { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 30px 40px -15px rgba(130, 29, 48, 0.1); }
+        body { background-color: #ffffff; color: #0a0103; overflow-x: hidden; }
         
-        /* The WebGL Canvas Shield */
+        /* Apple-style Glassmorphism Header */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(130, 29, 48, 0.08);
+        }
+
+        /* WebGL Canvas */
         #webgl-canvas {
             position: absolute;
             top: 0; left: 0;
-            width: 100%; height: 100%;
+            width: 100%; height: 100vh;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.15; /* Subtle fluid integration */
-        }
-        
-        /* Blur overlays for text readability */
-        .glass-blur {
-            background: linear-gradient(180deg, rgba(252,248,248,0.8) 0%, rgba(252,248,248,1) 100%);
-            backdrop-filter: blur(20px);
+            opacity: 0.8; 
         }
 
-        /* Prevent flicker before GSAP loads */
-        .reveal { visibility: hidden; }
+        /* Typography Polish */
+        .text-balance { text-wrap: balance; }
+        
+        /* Pre-load hiding for GSAP */
+        .reveal-up, .reveal-fade { visibility: hidden; }
+
+        /* Pinned Section Layout */
+        .pin-container { height: 100vh; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body class="antialiased selection:bg-corporate-primary selection:text-white flex flex-col min-h-screen">
 
-    <!-- Fluid Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-corporate transition-all duration-500" id="global-header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
+    <!-- Fluid White Glass Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500" id="global-header">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center opacity-0 transform -translate-y-4" id="logo-anim">
-                <img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
+                <!-- Using the Transparent Burgundy logo to contrast beautifully against the white header -->
+                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-11 w-auto object-contain">
             </a>
             
-            <nav class="hidden md:flex items-center gap-8 lg:gap-12 text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gray-500" id="nav-anim">
-                <a href="#vision" class="nav-link hover:text-corporate-primary transition-colors opacity-0">The Vision</a>
-                <a href="#mission" class="nav-link hover:text-corporate-primary transition-colors opacity-0">The Mandate</a>
-                <a href="#horizons" class="nav-link hover:text-corporate-primary transition-colors opacity-0">Horizons</a>
+            <nav class="hidden md:flex items-center gap-10 text-[11px] lg:text-xs font-semibold uppercase tracking-[0.2em] text-gray-500" id="nav-anim">
+                <a href="#vision" class="hover:text-corporate-primary transition-colors opacity-0">Vision</a>
+                <a href="#philosophy" class="hover:text-corporate-primary transition-colors opacity-0">Philosophy</a>
+                <a href="#ecosystem" class="hover:text-corporate-primary transition-colors opacity-0">Ecosystem</a>
             </nav>
 
             <div class="flex items-center gap-4 opacity-0 transform -translate-y-4" id="cta-anim">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex items-center justify-center px-6 py-3 text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-white bg-corporate-primary hover:bg-corporate-dark transition-all rounded-full shadow-lg hover:shadow-xl hover:scale-105 transform duration-300">
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex items-center justify-center px-6 py-3 text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-corporate-primary border border-corporate-primary/30 hover:bg-corporate-primary hover:text-white transition-all rounded-full duration-300">
                     Connect
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow">
-        <!-- Hero Section with WebGL Fluid Canvas -->
-        <section id="vision" class="relative pt-32 pb-24 md:pt-56 md:pb-40 px-4 sm:px-6 lg:px-8 border-b border-corporate overflow-hidden">
-            <!-- Custom WebGL Fluid Shader Canvas -->
+    <main class="flex-grow relative z-10">
+        <!-- Hero Section with Organic WebGL Fluid -->
+        <section id="vision" class="relative h-screen flex items-center justify-center overflow-hidden">
             <canvas id="webgl-canvas"></canvas>
             
-            <!-- Bottom Fade to blend canvas into next section -->
-            <div class="absolute bottom-0 left-0 right-0 h-40 glass-blur z-0"></div>
+            <!-- Gradient fade to blend into the white page -->
+            <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white to-transparent z-10"></div>
 
-            <div class="max-w-7xl mx-auto text-center md:text-left relative z-10">
-                <div class="reveal overflow-hidden mb-6">
-                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/50 backdrop-blur-md border border-corporate rounded-full transform translate-y-full hero-text">
-                        <span class="w-2 h-2 rounded-full bg-corporate-primary animate-pulse"></span>
-                        <span class="text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-corporate-primary">Cyberabad • Apex Holding</span>
-                    </div>
+            <div class="relative z-20 text-center px-6 max-w-5xl mx-auto mt-16">
+                <div class="overflow-hidden mb-6">
+                    <p class="hero-text transform translate-y-full text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-2">Cyberabad, India</p>
                 </div>
-                
-                <div class="reveal overflow-hidden mb-8">
-                    <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6rem] text-corporate-950 leading-[1.05] tracking-tight max-w-5xl transform translate-y-full hero-text">
-                        Architecting a sustainable biological future.
+                <div class="overflow-hidden mb-8">
+                    <h1 class="hero-text transform translate-y-full font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] text-corporate-950 leading-[1.05] tracking-tight text-balance">
+                        Architecting a better,<br>cleaner world.
                     </h1>
                 </div>
+                <div class="overflow-hidden max-w-3xl mx-auto">
+                    <p class="hero-text transform translate-y-full text-lg md:text-2xl text-gray-600 font-light leading-relaxed text-balance">
+                        Savière Group Private Limited is an apex conglomerate engineering accessible healthcare, cruelty-free consumer goods, and net-zero infrastructure.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Founder's Mandate (Apple-style Scroll Storytelling) -->
+        <section id="philosophy" class="py-32 bg-white relative z-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <p class="reveal-up text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-8">The Corporate Mandate</p>
+                <h2 class="reveal-up font-serif text-3xl md:text-5xl text-corporate-950 leading-tight mb-12 text-balance">
+                    "We believe that massive business growth and environmental preservation are not mutually exclusive. They are the twin engines of the future."
+                </h2>
+                <div class="reveal-fade flex flex-col items-center justify-center">
+                    <p class="font-serif text-2xl text-corporate-950">Dr. Tanmai Aasrith Varma Ayenampudi</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mt-2">Medical Doctor • Environment Advocate • Founder</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Pinned Scroll Section (The Core Values) -->
+        <section class="bg-corporate-50 border-y border-corporate-primary/10 overflow-hidden" id="values-wrapper">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row">
                 
-                <div class="max-w-3xl reveal overflow-hidden">
-                    <p class="text-base sm:text-xl md:text-2xl text-gray-600 leading-relaxed font-light transform translate-y-full hero-text">
-                        Savière Group is a visionary operating platform. We believe that immense industrial scale must be structurally inseparable from absolute environmental preservation. Net-Zero. Cruelty-Free. Safe for Earth.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mission & The Founder's Mandate -->
-        <section id="mission" class="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-corporate-50 border-b border-corporate relative z-10">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
-                <div class="lg:col-span-6">
-                    <div class="reveal fade-up">
-                        <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-4">The Ethical Imperative</p>
-                        <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-corporate-950 mb-8 leading-tight">Clinical Authority.<br>Environmental Empathy.</h2>
-                    </div>
-                    <div class="reveal fade-up delay-100">
-                        <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-8 font-light">
-                            Savière Group was envisioned and is steered by a licensed medical professional with a profound dedication to environmental advocacy. By fusing clinical rigor with a passion for sustainable innovation, our mission is to build infrastructure that structurally improves the human condition without leaving an ecological footprint.
-                        </p>
-                        <div class="border-l-2 border-corporate-primary pl-6 py-2 mt-10">
-                            <p class="font-serif text-2xl md:text-3xl text-corporate-950">Dr. Tanmai Aasrith Varma Ayenampudi</p>
-                            <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-corporate-primary mt-2">Founder & Managing Director</p>
-                        </div>
-                    </div>
+                <!-- Left: Sticky Title -->
+                <div class="md:w-1/2 py-32 md:h-screen sticky top-0 flex flex-col justify-center pr-12">
+                    <p class="text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-4">Our Philosophy</p>
+                    <h2 class="font-serif text-5xl md:text-6xl text-corporate-950 leading-tight">Driven by clinical precision. Powered by empathy.</h2>
                 </div>
 
-                <div class="lg:col-span-6">
-                    <div class="grid grid-cols-1 gap-6 md:gap-8">
-                        <div class="bg-white p-10 border border-corporate card-hover rounded-2xl reveal fade-left">
-                            <span class="w-10 h-10 rounded-full bg-corporate-50 flex items-center justify-center text-corporate-primary font-serif mb-6 shadow-sm">I</span>
-                            <h3 class="font-serif text-2xl text-corporate-950 mb-3">Biological Purity</h3>
-                            <p class="text-sm md:text-base text-gray-500 leading-relaxed font-light">Prioritizing preventative health interventions and eliminating systemic toxins from daily consumer routines across all our verticals.</p>
+                <!-- Right: Scrolling Cards -->
+                <div class="md:w-1/2 py-32 space-y-32" id="values-cards">
+                    <div class="value-card bg-white p-12 rounded-3xl border border-corporate-primary/10 shadow-xl shadow-corporate-primary/5">
+                        <div class="w-12 h-12 rounded-full bg-corporate-primary/10 flex items-center justify-center mb-8">
+                            <svg class="w-6 h-6 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <div class="bg-white p-10 border border-corporate card-hover rounded-2xl reveal fade-left delay-100">
-                            <span class="w-10 h-10 rounded-full bg-corporate-50 flex items-center justify-center text-corporate-primary font-serif mb-6 shadow-sm">II</span>
-                            <h3 class="font-serif text-2xl text-corporate-950 mb-3">Absolute Vegan Mandate</h3>
-                            <p class="text-sm md:text-base text-gray-500 leading-relaxed font-light">A strict, non-negotiable standard. Zero animal derivatives and strictly no animal testing across all future R&D and supply chains.</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Preventative Healthcare</h3>
+                        <p class="text-gray-600 leading-relaxed font-light">All diseases start from our oral hygiene. We engineer clinical-grade interventions that target systemic pathogenesis at the source, treating the oral cavity as the gateway to total biological health.</p>
+                    </div>
+
+                    <div class="value-card bg-white p-12 rounded-3xl border border-corporate-primary/10 shadow-xl shadow-corporate-primary/5">
+                        <div class="w-12 h-12 rounded-full bg-corporate-primary/10 flex items-center justify-center mb-8">
+                            <svg class="w-6 h-6 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
                         </div>
-                        <div class="bg-white p-10 border border-corporate card-hover rounded-2xl reveal fade-left delay-200">
-                            <span class="w-10 h-10 rounded-full bg-corporate-50 flex items-center justify-center text-corporate-primary font-serif mb-6 shadow-sm">III</span>
-                            <h3 class="font-serif text-2xl text-corporate-950 mb-3">Net-Zero Infrastructure</h3>
-                            <p class="text-sm md:text-base text-gray-500 leading-relaxed font-light">Designing asset-light operational frameworks that harness clean energy, eliminate single-use plastics, and eradicate logistical water waste.</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Absolute Vegan Mandate</h3>
+                        <p class="text-gray-600 leading-relaxed font-light">A strict, non-negotiable standard. We enforce zero animal derivatives and absolutely no animal testing across our pharmaceutical R&D, personal care products, and luxury amenities.</p>
+                    </div>
+
+                    <div class="value-card bg-white p-12 rounded-3xl border border-corporate-primary/10 shadow-xl shadow-corporate-primary/5">
+                        <div class="w-12 h-12 rounded-full bg-corporate-primary/10 flex items-center justify-center mb-8">
+                            <svg class="w-6 h-6 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Safe for the Earth</h3>
+                        <p class="text-gray-600 leading-relaxed font-light">From eliminating single-use plastics to reducing logistical water weight by 70%, every company in our ecosystem is engineered from inception to be carbon-efficient and net-zero.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Future Horizons Grid -->
-        <section id="horizons" class="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-white border-b border-corporate">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-20 reveal fade-up">
-                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-4">Strategic Expansion</p>
-                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-corporate-950 leading-tight mb-8">
-                        The Horizons of Growth.
-                    </h2>
-                    <p class="text-base md:text-xl text-gray-600 leading-relaxed font-light">
-                        Savière Group is engineered for exponential, multi-vertical scale. Our roadmap is designed to bring accessible luxury, preventative health, and sustainable tech to the global market.
-                    </p>
+        <!-- Ecosystem & Roadmap (Sleek Horizontal Scroll) -->
+        <section id="ecosystem" class="py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-6 mb-16">
+                <p class="reveal-up text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-4">The Expansion Pipeline</p>
+                <h2 class="reveal-up font-serif text-4xl md:text-6xl text-corporate-950 leading-tight">An ecosystem built for scale.</h2>
+            </div>
+
+            <!-- Apple-style snappy grid -->
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- The Dots Company -->
+                <div class="reveal-up group relative p-10 bg-corporate-50 rounded-[2rem] overflow-hidden border border-corporate-primary/5 hover:border-corporate-primary/20 transition-all duration-500">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-corporate-primary mb-4">Phase 1: FMCG Anchor</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">The Dots Company</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light mb-8">Re-engineering daily oral care. Replacing plastic silica paste tubes with zero-water, clinical-grade Nano-HAp biomimetic tablets.</p>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-corporate-primary/5 rounded-full blur-2xl group-hover:bg-corporate-primary/10 transition-colors duration-500"></div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
-                    <div class="group relative overflow-hidden rounded-3xl bg-corporate-50 border border-corporate p-12 reveal fade-up">
-                        <div class="absolute inset-0 bg-corporate-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
-                        <div class="relative z-10 group-hover:text-white transition-colors duration-500">
-                            <p class="text-xs font-semibold uppercase tracking-widest text-corporate-primary mb-6 group-hover:text-white/70 transition-colors">Phase 1 Operations</p>
-                            <h3 class="font-serif text-3xl md:text-4xl text-corporate-950 mb-4 group-hover:text-white transition-colors">Consumer Goods</h3>
-                            <p class="text-base leading-relaxed text-gray-600 font-light group-hover:text-white/90 transition-colors">Pioneering zero-waste, anhydrous personal care formulations. Our inaugural FMCG ventures aim to disrupt legacy plastics with clinical-grade, cruelty-free biomimetics.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="group relative overflow-hidden rounded-3xl bg-corporate-50 border border-corporate p-12 reveal fade-up delay-100">
-                        <div class="absolute inset-0 bg-corporate-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
-                        <div class="relative z-10 group-hover:text-white transition-colors duration-500">
-                            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6 group-hover:text-white/70 transition-colors">Future Pipeline</p>
-                            <h3 class="font-serif text-3xl md:text-4xl text-corporate-950 mb-4 group-hover:text-white transition-colors">Accessible Healthcare</h3>
-                            <p class="text-base leading-relaxed text-gray-600 font-light group-hover:text-white/90 transition-colors">Future networks of specialized, asset-light clinical spaces dedicated to shifting the paradigm from reactive disease management to proactive biological health.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="group relative overflow-hidden rounded-3xl bg-corporate-50 border border-corporate p-12 reveal fade-up">
-                        <div class="absolute inset-0 bg-corporate-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
-                        <div class="relative z-10 group-hover:text-white transition-colors duration-500">
-                            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6 group-hover:text-white/70 transition-colors">Future Pipeline</p>
-                            <h3 class="font-serif text-3xl md:text-4xl text-corporate-950 mb-4 group-hover:text-white transition-colors">Experiential Hospitality</h3>
-                            <p class="text-base leading-relaxed text-gray-600 font-light group-hover:text-white/90 transition-colors">Envisioning asset-light hospitality management. Creating completely net-zero hotel ecosystems featuring entirely plant-based culinary experiences.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="group relative overflow-hidden rounded-3xl bg-corporate-50 border border-corporate p-12 reveal fade-up delay-100">
-                        <div class="absolute inset-0 bg-corporate-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
-                        <div class="relative z-10 group-hover:text-white transition-colors duration-500">
-                            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6 group-hover:text-white/70 transition-colors">Future Pipeline</p>
-                            <h3 class="font-serif text-3xl md:text-4xl text-corporate-950 mb-4 group-hover:text-white transition-colors">Clean-Tech Energy</h3>
-                            <p class="text-base leading-relaxed text-gray-600 font-light group-hover:text-white/90 transition-colors">Strategizing future partnerships for decentralized green micro-grids, ensuring our industrial footprint remains carbon efficient for decades.</p>
-                        </div>
+                <!-- Savière Estates -->
+                <div class="reveal-up group relative p-10 bg-corporate-50 rounded-[2rem] overflow-hidden border border-corporate-primary/5 hover:border-corporate-primary/20 transition-all duration-500 delay-100">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">Asset Vault</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Savière Estates</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light mb-8">The secure intellectual property trust isolating corporate risk by holding and licensing formulations, trademarks, and real estate contracts.</p>
                     </div>
                 </div>
+
+                <!-- Hospitals -->
+                <div class="reveal-up group relative p-10 bg-corporate-50 rounded-[2rem] overflow-hidden border border-corporate-primary/5 hover:border-corporate-primary/20 transition-all duration-500 delay-200">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">Healthcare Pipeline</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Savière Hospitals</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light mb-8">Hyper-accessible, preventative healthcare facilities leveraging leased real estate to shift the paradigm from reactive to proactive care.</p>
+                    </div>
+                </div>
+
+                <!-- Hotels -->
+                <div class="reveal-up group relative p-10 bg-corporate-50 rounded-[2rem] overflow-hidden border border-corporate-primary/5 hover:border-corporate-primary/20 transition-all duration-500">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">Hospitality Pipeline</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Savière Hotels</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light mb-8">Asset-light management delivering entirely net-zero, experiential living ecosystems with strictly vegan amenities and culinary spaces.</p>
+                    </div>
+                </div>
+
+                <!-- Green Energy -->
+                <div class="reveal-up group relative p-10 bg-corporate-50 rounded-[2rem] overflow-hidden border border-corporate-primary/5 hover:border-corporate-primary/20 transition-all duration-500 delay-100">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">Clean-Tech Pipeline</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Savière Green Energy</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light mb-8">Clean-tech infrastructure partnerships securing decentralized solar grids to ensure all subsidiaries operate with maximum carbon efficiency.</p>
+                    </div>
+                </div>
+
+                <!-- Lifestyle & Watches -->
+                <div class="reveal-up group relative p-10 bg-corporate-50 rounded-[2rem] overflow-hidden border border-corporate-primary/5 hover:border-corporate-primary/20 transition-all duration-500 delay-200">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">Consumer Pipeline</p>
+                        <h3 class="font-serif text-3xl text-corporate-950 mb-4">Savière Lifestyle</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light mb-8">Normalizing cruelty-free choices through premium material sciences, sustainable high-horology (Savière Watches), and plant-based Cafes.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
 
-    <!-- Imperial Burgundy Footer -->
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8 border-t border-corporate-dark">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20 text-center md:text-left">
-                <div class="space-y-8">
-                    <a href="index.html" class="inline-block">
-                        <img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group Limited" class="h-16 sm:h-20 w-auto object-contain mx-auto md:mx-0">
-                    </a>
-                    <p class="text-white/80 text-sm md:text-base leading-relaxed max-w-sm font-light mx-auto md:mx-0">
-                        Savière Group Private Limited.<br>
-                        Cyberabad / Hitec City Corridor, Hyderabad, Telangana, India.
-                    </p>
-                </div>
-
-                <div class="flex flex-col justify-center items-center md:items-end space-y-6">
-                    <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50 mb-2">Corporate Correspondence</h4>
-                    <a href="mailto:connect@savieregroup.com" class="text-white text-lg md:text-xl font-light hover:text-white/70 transition-colors">connect@savieregroup.com</a>
-                </div>
+    <!-- Deep Burgundy Footer -->
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 border-t border-corporate-dark z-20 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-20 text-center md:text-left">
+            <div class="space-y-8">
+                <a href="index.html" class="inline-block">
+                    <img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group Limited" class="h-12 md:h-16 w-auto object-contain mx-auto md:mx-0">
+                </a>
+                <p class="text-white/80 text-sm leading-relaxed max-w-sm font-light mx-auto md:mx-0">
+                    Savière Group Private Limited.<br>
+                    Cyberabad, Secunderabad, Telangana, India.
+                </p>
             </div>
 
-            <!-- Bottom Bar -->
-            <div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-white/40 tracking-wider uppercase font-medium">
-                <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
-                <div class="flex gap-6">
-                    <span>Net-Zero</span>
-                    <span>Cruelty-Free</span>
-                    <span>Asset-Light</span>
-                </div>
+            <div class="flex flex-col justify-center items-center md:items-end space-y-6">
+                <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50 mb-2">Enterprise Contact</h4>
+                <a href="mailto:connect@savieregroup.com" class="text-white text-lg md:text-xl font-light hover:text-white/70 transition-colors">connect@savieregroup.com</a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-white/50 tracking-wider uppercase font-medium">
+            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
+            <div class="flex gap-6">
+                <span>Net-Zero</span>
+                <span>Cruelty-Free</span>
+                <span>Asset-Light</span>
             </div>
         </div>
     </footer>
 
-    <!-- WebGL Fluid Shader Logic (The Apple-Tier Canvas) -->
+    <!-- Playful & Thoughtful WebGL Fluid Background -->
     <script>
         const canvas = document.getElementById('webgl-canvas');
         const gl = canvas.getContext('webgl');
 
         if (gl) {
-            // Vertex Shader
             const vsSource = `
                 attribute vec2 position;
                 varying vec2 vUv;
@@ -296,7 +295,7 @@
                 }
             `;
 
-            // Fragment Shader (Fluid Dynamics Math)
+            // A highly organic, thoughtful shader creating gentle, breathing maroon/rose water ripples
             const fsSource = `
                 precision mediump float;
                 uniform float u_time;
@@ -304,38 +303,46 @@
                 uniform vec2 u_mouse;
                 varying vec2 vUv;
 
-                // Saviere Imperial Burgundy Color: rgb(130, 29, 48) -> vec3(0.51, 0.11, 0.19)
+                // Color palette mapping to your #821D30 (Burgundy) but heavily softened to look like a crisp, bright morning.
+                // We mix soft whites and pale rose/maroon to keep the background light and breathable.
                 
                 void main() {
                     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-                    
-                    // Slow, elegant fluid movement
-                    vec2 p = uv * 3.0 - vec2(20.0);
-                    vec2 i = p;
-                    float c = 1.0;
-                    float inten = .005;
+                    vec2 p = uv * 2.0 - vec2(1.0); // center
+                    p.x *= u_resolution.x / u_resolution.y;
 
-                    for (int n = 0; n < 5; n++) {
-                        float t = u_time * (1.0 - (3.5 / float(n+1)));
+                    // Mouse interaction (gentle distortion)
+                    vec2 mouse = u_mouse * 2.0 - vec2(1.0);
+                    mouse.x *= u_resolution.x / u_resolution.y;
+                    float dist = length(p - mouse);
+                    p += (p - mouse) * smoothstep(1.0, 0.0, dist) * 0.05;
+
+                    // Fluid organic math
+                    vec2 i = p;
+                    float c = 0.0;
+                    float inten = 0.01;
+
+                    for (int n = 0; n < 4; n++) {
+                        float t = u_time * (0.8 - (0.1 / float(n+1)));
                         i = p + vec2(cos(t - i.x) + sin(t + i.y), sin(t - i.y) + cos(t + i.x));
-                        c += 1.0/length(vec2(p.x / (sin(i.x+t)/inten),p.y / (cos(i.y+t)/inten)));
+                        c += 1.0 / length(vec2(p.x / (sin(i.x + t) / inten), p.y / (cos(i.y + t) / inten)));
                     }
                     
-                    c /= float(5);
-                    c = 1.17-pow(c, 1.4);
+                    c /= 4.0;
+                    c = 1.0 - pow(c, 1.2);
                     
-                    // Base color + fluid highlight
-                    vec3 col = vec3(0.51 * c, 0.11 * c, 0.19 * c);
+                    // Soft white/pale rose mix to keep the site light and Apple-crisp
+                    vec3 col1 = vec3(0.99, 0.96, 0.96); // Soft off-white
+                    vec3 col2 = vec3(0.95, 0.88, 0.90); // Very pale rose
+                    vec3 col3 = vec3(0.90, 0.75, 0.78); // Deeper pale maroon
                     
-                    // Add subtle mouse interaction glow
-                    float mouseDist = length(uv - u_mouse);
-                    float glow = smoothstep(0.5, 0.0, mouseDist) * 0.15;
-                    
-                    gl_FragColor = vec4(col + glow, 1.0);
+                    vec3 finalCol = mix(col1, col2, c);
+                    finalCol = mix(finalCol, col3, c * c * 0.5);
+
+                    gl_FragColor = vec4(finalCol, 1.0);
                 }
             `;
 
-            // Compile shaders
             function createShader(gl, type, source) {
                 const shader = gl.createShader(type);
                 gl.shaderSource(shader, source);
@@ -343,17 +350,12 @@
                 return shader;
             }
 
-            const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
-            const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
-
-            // Create program
             const program = gl.createProgram();
-            gl.attachShader(program, vertexShader);
-            gl.attachShader(program, fragmentShader);
+            gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vsSource));
+            gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fsSource));
             gl.linkProgram(program);
             gl.useProgram(program);
 
-            // Set up rectangle covering screen
             const positionBuffer = gl.createBuffer();
             gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
@@ -365,96 +367,89 @@
             gl.enableVertexAttribArray(positionLocation);
             gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-            // Uniforms
             const timeLocation = gl.getUniformLocation(program, "u_time");
             const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
             const mouseLocation = gl.getUniformLocation(program, "u_mouse");
 
             let mouse = { x: 0.5, y: 0.5 };
+            let targetMouse = { x: 0.5, y: 0.5 };
+
             window.addEventListener('mousemove', (e) => {
-                mouse.x = e.clientX / window.innerWidth;
-                mouse.y = 1.0 - (e.clientY / window.innerHeight);
+                targetMouse.x = e.clientX / window.innerWidth;
+                targetMouse.y = 1.0 - (e.clientY / window.innerHeight);
             });
 
-            function resizeCanvas() {
+            function resize() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 gl.viewport(0, 0, canvas.width, canvas.height);
                 gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
             }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
+            window.addEventListener('resize', resize);
+            resize();
 
-            // Render loop
             function render(time) {
-                gl.uniform1f(timeLocation, time * 0.0003); // Slow, elegant speed
+                // Smooth mouse interpolation for that premium feel
+                mouse.x += (targetMouse.x - mouse.x) * 0.05;
+                mouse.y += (targetMouse.y - mouse.y) * 0.05;
+
+                gl.uniform1f(timeLocation, time * 0.0005); 
                 gl.uniform2f(mouseLocation, mouse.x, mouse.y);
                 gl.drawArrays(gl.TRIANGLES, 0, 6);
                 requestAnimationFrame(render);
             }
             requestAnimationFrame(render);
         } else {
-            canvas.style.display = 'none'; // Fallback if WebGL fails
+            canvas.style.display = 'none'; 
         }
     </script>
 
-    <!-- GSAP Apple-Tier Animations -->
+    <!-- Apple-Tier GSAP Scroll Animations -->
     <script>
-        document.addEventListener("DOMContentLoaded", (event) => {
+        document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Remove visibility hidden to allow animations
-            gsap.utils.toArray('.reveal').forEach(el => {
-                el.style.visibility = 'visible';
-            });
+            // Reveal hidden elements before animating
+            gsap.utils.toArray('.reveal-up, .reveal-fade').forEach(el => el.style.visibility = 'visible');
 
-            // 1. Initial Load Sequence (Header & Hero)
+            // 1. Initial Hero Stagger (Buttery smooth entrance)
             const tl = gsap.timeline();
-            
-            tl.to("#logo-anim", {y: 0, opacity: 1, duration: 0.8, ease: "power3.out"}, 0.2)
-              .to("#nav-anim a", {opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out"}, 0.4)
-              .to("#cta-anim", {y: 0, opacity: 1, duration: 0.8, ease: "power3.out"}, 0.4)
-              .to(".hero-text", {y: 0, duration: 1.2, stagger: 0.15, ease: "power4.out"}, 0.5);
+            tl.to("#logo-anim", {y: 0, opacity: 1, duration: 1, ease: "power4.out"}, 0.2)
+              .to("#nav-anim a", {opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out"}, 0.3)
+              .to("#cta-anim", {y: 0, opacity: 1, duration: 1, ease: "power4.out"}, 0.4)
+              .to(".hero-text", {y: 0, duration: 1.4, stagger: 0.15, ease: "power4.out"}, 0.5);
 
-            // 2. Scroll Animations (Fade Up)
-            gsap.utils.toArray('.fade-up').forEach(element => {
+            // 2. Fade Up Scroll Reveals
+            gsap.utils.toArray('.reveal-up').forEach(element => {
                 gsap.fromTo(element, 
-                    { y: 50, opacity: 0 },
-                    {
-                        y: 0, opacity: 1, duration: 1, ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: element,
-                            start: "top 85%", 
-                            toggleActions: "play none none reverse"
-                        }
-                    }
+                    { y: 60, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } }
                 );
             });
 
-            // 3. Scroll Animations (Fade Left - staggered)
-            gsap.utils.toArray('.fade-left').forEach(element => {
+            // 3. Simple Fade Reveals
+            gsap.utils.toArray('.reveal-fade').forEach(element => {
                 gsap.fromTo(element, 
-                    { x: 50, opacity: 0 },
-                    {
-                        x: 0, opacity: 1, duration: 1, ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: element,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        }
-                    }
+                    { opacity: 0 },
+                    { opacity: 1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: element, start: "top 80%" } }
                 );
             });
-            
-            // Header scroll shrink effect
+
+            // 4. Staggered Core Values Cards
+            gsap.fromTo(".value-card", 
+                { y: 80, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", scrollTrigger: { trigger: "#values-cards", start: "top 75%" } }
+            );
+
+            // 5. Header Minimization on Scroll
             ScrollTrigger.create({
-                start: "top -80",
+                start: "top -50",
                 onUpdate: self => {
                     const header = document.getElementById("global-header");
                     if (self.direction === 1) {
-                        header.classList.add("py-2", "shadow-sm");
+                        header.classList.add("py-1", "shadow-sm");
                     } else {
-                        header.classList.remove("py-2", "shadow-sm");
+                        header.classList.remove("py-1", "shadow-sm");
                     }
                 }
             });
