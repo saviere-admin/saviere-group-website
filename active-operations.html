@@ -14,150 +14,169 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
 
     <style>
-        body { background-color: #fcfcfc; color: #0d0204; overflow-x: hidden; }
-        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
+        body { background-color: #fcfcfc; color: #0d0204; overflow-x: hidden; cursor: none; }
+        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
 
-        /* The Bulletproof Pinned Layout */
-        .pin-wrapper { display: flex; align-items: flex-start; justify-content: space-between; position: relative; }
-        .scroll-text-col { width: 50%; padding-right: 4rem; padding-bottom: 50vh; }
-        .visual-col { width: 50%; height: 100vh; position: sticky; top: 0; display: flex; align-items: center; justify-content: center; }
-        
-        /* The Morphing Visuals */
-        .stage-visual { position: absolute; opacity: 0; transform: scale(0.8); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .stage-visual.active { opacity: 1; transform: scale(1); }
-        
-        .story-block { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; opacity: 0.3; transition: opacity 0.5s; }
-        .story-block.is-active { opacity: 1; }
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background: #821D30; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); transition: width 0.3s, height 0.3s, background 0.3s; }
 
-        @media (max-width: 768px) {
-            .pin-wrapper { flex-direction: column-reverse; }
-            .scroll-text-col { width: 100%; padding-right: 0; }
-            .visual-col { width: 100%; height: 40vh; position: sticky; top: 80px; z-index: 10; background: #fcfcfc; border-bottom: 1px solid rgba(130,29,48,0.1); }
-        }
+        /* 3D Scrollytelling Layout */
+        #scroll-container { height: 400vh; position: relative; }
+        #sticky-view { position: sticky; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+        
+        #text-container { position: relative; height: 100%; display: flex; align-items: center; padding: 0 4rem; z-index: 10; }
+        .stage-text { position: absolute; left: 50px; opacity: 0; max-w: 550px; transform: translateY(30px); background: rgba(255,255,255,0.65); backdrop-filter: blur(12px); padding: 3rem; border-radius: 2rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);}
+        
+        #three-canvas { position: absolute; top: 0; right: 0; width: 60vw; height: 100vh; z-index: 5; pointer-events: none;}
+        
+        @media (max-width: 768px) { #text-container { align-items: flex-end; padding-bottom: 5vh; width: 100vw; } .stage-text { left: 20px; right: 20px; } #three-canvas { width: 100vw; top: -15vh; } }
     </style>
 </head>
 <body class="antialiased">
 
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-11"></a>
-            <nav class="hidden md:flex gap-10 text-[10px] md:text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="index.html" class="nav-link hover:text-corporate-primary">Overview</a>
-                <a href="governance.html" class="nav-link hover:text-corporate-primary">Governance</a>
-                <a href="active-operations.html" class="text-corporate-primary font-bold">DOTS</a>
-                <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
+            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
+                <a href="index.html" class="nav-link hover-trigger">Overview</a>
+                <a href="active-operations.html" class="text-corporate-primary font-bold hover-trigger">DOTS</a>
+                <a href="roadmap.html" class="nav-link hover-trigger">Pipeline</a>
             </nav>
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
         </div>
     </header>
 
     <main>
-        <div class="max-w-7xl mx-auto px-6 pt-40 pb-12">
-            <p class="text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Phase 1 Operations</p>
-            <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl text-gray-900 mb-8 tracking-tight">The Dots Company.</h1>
-            <p class="text-lg md:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed">
-                Replacing 100g plastic silica paste tubes with clinical-grade, zero-water biomimetic Nano-HAp solid-state tablets.
-            </p>
+        <div class="max-w-7xl mx-auto px-6 mb-10 text-center pt-40 pb-20 relative z-10">
+            <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Phase 1 Operations</p>
+            <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-8">The Dots Company.</h1>
+            <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">Replacing plastic silica paste tubes with clinical-grade, zero-water biomimetic Nano-HAp solid-state tablets. Scroll to view the clinical pipeline.</p>
         </div>
 
-        <section class="max-w-7xl mx-auto px-6 mt-12 relative z-10 border-t border-corporate-primary/10">
-            <div class="pin-wrapper">
+        <!-- Real 3D Scrollytelling Engine -->
+        <section id="scroll-container" class="bg-corporate-50 border-t border-corporate-primary/10">
+            <div id="sticky-view">
                 
-                <!-- Left: Scrolling Text -->
-                <div class="scroll-text-col">
-                    <div class="story-block" id="block-1">
-                        <h3 class="font-serif text-4xl md:text-5xl text-gray-900 mb-6">1. Clinical Ingredients</h3>
-                        <p class="text-xl text-gray-600 font-light leading-relaxed">We bypass toxic synthetic fluorides entirely. The formulation utilizes biomimetic Nano-Hydroxyapatite (Nano-HAp) to rebuild enamel from the inside out, paired with Xylitol to selectively starve bacteria.</p>
+                <div id="text-container" class="w-full md:w-1/2">
+                    <div class="stage-text hover-trigger" id="t1">
+                        <h3 class="font-serif text-4xl text-gray-900 mb-4">1. The Clinical Chemistry</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">The formulation requires biomimetic Nano-Hydroxyapatite (Nano-HAp) to rebuild enamel, Xylitol to selectively starve pathogenic bacteria, and Zinc Citrate to neutralize volatile sulfur compounds.</p>
                     </div>
-                    
-                    <div class="story-block" id="block-2">
-                        <h3 class="font-serif text-4xl md:text-5xl text-gray-900 mb-6">2. Anhydrous Compression</h3>
-                        <p class="text-xl text-gray-600 font-light leading-relaxed">Partnering with specialized CDMOs across India, water is eliminated. Ingredients are compressed into a precise 600mg solid-state format, slashing shipping emissions by 70%.</p>
-                        <p class="mt-6 text-sm font-bold tracking-widest uppercase text-corporate-primary border border-corporate-primary/20 inline-block px-4 py-2">Tier 1 Economy: ₹2.00/Brush</p>
+                    <div class="stage-text hover-trigger" id="t2">
+                        <h3 class="font-serif text-4xl text-gray-900 mb-4">2. Anhydrous Compression</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">Water is eliminated. The active ingredients are pressed into a precise 600mg solid-state tablet format, slashing global shipping carbon emissions by 70%.</p>
                     </div>
-                    
-                    <div class="story-block" id="block-3">
-                        <h3 class="font-serif text-4xl md:text-5xl text-gray-900 mb-6">3. Zero-Plastic Vaults</h3>
-                        <p class="text-xl text-gray-600 font-light leading-relaxed">To command immediate consumer trust, tablets drop into sustainable, refillable aluminum vessels. This achieves absolute zero plastic contact and drives our high-margin subscription loop.</p>
-                        <p class="mt-6 text-sm font-bold tracking-widest uppercase text-gray-500 border border-gray-200 inline-block px-4 py-2">60 Refills for ₹150</p>
+                    <div class="stage-text hover-trigger" id="t3">
+                        <h3 class="font-serif text-4xl text-gray-900 mb-4">3. Zero-Plastic Vaults</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">Tablets drop into sustainable, refillable brushed aluminum vessels. This achieves absolute zero plastic contact, preventing daily microplastic ingestion linked to metabolic syndrome.</p>
                     </div>
                 </div>
 
-                <!-- Right: Pinned Visual Stage -->
-                <div class="visual-col">
-                    <!-- Visual 1: Chemicals -->
-                    <div class="stage-visual w-full h-full flex items-center justify-center" id="vis-1">
-                        <div class="relative w-64 h-64 border border-corporate-primary/20 rounded-full flex items-center justify-center">
-                            <div class="w-32 h-32 bg-corporate-primary/10 rounded-full animate-pulse absolute"></div>
-                            <svg class="w-16 h-16 text-corporate-primary relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        </div>
-                    </div>
-                    
-                    <!-- Visual 2: Tablet -->
-                    <div class="stage-visual w-full h-full flex items-center justify-center" id="vis-2">
-                        <div class="w-48 h-48 rounded-full border-8 border-corporate-primary flex items-center justify-center bg-white shadow-2xl shadow-corporate-primary/20">
-                            <span class="font-serif font-bold text-3xl text-corporate-primary">600mg</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Visual 3: Aluminum Jar -->
-                    <div class="stage-visual w-full h-full flex items-center justify-center" id="vis-3">
-                        <svg class="w-48 h-48 text-gray-800 drop-shadow-xl" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-                        </svg>
-                    </div>
-                </div>
-
+                <!-- Three.js Canvas -->
+                <canvas id="three-canvas"></canvas>
             </div>
         </section>
     </main>
 
-    <footer class="bg-corporate-primary text-white py-16 px-6 mt-12 relative z-20">
+    <footer class="bg-corporate-primary text-white py-24 px-6 relative z-20 mt-32">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <img src="./assets/TransBGWHorizontal.png" class="h-12 md:h-16 w-auto">
-            <p class="text-[10px] text-white/60 uppercase tracking-widest">© 2026 Savière Group. Safe for Earth.</p>
+            <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-20 w-auto hover-trigger transition-transform hover:scale-105 duration-500">
+            <p class="text-xs text-white/60 uppercase tracking-widest">© 2026 Savière Group. Safe for Earth.</p>
         </div>
     </footer>
 
     <script>
-        // Lenis Smooth Scrolling
+        // 1. Lenis Smooth Scrolling & Magnetic Cursor
         const lenis = new Lenis({ duration: 1.2, smooth: true });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time)=>{ lenis.raf(time * 1000) }); gsap.ticker.lagSmoothing(0);
 
-        // Solid Pinned GSAP Scroll Logic
+        const cursorDot = document.querySelector('.cursor-dot'); const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' }); });
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => { el.addEventListener('mouseenter', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)'; }); });
+
+        // 2. High-End Three.js Physics Timeline (Ingredients -> Tablet -> Jar)
+        const canvas = document.getElementById('three-canvas');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / 2 / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 2, 20);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        
+        function resize() { const w = window.innerWidth > 768 ? window.innerWidth * 0.6 : window.innerWidth; const h = window.innerHeight; camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h); }
+        window.addEventListener('resize', resize); resize();
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.2); dirLight.position.set(5, 10, 7); scene.add(dirLight);
+        
+        // A. Chemical Ingredients (Floating Spheres)
+        const ingredients = new THREE.Group();
+        const geoSphere = new THREE.SphereGeometry(0.6, 32, 32);
+        const colors = ['#ffffff', '#821D30', '#a0aec0', '#4a5568'];
+        colors.forEach((col, i) => {
+            const mesh = new THREE.Mesh(geoSphere, new THREE.MeshPhysicalMaterial({ color: col, roughness: 0.1, metalness: 0.2, clearcoat: 0.5 }));
+            mesh.position.set(Math.cos(i * Math.PI/2)*3, Math.sin(i * Math.PI/2)*3, (Math.random()-0.5)*2);
+            ingredients.add(mesh);
+        });
+        scene.add(ingredients);
+
+        // B. The 600mg Tablet (Cylinder)
+        const tablet = new THREE.Mesh(
+            new THREE.CylinderGeometry(1.6, 1.6, 0.6, 64), 
+            new THREE.MeshPhysicalMaterial({ color: '#ffffff', roughness: 0.8 })
+        );
+        tablet.scale.set(0,0,0); // Hidden initially
+        tablet.rotation.x = Math.PI / 2;
+        scene.add(tablet);
+
+        // C. The Aluminum Jar
+        const jarGroup = new THREE.Group();
+        const matSilver = new THREE.MeshPhysicalMaterial({ color: '#e2e8f0', roughness: 0.3, metalness: 0.8, side: THREE.DoubleSide });
+        const jarBody = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 3.5, 64, 1, true), matSilver);
+        const jarBottom = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.2, 64), matSilver); jarBottom.position.y = -1.75;
+        jarGroup.add(jarBody, jarBottom);
+        jarGroup.position.y = -20; // Hidden off-screen below
+        scene.add(jarGroup);
+
+        // Render Loop for continuous idle motion
+        function animate() {
+            requestAnimationFrame(animate);
+            ingredients.rotation.y += 0.01; ingredients.rotation.z += 0.005;
+            tablet.rotation.z += 0.002;
+            jarGroup.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        } animate();
+
+        // 3. GSAP Scrollytelling Sequence (Ties scroll to 3D objects)
         document.addEventListener("DOMContentLoaded", () => {
-            gsap.registerPlugin(ScrollTrigger);
+            const tl = gsap.timeline({ scrollTrigger: { trigger: "#scroll-container", start: "top top", end: "bottom bottom", scrub: 1 }});
 
-            const blocks = gsap.utils.toArray('.story-block');
-            const visuals = gsap.utils.toArray('.stage-visual');
+            // Stage 1 -> 2: Ingredients compress into Tablet
+            tl.to("#t1", { opacity: 1, y: 0, duration: 0.5 }, 0)
+              .to(ingredients.scale, { x: 0, y: 0, z: 0, duration: 1.5, ease: "power2.in" }, 1)
+              .to("#t1", { opacity: 0, y: -30, duration: 0.5 }, 1.5)
+              .to(tablet.scale, { x: 1, y: 1, z: 1, duration: 1, ease: "back.out" }, 1.5)
+              .to(tablet.rotation, { x: Math.PI*2, duration: 1.5 }, 1.5)
+              .to("#t2", { opacity: 1, y: 0, duration: 0.5 }, 1.5);
 
-            // Initialize first visual
-            visuals[0].classList.add('active');
-
-            blocks.forEach((block, i) => {
-                ScrollTrigger.create({
-                    trigger: block,
-                    start: "top center",
-                    end: "bottom center",
-                    onEnter: () => {
-                        blocks.forEach(b => b.classList.remove('is-active'));
-                        visuals.forEach(v => v.classList.remove('active'));
-                        block.classList.add('is-active');
-                        visuals[i].classList.add('active');
-                    },
-                    onEnterBack: () => {
-                        blocks.forEach(b => b.classList.remove('is-active'));
-                        visuals.forEach(v => v.classList.remove('active'));
-                        block.classList.add('is-active');
-                        visuals[i].classList.add('active');
-                    }
-                });
-            });
+            // Stage 2 -> 3: Jar rises, Tablet drops inside
+            tl.to("#t2", { opacity: 0, y: -30, duration: 0.5 }, 3)
+              .to(jarGroup.position, { y: -1, duration: 1, ease: "power2.out" }, 3)
+              .to(tablet.position, { y: -2, duration: 1, ease: "bounce.out" }, 3.5)
+              .to(jarGroup.rotation, { x: 0.2, duration: 0.5 }, 3.5) // Tilt jar slightly toward camera
+              .to("#t3", { opacity: 1, y: 0, duration: 0.5 }, 3.5);
         });
     </script>
 </body>
