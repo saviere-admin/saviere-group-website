@@ -6,8 +6,7 @@
     <title>Savière Group | Architecting a Sustainable Future</title>
     
     <!-- Forced Mobile Browser Crimson Theme -->
-    <meta name="theme-color" content="#821D30" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#821D30" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -33,33 +32,41 @@
     
     <style>
         body { background-color: #ffffff; color: #0d0204; overflow-x: hidden; }
+        
+        /* Pristine White Frosted Glass Header */
         .glass-header {
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid rgba(130, 29, 48, 0.05);
+            border-bottom: 1px solid rgba(130, 29, 48, 0.1);
         }
-        #globe-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.6; }
+        
+        #globe-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.85; }
         .text-balance { text-wrap: balance; }
         
         /* Story Section Pinning */
         .story-panel { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; }
+        
+        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        .nav-link:hover::after { width: 100%; }
     </style>
 </head>
 <body class="antialiased selection:bg-corporate-primary selection:text-white">
 
+    <!-- High-Tech Plexus Globe Background -->
     <canvas id="globe-canvas"></canvas>
 
+    <!-- White Frosted Header with Crimson Transparent Logo -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="#vision" class="hover:text-corporate-primary">Vision</a>
-                <a href="#net-zero-story" class="hover:text-corporate-primary">The Impact</a>
-                <a href="active-operations.html" class="hover:text-corporate-primary">DOTS</a>
-                <a href="roadmap.html" class="hover:text-corporate-primary">Pipeline</a>
+                <a href="#vision" class="nav-link hover:text-corporate-primary">Vision</a>
+                <a href="#net-zero-story" class="nav-link hover:text-corporate-primary">The Impact</a>
+                <a href="active-operations.html" class="nav-link hover:text-corporate-primary">DOTS</a>
+                <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
             </nav>
-            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:scale-105 transition-transform rounded-full">Connect</a>
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:scale-105 transition-transform rounded-full shadow-lg hover:shadow-corporate-primary/30">Connect</a>
         </div>
     </header>
 
@@ -70,10 +77,10 @@
                 <div class="pr-0 md:pr-12">
                     <p class="hero-text transform translate-y-8 opacity-0 text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
                     <h1 class="hero-text transform translate-y-8 opacity-0 font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] text-gray-900 leading-[1.05] tracking-tight text-balance mb-8">
-                        Architecting a <span class="text-corporate-primary">better, cleaner</span> world.
+                        Architecting a <span class="text-corporate-primary italic">better, cleaner</span> world.
                     </h1>
                     <p class="hero-text transform translate-y-8 opacity-0 text-lg md:text-xl text-gray-600 font-light leading-relaxed text-balance">
-                        Savière Group Private Limited is an apex holding entity. We build sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
+                        Savière Group Private Limited is an apex holding entity. We engineer sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
                     </p>
                 </div>
                 <div></div>
@@ -81,27 +88,27 @@
         </section>
 
         <!-- Dynamic Pinned Scroll Story: The Ecological Mandate -->
-        <section id="net-zero-story" class="relative bg-corporate-50 border-y border-corporate-primary/10">
+        <section id="net-zero-story" class="relative bg-white/90 backdrop-blur-md border-y border-corporate-primary/10">
             <div id="story-container" class="h-screen sticky top-0 max-w-7xl mx-auto px-6 overflow-hidden">
                 
                 <!-- Panel 1: The Plastic Problem -->
                 <div class="story-panel" id="panel-1">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">The Legacy Failure</p>
-                    <h2 class="font-serif text-5xl md:text-7xl text-gray-900 leading-tight mb-8 max-w-3xl">The global oral care industry produces <span class="text-corporate-primary">billions</span> of single-use plastic tubes annually.</h2>
-                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Furthermore, traditional toothpaste consists of up to 50% water, generating a massive, unnecessary logistical carbon footprint.</p>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">1. The Legacy Failure</p>
+                    <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-8 max-w-4xl">The global oral care industry produces <span class="text-corporate-primary">billions</span> of single-use plastic tubes annually.</h2>
+                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Furthermore, traditional toothpaste consists of up to 50% dead-weight water, generating a massive, unnecessary logistical carbon footprint in a water-stressed world.</p>
                 </div>
 
                 <!-- Panel 2: The Biological Threat -->
                 <div class="story-panel" id="panel-2">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">The Microplastic Vector</p>
-                    <h2 class="font-serif text-5xl md:text-7xl text-gray-900 leading-tight mb-8 max-w-3xl">This leads to the ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
-                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">The oral cavity is not an isolated biome—it is the primary gateway to the vascular system. Daily ingestion of microplastics is linked to metabolic syndrome and oncology risks.</p>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">2. The Microplastic Vector</p>
+                    <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-8 max-w-4xl">This leads to the daily ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
+                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">The oral cavity is the primary gateway to the vascular system. Daily ingestion of microplastics from degraded tubes is clinically linked to metabolic syndrome and oncology risks.</p>
                 </div>
 
                 <!-- Panel 3: The Saviere Solution -->
                 <div class="story-panel" id="panel-3">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">Our Mandate</p>
-                    <h2 class="font-serif text-5xl md:text-7xl text-gray-900 leading-tight mb-8 max-w-3xl">We eliminate water. We eliminate plastic. We restore the ecosystem.</h2>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">3. The Net-Zero Mandate</p>
+                    <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-8 max-w-4xl">We eliminate water. We eliminate plastic. We restore the ecosystem.</h2>
                     <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Through Doctor-led R&D, our subsidiaries replace toxic synthetics with biomimetic science. Engineered for a safe Earth. Packaged exclusively in refillable aluminum and glass.</p>
                 </div>
 
@@ -112,6 +119,7 @@
 
     </main>
 
+    <!-- Deep Crimson Footer -->
     <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 mb-16">
             <div class="space-y-6">
@@ -121,41 +129,97 @@
             <div class="flex flex-col md:items-end space-y-4">
                 <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50">Collaboration</h4>
                 <a href="mailto:connect@savieregroup.com" class="text-white text-xl font-light hover:text-white/70">connect@savieregroup.com</a>
-                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4">Corporate Directory</a>
+                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4 tracking-widest uppercase">Corporate Directory</a>
             </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
+            <p>© 2026 Savière Group. Safe for Earth.</p>
+            <div class="hidden sm:flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
         </div>
     </footer>
 
     <script>
-        // 3D Globe Logic
+        // High-End Plexus (Network) Globe Logic
         const canvas = document.getElementById('globe-canvas');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#ffffff'); 
-        scene.fog = new THREE.FogExp2('#ffffff', 0.03);
+        scene.fog = new THREE.FogExp2('#ffffff', 0.02);
+
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         
+        const globeGroup = new THREE.Group();
+        scene.add(globeGroup);
+
+        // Create vertices for the sphere
+        const particlesCount = 800;
         const geometry = new THREE.BufferGeometry();
-        const posArray = new Float32Array(2500 * 3);
-        for(let i=0; i<7500; i+=3) {
-            const r=12, theta=2*Math.PI*Math.random(), phi=Math.acos(2*Math.random()-1);
-            posArray[i]=r*Math.sin(phi)*Math.cos(theta); posArray[i+1]=r*Math.sin(phi)*Math.sin(theta); posArray[i+2]=r*Math.cos(phi); 
+        const posArray = new Float32Array(particlesCount * 3);
+        const radius = 14;
+
+        for(let i=0; i < particlesCount * 3; i+=3) {
+            const theta = 2 * Math.PI * Math.random();
+            const phi = Math.acos(2 * Math.random() - 1);
+            posArray[i] = radius * Math.sin(phi) * Math.cos(theta); 
+            posArray[i+1] = radius * Math.sin(phi) * Math.sin(theta); 
+            posArray[i+2] = radius * Math.cos(phi); 
         }
         geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const material = new THREE.PointsMaterial({ size: 0.08, color: '#821D30', transparent: true, opacity: 0.6 });
+        
+        // Material for Dots
+        const material = new THREE.PointsMaterial({ size: 0.15, color: '#821D30', transparent: true, opacity: 0.8 });
         const particleMesh = new THREE.Points(geometry, material);
-        scene.add(particleMesh);
-        camera.position.z = 30; particleMesh.position.x = window.innerWidth>768?15:0; particleMesh.position.y = window.innerWidth>768?0:10;
+        globeGroup.add(particleMesh);
 
-        let mouseX=0, mouseY=0; document.addEventListener('mousemove', e => { mouseX=(e.clientX-window.innerWidth/2)*0.001; mouseY=(e.clientY-window.innerHeight/2)*0.001; });
+        // Create Lines (Plexus Effect)
+        const lineMaterial = new THREE.LineBasicMaterial({ color: '#821D30', transparent: true, opacity: 0.15 });
+        const lineGeometry = new THREE.BufferGeometry();
+        const linePositions = [];
+        
+        // Connect nearby points to form a network
+        for (let i = 0; i < particlesCount; i++) {
+            for (let j = i + 1; j < particlesCount; j++) {
+                const dx = posArray[i*3] - posArray[j*3];
+                const dy = posArray[i*3+1] - posArray[j*3+1];
+                const dz = posArray[i*3+2] - posArray[j*3+2];
+                const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+                
+                if (dist < 3.5) { // Only connect points close to each other
+                    linePositions.push(
+                        posArray[i*3], posArray[i*3+1], posArray[i*3+2],
+                        posArray[j*3], posArray[j*3+1], posArray[j*3+2]
+                    );
+                }
+            }
+        }
+        lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+        const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+        globeGroup.add(linesMesh);
+
+        camera.position.z = 35; 
+        globeGroup.position.x = window.innerWidth>768?18:0; 
+        globeGroup.position.y = window.innerWidth>768?0:12;
+
+        let mouseX=0, mouseY=0; 
+        document.addEventListener('mousemove', e => { 
+            mouseX=(e.clientX-window.innerWidth/2)*0.0005; 
+            mouseY=(e.clientY-window.innerHeight/2)*0.0005; 
+        });
+
         function animate() {
             requestAnimationFrame(animate);
-            particleMesh.rotation.y += 0.002;
-            particleMesh.rotation.x += 0.05 * ((mouseY*0.5) - particleMesh.rotation.x);
-            particleMesh.rotation.y += 0.05 * ((mouseX*0.5) - particleMesh.rotation.y);
+            globeGroup.rotation.y += 0.001;
+            globeGroup.rotation.x += 0.05 * (mouseY - globeGroup.rotation.x);
+            globeGroup.rotation.y += 0.05 * (mouseX - globeGroup.rotation.y);
             renderer.render(scene, camera);
         } animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            globeGroup.position.x = window.innerWidth>768?18:0; globeGroup.position.y = window.innerWidth>768?0:12;
+        });
 
         // GSAP Scroll Animations
         document.addEventListener("DOMContentLoaded", () => {
@@ -163,7 +227,10 @@
 
             // Hero Entrance
             gsap.to(".hero-text", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.2 });
-            gsap.to(particleMesh.position, { y: -15, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
+            
+            // Spin and move the globe down on scroll
+            gsap.to(globeGroup.position, { y: -10, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
+            gsap.to(globeGroup.rotation, { y: Math.PI, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
 
             // Story Pinned Animation
             const tl = gsap.timeline({

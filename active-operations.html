@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Active Operations | The Dots Company | Savière Group</title>
     
-    <meta name="theme-color" content="#821D30" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#821D30" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -28,92 +27,127 @@
     
     <style>
         body { background-color: #fff; color: #0d0204; overflow-x: hidden; }
-        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(130, 29, 48, 0.1); }
+        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.1); }
+        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        .nav-link:hover::after { width: 100%; }
         
         /* The Manufacturing Animation Pipeline Styles */
         .pipeline-container { height: 100vh; display: flex; align-items: center; position: relative; }
         .visual-stage { flex: 1; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
-        .text-stage { flex: 1; padding: 2rem; }
+        .text-stage { flex: 1; padding: 2rem; position: relative; display: flex; align-items: center;}
         
-        .anim-element { position: absolute; opacity: 0; font-size: 3rem; color: #821D30; }
-        .anim-chem { top: 20%; left: 50%; transform: translateX(-50%); }
-        .anim-tablet { top: 40%; left: 50%; transform: translate(-50%, -50%) scale(0.5); }
-        .anim-jar { top: 60%; left: 50%; transform: translateX(-50%); }
-        .anim-brush { top: 80%; left: 50%; transform: translateX(-50%); }
+        /* Absolute positioning for the morphing icons to stay centered */
+        .anim-element { position: absolute; opacity: 0; color: #821D30; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        .pipeline-text { position: absolute; opacity: 0; transform: translateY(30px); }
+        
+        /* Specific SVG glow */
+        .glow-svg { filter: drop-shadow(0 0 10px rgba(130, 29, 48, 0.3)); }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+    <!-- White Frosted Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="index.html" class="hover:text-corporate-primary">Overview</a>
-                <a href="governance.html" class="hover:text-corporate-primary">Governance</a>
-                <a href="active-operations.html" class="text-corporate-primary font-bold">DOTS</a>
-                <a href="roadmap.html" class="hover:text-corporate-primary">Pipeline</a>
+                <a href="index.html" class="nav-link hover:text-corporate-primary">Overview</a>
+                <a href="governance.html" class="nav-link hover:text-corporate-primary">Governance</a>
+                <a href="active-operations.html" class="nav-link text-corporate-primary font-bold">DOTS</a>
+                <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
             </nav>
         </div>
     </header>
 
-    <main class="pt-32 pb-24 relative">
-        <div class="max-w-7xl mx-auto px-6 mb-20 text-center">
+    <main class="pt-32 relative">
+        <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
             <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4 mt-12">Phase 1 Operations</p>
             <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-8">The Dots Company.</h1>
             <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">Replacing 100g plastic silica paste tubes with clinical-grade, zero-water biomimetic Nano-HAp solid-state tablets.</p>
         </div>
 
-        <!-- Scroll-Triggered Pipeline Animation -->
+        <!-- Scroll-Triggered Pipeline Animation (The Apple-Tier Experience) -->
         <section id="manufacturing-story" class="relative bg-corporate-50 border-y border-corporate-primary/10 overflow-hidden">
-            <div id="pipeline-pin" class="pipeline-container max-w-7xl mx-auto px-6">
+            <div id="pipeline-pin" class="pipeline-container max-w-7xl mx-auto px-6 flex-col md:flex-row">
                 
                 <!-- Left: Animated Graphics -->
-                <div class="visual-stage border-r border-corporate-primary/20">
-                    <!-- SVG Icons representing the process -->
-                    <!-- 1. Chemicals -->
-                    <div class="anim-element anim-chem" id="stage-chem">
-                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                <div class="visual-stage md:border-r border-corporate-primary/20 w-full md:w-1/2">
+                    
+                    <!-- 1. Chemicals (Floating Nodes) -->
+                    <div class="anim-element" id="stage-chem">
+                        <svg class="w-32 h-32 glow-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="1" stroke-dasharray="2 2" class="animate-spin-slow"></circle>
+                            <circle cx="12" cy="8" r="2" stroke-width="2" fill="currentColor"></circle>
+                            <circle cx="8" cy="15" r="2" stroke-width="2" fill="currentColor"></circle>
+                            <circle cx="16" cy="15" r="2" stroke-width="2" fill="currentColor"></circle>
+                        </svg>
                     </div>
-                    <!-- 2. Tablet -->
-                    <div class="anim-element anim-tablet" id="stage-tablet">
-                        <div class="w-12 h-12 rounded-full border-4 border-corporate-primary flex items-center justify-center font-bold text-xs">600mg</div>
+
+                    <!-- 2. Tablet (Compression) -->
+                    <div class="anim-element" id="stage-tablet">
+                        <div class="w-24 h-24 rounded-full border-4 border-corporate-primary flex items-center justify-center bg-white shadow-xl shadow-corporate-primary/20 transition-transform">
+                            <span class="font-bold text-lg text-corporate-primary">600mg</span>
+                        </div>
                     </div>
-                    <!-- 3. Jar -->
-                    <div class="anim-element anim-jar" id="stage-jar">
-                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+
+                    <!-- 3. Jar (Packaging) -->
+                    <div class="anim-element" id="stage-jar">
+                        <svg class="w-32 h-32 glow-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M7 8v10a2 2 0 002 2h6a2 2 0 002-2V8M9 4h6v4H9z"></path>
+                        </svg>
                     </div>
-                    <!-- 4. Brush -->
-                    <div class="anim-element anim-brush" id="stage-brush">
-                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+
+                    <!-- 4. Brush (Application) -->
+                    <div class="anim-element" id="stage-brush">
+                        <svg class="w-32 h-32 glow-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <!-- Toothbrush handle and bristles -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 22v-9m0 0a3 3 0 00-3-3H7a1 1 0 01-1-1V5a2 2 0 012-2h8a2 2 0 012 2v4a1 1 0 01-1 1h-2a3 3 0 00-3 3z"></path>
+                            <!-- Sparkles -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12l2-2m0 0l2 2m-2-2v4M20 12l-2-2m0 0l-2 2m2-2v4"></path>
+                        </svg>
                     </div>
+
                 </div>
 
                 <!-- Right: Changing Text -->
-                <div class="text-stage">
-                    <div class="pipeline-text absolute opacity-0" id="text-1">
+                <div class="text-stage w-full md:w-1/2 mt-12 md:mt-0">
+                    <div class="pipeline-text" id="text-1">
                         <h3 class="font-serif text-4xl text-gray-900 mb-4">1. Clinical Ingredients</h3>
-                        <p class="text-lg text-gray-600 font-light">We begin with Biomimetic Nano-HAp to rebuild enamel, Xylitol to selectively starve <i>Streptococcus mutans</i>, and Zinc Citrate to neutralize VSCs.</p>
+                        <p class="text-lg text-gray-600 font-light">We begin with Biomimetic Nano-HAp to rebuild enamel, Xylitol to selectively starve bacteria, and Zinc Citrate to neutralize odors.</p>
                     </div>
-                    <div class="pipeline-text absolute opacity-0" id="text-2">
+                    <div class="pipeline-text" id="text-2">
                         <h3 class="font-serif text-4xl text-gray-900 mb-4">2. Anhydrous Compression</h3>
-                        <p class="text-lg text-gray-600 font-light">Water is eliminated. The active ingredients are pressed into a precise 600mg solid-state format. This reduces shipping weight and carbon emissions by 70%.</p>
+                        <p class="text-lg text-gray-600 font-light">Water is eliminated. The active ingredients are pressed into a precise 600mg solid-state format, reducing shipping weight and carbon emissions by 70%.</p>
                     </div>
-                    <div class="pipeline-text absolute opacity-0" id="text-3">
+                    <div class="pipeline-text" id="text-3">
                         <h3 class="font-serif text-4xl text-gray-900 mb-4">3. Zero-Plastic Packaging</h3>
                         <p class="text-lg text-gray-600 font-light">The tablets are housed in sustainable, refillable aluminum or glass vessels. This achieves zero plastic contact and prevents daily microplastic ingestion.</p>
                     </div>
-                    <div class="pipeline-text absolute opacity-0" id="text-4">
+                    <div class="pipeline-text" id="text-4">
                         <h3 class="font-serif text-4xl text-gray-900 mb-4">4. Biological Application</h3>
-                        <p class="text-lg text-gray-600 font-light">Chew, foam, and brush. Mild, natural abrasives (Microcrystalline Cellulose) safely lift surface stains, completing the medical-grade systemic protocol.</p>
+                        <p class="text-lg text-gray-600 font-light">Chew, foam, and brush. Mild, natural abrasives safely lift surface stains, completing the medical-grade systemic protocol.</p>
                     </div>
                 </div>
             </div>
-            <div style="height: 400vh;"></div> <!-- Scroll space -->
+            <!-- Spacer to allow for scrolling duration -->
+            <div style="height: 400vh;"></div> 
         </section>
 
     </main>
 
-    <footer class="bg-corporate-primary text-white py-12 px-6"><div class="max-w-7xl mx-auto"><img src="./assets/TransBGWHorizontal.png" class="h-16 mb-4"><p class="text-xs text-white/60">© 2026 Savière Group. Safe for Earth.</p></div></footer>
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 mb-16">
+            <div class="space-y-6">
+                <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500">
+                <p class="text-white/80 text-sm font-light">Savière Group Private Limited.<br>Cyberabad, Hyderabad, India.</p>
+            </div>
+            <div class="flex flex-col md:items-end space-y-4">
+                <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50">Collaboration</h4>
+                <a href="mailto:connect@savieregroup.com" class="text-white text-xl font-light hover:text-white/70">connect@savieregroup.com</a>
+                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4 tracking-widest uppercase">Corporate Directory</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -123,33 +157,33 @@
                 scrollTrigger: {
                     trigger: "#manufacturing-story",
                     start: "top top",
-                    end: "+=400%", // Scroll depth
-                    scrub: 1,
+                    end: "+=400%", // Matches the 400vh spacer
+                    scrub: 1,      // Smooth scrubbing
                     pin: "#pipeline-pin"
                 }
             });
 
-            // Sequence 1: Chemicals
-            tl.to("#stage-chem", { opacity: 1, y: 50, duration: 1 })
-              .to("#text-1", { opacity: 1, duration: 1 }, "<")
+            // Sequence 1: Chemicals in
+            tl.to("#stage-chem", { opacity: 1, scale: 1, duration: 1 })
+              .to("#text-1", { opacity: 1, y: 0, duration: 1 }, "<")
+              
+              // Chemicals out -> Tablet in (Morphing effect)
               .to("#stage-chem", { opacity: 0, scale: 0, duration: 1, delay: 1 })
-              .to("#text-1", { opacity: 0, duration: 1 }, "<");
+              .to("#text-1", { opacity: 0, y: -30, duration: 1 }, "<")
+              .to("#stage-tablet", { opacity: 1, scale: 1.2, duration: 1 }, "<")
+              .to("#text-2", { opacity: 1, y: 0, duration: 1 }, "<")
 
-            // Sequence 2: Tablet Formation
-            tl.to("#stage-tablet", { opacity: 1, scale: 1.5, duration: 1 })
-              .to("#text-2", { opacity: 1, duration: 1 }, "<")
-              .to("#stage-tablet", { y: 100, opacity: 0, duration: 1, delay: 1 })
-              .to("#text-2", { opacity: 0, duration: 1 }, "<");
+              // Tablet out -> Jar in
+              .to("#stage-tablet", { opacity: 0, y: 50, duration: 1, delay: 1 })
+              .to("#text-2", { opacity: 0, y: -30, duration: 1 }, "<")
+              .fromTo("#stage-jar", { y: -50, scale: 0.8 }, { opacity: 1, y: 0, scale: 1.2, duration: 1 }, "<")
+              .to("#text-3", { opacity: 1, y: 0, duration: 1 }, "<")
 
-            // Sequence 3: Jar Collection
-            tl.to("#stage-jar", { opacity: 1, scale: 1.2, duration: 1 })
-              .to("#text-3", { opacity: 1, duration: 1 }, "<")
-              .to("#stage-jar", { x: 100, opacity: 0, duration: 1, delay: 1 })
-              .to("#text-3", { opacity: 0, duration: 1 }, "<");
-
-            // Sequence 4: Toothbrush 
-            tl.to("#stage-brush", { opacity: 1, scale: 1.2, duration: 1 })
-              .to("#text-4", { opacity: 1, duration: 1 }, "<");
+              // Jar out -> Brush in
+              .to("#stage-jar", { opacity: 0, x: -50, duration: 1, delay: 1 })
+              .to("#text-3", { opacity: 0, y: -30, duration: 1 }, "<")
+              .fromTo("#stage-brush", { x: 50, scale: 0.8 }, { opacity: 1, x: 0, scale: 1.2, duration: 1 }, "<")
+              .to("#text-4", { opacity: 1, y: 0, duration: 1 }, "<");
         });
     </script>
 </body>
