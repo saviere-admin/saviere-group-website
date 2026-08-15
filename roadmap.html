@@ -2,106 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pipeline | Savière Group</title>
     <meta name="theme-color" content="#821D30">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         body{background:#fff;color:#0d0204; cursor: none;} 
-        .cursor-follower { position: fixed; top: 0; left: 0; width: 40px; height: 40px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: exclusion; transition: transform 0.15s ease-out, width 0.3s, height 0.3s; transform: translate(-50%, -50%); }
-        .glass-header{background:rgba(255,255,255,0.7);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.05);}
-        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
-        .nav-link:hover::after { width: 100%; }
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+        .cursor-ring { position: fixed; top: 0; left: 0; width: 32px; height: 32px; border: 1.5px solid rgba(130,29,48,0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
+        .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);border-bottom:1px solid rgba(130,29,48,0.05);}
+        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.1; pointer-events: none; }
+        .content-layer { position: relative; z-index: 10; }
     </style>
 </head>
 <body class="antialiased">
-    <div class="cursor-follower" id="cursor"></div>
+    <div class="cursor-dot"></div><div class="cursor-ring"></div>
+    <canvas id="bg-geom"></canvas>
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
-        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="index.html" class="nav-link hover-trigger">Overview</a>
-                <a href="governance.html" class="nav-link hover-trigger">Governance</a>
-                <a href="active-operations.html" class="nav-link hover-trigger">DOTS</a>
+                <a href="index.html" class="hover-trigger">Overview</a>
+                <a href="governance.html" class="hover-trigger">Governance</a>
+                <a href="active-operations.html" class="hover-trigger">DOTS</a>
                 <a href="roadmap.html" class="text-corporate-primary font-bold hover-trigger">Pipeline</a>
             </nav>
-            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
         </div>
     </header>
 
-    <main class="pt-40 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+    <main class="content-layer pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
         <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Strategic Expansion</p>
-        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-16">The 20-Year Legacy Plan.</h1>
+        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-16">The Legacy Plan.</h1>
         
-        <div class="space-y-16 max-w-4xl border-l-2 border-corporate-primary/20 pl-10 ml-4 relative">
-            <div class="relative hover-trigger">
-                <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-corporate-primary border-4 border-white"></div>
-                <span class="text-xs font-bold text-corporate-primary uppercase tracking-widest">Years 1–3</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">The Single Anchor & FMCG</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">Saviere Group Pvt. Ltd. acts as the central lifetime anchor. We launch The Dots Company as our cash-flow engine, dominating the D2C market with our anhydrous Nano-HAp protocol.</p>
+        <div class="space-y-12 max-w-4xl border-l border-corporate-primary/20 pl-8 relative">
+            <div class="relative hover-trigger bg-white/60 p-6 rounded-2xl backdrop-blur-sm transition-all hover:shadow-lg">
+                <div class="absolute -left-[42px] top-8 w-4 h-4 rounded-full bg-corporate-primary border-2 border-white"></div>
+                <span class="text-[10px] font-bold text-corporate-primary uppercase tracking-widest">Phase 1</span>
+                <h3 class="font-serif text-2xl md:text-3xl text-gray-900 mt-2 mb-2">Consumer FMCG Engine</h3>
+                <p class="text-sm md:text-lg text-gray-600 font-light">Scale The Dots Company, dominating the D2C market with our anhydrous Nano-HAp protocol.</p>
             </div>
-            <div class="relative hover-trigger">
-                <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Years 3–5</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">The Asset Vaults</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">As free cash flow accumulates, we incorporate Savière Estates LLP. This entity securely holds our trademarks, formulations, and proprietary hardware, licensing them back to operations to maximize depreciation tax shields.</p>
-            </div>
-            <div class="relative hover-trigger">
-                <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Years 5–15</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">Vertical Multi-Threading</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">Aggressive expansion into Savière Hotels, Hospitals, Green Energy, and Lifestyle. Each launches as an asset-light entity plugging directly into our central HR and data pool.</p>
-            </div>
-            <div class="relative hover-trigger">
-                <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Years 15+</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">The Delegation Transition</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">Appointing professional CEOs across the subsidiaries while stepping up to the apex board, paving the way for the Savière Philanthropic Foundation.</p>
+            <div class="relative hover-trigger bg-white/60 p-6 rounded-2xl backdrop-blur-sm transition-all hover:shadow-lg">
+                <div class="absolute -left-[42px] top-8 w-4 h-4 rounded-full bg-gray-300 border-2 border-white"></div>
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phase 2</span>
+                <h3 class="font-serif text-2xl md:text-3xl text-gray-900 mt-2 mb-2">The Asset Vaults</h3>
+                <p class="text-sm md:text-lg text-gray-600 font-light">Incorporate Savière Estates LLP to securely hold trademarks, formulations, and hardware.</p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
-            <div class="md:col-span-2 space-y-6">
-                <img src="./assets/TransBGWHorizontal.png" class="h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
-                <p class="text-white/80 text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
-            </div>
-            <div>
-                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Architecture</h4>
-                <ul class="space-y-3 text-sm text-white/80 font-light">
-                    <li><a href="active-operations.html" class="hover:text-white transition-colors hover-trigger">The Dots Company</a></li>
-                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Estates</a></li>
-                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hospitals</a></li>
-                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Corporate Portal</h4>
-                <ul class="space-y-3 text-sm text-white/80 font-light">
-                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance & Ethics</a></li>
-                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory & Sitemap</a></li>
-                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
-                </ul>
+    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="md:col-span-2 space-y-4">
+                <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
+                <p class="text-white/80 text-xs font-light max-w-xs">Apex corporate operating platform.<br>Cyberabad, India.</p>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
-            <p>© 2026 Savière Group. Safe for Earth.</p>
-            <div class="hidden sm:flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span></div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-6 text-[10px] text-white/60 tracking-widest uppercase">
+            <p>© 2026 Savière Group.</p>
         </div>
     </footer>
     
     <script>
-        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-        const cursor = document.getElementById('cursor');
-        window.addEventListener('mousemove', (e) => { gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.15 }); });
-        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(2)'; cursor.style.background = '#821D30'; }); el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; cursor.style.background = '#fff'; }); });
+        const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
+        let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2; let ringX = mouseX, ringY = mouseY;
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
+        function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+
+        // Background Box geometries
+        const canvas = document.getElementById('bg-geom'); const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        const group = new THREE.Group();
+        for(let i=0; i<5; i++){
+            const mesh = new THREE.Mesh(new THREE.BoxGeometry(4,4,4), new THREE.MeshBasicMaterial({ color: '#821D30', wireframe: true }));
+            mesh.position.set((Math.random()-0.5)*20, (Math.random()-0.5)*20, (Math.random()-0.5)*10);
+            group.add(mesh);
+        }
+        scene.add(group); camera.position.z = 25;
+
+        function animate() { requestAnimationFrame(animate); group.rotation.x += 0.002; group.rotation.y += 0.001; renderer.render(scene, camera); } animate();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     </script>
 </body>
 </html>
