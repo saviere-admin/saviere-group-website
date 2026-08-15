@@ -1,0 +1,19 @@
+{
+  "name": "Savière Group",
+  "short_name": "Savière",
+  "icons": [
+    {
+      "src": "./assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#821D30",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

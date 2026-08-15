@@ -3,68 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Active Operations | The Dots Company</title>
+    <title>Savière Group | Architecting a Sustainable Future</title>
     
-    <!-- THEME COLOR FIX: Stripped conflicting Apple tags. This is the single source of truth. -->
+    <!-- STRICT THEME COLOR FIX -->
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
-    <link rel="manifest" href="site.webmanifest">
+    <!-- CACHE-BUSTING FAVICONS -->
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=3">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=3">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=3">
+    <link rel="manifest" href="site.webmanifest?v=3">
 
+    <!-- Premium Typography & Tailwind -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],serif:['Playfair Display','serif']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509',950:'#0d0204'}}}}}</script>
     
+    <!-- Animation Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-
+    
     <style>
-        body { background-color: #fcfcfc; color: #0d0204; overflow-x: hidden; cursor: none; }
+        body { background-color: #ffffff; color: #0d0204; overflow-x: hidden; cursor: none; }
         
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
-        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(130,29,48,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s; }
-        @media (hover: none) and (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } }
-
+        /* Cursor: Disabled on touch devices */
+        .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
+        .cursor-dot { width: 8px; height: 8px; background: #821D30; }
+        .cursor-ring { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); z-index: 9998; transition: width 0.3s, height 0.3s, background 0.3s; }
+        @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } body { cursor: auto; } }
+        
         .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
-
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; }
+        
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         #mobile-menu.open { transform: translateY(0); }
 
-        /* Bulletproof Native Sticky Layout */
-        .operations-section { position: relative; width: 100%; display: flex; flex-direction: column; }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.85; }
+        .content-layer { position: relative; z-index: 10; }
         
-        @media (min-width: 769px) {
-            .operations-section { flex-direction: row; }
-            .text-col { width: 45%; padding-left: 5%; }
-            .visual-col { width: 55%; height: 100vh; position: sticky; top: 0; right: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        }
-        @media (max-width: 768px) {
-            .text-col { width: 100%; padding: 0 1.5rem; z-index: 10; margin-top: -10vh; }
-            .visual-col { width: 100%; height: 60vh; position: sticky; top: 80px; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #fcfcfc; }
-        }
-
-        .stage-block { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-        .stage-card { background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); }
+        /* Bulletproof Native Sticky (No GSAP Collapsing) */
+        .story-container { position: relative; width: 100%; }
+        .sticky-wrapper { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
+        .story-panel { position: absolute; width: 100%; padding: 0 1.5rem; display: flex; justify-content: center; opacity: 0; }
         
-        /* Image Assets - mix-blend-mode removed to allow transparent backgrounds to function normally */
-        .seq-img { position: absolute; max-width: 70%; max-height: 70%; object-fit: contain; opacity: 0; transform-origin: center center; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1)); }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(130, 29, 48, 0.1); border-radius: 2rem; padding: 3rem; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); width: 100%; max-width: 64rem; }
         
-        /* Initial Transform States */
-        #img-powder { opacity: 1; transform: scale(1.1); }
-        #img-tablet { transform: scale(0.6) translateY(-100px); }
-        #img-jar-empty { transform: translateY(100px); opacity: 0; max-height: 85%; }
-        #img-jar-filled { transform: translateY(0); opacity: 0; max-height: 85%; }
-        #img-lid { transform: translateY(-200px); opacity: 0; max-width: 45%; }
+        /* Cookie Banner */
+        #cookie-banner { position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%); z-index: 10000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(130, 29, 48, 0.1); transition: bottom 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.05); width: 90%; max-width: 600px; border-radius: 1.5rem; padding: 2rem; }
+        #cookie-banner.show { bottom: 2rem; }
         
+        .text-balance { text-wrap: balance; }
+        .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased">
@@ -104,13 +100,13 @@
 
         <section class="operations-section border-y border-corporate-primary/10" id="ops-section">
             
-            <!-- FIXED IMAGE PATHS: Strictly web-safe, no spaces, all lowercase -->
+            <!-- FIXED PNG PATHS: Pointing exactly to your new transparent assets -->
             <div class="visual-col bg-corporate-50">
-                <img src="./assets/tab-powder.jpg" alt="Clinical Powder" class="seq-img" id="img-powder" onerror="console.error('Failed to load tab-powder.jpg')">
-                <img src="./assets/dot.jpg" alt="DOTS Tablet" class="seq-img" id="img-tablet" onerror="console.error('Failed to load dot.jpg')">
-                <img src="./assets/emptyjar.jpg" alt="Empty Glass Jar" class="seq-img" id="img-jar-empty" onerror="console.error('Failed to load emptyjar.jpg')">
-                <img src="./assets/filledjar.jpg" alt="Filled Glass Jar" class="seq-img" id="img-jar-filled" onerror="console.error('Failed to load filledjar.jpg')">
-                <img src="./assets/karlie.jpg" alt="Aluminum Lid" class="seq-img" id="img-lid" onerror="console.error('Failed to load karlie.jpg')">
+                <img src="./assets/tab-powder.png" alt="Clinical Powder" class="seq-img" id="img-powder">
+                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img" id="img-tablet">
+                <img src="./assets/emptyjar.png" alt="Empty Glass Jar" class="seq-img" id="img-jar-empty">
+                <img src="./assets/filledjar.png" alt="Filled Glass Jar" class="seq-img" id="img-jar-filled">
+                <img src="./assets/karlie.png" alt="Aluminum Lid" class="seq-img" id="img-lid">
             </div>
 
             <div class="text-col">
