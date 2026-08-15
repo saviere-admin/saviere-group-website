@@ -2,23 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Active Operations | The Dots Company</title>
     
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    
-    <!-- Comprehensive Favicons -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Comprehensive Favicons Verbatim -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+    <link rel="manifest" href="./assets/site.webmanifest">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -27,30 +30,31 @@
     <style>
         body { background-color: #fcfcfc; color: #0d0204; overflow-x: hidden; cursor: none; }
         
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
-        .cursor-ring { position: fixed; top: 0; left: 0; width: 32px; height: 32px; border: 1.5px solid rgba(130,29,48,0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
+        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(130,29,48,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s; }
+        @media (hover: none) and (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } }
 
-        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
-        #mobile-menu { transition: transform 0.4s ease; }
+        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
 
-        /* Scrollytelling Setup */
-        .scroll-container { position: relative; height: 400vh; }
-        .sticky-view { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; width: 100vw; }
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; }
+        #mobile-menu.open { transform: translateY(0); }
+
+        /* 3D Scrollytelling Setup */
+        .story-wrapper { position: relative; height: 400vh; }
+        .story-view { position: sticky; top: 0; height: 100vh; width: 100vw; overflow: hidden; display: flex; align-items: center; }
         
-        /* 3D Canvas Responsive Fixes */
-        #three-canvas { position: absolute; top: 0; right: 0; width: 50vw; height: 100vh; z-index: 0; pointer-events: none; }
-        #text-container { position: relative; width: 50vw; height: 100%; display: flex; flex-direction: column; justify-content: center; z-index: 10; padding: 0 4rem; }
+        #text-container { position: relative; width: 50vw; height: 100%; display: flex; flex-direction: column; justify-content: center; z-index: 10; padding-left: 4rem; }
+        .stage-text { position: absolute; left: 4rem; opacity: 0; max-w: 550px; transform: translateY(30px); background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); padding: 3rem; border-radius: 2rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);}
         
-        .stage-text { position: absolute; left: 10%; opacity: 0; max-w: 500px; transform: translateY(30px); background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); padding: 3rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);}
+        #three-canvas { position: absolute; top: 0; right: 0; width: 50vw; height: 100vh; z-index: 5; pointer-events: none;}
         
         @media (max-width: 768px) { 
-            .sticky-view { flex-direction: column; justify-content: flex-end; }
-            #three-canvas { width: 100vw; height: 60vh; top: 0; right: 0; } 
-            #text-container { width: 100vw; height: 40vh; padding: 0 1.5rem; align-items: center; justify-content: center; } 
-            .stage-text { position: relative; left: 0; padding: 1.5rem; max-w: 100%; transform: none; display: none; }
-            .stage-text.active-mobile { display: block; }
+            .story-view { flex-direction: column-reverse; justify-content: flex-end; }
+            #text-container { width: 100vw; height: auto; padding: 2rem 1.5rem; align-items: center; } 
+            .stage-text { position: absolute; left: 1.5rem; right: 1.5rem; padding: 2rem; } 
+            #three-canvas { position: relative; width: 100vw; height: 50vh; top: 0; right: 0; } 
         }
     </style>
 </head>
@@ -58,24 +62,23 @@
 
     <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
-    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="hover-trigger z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain"></a>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+            <a href="index.html" class="hover-trigger relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
                 <a href="index.html" class="nav-link hover-trigger">Overview</a>
                 <a href="governance.html" class="nav-link hover-trigger">Governance</a>
-                <a href="active-operations.html" class="text-corporate-primary font-bold hover-trigger">DOTS</a>
+                <a href="active-operations.html" class="nav-link text-corporate-primary font-bold hover-trigger">DOTS</a>
                 <a href="roadmap.html" class="nav-link hover-trigger">Pipeline</a>
             </nav>
-            <div class="flex items-center gap-4">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
-                <button id="menu-btn" class="md:hidden text-corporate-primary p-2 z-50"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+            <div class="flex items-center gap-4 relative z-50">
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
+                <button id="menu-toggle" class="md:hidden p-2 text-corporate-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 transform translate-x-full flex flex-col justify-center items-center gap-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8">
         <a href="index.html" class="text-2xl font-serif text-corporate-900">Overview</a>
         <a href="governance.html" class="text-2xl font-serif text-corporate-900">Governance</a>
         <a href="active-operations.html" class="text-2xl font-serif text-corporate-primary font-bold">The Dots Company</a>
@@ -85,23 +88,24 @@
     <main class="relative z-10 bg-white">
         <div class="max-w-7xl mx-auto px-6 pt-32 pb-16 text-center">
             <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Phase 1 Operations</p>
-            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl text-gray-900 mb-6 tracking-tight">The Dots Company.</h1>
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-8xl text-gray-900 mb-6 tracking-tight">The Dots Company.</h1>
             <p class="text-base md:text-xl text-gray-600 font-light max-w-3xl mx-auto">Replacing plastic silica paste with clinical-grade, zero-water biomimetic Nano-HAp tablets.</p>
         </div>
 
-        <section class="scroll-container bg-corporate-50 border-y border-corporate-primary/10">
-            <div class="sticky-view">
+        <!-- 3D Physics Scrollytelling Engine -->
+        <section class="story-wrapper bg-corporate-50 border-y border-corporate-primary/10" id="manufacturing-story">
+            <div class="story-view" id="sticky-view">
                 <div id="text-container">
-                    <div class="stage-text hover-trigger active-mobile" id="t1">
-                        <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">1. Clinical Chemistry</h3>
-                        <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Formulated with biomimetic Nano-HAp to rebuild enamel and Xylitol to selectively starve pathogenic bacteria.</p>
+                    <div class="stage-text hover-trigger" id="t1">
+                        <h3 class="font-serif text-3xl md:text-5xl text-gray-900 mb-4">1. Clinical Chemistry</h3>
+                        <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Formulated with biomimetic Nano-HAp to rebuild enamel, Xylitol to selectively starve bacteria, and Zinc Citrate to neutralize odors.</p>
                     </div>
                     <div class="stage-text hover-trigger" id="t2">
-                        <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">2. Anhydrous Compression</h3>
-                        <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Pressed into precise 600mg solid-state tablets, slashing global shipping carbon emissions by 70%.</p>
+                        <h3 class="font-serif text-3xl md:text-5xl text-gray-900 mb-4">2. Anhydrous Compression</h3>
+                        <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Water is eliminated. Active ingredients are pressed into precise 600mg solid-state tablets, slashing global shipping carbon emissions by 70%.</p>
                     </div>
                     <div class="stage-text hover-trigger" id="t3">
-                        <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">3. Transparent Glass Vaults</h3>
+                        <h3 class="font-serif text-3xl md:text-5xl text-gray-900 mb-4">3. Transparent Vaults</h3>
                         <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Tablets drop into sustainable, transparent glass vessels sealed with an airtight lid, preventing daily microplastic ingestion.</p>
                     </div>
                 </div>
@@ -110,54 +114,64 @@
         </section>
     </main>
 
-    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 relative z-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div class="md:col-span-2 space-y-4">
+    <!-- UNIFORM FOOTER -->
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-2 space-y-6">
                 <img src="./assets/TransBGWHorizontal.png" class="h-12 md:h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
-                <p class="text-white/80 text-xs md:text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
+                <p class="text-white/80 text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
             </div>
             <div>
-                <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Architecture</h4>
-                <ul class="space-y-2 text-xs md:text-sm text-white/80 font-light">
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Architecture</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
                     <li><a href="active-operations.html" class="hover:text-white transition-colors hover-trigger">The Dots Company</a></li>
                     <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Estates</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hospitals</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Corporate Portal</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance & Ethics</a></li>
+                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory & Sitemap</a></li>
+                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-6 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
-            <p>© 2026 Savière Group.</p>
-            <div class="flex gap-4"><span>Net-Zero</span><span>Cruelty-Free</span></div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
+            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
+            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
         </div>
     </footer>
 
     <script>
         const lenis = new Lenis({ duration: 1.2, smooth: true }); lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add((time)=>{ lenis.raf(time * 1000) }); gsap.ticker.lagSmoothing(0);
+        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('open'); });
 
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
         let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2; let ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(130,29,48,0.1)'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; }); });
 
-        document.getElementById('menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('translate-x-full'); });
-
-        // High-End 3D Physics
-        const canvas = document.getElementById('three-canvas'); const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-        
+        // High-End 3D Physics (Transparent Jar, Falling Tablets)
+        const canvas = document.getElementById('three-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
         
         function resize() { 
             const isMobile = window.innerWidth <= 768;
             const w = isMobile ? window.innerWidth : window.innerWidth * 0.5; 
-            const h = isMobile ? window.innerHeight * 0.6 : window.innerHeight; 
+            const h = isMobile ? window.innerHeight * 0.5 : window.innerHeight; 
             camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h); 
-            // Adjust camera position for mobile
-            camera.position.set(0, isMobile ? 0 : 2, isMobile ? 35 : 25);
+            camera.position.set(0, isMobile ? 0 : 2, isMobile ? 35 : 22);
         }
         window.addEventListener('resize', resize); resize();
 
-        scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+        scene.add(new THREE.AmbientLight(0xffffff, 1.0));
         const dirLight = new THREE.DirectionalLight(0xffffff, 1.5); dirLight.position.set(5, 10, 7); scene.add(dirLight);
 
         // A. Ingredients
@@ -170,26 +184,37 @@
         });
         scene.add(ingredients);
 
-        // B. Transparent Glass Jar
+        // B. Transparent Glass Jar (95% transparent, visible reflections)
         const jarGroup = new THREE.Group();
-        const clearGlass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1.0, opacity: 1, transparent: true, roughness: 0.05, ior: 1.5, thickness: 0.5, side: THREE.DoubleSide });
-        const jarBody = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 6, 64, 1, true), clearGlass);
-        const jarBottom = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 0.2, 64), clearGlass); jarBottom.position.y = -3;
+        const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.95, opacity: 0.95, transparent: true, roughness: 0.15, ior: 1.5, thickness: 0.5, side: THREE.DoubleSide });
+        const jarBody = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 6, 64, 1, true), glassMat);
+        const jarBottom = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 0.2, 64), glassMat); jarBottom.position.y = -3;
         jarGroup.add(jarBody, jarBottom);
+        
+        // Ground shadow plane for the jar
+        const shadowPlane = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.05 }));
+        shadowPlane.rotation.x = -Math.PI / 2; shadowPlane.position.y = -3.2; jarGroup.add(shadowPlane);
+        
         jarGroup.position.y = -20; 
         scene.add(jarGroup);
 
-        // C. Multiple Tablets
+        // C. The Hero Tablet & Multiple Tablets
         const tabletsGroup = new THREE.Group();
-        const tabletMat = new THREE.MeshPhysicalMaterial({ color: '#ffffff', roughness: 0.9 });
+        const tabletMat = new THREE.MeshPhysicalMaterial({ color: '#ffffff', roughness: 0.8 });
+        
+        const heroTablet = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, 0.6, 64), tabletMat);
+        heroTablet.scale.set(0,0,0); heroTablet.rotation.x = Math.PI/2;
+        scene.add(heroTablet);
+
         const tabletTargets = []; 
-        for(let i=0; i<20; i++) {
+        for(let i=0; i<15; i++) {
             const tab = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 0.4, 32), tabletMat);
-            tab.position.set((Math.random()-0.5)*10, 20 + (Math.random()*10), (Math.random()-0.5)*10); 
+            tab.position.set((Math.random()-0.5)*4, 15 + (Math.random()*5), (Math.random()-0.5)*4); 
             tab.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
             
+            // Target safely inside jar constraints
             tabletTargets.push({
-                x: (Math.random()-0.5)*3.5, y: -2.8 + (i * 0.2), z: (Math.random()-0.5)*3.5, rx: Math.random()*Math.PI, rz: Math.random()*Math.PI
+                x: (Math.random()-0.5)*3.5, y: -2.8 + (i * 0.25), z: (Math.random()-0.5)*3.5, rx: Math.random()*Math.PI, rz: Math.random()*Math.PI
             });
             tabletsGroup.add(tab);
         }
@@ -204,39 +229,37 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            ingredients.rotation.y += 0.01; jarGroup.rotation.y += 0.005; tabletsGroup.rotation.y += 0.005; lidGroup.rotation.y += 0.005;
+            ingredients.rotation.y += 0.01; ingredients.rotation.z += 0.005;
+            heroTablet.rotation.z += 0.005; jarGroup.rotation.y += 0.002; tabletsGroup.rotation.y += 0.002; lidGroup.rotation.y += 0.002;
             renderer.render(scene, camera);
         } animate();
 
         document.addEventListener("DOMContentLoaded", () => {
-            const tl = gsap.timeline({ scrollTrigger: { trigger: ".scroll-container", start: "top top", end: "bottom bottom", scrub: 1 }});
-            
-            // Text logic for desktop (opacity) vs mobile (display block)
-            const isMobile = window.innerWidth <= 768;
+            const tl = gsap.timeline({ scrollTrigger: { trigger: "#manufacturing-story", start: "top top", end: "+=300%", scrub: 1, pin: true }});
 
-            if(!isMobile) {
-                tl.to("#t1", { opacity: 1, y: 0, duration: 0.5 }, 0)
-                  .to(ingredients.scale, { x: 0, y: 0, z: 0, duration: 1 }, 0.5)
-                  .to("#t1", { opacity: 0, y: -30, duration: 0.5 }, 1)
-                  .to("#t2", { opacity: 1, y: 0, duration: 0.5 }, 1.5)
-                  .to(jarGroup.position, { y: -1, duration: 1 }, 1); 
-                
-                tabletsGroup.children.forEach((tab, i) => { tl.to(tab.position, { x: tabletTargets[i].x, y: tabletTargets[i].y, z: tabletTargets[i].z, duration: 1.5, ease: "bounce.out" }, 1.5 + (i * 0.05)); });
+            // 1: Ingredients to Hero Tablet
+            tl.to("#t1", { opacity: 1, y: 0, duration: 0.5 }, 0)
+              .to(ingredients.scale, { x: 0, y: 0, z: 0, duration: 1, ease: "power2.in" }, 0.5)
+              .to("#t1", { opacity: 0, y: -30, duration: 0.5 }, 1)
+              .to(heroTablet.scale, { x: 1, y: 1, z: 1, duration: 1, ease: "back.out" }, 1)
+              .to("#t2", { opacity: 1, y: 0, duration: 0.5 }, 1.5);
 
-                tl.to("#t2", { opacity: 0, y: -30, duration: 0.5 }, 3.5)
-                  .to("#t3", { opacity: 1, y: 0, duration: 0.5 }, 4)
-                  .to(lidGroup.position, { y: 2.3, duration: 1.5, ease: "power3.in" }, 4); // Lid seals exactly above tablets
-            } else {
-                // Mobile simplified timeline
-                tl.to(ingredients.scale, { x: 0, y: 0, z: 0, duration: 1 }, 0.5)
-                  .call(() => { document.getElementById('t1').classList.remove('active-mobile'); document.getElementById('t2').classList.add('active-mobile'); }, [], 1.5)
-                  .to(jarGroup.position, { y: -1, duration: 1 }, 1);
-                  
-                tabletsGroup.children.forEach((tab, i) => { tl.to(tab.position, { x: tabletTargets[i].x, y: tabletTargets[i].y, z: tabletTargets[i].z, duration: 1.5 }, 1.5 + (i * 0.05)); });
-                
-                tl.call(() => { document.getElementById('t2').classList.remove('active-mobile'); document.getElementById('t3').classList.add('active-mobile'); }, [], 3.5)
-                  .to(lidGroup.position, { y: 2.3, duration: 1.5 }, 4);
-            }
+            // 2: Hero Tablet shrinks, Jar rises, multiple tablets rain inside
+            tl.to("#t2", { opacity: 0, y: -30, duration: 0.5 }, 2.5)
+              .to(heroTablet.scale, { x: 0, y: 0, z: 0, duration: 0.5 }, 2.5)
+              .to(jarGroup.position, { y: -1, duration: 1, ease: "power2.out" }, 2.5);
+              
+            tabletsGroup.children.forEach((tab, i) => {
+                tl.to(tab.position, { x: tabletTargets[i].x, y: tabletTargets[i].y, z: tabletTargets[i].z, duration: 1.5, ease: "bounce.out" }, 2.8 + (i * 0.05))
+                  .to(tab.rotation, { x: tabletTargets[i].rx, z: tabletTargets[i].rz, duration: 1.5 }, 2.8 + (i * 0.05));
+            });
+
+            // 3: Lid drops and seals
+            tl.to("#t3", { opacity: 1, y: 0, duration: 0.5 }, 4)
+              .to(jarGroup.rotation, { x: 0.15, duration: 1 }, 4)
+              .to(tabletsGroup.rotation, { x: 0.15, duration: 1 }, 4)
+              .to(lidGroup.position, { y: 2.3, duration: 1.5, ease: "power3.in" }, 4.5) // Closes exactly on top
+              .to(lidGroup.rotation, { x: 0.15, duration: 1 }, 4.5);
         });
     </script>
 </body>
