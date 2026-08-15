@@ -5,146 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savière Group | Architecting a Sustainable Future</title>
     
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-    
-    <!-- Mobile Browser Tab Theme Color -->
-    <meta name="theme-color" content="#821D30">
+    <!-- Forced Mobile Browser Crimson Theme -->
+    <meta name="theme-color" content="#821D30" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#821D30" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
                     colors: { corporate: { primary: '#821D30', 50: '#fdf8f9', 900: '#1a0509', 950: '#0d0204' } }
                 }
             }
         }
     </script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <style>
         body { background-color: #ffffff; color: #0d0204; overflow-x: hidden; }
-        /* White Frosted Glass Header */
         .glass-header {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid rgba(130, 29, 48, 0.1);
+            border-bottom: 1px solid rgba(130, 29, 48, 0.05);
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(130, 29, 48, 0.1);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(130, 29, 48, 0.15); border-color: rgba(130, 29, 48, 0.4); }
         #globe-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.6; }
-        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
-        .nav-link:hover::after { width: 100%; }
-        .reveal-text, .reveal-card { visibility: hidden; }
+        .text-balance { text-wrap: balance; }
+        
+        /* Story Section Pinning */
+        .story-panel { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; }
     </style>
 </head>
 <body class="antialiased selection:bg-corporate-primary selection:text-white">
 
     <canvas id="globe-canvas"></canvas>
 
-    <!-- White Frosted Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center" id="logo-reveal">
-                <!-- Burgundy text on transparent background to contrast the white header -->
-                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain">
-            </a>
-            
-            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900" id="nav-links">
-                <a href="#vision" class="nav-link hover:text-corporate-primary">Our Vision</a>
-                <a href="governance.html" class="nav-link hover:text-corporate-primary">Governance</a>
-                <a href="active-operations.html" class="nav-link hover:text-corporate-primary">DOTS</a>
-                <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
+            <a href="index.html" class="flex items-center"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain"></a>
+            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
+                <a href="#vision" class="hover:text-corporate-primary">Vision</a>
+                <a href="#net-zero-story" class="hover:text-corporate-primary">The Impact</a>
+                <a href="active-operations.html" class="hover:text-corporate-primary">DOTS</a>
+                <a href="roadmap.html" class="hover:text-corporate-primary">Pipeline</a>
             </nav>
-
-            <a href="mailto:connect@savieregroup.com" id="cta-reveal" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:bg-corporate-900 transition-transform hover:scale-105 rounded-full shadow-lg">
-                Connect
-            </a>
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:scale-105 transition-transform rounded-full">Connect</a>
         </div>
     </header>
 
     <main class="relative z-10">
+        <!-- Hero -->
         <section id="vision" class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-12 relative">
             <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
                 <div class="pr-0 md:pr-12">
-                    <div class="overflow-hidden mb-6">
-                        <div class="hero-text transform translate-y-full inline-flex items-center gap-2 px-3 py-1.5 border border-corporate-primary/20 rounded-full">
-                            <span class="w-2 h-2 rounded-full bg-corporate-primary animate-pulse"></span>
-                            <p class="text-[10px] font-bold uppercase tracking-[0.25em] text-corporate-primary">Cyberabad, India</p>
-                        </div>
-                    </div>
-                    <div class="overflow-hidden mb-8">
-                        <h1 class="hero-text transform translate-y-full font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] text-gray-900 leading-[1.05] tracking-tight text-balance">
-                            Architecting a <br><span class="text-corporate-primary">better, cleaner</span> world.
-                        </h1>
-                    </div>
-                    <div class="overflow-hidden">
-                        <p class="hero-text transform translate-y-full text-lg md:text-xl text-gray-600 font-light leading-relaxed text-balance">
-                            Savière Group is a visionary operating platform building sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
-                        </p>
-                    </div>
+                    <p class="hero-text transform translate-y-8 opacity-0 text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
+                    <h1 class="hero-text transform translate-y-8 opacity-0 font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] text-gray-900 leading-[1.05] tracking-tight text-balance mb-8">
+                        Architecting a <span class="text-corporate-primary">better, cleaner</span> world.
+                    </h1>
+                    <p class="hero-text transform translate-y-8 opacity-0 text-lg md:text-xl text-gray-600 font-light leading-relaxed text-balance">
+                        Savière Group Private Limited is an apex holding entity. We build sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
+                    </p>
                 </div>
                 <div></div>
             </div>
         </section>
 
-        <section id="impact" class="py-32 px-6 bg-gradient-to-b from-transparent to-white">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-4xl mx-auto mb-24">
-                    <p class="reveal-text text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">The Founder's Mandate</p>
-                    <h2 class="reveal-text font-serif text-3xl md:text-5xl text-gray-900 leading-tight mb-10 text-balance">
-                        "We are here to prove that you don't have to choose between massive business growth and doing what is right for the earth."
-                    </h2>
-                    <div class="reveal-text">
-                        <p class="font-serif text-xl text-corporate-primary">Dr. Tanmai Aasrith Varma Ayenampudi</p>
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mt-2">Medical Doctor • Environment Advocate</p>
-                    </div>
+        <!-- Dynamic Pinned Scroll Story: The Ecological Mandate -->
+        <section id="net-zero-story" class="relative bg-corporate-50 border-y border-corporate-primary/10">
+            <div id="story-container" class="h-screen sticky top-0 max-w-7xl mx-auto px-6 overflow-hidden">
+                
+                <!-- Panel 1: The Plastic Problem -->
+                <div class="story-panel" id="panel-1">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">The Legacy Failure</p>
+                    <h2 class="font-serif text-5xl md:text-7xl text-gray-900 leading-tight mb-8 max-w-3xl">The global oral care industry produces <span class="text-corporate-primary">billions</span> of single-use plastic tubes annually.</h2>
+                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Furthermore, traditional toothpaste consists of up to 50% water, generating a massive, unnecessary logistical carbon footprint.</p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass-card rounded-3xl p-10 reveal-card">
-                        <h3 class="font-serif text-2xl text-gray-900 mb-4">Cruelty-Free Ethics</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed font-light">A non-negotiable standard. We enforce absolute zero animal derivatives and no animal testing across all our supply chains and product lines.</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-10 reveal-card">
-                        <h3 class="font-serif text-2xl text-gray-900 mb-4">Preventative Health</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed font-light">Led by medical science, we engineer products that prioritize biological purity and systemic wellness, shifting care from reactive to proactive.</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-10 reveal-card">
-                        <h3 class="font-serif text-2xl text-gray-900 mb-4">Safe for the Earth</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed font-light">Engineered to be net-zero and carbon efficient. From zero-waste packaging to clean energy operations, we leave no ecological debt behind.</p>
-                    </div>
+                <!-- Panel 2: The Biological Threat -->
+                <div class="story-panel" id="panel-2">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">The Microplastic Vector</p>
+                    <h2 class="font-serif text-5xl md:text-7xl text-gray-900 leading-tight mb-8 max-w-3xl">This leads to the ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
+                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">The oral cavity is not an isolated biome—it is the primary gateway to the vascular system. Daily ingestion of microplastics is linked to metabolic syndrome and oncology risks.</p>
                 </div>
+
+                <!-- Panel 3: The Saviere Solution -->
+                <div class="story-panel" id="panel-3">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">Our Mandate</p>
+                    <h2 class="font-serif text-5xl md:text-7xl text-gray-900 leading-tight mb-8 max-w-3xl">We eliminate water. We eliminate plastic. We restore the ecosystem.</h2>
+                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Through Doctor-led R&D, our subsidiaries replace toxic synthetics with biomimetic science. Engineered for a safe Earth. Packaged exclusively in refillable aluminum and glass.</p>
+                </div>
+
             </div>
+            <!-- Spacer to allow for scrolling duration -->
+            <div style="height: 300vh;"></div> 
         </section>
+
     </main>
 
-    <!-- Burgundy Footer with White Logo -->
     <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 mb-16">
             <div class="space-y-6">
-                <a href="index.html" class="inline-block">
-                    <!-- White text on transparent background -->
-                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500">
-                </a>
+                <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500">
                 <p class="text-white/80 text-sm font-light">Savière Group Private Limited.<br>Cyberabad, Hyderabad, India.</p>
             </div>
             <div class="flex flex-col md:items-end space-y-4">
@@ -153,76 +124,64 @@
                 <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4">Corporate Directory</a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
-            <p>© 2026 Savière Group. Safe for Earth.</p>
-            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span></div>
-        </div>
     </footer>
 
-    <!-- Three.js & GSAP Core -->
     <script>
+        // 3D Globe Logic
         const canvas = document.getElementById('globe-canvas');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#ffffff'); 
         scene.fog = new THREE.FogExp2('#ffffff', 0.03);
-
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
+        
         const geometry = new THREE.BufferGeometry();
         const posArray = new Float32Array(2500 * 3);
-        for(let i = 0; i < 7500; i+=3) {
-            const r = 12, theta = 2 * Math.PI * Math.random(), phi = Math.acos(2 * Math.random() - 1);
-            posArray[i] = r * Math.sin(phi) * Math.cos(theta); 
-            posArray[i+1] = r * Math.sin(phi) * Math.sin(theta); 
-            posArray[i+2] = r * Math.cos(phi); 
+        for(let i=0; i<7500; i+=3) {
+            const r=12, theta=2*Math.PI*Math.random(), phi=Math.acos(2*Math.random()-1);
+            posArray[i]=r*Math.sin(phi)*Math.cos(theta); posArray[i+1]=r*Math.sin(phi)*Math.sin(theta); posArray[i+2]=r*Math.cos(phi); 
         }
         geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const material = new THREE.PointsMaterial({ size: 0.08, color: '#821D30', transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
+        const material = new THREE.PointsMaterial({ size: 0.08, color: '#821D30', transparent: true, opacity: 0.6 });
         const particleMesh = new THREE.Points(geometry, material);
         scene.add(particleMesh);
+        camera.position.z = 30; particleMesh.position.x = window.innerWidth>768?15:0; particleMesh.position.y = window.innerWidth>768?0:10;
 
-        camera.position.z = 30;
-        particleMesh.position.x = window.innerWidth > 768 ? 15 : 0;
-        particleMesh.position.y = window.innerWidth > 768 ? 0 : 10;
-
-        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
-        document.addEventListener('mousemove', (e) => { mouseX = (e.clientX - window.innerWidth/2)*0.001; mouseY = (e.clientY - window.innerHeight/2)*0.001; });
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            particleMesh.position.x = window.innerWidth > 768 ? 15 : 0; particleMesh.position.y = window.innerWidth > 768 ? 0 : 10;
-        });
-
-        const clock = new THREE.Clock();
+        let mouseX=0, mouseY=0; document.addEventListener('mousemove', e => { mouseX=(e.clientX-window.innerWidth/2)*0.001; mouseY=(e.clientY-window.innerHeight/2)*0.001; });
         function animate() {
             requestAnimationFrame(animate);
-            particleMesh.rotation.y = clock.getElapsedTime() * 0.05;
-            targetX = mouseX * 0.5; targetY = mouseY * 0.5;
-            particleMesh.rotation.x += 0.05 * (targetY - particleMesh.rotation.x);
-            particleMesh.rotation.y += 0.05 * (targetX - particleMesh.rotation.y);
+            particleMesh.rotation.y += 0.002;
+            particleMesh.rotation.x += 0.05 * ((mouseY*0.5) - particleMesh.rotation.x);
+            particleMesh.rotation.y += 0.05 * ((mouseX*0.5) - particleMesh.rotation.y);
             renderer.render(scene, camera);
         } animate();
 
+        // GSAP Scroll Animations
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray('.reveal-text, .reveal-card').forEach(el => el.style.visibility = 'visible');
 
-            gsap.timeline().to("#logo-reveal", {y: 0, opacity: 1, duration: 1}, 0.1)
-              .to("#nav-links a", {opacity: 1, duration: 0.8, stagger: 0.1}, 0.2)
-              .to("#cta-reveal", {y: 0, opacity: 1, duration: 1}, 0.3)
-              .to(".hero-text", {y: 0, duration: 1.2, stagger: 0.15}, 0.4);
-
+            // Hero Entrance
+            gsap.to(".hero-text", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.2 });
             gsap.to(particleMesh.position, { y: -15, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
-            gsap.to(particleMesh.scale, { x: 1.5, y: 1.5, z: 1.5, scrollTrigger: { trigger: "#impact", start: "top bottom", end: "bottom top", scrub: 1 }});
 
-            gsap.utils.toArray('.reveal-text, .reveal-card').forEach(element => {
-                gsap.fromTo(element, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, scrollTrigger: { trigger: element, start: "top 85%" }});
+            // Story Pinned Animation
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#net-zero-story",
+                    start: "top top",
+                    end: "+=300%", // 300vh scroll duration
+                    scrub: 1,
+                    pin: true
+                }
             });
-            ScrollTrigger.create({ start: "top -50", onUpdate: self => document.getElementById("navbar").classList.toggle("shadow-md", self.direction === 1) });
+
+            // Sequence: Panel 1 in -> out, Panel 2 in -> out, Panel 3 in
+            tl.to("#panel-1", { opacity: 1, y: 0, duration: 1 })
+              .to("#panel-1", { opacity: 0, y: -50, duration: 1, delay: 0.5 })
+              .to("#panel-2", { opacity: 1, y: 0, duration: 1 })
+              .to("#panel-2", { opacity: 0, y: -50, duration: 1, delay: 0.5 })
+              .to("#panel-3", { opacity: 1, y: 0, duration: 1 });
         });
     </script>
 </body>
