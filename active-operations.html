@@ -1,156 +1,201 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Active Operations | The Dots Company | Savière Group</title>
-    
+    <title>Active Operations | The Dots Company</title>
     <meta name="theme-color" content="#821D30">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-                    colors: { corporate: { primary: '#821D30', 50: '#fdf8f9', 900: '#1a0509' } }
-                }
-            }
-        }
-    </script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
+    
+    <!-- Scripts: GSAP, Three.js, Lenis -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
     <style>
-        body { background-color: #fcfcfc; color: #0d0204; overflow-x: hidden; }
-        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(130, 29, 48, 0.1); }
+        body { background-color: #ffffff; color: #0d0204; overflow-x: hidden; cursor: none; }
+        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.1); }
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
         
-        /* High-End Horizontal Scroll Container */
-        .horizontal-wrapper { width: 400vw; height: 100vh; display: flex; flex-wrap: nowrap; align-items: center; }
-        .horizontal-panel { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; }
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background: #821D30; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); transition: width 0.3s, height 0.3s, background 0.3s; }
+
+        /* The 3D Scroll Container */
+        #scroll-container { height: 400vh; position: relative; }
+        #sticky-view { position: sticky; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; align-items: center; overflow: hidden; }
         
-        .stage-icon { position: absolute; left: 10%; top: 50%; transform: translateY(-50%); color: #821D30; }
-        .stage-text { position: absolute; left: 40%; max-w: 500px; }
-        .glow-svg { filter: drop-shadow(0 0 15px rgba(130, 29, 48, 0.2)); }
+        #text-container { position: relative; height: 100%; display: flex; align-items: center; padding: 0 4rem; z-index: 10; }
+        .stage-text { position: absolute; left: 50px; opacity: 0; max-w: 600px; transform: translateY(30px); }
+        
+        #three-canvas { position: absolute; top: 0; right: 0; width: 50vw; height: 100vh; z-index: 5; }
+        
+        @media (max-width: 768px) {
+            #text-container { align-items: flex-end; padding-bottom: 10vh; width: 100vw; }
+            .stage-text { left: 20px; right: 20px; }
+            #three-canvas { width: 100vw; top: -10vh; }
+        }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="index.html" class="nav-link hover:text-corporate-primary">Overview</a>
-                <a href="governance.html" class="nav-link hover:text-corporate-primary">Governance</a>
-                <a href="active-operations.html" class="nav-link text-corporate-primary font-bold">DOTS</a>
-                <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
+                <a href="index.html" class="nav-link hover-trigger">Overview</a>
+                <a href="active-operations.html" class="text-corporate-primary font-bold hover-trigger">DOTS</a>
+                <a href="roadmap.html" class="nav-link hover-trigger">Pipeline</a>
             </nav>
         </div>
     </header>
 
-    <main class="pt-32 relative">
-        <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
-            <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4 mt-12">Phase 1 Operations</p>
+    <main>
+        <div class="max-w-7xl mx-auto px-6 mb-10 text-center pt-40 pb-20">
+            <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Phase 1 Operations</p>
             <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-8">The Dots Company.</h1>
-            <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">Replacing 100g plastic silica paste tubes with clinical-grade, zero-water biomimetic Nano-HAp solid-state tablets.</p>
+            <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">Replacing plastic silica paste tubes with clinical-grade, zero-water biomimetic Nano-HAp solid-state tablets. Scroll to view the pipeline.</p>
         </div>
 
-        <!-- Seamless Horizontal Scroll Pipeline -->
-        <section id="horizontal-scroll" class="overflow-hidden bg-corporate-50 border-y border-corporate-primary/10">
-            <div class="horizontal-wrapper">
+        <!-- The 3D Scrollytelling Section -->
+        <section id="scroll-container" class="bg-corporate-50 border-y border-corporate-primary/10">
+            <div id="sticky-view">
                 
-                <!-- Panel 1: Chemicals -->
-                <div class="horizontal-panel px-12">
-                    <div class="stage-icon">
-                        <svg class="w-48 h-48 glow-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" stroke-width="1" stroke-dasharray="2 2" class="animate-spin-slow"></circle>
-                            <circle cx="12" cy="8" r="2" stroke-width="2" fill="currentColor"></circle>
-                            <circle cx="8" cy="15" r="2" stroke-width="2" fill="currentColor"></circle>
-                            <circle cx="16" cy="15" r="2" stroke-width="2" fill="currentColor"></circle>
-                        </svg>
+                <div id="text-container" class="w-full md:w-1/2">
+                    <div class="stage-text" id="t1">
+                        <h3 class="font-serif text-4xl md:text-5xl text-gray-900 mb-4">1. Clinical Ingredients</h3>
+                        <p class="text-lg text-gray-600 font-light">Biomimetic Nano-HAp, Xylitol, and Zinc Citrate interact. Zero harsh abrasives. Zero toxic synthetic fluorides.</p>
                     </div>
-                    <div class="stage-text">
-                        <h3 class="font-serif text-4xl md:text-6xl text-gray-900 mb-4">1. Clinical Ingredients</h3>
-                        <p class="text-lg text-gray-600 font-light">We begin with Biomimetic Nano-HAp to rebuild enamel, Xylitol to selectively starve bacteria, and Zinc Citrate to neutralize odors.</p>
+                    <div class="stage-text" id="t2">
+                        <h3 class="font-serif text-4xl md:text-5xl text-gray-900 mb-4">2. Anhydrous Compression</h3>
+                        <p class="text-lg text-gray-600 font-light">Water is eliminated. Ingredients are pressed into a precise 600mg solid-state tablet, drastically cutting shipping emissions by 70%.</p>
                     </div>
-                </div>
-
-                <!-- Panel 2: Tablet -->
-                <div class="horizontal-panel px-12">
-                    <div class="stage-icon">
-                        <div class="w-40 h-40 rounded-full border-4 border-corporate-primary flex items-center justify-center bg-white shadow-2xl shadow-corporate-primary/20">
-                            <span class="font-bold text-2xl text-corporate-primary">600mg</span>
-                        </div>
-                    </div>
-                    <div class="stage-text">
-                        <h3 class="font-serif text-4xl md:text-6xl text-gray-900 mb-4">2. Anhydrous Compression</h3>
-                        <p class="text-lg text-gray-600 font-light">Water is eliminated. The active ingredients are pressed into a precise 600mg solid-state format, reducing shipping weight and carbon emissions by 70%.</p>
+                    <div class="stage-text" id="t3">
+                        <h3 class="font-serif text-4xl md:text-5xl text-gray-900 mb-4">3. Zero-Plastic Packaging</h3>
+                        <p class="text-lg text-gray-600 font-light">Tablets drop into sustainable, refillable aluminum vessels, completely eliminating the daily microplastic ingestion caused by legacy tubes.</p>
                     </div>
                 </div>
 
-                <!-- Panel 3: Jar -->
-                <div class="horizontal-panel px-12">
-                    <div class="stage-icon">
-                        <svg class="w-48 h-48 glow-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 8h14M7 8v10a2 2 0 002 2h6a2 2 0 002-2V8M9 4h6v4H9z"></path>
-                        </svg>
-                    </div>
-                    <div class="stage-text">
-                        <h3 class="font-serif text-4xl md:text-6xl text-gray-900 mb-4">3. Zero-Plastic Packaging</h3>
-                        <p class="text-lg text-gray-600 font-light">The tablets are housed in sustainable, refillable aluminum or glass vessels. This achieves zero plastic contact and prevents daily microplastic ingestion.</p>
-                    </div>
-                </div>
-
-                <!-- Panel 4: Brush -->
-                <div class="horizontal-panel px-12">
-                    <div class="stage-icon">
-                        <svg class="w-48 h-48 glow-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 22v-9m0 0a3 3 0 00-3-3H7a1 1 0 01-1-1V5a2 2 0 012-2h8a2 2 0 012 2v4a1 1 0 01-1 1h-2a3 3 0 00-3 3z"></path>
-                        </svg>
-                    </div>
-                    <div class="stage-text">
-                        <h3 class="font-serif text-4xl md:text-6xl text-gray-900 mb-4">4. Biological Application</h3>
-                        <p class="text-lg text-gray-600 font-light">Chew, foam, and brush. Mild, natural abrasives safely lift surface stains, completing the medical-grade systemic protocol.</p>
-                    </div>
-                </div>
+                <canvas id="three-canvas"></canvas>
 
             </div>
         </section>
     </main>
 
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 mb-16">
-            <div class="space-y-6">
-                <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500">
-                <p class="text-white/80 text-sm font-light">Savière Group Private Limited.<br>Cyberabad, Hyderabad, India.</p>
-            </div>
-            <div class="flex flex-col md:items-end space-y-4">
-                <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50">Collaboration</h4>
-                <a href="mailto:connect@savieregroup.com" class="text-white text-xl font-light hover:text-white/70">connect@savieregroup.com</a>
-                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4 tracking-widest uppercase">Corporate Directory</a>
-            </div>
+    <footer class="bg-corporate-primary text-white py-24 px-6 mt-32 relative z-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-20 w-auto hover-trigger transition-transform hover:scale-105 duration-500">
+            <p class="text-xs text-white/60 uppercase tracking-widest">© 2026 Savière Group. Safe for Earth.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            gsap.registerPlugin(ScrollTrigger);
+        // 1. Lenis Smooth Scrolling & Cursor
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time)=>{ lenis.raf(time * 1000) }); gsap.ticker.lagSmoothing(0);
 
-            // Seamless Horizontal Scroll Logic
-            const wrapper = document.querySelector('.horizontal-wrapper');
-            
-            gsap.to(wrapper, {
-                xPercent: -75, // Move left by 75% of total width (3 out of 4 panels)
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#horizontal-scroll",
-                    pin: true,
-                    scrub: 1,
-                    end: () => "+=" + wrapper.offsetWidth // Scroll length matches the width of all panels
-                }
-            });
+        const cursorDot = document.querySelector('.cursor-dot'); const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
+            cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' });
+        });
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px'; cursorOutline.style.background = 'rgba(130,29,48,0.1)'; });
+            el.addEventListener('mouseleave', () => { cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px'; cursorOutline.style.background = 'transparent'; });
+        });
+
+        // 2. The 3D Masterpiece (Three.js Scene)
+        const canvas = document.getElementById('three-canvas');
+        const scene = new THREE.Scene();
+        
+        // Setup Camera to look at the right side of the screen
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / 2 / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 0, 15);
+        
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        function resize() {
+            const w = window.innerWidth > 768 ? window.innerWidth / 2 : window.innerWidth;
+            const h = window.innerHeight;
+            camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h);
+        }
+        window.addEventListener('resize', resize); resize();
+
+        // Lights
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.6); dirLight.position.set(5, 10, 5); scene.add(dirLight);
+        
+        // 3D Objects!
+        // A. Ingredients (Floating Spheres)
+        const ingredients = new THREE.Group();
+        const geoSphere = new THREE.SphereGeometry(0.4, 32, 32);
+        const matCrimson = new THREE.MeshPhysicalMaterial({ color: '#821D30', roughness: 0.2, metalness: 0.2 });
+        for(let i=0; i<15; i++) {
+            const mesh = new THREE.Mesh(geoSphere, matCrimson);
+            mesh.position.set((Math.random()-0.5)*6, (Math.random()-0.5)*6, (Math.random()-0.5)*6);
+            ingredients.add(mesh);
+        }
+        scene.add(ingredients);
+
+        // B. The Tablet (White Cylinder)
+        const geoTablet = new THREE.CylinderGeometry(1.8, 1.8, 0.6, 64);
+        const matWhite = new THREE.MeshPhysicalMaterial({ color: '#ffffff', roughness: 0.5, metalness: 0.1 });
+        const tablet = new THREE.Mesh(geoTablet, matWhite);
+        tablet.scale.set(0,0,0); // Hidden initially
+        tablet.rotation.x = Math.PI / 2;
+        scene.add(tablet);
+
+        // C. The Aluminum Jar
+        const jarGroup = new THREE.Group();
+        const matSilver = new THREE.MeshPhysicalMaterial({ color: '#e0e0e0', roughness: 0.3, metalness: 0.8, side: THREE.DoubleSide });
+        const geoJarSides = new THREE.CylinderGeometry(2.5, 2.5, 3.5, 64, 1, true); // Open top
+        const geoJarBottom = new THREE.CylinderGeometry(2.5, 2.5, 0.1, 64);
+        const jarSides = new THREE.Mesh(geoJarSides, matSilver);
+        const jarBottom = new THREE.Mesh(geoJarBottom, matSilver);
+        jarBottom.position.y = -1.75;
+        jarGroup.add(jarSides); jarGroup.add(jarBottom);
+        jarGroup.position.y = -15; // Hidden below initially
+        scene.add(jarGroup);
+
+        // Animation Loop for idle rotation
+        function animate() {
+            requestAnimationFrame(animate);
+            ingredients.rotation.y += 0.005; ingredients.rotation.x += 0.002;
+            tablet.rotation.z += 0.005;
+            jarGroup.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        } animate();
+
+        // 3. GSAP Timeline tied to the Scroll
+        document.addEventListener("DOMContentLoaded", () => {
+            const tl = gsap.timeline({ scrollTrigger: { trigger: "#scroll-container", start: "top top", end: "bottom bottom", scrub: 1 }});
+
+            // Stage 1: Ingredients fade out, Text 1 fades out
+            tl.to("#t1", { opacity: 1, y: 0, duration: 0.5 }, 0)
+              .to(ingredients.scale, { x: 0, y: 0, z: 0, duration: 2 }, 1)
+              .to("#t1", { opacity: 0, y: -30, duration: 1 }, 1);
+
+            // Stage 2: Tablet scales up, flips
+            tl.to(tablet.scale, { x: 1, y: 1, z: 1, duration: 1.5, ease: "back.out" }, 2)
+              .to(tablet.rotation, { x: Math.PI*2, duration: 2 }, 2)
+              .to("#t2", { opacity: 1, y: 0, duration: 1 }, 2)
+              .to("#t2", { opacity: 0, y: -30, duration: 1 }, 4);
+
+            // Stage 3: Jar comes up, Tablet drops in!
+            tl.to(jarGroup.position, { y: -2, duration: 1.5, ease: "power2.out" }, 5)
+              .to(tablet.position, { y: -2.5, duration: 1.5, ease: "bounce.out" }, 5)
+              .to(jarGroup.rotation, { x: 0.2, duration: 1 }, 5) // Tilt jar forward slightly
+              .to("#t3", { opacity: 1, y: 0, duration: 1 }, 5);
         });
     </script>
 </body>
