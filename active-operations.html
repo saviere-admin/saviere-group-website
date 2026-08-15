@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=5">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=5">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=5">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=5">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=5">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=5">
-    <link rel="manifest" href="site.webmanifest?v=5">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=6">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=6">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=6">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=6">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=6">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=6">
+    <link rel="manifest" href="site.webmanifest?v=6">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,23 +45,23 @@
         .text-col { width: 45%; height: 100%; position: relative; display: flex; align-items: center; padding-left: 5%; }
         .visual-col { width: 55%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
-        /* Mobile Overrides: Top half visuals, Bottom half text */
         @media (max-width: 768px) {
             .ops-pin-container { flex-direction: column; }
             .visual-col { width: 100%; height: 50vh; }
-            .text-col { width: 100%; height: 50vh; padding: 0 1.5rem; align-items: flex-start; }
+            .text-col { width: 100%; height: 50vh; padding: 0 1.5rem; align-items: flex-start; margin-top: -2rem; }
         }
 
         .step-card { position: absolute; width: 90%; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); opacity: 0; }
-        @media (max-width: 768px) { .step-card { width: calc(100% - 3rem); padding: 1.5rem; margin-top: 2rem; } }
+        @media (max-width: 768px) { .step-card { width: calc(100% - 3rem); padding: 1.5rem; } }
 
         /* Mathematically Controlled High-Res Images */
         .seq-img { position: absolute; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15)); }
         
+        /* Proportions driven by Viewport Height (vh) to prevent 2000px stretch */
         .img-powder { width: 35vh; height: 35vh; }
         .img-tablet { width: 15vh; height: 15vh; }
         .img-jar    { width: 55vh; height: 55vh; }
-        .img-lid    { width: 30vh; height: 30vh; } /* Matched exactly to the 55vh jar rim */
+        .img-lid    { width: 30vh; height: 30vh; }
         
     </style>
 </head>
@@ -80,7 +80,7 @@
             </nav>
             <div class="flex items-center gap-4 relative z-50">
                 <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
-                <button id="menu-toggle" class="md:hidden p-2 text-corporate-primary focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+                <button id="menu-toggle" class="md:hidden text-corporate-primary p-2 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
     </header>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="step-card" id="card-2">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">2. Anhydrous Compression</h3>
-                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Water is eliminated. Ingredients are compressed into tiny, powerful 600mg solid-state tablets, slashing shipping carbon by 70%.</p>
+                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Water is eliminated. Ingredients are powerfully compressed into our signature 600mg solid-state tablets, slashing shipping carbon by 70%.</p>
                 </div>
                 <div class="step-card" id="card-3">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">3. Transparent Vaults</h3>
@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <!-- Visual Assets -->
+            <!-- Visual Assets (.png exactly matching repo) -->
             <div class="visual-col">
                 <img src="./assets/tab-powder.png" alt="Clinical Powder" class="seq-img img-powder" id="v-powder">
                 <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet">
@@ -165,9 +165,6 @@
     </footer>
 
     <script>
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#821D30");
-
-        // Synced Smooth Scrolling
         const lenis = new Lenis({ duration: 1.2, smooth: true }); 
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time)=>{ lenis.raf(time * 1000) }); 
@@ -190,17 +187,16 @@
             gsap.set("#v-tablet", { opacity: 0, scale: 2, y: -50 });
             gsap.set("#v-jar-empty", { opacity: 0, y: 150, scale: 1 });
             gsap.set("#v-jar-filled", { opacity: 0, y: 0, scale: 1 });
-            gsap.set("#v-lid", { opacity: 0, y: -300, scale: 1 }); // Hidden way above
+            gsap.set("#v-lid", { opacity: 0, y: -300, scale: 1 }); 
 
             gsap.set(".step-card", { opacity: 0, y: 50 });
             gsap.set("#card-1", { opacity: 1, y: 0 });
 
-            // The Master Scroll Timeline
             const tl = gsap.timeline({ 
                 scrollTrigger: { 
                     trigger: "#ops-pin-container", 
                     start: "top top", 
-                    end: "+=400%", // 4 screens of scrolling duration
+                    end: "+=400%", // 4 screens of scroll
                     scrub: 1,
                     pin: true 
                 }
@@ -216,7 +212,7 @@
             tl.to("#card-2", { opacity: 0, y: -50, duration: 1 }, 2)
               .to("#v-tablet", { y: "20vh", scale: 0.6, duration: 1.5, ease: "power2.in" }, 2)
               .to("#v-jar-empty", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, 2)
-              .to("#v-tablet", { opacity: 0, duration: 0.2 }, 3.2) // Tablet disappears into jar
+              .to("#v-tablet", { opacity: 0, duration: 0.2 }, 3.2) 
               .to("#card-3", { opacity: 1, y: 0, duration: 1 }, 3);
 
             // Transition 3: Jar Fills
