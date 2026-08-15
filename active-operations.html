@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=6">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=6">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=6">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=6">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=6">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=6">
-    <link rel="manifest" href="site.webmanifest?v=6">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=7">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=7">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=7">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=7">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=7">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=7">
+    <link rel="manifest" href="site.webmanifest?v=7">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -57,11 +57,11 @@
         /* Mathematically Controlled High-Res Images */
         .seq-img { position: absolute; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15)); }
         
-        /* Proportions driven by Viewport Height (vh) to prevent 2000px stretch */
         .img-powder { width: 35vh; height: 35vh; }
         .img-tablet { width: 15vh; height: 15vh; }
+        .extra-tab  { width: 10vh; height: 10vh; } /* Slightly smaller for depth */
         .img-jar    { width: 55vh; height: 55vh; }
-        .img-lid    { width: 30vh; height: 30vh; }
+        .img-lid    { width: 30vh; height: 30vh; z-index: 5; } /* Z-index ensures it sits over the jar */
         
     </style>
 </head>
@@ -100,7 +100,6 @@
             <p class="text-base md:text-xl text-gray-600 font-light max-w-3xl mx-auto">Replacing plastic silica paste with clinical-grade, zero-water biomimetic Nano-HAp solid-state tablets.</p>
         </div>
 
-        <!-- The Apple-Tier Pinned Section -->
         <section class="ops-pin-container" id="ops-pin-container">
             
             <!-- Text Cards -->
@@ -115,21 +114,32 @@
                 </div>
                 <div class="step-card" id="card-3">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">3. Transparent Vaults</h3>
-                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Tablets drop into sustainable glass vessels, completely eliminating the daily ingestion of microplastics from degraded tubes.</p>
+                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Tablets cascade into sustainable glass vessels, completely eliminating the daily ingestion of microplastics from degraded tubes.</p>
                 </div>
                 <div class="step-card" id="card-4">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">4. Airtight Preservation</h3>
-                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">A heavy brushed-aluminum lid descends to seal the environment perfectly, ensuring clinical integrity and freshness.</p>
+                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">A heavy brushed-aluminum lid descends to seal the environment, preserving pristine clinical freshness in any space.</p>
                 </div>
             </div>
 
-            <!-- Visual Assets (.png exactly matching repo) -->
+            <!-- Visual Assets -->
             <div class="visual-col">
-                <img src="./assets/tab-powder.png" alt="Clinical Powder" class="seq-img img-powder" id="v-powder">
-                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet">
+                <!-- Powder -->
+                <img src="./assets/tab-powder.png" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
+                
+                <!-- The Hero Tablet -->
+                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet-1">
+                
+                <!-- The Tablet Cascade -->
+                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-2">
+                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-3">
+                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-4">
+                <img src="./assets/dot.png" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-5">
+                
+                <!-- The Vessels -->
                 <img src="./assets/emptyjar.png" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
-                <img src="./assets/filledjar.png" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
                 <img src="./assets/karlie.png" alt="Aluminum Lid" class="seq-img img-lid" id="v-lid">
+                <img src="./assets/filledjar.png" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
             </div>
             
         </section>
@@ -182,47 +192,71 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Set precise initial states
+            // 1. Precise Initial States
             gsap.set("#v-powder", { opacity: 1, scale: 1, y: 0 });
-            gsap.set("#v-tablet", { opacity: 0, scale: 2, y: -50 });
-            gsap.set("#v-jar-empty", { opacity: 0, y: 150, scale: 1 });
+            gsap.set("#v-tablet-1", { opacity: 0, scale: 2, y: -50 });
+            gsap.set(".extra-tab", { opacity: 0, scale: 0.5, y: "-40vh" }); // Hidden high above
+            gsap.set("#v-jar-empty", { opacity: 0, y: "30vh", scale: 1 });
             gsap.set("#v-jar-filled", { opacity: 0, y: 0, scale: 1 });
-            gsap.set("#v-lid", { opacity: 0, y: -300, scale: 1 }); 
+            gsap.set("#v-lid", { opacity: 0, y: "-40vh", scale: 1 }); 
 
             gsap.set(".step-card", { opacity: 0, y: 50 });
             gsap.set("#card-1", { opacity: 1, y: 0 });
 
+            // 2. The Master Scroll Timeline (Expanded to 500% for a longer, smoother narrative)
             const tl = gsap.timeline({ 
                 scrollTrigger: { 
                     trigger: "#ops-pin-container", 
                     start: "top top", 
-                    end: "+=400%", // 4 screens of scroll
+                    end: "+=500%", 
                     scrub: 1,
                     pin: true 
                 }
             });
 
-            // Transition 1: Chemistry to Compression
+            // Phase 1: Tablet Powder compresses into Hero Tablet
             tl.to("#card-1", { opacity: 0, y: -50, duration: 1 }, 0)
               .to("#v-powder", { opacity: 0, scale: 0.5, duration: 1 }, 0)
-              .to("#v-tablet", { opacity: 1, scale: 1, y: 0, duration: 1, ease: "power2.out" }, 0)
+              .to("#v-tablet-1", { opacity: 1, scale: 1, y: 0, duration: 1, ease: "power2.out" }, 0)
               .to("#card-2", { opacity: 1, y: 0, duration: 1 }, 0);
 
-            // Transition 2: Tablet Drops, Empty Jar Rises
+            // Phase 2: Empty Jar Rises & Tablets Cascade Down
             tl.to("#card-2", { opacity: 0, y: -50, duration: 1 }, 2)
-              .to("#v-tablet", { y: "20vh", scale: 0.6, duration: 1.5, ease: "power2.in" }, 2)
               .to("#v-jar-empty", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, 2)
-              .to("#v-tablet", { opacity: 0, duration: 0.2 }, 3.2) 
-              .to("#card-3", { opacity: 1, y: 0, duration: 1 }, 3);
+              
+              // Hero tablet drops
+              .to("#v-tablet-1", { y: "15vh", scale: 0.5, duration: 1.5, ease: "power2.in" }, 2)
+              .to("#v-tablet-1", { opacity: 0, duration: 0.2 }, 3.3) // Fades as it "enters" jar
 
-            // Transition 3: Jar Fills
-            tl.to("#v-jar-empty", { opacity: 0, duration: 0.5 }, 4.5)
-              .to("#v-jar-filled", { opacity: 1, duration: 0.5 }, 4.5);
+              // Extra tablets rain down randomly
+              .to("#v-tablet-2", { opacity: 1, duration: 0.1 }, 2.2)
+              .to("#v-tablet-2", { y: "12vh", x: "3vw", rotation: 45, duration: 1.3, ease: "power2.in" }, 2.2)
+              .to("#v-tablet-2", { opacity: 0, duration: 0.2 }, 3.3)
 
-            // Transition 4: Lid Seals perfectly on the 55vh Jar (Using -25.5vh to sit on the rim)
-            tl.to("#card-3", { opacity: 0, y: -50, duration: 1 }, 5.5)
-              .to("#v-lid", { opacity: 1, y: "-25.5vh", duration: 1.5, ease: "bounce.out" }, 5.5)
+              .to("#v-tablet-3", { opacity: 1, duration: 0.1 }, 2.4)
+              .to("#v-tablet-3", { y: "16vh", x: "-2vw", rotation: -60, duration: 1.1, ease: "power2.in" }, 2.4)
+              .to("#v-tablet-3", { opacity: 0, duration: 0.2 }, 3.3)
+
+              .to("#v-tablet-4", { opacity: 1, duration: 0.1 }, 2.6)
+              .to("#v-tablet-4", { y: "14vh", x: "1vw", rotation: 120, duration: 0.9, ease: "power2.in" }, 2.6)
+              .to("#v-tablet-4", { opacity: 0, duration: 0.2 }, 3.3)
+
+              .to("#v-tablet-5", { opacity: 1, duration: 0.1 }, 2.8)
+              .to("#v-tablet-5", { y: "13vh", x: "-3vw", rotation: -30, duration: 0.7, ease: "power2.in" }, 2.8)
+              .to("#v-tablet-5", { opacity: 0, duration: 0.2 }, 3.3)
+
+              .to("#card-3", { opacity: 1, y: 0, duration: 1 }, 3.5);
+
+            // Phase 3: The Lid drops and seals the empty jar
+            tl.to("#card-3", { opacity: 0, y: -50, duration: 1 }, 5)
+              .to("#v-lid", { opacity: 1, duration: 0.1 }, 5)
+              .to("#v-lid", { y: "-25.5vh", duration: 1.5, ease: "bounce.out" }, 5) // Bounces perfectly onto the rim
               .to("#card-4", { opacity: 1, y: 0, duration: 1 }, 6);
+
+            // Phase 4: Seamless Blend into the Final Filled Product
+            tl.to("#v-jar-empty", { opacity: 0, duration: 1.5 }, 7.5)
+              .to("#v-lid", { opacity: 0, duration: 1.5 }, 7.5) // Hide the lid and empty jar
+              .to("#v-jar-filled", { opacity: 1, duration: 1.5 }, 7.5); // Fade in the complete, filled product
               
             ScrollTrigger.create({ start: "top -50", onUpdate: self => document.getElementById("navbar").classList.toggle("shadow-sm", self.direction === 1) });
         });
