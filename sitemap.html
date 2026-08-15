@@ -3,96 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Sitemap | Savière Group</title>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="manifest" href="./site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Directory | Savière Group</title>
+    <meta name="theme-color" content="#821D30">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['"The Seasons"', 'Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        corporate: {
-                            primary: '#821D30',
-                            dark: '#54101e',
-                            50: '#fcf6f6',
-                            950: '#0a0103',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #fcf8f8; color: #0a0103; }
-        .border-corporate { border-color: rgba(130, 29, 48, 0.14); }
-    </style>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
+    <style>body{background:#fff;color:#0d0204;} .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.1);}</style>
 </head>
-<body class="antialiased selection:bg-corporate-primary selection:text-white flex flex-col min-h-screen">
-
-    <header class="bg-white border-b border-corporate sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html">
-                <img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
-            </a>
-            <a href="index.html" class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary hover:text-corporate-dark">
-                &larr; Return to Portal
-            </a>
+<body class="antialiased">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-corporate-primary">&larr; Portal</a>
         </div>
     </header>
 
-    <main class="flex-grow py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto">
-            <div class="border-b border-corporate pb-8 mb-12">
-                <p class="text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-2">Institutional Architecture</p>
-                <h1 class="font-serif text-4xl sm:text-5xl text-corporate-950">Corporate Sitemap & Directory</h1>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="space-y-6">
-                    <h2 class="font-serif text-xl font-bold text-corporate-primary border-b border-corporate pb-3">Corporate Platform</h2>
-                    <ul class="space-y-3 text-sm text-gray-700">
-                        <li><a href="index.html" class="hover:text-corporate-primary font-medium">Corporate Overview</a></li>
-                        <li><a href="index.html#market-mandate" class="hover:text-corporate-primary">Market Realities & Statistics</a></li>
-                        <li><a href="governance.html" class="hover:text-corporate-primary">Mission & Vision</a></li>
-                        <li><a href="governance.html#mandate" class="hover:text-corporate-primary">Net-Zero & Vegan Charter</a></li>
-                        <li><a href="governance.html#founder" class="hover:text-corporate-primary">Founder's Mandate (Dr. Tanmai)</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-6">
-                    <h2 class="font-serif text-xl font-bold text-corporate-primary border-b border-corporate pb-3">Operations & Roadmap</h2>
-                    <ul class="space-y-3 text-sm text-gray-700">
-                        <li><a href="active-operations.html" class="hover:text-corporate-primary font-medium text-corporate-primary">The Dots Company (Active)</a></li>
-                        <li><a href="roadmap.html" class="hover:text-corporate-primary">20-Year Legacy Plan</a></li>
-                        <li><a href="roadmap.html#pipeline" class="hover:text-corporate-primary">Savière Hospitals (Pipeline)</a></li>
-                        <li><a href="roadmap.html#pipeline" class="hover:text-corporate-primary">Savière Hotels (Pipeline)</a></li>
-                        <li><a href="roadmap.html#pipeline" class="hover:text-corporate-primary">Savière Green Energy</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-6">
-                    <h2 class="font-serif text-xl font-bold text-corporate-primary border-b border-corporate pb-3">Records & Search</h2>
-                    <ul class="space-y-3 text-sm text-gray-700">
-                        <li><a href="sitemap.xml" class="hover:text-corporate-primary font-mono text-xs">sitemap.xml (Search Protocol)</a></li>
-                        <li><a href="site.webmanifest" class="hover:text-corporate-primary font-mono text-xs">site.webmanifest (PWA)</a></li>
-                        <li><a href="mailto:connect@savieregroup.com" class="hover:text-corporate-primary">connect@savieregroup.com</a></li>
-                    </ul>
-                </div>
-            </div>
+    <main class="pt-32 pb-24 px-6 max-w-4xl mx-auto min-h-screen">
+        <h1 class="font-serif text-4xl md:text-5xl text-gray-900 mb-12 mt-12">Corporate Directory</h1>
+        <div class="space-y-6 text-lg font-light text-corporate-primary">
+            <a href="index.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">Home Portal</a>
+            <a href="governance.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">Governance & Ethics</a>
+            <a href="active-operations.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">The Dots Company</a>
+            <a href="roadmap.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">20-Year Legacy Plan</a>
+            <a href="sitemap.xml" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">Sitemap (XML)</a>
         </div>
     </main>
 
-    <footer class="bg-corporate-primary text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-corporate-dark mt-auto">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
-            <img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group" class="h-12 w-auto object-contain">
-            <p class="text-xs text-white/70">© 2026 Savière Group Private Limited. Net-Zero. Cruelty-Free. Safe for Earth.</p>
-        </div>
-    </footer>
+    <footer class="bg-corporate-primary text-white py-12 px-6"><div class="max-w-7xl mx-auto"><img src="./assets/TransBGWHorizontal.png" class="h-16 mb-4"><p class="text-xs text-white/60">© 2026 Savière Group. Safe for Earth.</p></div></footer>
 </body>
 </html>

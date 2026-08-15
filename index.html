@@ -4,50 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savière Group | Architecting a Sustainable Future</title>
-    <meta name="description" content="Savière Group is dedicated to building sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.">
-
-    <!-- Comprehensive Favicon Suite & Mobile Tab Color Override -->
+    
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-    <link rel="manifest" href="./site.webmanifest">
     
-    <!-- Forces mobile browsers (Safari/Chrome) to match your Crimson Red theme -->
+    <!-- Mobile Browser Tab Theme Color -->
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Enterprise Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Corporation",
-      "name": "Savière Group",
-      "legalName": "Saviere Group Private Limited",
-      "alternateName": [
-        "Savière",
-        "Saviere",
-        "Saviere Group",
-        "Saviere Group of Companies",
-        "Saviere Group Limited",
-        "Saviere Group Private Limited",
-        "Savirere Private Limited",
-        "A Saviere Company"
-      ],
-      "url": "https://savieregroup.com",
-      "logo": "https://savieregroup.com/assets/TransBGWHorizontal.png",
-      "founder": {
-        "@type": "Person",
-        "name": "Dr. Tanmai Aasrith Varma Ayenampudi",
-        "jobTitle": "Founder & Managing Director"
-      }
-    }
-    </script>
-
-    <!-- Typography & Tailwind -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -55,129 +24,89 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['"The Seasons"', 'Playfair Display', 'serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
-                    colors: {
-                        corporate: {
-                            primary: '#821D30', /* Your Crimson Red / Imperial Burgundy */
-                            50: '#fdf8f9',
-                            100: '#faeff1',
-                            900: '#1a0509',
-                            950: '#0d0204',
-                        }
-                    }
+                    colors: { corporate: { primary: '#821D30', 50: '#fdf8f9', 900: '#1a0509', 950: '#0d0204' } }
                 }
             }
         }
     </script>
-
-    <!-- Animation Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <style>
         body { background-color: #ffffff; color: #0d0204; overflow-x: hidden; }
-        
-        /* Flawless Crimson Frosted Glass Header */
+        /* White Frosted Glass Header */
         .glass-header {
-            background: rgba(130, 29, 48, 0.85); /* Base Crimson */
-            @supports (backdrop-filter: blur(24px)) {
-                background: rgba(130, 29, 48, 0.75); /* Highly transparent Crimson */
-                backdrop-filter: blur(24px) saturate(180%);
-                -webkit-backdrop-filter: blur(24px) saturate(180%);
-            }
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(130, 29, 48, 0.1);
         }
-
-        /* Frosted Glass Cards */
         .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(16px) saturate(150%);
-            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
             border: 1px solid rgba(130, 29, 48, 0.1);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
-        .glass-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px -10px rgba(130, 29, 48, 0.15);
-            border-color: rgba(130, 29, 48, 0.4);
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Nav Hover Underline (White for the Crimson Header) */
-        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #ffffff; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 4px; }
+        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(130, 29, 48, 0.15); border-color: rgba(130, 29, 48, 0.4); }
+        #globe-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.6; }
+        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
-
-        /* 3D Canvas positioning */
-        #globe-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Smooth Typography & Layout */
-        .text-balance { text-wrap: balance; }
         .reveal-text, .reveal-card { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased selection:bg-corporate-primary selection:text-white">
 
-    <!-- The 3D Interactive Background -->
     <canvas id="globe-canvas"></canvas>
 
-    <!-- Crimson Apple-Tier Frosted Glass Header -->
+    <!-- White Frosted Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center" id="logo-reveal">
-                <!-- ACCURATE PATH: Transparent Background, White Swan/Text to contrast the Crimson Header -->
-                <img src="./assets/TransBGWHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain drop-shadow-md">
+                <!-- Burgundy text on transparent background to contrast the white header -->
+                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain">
             </a>
             
-            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-widest text-white/80" id="nav-links">
-                <a href="#vision" class="nav-link hover:text-white transition-colors">Our Vision</a>
-                <a href="#impact" class="nav-link hover:text-white transition-colors">Global Impact</a>
-                <a href="#horizons" class="nav-link hover:text-white transition-colors">Future Horizons</a>
+            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900" id="nav-links">
+                <a href="#vision" class="nav-link hover:text-corporate-primary">Our Vision</a>
+                <a href="governance.html" class="nav-link hover:text-corporate-primary">Governance</a>
+                <a href="active-operations.html" class="nav-link hover:text-corporate-primary">DOTS</a>
+                <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
             </nav>
 
-            <a href="mailto:connect@savieregroup.com" id="cta-reveal" class="hidden sm:inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-widest text-corporate-primary bg-white hover:bg-gray-100 transition-transform hover:scale-105 rounded-full shadow-lg">
+            <a href="mailto:connect@savieregroup.com" id="cta-reveal" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:bg-corporate-900 transition-transform hover:scale-105 rounded-full shadow-lg">
                 Connect
             </a>
         </div>
     </header>
 
     <main class="relative z-10">
-        <!-- Playful, Impactful Hero Section -->
         <section id="vision" class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-12 relative">
             <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
                 <div class="pr-0 md:pr-12">
                     <div class="overflow-hidden mb-6">
-                        <div class="hero-text transform translate-y-full inline-flex items-center gap-2 px-3 py-1.5 bg-corporate-50 border border-corporate-primary/20 rounded-full">
+                        <div class="hero-text transform translate-y-full inline-flex items-center gap-2 px-3 py-1.5 border border-corporate-primary/20 rounded-full">
                             <span class="w-2 h-2 rounded-full bg-corporate-primary animate-pulse"></span>
                             <p class="text-[10px] font-bold uppercase tracking-[0.25em] text-corporate-primary">Cyberabad, India</p>
                         </div>
                     </div>
                     <div class="overflow-hidden mb-8">
                         <h1 class="hero-text transform translate-y-full font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] text-gray-900 leading-[1.05] tracking-tight text-balance">
-                            Architecting a <br>
-                            <span class="text-corporate-primary">better, cleaner</span> world.
+                            Architecting a <br><span class="text-corporate-primary">better, cleaner</span> world.
                         </h1>
                     </div>
                     <div class="overflow-hidden">
                         <p class="hero-text transform translate-y-full text-lg md:text-xl text-gray-600 font-light leading-relaxed text-balance">
-                            Savière Group is a forward-thinking operating platform. We build sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
+                            Savière Group is a visionary operating platform building sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
                         </p>
                     </div>
                 </div>
-                <!-- Right side intentionally left blank for the 3D globe to float -->
                 <div></div>
             </div>
         </section>
 
-        <!-- The Visionary Mandate -->
-        <section id="impact" class="py-32 px-6 bg-gradient-to-b from-transparent to-white/95">
+        <section id="impact" class="py-32 px-6 bg-gradient-to-b from-transparent to-white">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center max-w-4xl mx-auto mb-24">
                     <p class="reveal-text text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">The Founder's Mandate</p>
@@ -192,104 +121,45 @@
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="glass-card rounded-3xl p-10 reveal-card">
-                        <div class="w-12 h-12 rounded-full bg-corporate-50 flex items-center justify-center mb-8 border border-corporate-primary/20">
-                            <svg class="w-5 h-5 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                        </div>
                         <h3 class="font-serif text-2xl text-gray-900 mb-4">Cruelty-Free Ethics</h3>
                         <p class="text-sm text-gray-600 leading-relaxed font-light">A non-negotiable standard. We enforce absolute zero animal derivatives and no animal testing across all our supply chains and product lines.</p>
                     </div>
-
                     <div class="glass-card rounded-3xl p-10 reveal-card">
-                        <div class="w-12 h-12 rounded-full bg-corporate-50 flex items-center justify-center mb-8 border border-corporate-primary/20">
-                            <svg class="w-5 h-5 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        </div>
                         <h3 class="font-serif text-2xl text-gray-900 mb-4">Preventative Health</h3>
                         <p class="text-sm text-gray-600 leading-relaxed font-light">Led by medical science, we engineer products that prioritize biological purity and systemic wellness, shifting care from reactive to proactive.</p>
                     </div>
-
                     <div class="glass-card rounded-3xl p-10 reveal-card">
-                        <div class="w-12 h-12 rounded-full bg-corporate-50 flex items-center justify-center mb-8 border border-corporate-primary/20">
-                            <svg class="w-5 h-5 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
                         <h3 class="font-serif text-2xl text-gray-900 mb-4">Safe for the Earth</h3>
                         <p class="text-sm text-gray-600 leading-relaxed font-light">Engineered to be net-zero and carbon efficient. From zero-waste packaging to clean energy operations, we leave no ecological debt behind.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Future Horizons (Clean and Public-Facing) -->
-        <section id="horizons" class="py-32 px-6 bg-corporate-50 border-t border-corporate-primary/10">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-20 flex flex-col md:flex-row md:items-end justify-between">
-                    <div>
-                        <p class="reveal-text text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-4">The Expansion Pipeline</p>
-                        <h2 class="reveal-text font-serif text-4xl md:text-6xl text-gray-900 leading-tight">Sectors we are transforming.</h2>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-12 rounded-[2rem] border border-corporate-primary/5 hover:border-corporate-primary/30 transition-colors reveal-card shadow-sm hover:shadow-md">
-                        <h3 class="font-serif text-3xl text-gray-900 mb-4">Consumer Goods</h3>
-                        <p class="text-gray-600 font-light leading-relaxed">
-                            Disrupting legacy plastics with zero-waste, clinically-backed personal care. We replace toxic synthetics with biomimetic science.
-                        </p>
-                    </div>
-                    <div class="bg-white p-12 rounded-[2rem] border border-corporate-primary/5 hover:border-corporate-primary/30 transition-colors reveal-card shadow-sm hover:shadow-md">
-                        <h3 class="font-serif text-3xl text-gray-900 mb-4">Accessible Healthcare</h3>
-                        <p class="text-gray-600 font-light leading-relaxed">
-                            Creating specialized, asset-light clinical spaces dedicated to shifting the healthcare paradigm toward proactive biological wellness.
-                        </p>
-                    </div>
-                    <div class="bg-white p-12 rounded-[2rem] border border-corporate-primary/5 hover:border-corporate-primary/30 transition-colors reveal-card shadow-sm hover:shadow-md">
-                        <h3 class="font-serif text-3xl text-gray-900 mb-4">Experiential Hospitality</h3>
-                        <p class="text-gray-600 font-light leading-relaxed">
-                            Envisioning net-zero, luxury hotel ecosystems featuring entirely plant-based culinary experiences and cruelty-free amenities.
-                        </p>
-                    </div>
-                    <div class="bg-white p-12 rounded-[2rem] border border-corporate-primary/5 hover:border-corporate-primary/30 transition-colors reveal-card shadow-sm hover:shadow-md">
-                        <h3 class="font-serif text-3xl text-gray-900 mb-4">Clean-Tech Energy</h3>
-                        <p class="text-gray-600 font-light leading-relaxed">
-                            Strategizing partnerships for decentralized green micro-grids, ensuring our industrial footprint remains carbon-efficient for decades.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <!-- The Significantly Enlarged Crimson Footer -->
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 border-t border-corporate-900 relative z-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16 text-center md:text-left">
+    <!-- Burgundy Footer with White Logo -->
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
             <div class="space-y-6">
                 <a href="index.html" class="inline-block">
-                    <!-- ENLARGED LOGO: Using TransBGWHorizontal (White text, transparent background) -->
-                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-16 md:h-24 w-auto object-contain mx-auto md:mx-0 transition-transform hover:scale-105 duration-500 drop-shadow-lg">
+                    <!-- White text on transparent background -->
+                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500">
                 </a>
-                <p class="text-white/80 text-sm leading-relaxed max-w-sm font-light mx-auto md:mx-0">
-                    Savière Group Private Limited.<br>
-                    Cyberabad, Hyderabad, Telangana, India.
-                </p>
+                <p class="text-white/80 text-sm font-light">Savière Group Private Limited.<br>Cyberabad, Hyderabad, India.</p>
             </div>
-
-            <div class="flex flex-col justify-center items-center md:items-end space-y-4">
-                <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50">Enterprise Collaboration</h4>
-                <a href="mailto:connect@savieregroup.com" class="text-white text-xl md:text-2xl font-light hover:text-white/70 transition-colors">connect@savieregroup.com</a>
-                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white transition-colors mt-4">Corporate Directory</a>
+            <div class="flex flex-col md:items-end space-y-4">
+                <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50">Collaboration</h4>
+                <a href="mailto:connect@savieregroup.com" class="text-white text-xl font-light hover:text-white/70">connect@savieregroup.com</a>
+                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4">Corporate Directory</a>
             </div>
         </div>
-
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-white/60 tracking-widest uppercase font-medium">
-            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
-            <div class="flex gap-6">
-                <span>Net-Zero</span>
-                <span>Cruelty-Free</span>
-                <span>Asset-Light</span>
-            </div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
+            <p>© 2026 Savière Group. Safe for Earth.</p>
+            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span></div>
         </div>
     </footer>
 
-    <!-- Playful & Meaningful 3D Particle Earth via Three.js -->
+    <!-- Three.js & GSAP Core -->
     <script>
         const canvas = document.getElementById('globe-canvas');
         const scene = new THREE.Scene();
@@ -298,135 +168,61 @@
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2500;
-        const posArray = new Float32Array(particlesCount * 3);
-        
-        for(let i = 0; i < particlesCount * 3; i+=3) {
-            const r = 12; 
-            const theta = 2 * Math.PI * Math.random();
-            const phi = Math.acos(2 * Math.random() - 1);
-            
+        const geometry = new THREE.BufferGeometry();
+        const posArray = new Float32Array(2500 * 3);
+        for(let i = 0; i < 7500; i+=3) {
+            const r = 12, theta = 2 * Math.PI * Math.random(), phi = Math.acos(2 * Math.random() - 1);
             posArray[i] = r * Math.sin(phi) * Math.cos(theta); 
             posArray[i+1] = r * Math.sin(phi) * Math.sin(theta); 
             posArray[i+2] = r * Math.cos(phi); 
         }
-        
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.08,
-            color: '#821D30', /* Corporate Crimson Particles */
-            transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
-        });
-        
-        const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const material = new THREE.PointsMaterial({ size: 0.08, color: '#821D30', transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
+        const particleMesh = new THREE.Points(geometry, material);
         scene.add(particleMesh);
 
         camera.position.z = 30;
         particleMesh.position.x = window.innerWidth > 768 ? 15 : 0;
         particleMesh.position.y = window.innerWidth > 768 ? 0 : 10;
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-        
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.001;
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.001;
-        });
+        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = (e.clientX - window.innerWidth/2)*0.001; mouseY = (e.clientY - window.innerHeight/2)*0.001; });
 
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            particleMesh.position.x = window.innerWidth > 768 ? 15 : 0;
-            particleMesh.position.y = window.innerWidth > 768 ? 0 : 10;
+            particleMesh.position.x = window.innerWidth > 768 ? 15 : 0; particleMesh.position.y = window.innerWidth > 768 ? 0 : 10;
         });
 
         const clock = new THREE.Clock();
         function animate() {
             requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-            
-            particleMesh.rotation.y = elapsedTime * 0.05;
-            particleMesh.rotation.z = elapsedTime * 0.02;
-            
-            targetX = mouseX * 0.5;
-            targetY = mouseY * 0.5;
+            particleMesh.rotation.y = clock.getElapsedTime() * 0.05;
+            targetX = mouseX * 0.5; targetY = mouseY * 0.5;
             particleMesh.rotation.x += 0.05 * (targetY - particleMesh.rotation.x);
             particleMesh.rotation.y += 0.05 * (targetX - particleMesh.rotation.y);
-            
             renderer.render(scene, camera);
-        }
-        animate();
+        } animate();
 
-        // GSAP Apple-Tier Scroll Physics
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
-
             gsap.utils.toArray('.reveal-text, .reveal-card').forEach(el => el.style.visibility = 'visible');
 
-            const tl = gsap.timeline();
-            tl.to("#logo-reveal", {y: 0, opacity: 1, duration: 1, ease: "power4.out"}, 0.1)
-              .to("#nav-links a", {opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out"}, 0.2)
-              .to("#cta-reveal", {y: 0, opacity: 1, duration: 1, ease: "power4.out"}, 0.3)
-              .to(".hero-text", {y: 0, duration: 1.2, stagger: 0.15, ease: "power4.out"}, 0.4);
+            gsap.timeline().to("#logo-reveal", {y: 0, opacity: 1, duration: 1}, 0.1)
+              .to("#nav-links a", {opacity: 1, duration: 0.8, stagger: 0.1}, 0.2)
+              .to("#cta-reveal", {y: 0, opacity: 1, duration: 1}, 0.3)
+              .to(".hero-text", {y: 0, duration: 1.2, stagger: 0.15}, 0.4);
 
-            gsap.to(particleMesh.position, {
-                y: -15, 
-                x: 0,   
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 1 
-                }
-            });
+            gsap.to(particleMesh.position, { y: -15, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
+            gsap.to(particleMesh.scale, { x: 1.5, y: 1.5, z: 1.5, scrollTrigger: { trigger: "#impact", start: "top bottom", end: "bottom top", scrub: 1 }});
 
-            gsap.to(particleMesh.scale, {
-                x: 1.5, y: 1.5, z: 1.5,
-                scrollTrigger: {
-                    trigger: "#impact",
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1
-                }
+            gsap.utils.toArray('.reveal-text, .reveal-card').forEach(element => {
+                gsap.fromTo(element, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, scrollTrigger: { trigger: element, start: "top 85%" }});
             });
-
-            gsap.utils.toArray('.reveal-text').forEach(element => {
-                gsap.fromTo(element, 
-                    { y: 40, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } }
-                );
-            });
-
-            gsap.utils.toArray('.reveal-card').forEach(element => {
-                gsap.fromTo(element, 
-                    { y: 60, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 80%" } }
-                );
-            });
-            
-            // Header Shadow Control
-            ScrollTrigger.create({
-                start: "top -50",
-                onUpdate: self => {
-                    const header = document.getElementById("navbar");
-                    if (self.direction === 1) {
-                        header.classList.add("shadow-lg");
-                    } else {
-                        header.classList.remove("shadow-lg");
-                    }
-                }
-            });
+            ScrollTrigger.create({ start: "top -50", onUpdate: self => document.getElementById("navbar").classList.toggle("shadow-md", self.direction === 1) });
         });
     </script>
 </body>
