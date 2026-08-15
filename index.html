@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savière Group | Architecting a Sustainable Future</title>
     
-    <!-- Forced Mobile Browser Crimson Theme -->
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -38,25 +37,28 @@
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid rgba(130, 29, 48, 0.1);
+            border-bottom: 1px solid rgba(130, 29, 48, 0.05);
         }
         
-        #globe-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.85; }
+        /* High-End Fluid Canvas */
+        #fluid-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.85; }
         .text-balance { text-wrap: balance; }
         
-        /* Story Section Pinning */
-        .story-panel { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; }
+        /* Seamless Story Sections */
+        .cinematic-panel { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transform: translateY(50px); }
         
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
+        
+        /* Glass Cards */
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(130, 29, 48, 0.1); border-radius: 2rem; padding: 3rem; }
     </style>
 </head>
 <body class="antialiased selection:bg-corporate-primary selection:text-white">
 
-    <!-- High-Tech Plexus Globe Background -->
-    <canvas id="globe-canvas"></canvas>
+    <!-- Fluid/Liquid Metal Background via WebGL -->
+    <canvas id="fluid-canvas"></canvas>
 
-    <!-- White Frosted Header with Crimson Transparent Logo -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain"></a>
@@ -66,13 +68,13 @@
                 <a href="active-operations.html" class="nav-link hover:text-corporate-primary">DOTS</a>
                 <a href="roadmap.html" class="nav-link hover:text-corporate-primary">Pipeline</a>
             </nav>
-            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:scale-105 transition-transform rounded-full shadow-lg hover:shadow-corporate-primary/30">Connect</a>
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary hover:scale-105 transition-transform rounded-full shadow-lg">Connect</a>
         </div>
     </header>
 
     <main class="relative z-10">
         <!-- Hero -->
-        <section id="vision" class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-12 relative">
+        <section id="vision" class="min-h-screen flex flex-col justify-center px-6 relative z-10">
             <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
                 <div class="pr-0 md:pr-12">
                     <p class="hero-text transform translate-y-8 opacity-0 text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
@@ -80,47 +82,46 @@
                         Architecting a <span class="text-corporate-primary italic">better, cleaner</span> world.
                     </h1>
                     <p class="hero-text transform translate-y-8 opacity-0 text-lg md:text-xl text-gray-600 font-light leading-relaxed text-balance">
-                        Savière Group Private Limited is an apex holding entity. We engineer sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
+                        Savière Group is an apex holding entity. We engineer sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
                     </p>
                 </div>
-                <div></div>
             </div>
         </section>
 
-        <!-- Dynamic Pinned Scroll Story: The Ecological Mandate -->
-        <section id="net-zero-story" class="relative bg-white/90 backdrop-blur-md border-y border-corporate-primary/10">
+        <!-- Seamless Cinematic Story (No Empty Space) -->
+        <section id="net-zero-story" class="relative">
             <div id="story-container" class="h-screen sticky top-0 max-w-7xl mx-auto px-6 overflow-hidden">
                 
-                <!-- Panel 1: The Plastic Problem -->
-                <div class="story-panel" id="panel-1">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">1. The Legacy Failure</p>
-                    <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-8 max-w-4xl">The global oral care industry produces <span class="text-corporate-primary">billions</span> of single-use plastic tubes annually.</h2>
-                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Furthermore, traditional toothpaste consists of up to 50% dead-weight water, generating a massive, unnecessary logistical carbon footprint in a water-stressed world.</p>
+                <div class="cinematic-panel" id="panel-1">
+                    <div class="glass-card max-w-3xl">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">1. The Legacy Failure</p>
+                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">The global oral care industry produces <span class="text-corporate-primary">billions</span> of single-use plastic tubes annually.</h2>
+                        <p class="text-lg text-gray-600 font-light leading-relaxed">Furthermore, traditional toothpaste consists of up to 50% dead-weight water, generating a massive, unnecessary logistical carbon footprint.</p>
+                    </div>
                 </div>
 
-                <!-- Panel 2: The Biological Threat -->
-                <div class="story-panel" id="panel-2">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">2. The Microplastic Vector</p>
-                    <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-8 max-w-4xl">This leads to the daily ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
-                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">The oral cavity is the primary gateway to the vascular system. Daily ingestion of microplastics from degraded tubes is clinically linked to metabolic syndrome and oncology risks.</p>
+                <div class="cinematic-panel" id="panel-2">
+                    <div class="glass-card max-w-3xl">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-6">2. The Biological Threat</p>
+                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">This leads to the daily ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
+                        <p class="text-lg text-gray-600 font-light leading-relaxed">The oral cavity is the primary gateway to the vascular system. Daily ingestion of microplastics from degraded tubes is clinically linked to severe health risks.</p>
+                    </div>
                 </div>
 
-                <!-- Panel 3: The Saviere Solution -->
-                <div class="story-panel" id="panel-3">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">3. The Net-Zero Mandate</p>
-                    <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-8 max-w-4xl">We eliminate water. We eliminate plastic. We restore the ecosystem.</h2>
-                    <p class="text-xl text-gray-600 font-light max-w-2xl leading-relaxed">Through Doctor-led R&D, our subsidiaries replace toxic synthetics with biomimetic science. Engineered for a safe Earth. Packaged exclusively in refillable aluminum and glass.</p>
+                <div class="cinematic-panel" id="panel-3">
+                    <div class="glass-card max-w-3xl border-corporate-primary/30 shadow-2xl shadow-corporate-primary/10">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">3. The Net-Zero Mandate</p>
+                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">We eliminate water.<br>We eliminate plastic.<br>We restore the ecosystem.</h2>
+                        <p class="text-lg text-gray-600 font-light leading-relaxed">Through Doctor-led R&D, our subsidiaries replace toxic synthetics with biomimetic science. Packaged exclusively in refillable aluminum and glass.</p>
+                    </div>
                 </div>
-
             </div>
-            <!-- Spacer to allow for scrolling duration -->
             <div style="height: 300vh;"></div> 
         </section>
 
     </main>
 
-    <!-- Deep Crimson Footer -->
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20 mt-20">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 mb-16">
             <div class="space-y-6">
                 <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500">
@@ -139,116 +140,86 @@
     </footer>
 
     <script>
-        // High-End Plexus (Network) Globe Logic
-        const canvas = document.getElementById('globe-canvas');
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color('#ffffff'); 
-        scene.fog = new THREE.FogExp2('#ffffff', 0.02);
+        // High-End Fluid WebGL Shader (No more dots, just pure fluid motion)
+        const canvas = document.getElementById('fluid-canvas');
+        const gl = canvas.getContext('webgl');
 
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        const globeGroup = new THREE.Group();
-        scene.add(globeGroup);
+        if (gl) {
+            const vsSource = `attribute vec2 position; varying vec2 vUv; void main() { vUv = position * 0.5 + 0.5; gl_Position = vec4(position, 0.0, 1.0); }`;
+            const fsSource = `
+                precision mediump float;
+                uniform float u_time;
+                uniform vec2 u_resolution;
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                    vec2 p = uv * 3.0 - vec2(1.5);
+                    p.x *= u_resolution.x / u_resolution.y;
+                    
+                    vec2 i = p;
+                    float c = 1.0;
+                    float inten = .05;
 
-        // Create vertices for the sphere
-        const particlesCount = 800;
-        const geometry = new THREE.BufferGeometry();
-        const posArray = new Float32Array(particlesCount * 3);
-        const radius = 14;
+                    for (int n = 0; n < 4; n++) {
+                        float t = u_time * (1.0 - (0.5 / float(n+1)));
+                        i = p + vec2(cos(t - i.x) + sin(t + i.y), sin(t - i.y) + cos(t + i.x));
+                        c += 1.0/length(vec2(p.x / (sin(i.x+t)/inten),p.y / (cos(i.y+t)/inten)));
+                    }
+                    c /= float(4);
+                    c = 1.2-pow(c, 1.3);
+                    
+                    // Creates a soft, premium corporate white/rose/burgundy fluid
+                    vec3 col = mix(vec3(0.98, 0.98, 0.99), vec3(0.95, 0.90, 0.92), c);
+                    col = mix(col, vec3(0.85, 0.75, 0.78), c * c * 0.3);
 
-        for(let i=0; i < particlesCount * 3; i+=3) {
-            const theta = 2 * Math.PI * Math.random();
-            const phi = Math.acos(2 * Math.random() - 1);
-            posArray[i] = radius * Math.sin(phi) * Math.cos(theta); 
-            posArray[i+1] = radius * Math.sin(phi) * Math.sin(theta); 
-            posArray[i+2] = radius * Math.cos(phi); 
-        }
-        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        
-        // Material for Dots
-        const material = new THREE.PointsMaterial({ size: 0.15, color: '#821D30', transparent: true, opacity: 0.8 });
-        const particleMesh = new THREE.Points(geometry, material);
-        globeGroup.add(particleMesh);
-
-        // Create Lines (Plexus Effect)
-        const lineMaterial = new THREE.LineBasicMaterial({ color: '#821D30', transparent: true, opacity: 0.15 });
-        const lineGeometry = new THREE.BufferGeometry();
-        const linePositions = [];
-        
-        // Connect nearby points to form a network
-        for (let i = 0; i < particlesCount; i++) {
-            for (let j = i + 1; j < particlesCount; j++) {
-                const dx = posArray[i*3] - posArray[j*3];
-                const dy = posArray[i*3+1] - posArray[j*3+1];
-                const dz = posArray[i*3+2] - posArray[j*3+2];
-                const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                
-                if (dist < 3.5) { // Only connect points close to each other
-                    linePositions.push(
-                        posArray[i*3], posArray[i*3+1], posArray[i*3+2],
-                        posArray[j*3], posArray[j*3+1], posArray[j*3+2]
-                    );
+                    gl_FragColor = vec4(col, 1.0);
                 }
-            }
-        }
-        lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-        const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
-        globeGroup.add(linesMesh);
+            `;
+            
+            const shaderProgram = gl.createProgram();
+            const vs = gl.createShader(gl.VERTEX_SHADER); gl.shaderSource(vs, vsSource); gl.compileShader(vs);
+            const fs = gl.createShader(gl.FRAGMENT_SHADER); gl.shaderSource(fs, fsSource); gl.compileShader(fs);
+            gl.attachShader(shaderProgram, vs); gl.attachShader(shaderProgram, fs); gl.linkProgram(shaderProgram);
+            gl.useProgram(shaderProgram);
 
-        camera.position.z = 35; 
-        globeGroup.position.x = window.innerWidth>768?18:0; 
-        globeGroup.position.y = window.innerWidth>768?0:12;
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+            const posLoc = gl.getAttribLocation(shaderProgram, "position");
+            gl.enableVertexAttribArray(posLoc); gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
 
-        let mouseX=0, mouseY=0; 
-        document.addEventListener('mousemove', e => { 
-            mouseX=(e.clientX-window.innerWidth/2)*0.0005; 
-            mouseY=(e.clientY-window.innerHeight/2)*0.0005; 
-        });
+            const timeLoc = gl.getUniformLocation(shaderProgram, "u_time");
+            const resLoc = gl.getUniformLocation(shaderProgram, "u_resolution");
 
-        function animate() {
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); gl.uniform2f(resLoc, canvas.width, canvas.height); }
+            window.addEventListener('resize', resize); resize();
+
+            function animate(time) { gl.uniform1f(timeLoc, time * 0.0005); gl.drawArrays(gl.TRIANGLES, 0, 6); requestAnimationFrame(animate); }
             requestAnimationFrame(animate);
-            globeGroup.rotation.y += 0.001;
-            globeGroup.rotation.x += 0.05 * (mouseY - globeGroup.rotation.x);
-            globeGroup.rotation.y += 0.05 * (mouseX - globeGroup.rotation.y);
-            renderer.render(scene, camera);
-        } animate();
+        }
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            globeGroup.position.x = window.innerWidth>768?18:0; globeGroup.position.y = window.innerWidth>768?0:12;
-        });
-
-        // GSAP Scroll Animations
+        // GSAP Seamless Scroll Animations
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
             // Hero Entrance
             gsap.to(".hero-text", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.2 });
-            
-            // Spin and move the globe down on scroll
-            gsap.to(globeGroup.position, { y: -10, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
-            gsap.to(globeGroup.rotation, { y: Math.PI, scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }});
 
-            // Story Pinned Animation
+            // Seamless Cinematic Pinned Story (Overlapping Panels, No White Space)
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#net-zero-story",
                     start: "top top",
-                    end: "+=300%", // 300vh scroll duration
+                    end: "+=300%", // Scroll depth
                     scrub: 1,
                     pin: true
                 }
             });
 
-            // Sequence: Panel 1 in -> out, Panel 2 in -> out, Panel 3 in
             tl.to("#panel-1", { opacity: 1, y: 0, duration: 1 })
               .to("#panel-1", { opacity: 0, y: -50, duration: 1, delay: 0.5 })
-              .to("#panel-2", { opacity: 1, y: 0, duration: 1 })
+              .to("#panel-2", { opacity: 1, y: 0, duration: 1 }, "-=0.5") // Overlaps the entrance
               .to("#panel-2", { opacity: 0, y: -50, duration: 1, delay: 0.5 })
-              .to("#panel-3", { opacity: 1, y: 0, duration: 1 });
+              .to("#panel-3", { opacity: 1, y: 0, duration: 1 }, "-=0.5");
         });
     </script>
 </body>
