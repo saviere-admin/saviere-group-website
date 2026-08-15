@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=16">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=16">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=16">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=16">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=16">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=16">
-    <link rel="manifest" href="site.webmanifest?v=16">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=17">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=17">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=17">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=17">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=17">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=17">
+    <link rel="manifest" href="site.webmanifest?v=17">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,9 +39,6 @@
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 100; }
         #mobile-menu.open { transform: translateY(0); }
 
-        /* =========================================================
-           APPLE-TIER NATIVE STICKY WRAPPER
-           ========================================================= */
         .ops-wrapper { position: relative; width: 100%; height: 600vh; background: #fcfcfc; border-bottom: 1px solid rgba(130,29,48,0.1); }
         .ops-sticky { position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; flex-direction: row; overflow: hidden; }
 
@@ -58,9 +55,6 @@
             opacity: 0; visibility: hidden; 
         }
 
-        /* =========================================================
-           1:1 ART DIRECTOR STAGE
-           ========================================================= */
         .art-director { position: relative; width: 65vh; height: 65vh; }
 
         .seq-img {
@@ -76,13 +70,21 @@
         .tab-asset, #v-powder { z-index: 20; }
         #v-jar-filled { z-index: 30; }
 
-        /* Mobile Layout Shift */
+        /* Strict Proportions */
+        .img-powder { width: 40vh; height: 40vh; }
+        .img-jar    { width: 55vh; height: 55vh; }
+        .img-tablet, .tablet-item { width: 14vh; height: 14vh; }
+
         @media (max-width: 768px) {
             .ops-sticky { flex-direction: column-reverse; } 
             .text-col { width: 100%; height: 45vh; padding: 0 1.5rem; }
             .visual-col { width: 100%; height: 55vh; }
             .step-card { width: 100%; max-width: 100%; padding: 1.5rem; margin-top: -2rem; }
             .art-director { width: 85vw; height: 85vw; } 
+            
+            .img-powder { width: 55vw; height: 55vw; max-height: 40vh; }
+            .img-jar    { width: 70vw; height: 70vw; max-height: 45vh; }
+            .img-tablet, .tablet-item { width: 22vw; height: 22vw; max-height: 15vh; }
         }
     </style>
 </head>
@@ -145,26 +147,39 @@
 
                 <div class="visual-col">
                     <div class="art-director">
-                        <img src="./assets/emptyjar.png?v=16" alt="Empty Glass Jar" class="seq-img" id="v-jar-empty">
-                        <img src="./assets/tab-powder.png?v=16" alt="Tablet Powder" class="seq-img" id="v-powder">
+                        <img src="./assets/emptyjar.png?v=17" alt="Empty Glass Jar" class="seq-img" id="v-jar-empty">
+                        <img src="./assets/tab-powder.png?v=17" alt="Tablet Powder" class="seq-img" id="v-powder">
                         
-                        <!-- Hero Tablet -->
-                        <img src="./assets/dot.png?v=16" alt="DOTS Tablet" class="seq-img tab-asset" id="v-tablet-hero">
+                        <!-- 21 Tablet Matrix -->
+                        <img src="./assets/dot.png?v=17" alt="DOTS Tablet" class="seq-img tab-asset" id="v-tablet-hero">
                         
-                        <!-- The Organic Pile Matrix: 10 Identical Tablets -->
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
-                        <img src="./assets/dot.png?v=16" class="seq-img tab-asset tablet-item">
+                        <!-- Layer 1 (Bottom) -->
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <!-- Layer 2 -->
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <!-- Layer 3 -->
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <!-- Layer 4 -->
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <!-- Layer 5 (Top) -->
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=17" class="seq-img tab-asset tablet-item">
                         
-                        <!-- Final Reveal -->
-                        <img src="./assets/filledjar.png?v=16" alt="Filled Glass Jar" class="seq-img" id="v-jar-filled">
+                        <img src="./assets/filledjar.png?v=17" alt="Filled Glass Jar" class="seq-img" id="v-jar-filled">
                     </div>
                 </div>
 
@@ -207,84 +222,86 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // ==========================================
-            // ORGANIC PILE PHYSICS ENGINE
-            // ==========================================
-            const tabScale = 0.22; // Perfect uniformity 
+            const tabScale = 0.22; 
             
-            // Randomly rotated, organically overlapping coordinates forming a "Pile"
+            // The Dense Stack Matrix (Pushing to yPercent: 150 ensures they hit the floor, eliminating hovering)
             const pileCoords = [
-                // Bottom Layer (Bounces)
-                { x: -14, y: 38, rot: 25,  bounce: true },
-                { x: -4,  y: 36, rot: -45, bounce: true },
-                { x: 7,   y: 39, rot: 80,  bounce: true },
-                
-                // Mid Layer (Stacks)
-                { x: 14,  y: 35, rot: -15, bounce: false },
-                { x: -10, y: 28, rot: -65, bounce: false },
-                { x: 1,   y: 26, rot: 35,  bounce: false },
-                { x: 13,  y: 29, rot: -10, bounce: false },
-                
-                // Upper Layer (Stacks)
-                { x: -6,  y: 18, rot: 55,  bounce: false },
-                { x: 8,   y: 19, rot: -40, bounce: false },
-                { x: 2,   y: 9,  rot: -75, bounce: false }
+                // Layer 1 (Bottom - Hits the glass floor)
+                { x: -80, y: 150, rot: 15, bounce: true },
+                { x: -40, y: 155, rot: -30, bounce: true },
+                { x: 0,   y: 152, rot: 45, bounce: true },
+                { x: 40,  y: 148, rot: -10, bounce: true },
+                { x: 80,  y: 150, rot: 60, bounce: true },
+                // Layer 2
+                { x: -60, y: 110, rot: -45, bounce: false },
+                { x: -20, y: 115, rot: 20, bounce: false },
+                { x: 20,  y: 108, rot: -75, bounce: false },
+                { x: 60,  y: 112, rot: 35, bounce: false },
+                // Layer 3
+                { x: -75, y: 70, rot: 80, bounce: false },
+                { x: -35, y: 75, rot: -15, bounce: false },
+                { x: 5,   y: 72, rot: 50, bounce: false },
+                { x: 45,  y: 68, rot: -60, bounce: false },
+                { x: 75,  y: 70, rot: 10, bounce: false },
+                // Layer 4
+                { x: -50, y: 30, rot: -25, bounce: false },
+                { x: -10, y: 35, rot: 65, bounce: false },
+                { x: 30,  y: 28, rot: -40, bounce: false },
+                { x: 60,  y: 32, rot: 15, bounce: false },
+                // Layer 5 (Top)
+                { x: -25, y: -10, rot: 45, bounce: false },
+                { x: 25,  y: -5, rot: -30, bounce: false }
             ];
 
-            // 1. Initial States
             gsap.set(".step-card", { autoAlpha: 0, y: 30 });
             gsap.set("#card-1", { autoAlpha: 1, y: 0 });
             gsap.set("#v-powder", { autoAlpha: 1, scale: 0.7, yPercent: 0 }); 
-            gsap.set("#v-jar-empty", { autoAlpha: 0, yPercent: 20 });
+            gsap.set("#v-jar-empty", { autoAlpha: 0, yPercent: 10 });
             gsap.set("#v-jar-filled", { autoAlpha: 0 });
 
-            // 2. Lock X-Coordinates for Strict Vertical Falling
-            gsap.set(".tab-asset", { scale: tabScale, yPercent: -100 }); 
-            gsap.set("#v-tablet-hero", { xPercent: 3, rotation: -25 }); // Hero landing setup
+            // Lock X-Coordinates to ensure strict vertical drop physics
+            gsap.set(".tab-asset", { scale: tabScale, yPercent: -150 }); 
+            gsap.set("#v-tablet-hero", { xPercent: 0, rotation: -15 });
 
             const extraTabs = gsap.utils.toArray('.tablet-item');
             extraTabs.forEach((tab, i) => {
                 let coords = pileCoords[i];
-                // Lock X axis immediately, start high up with slight random spin
                 gsap.set(tab, { xPercent: coords.x, rotation: coords.rot - 45 });
             });
 
-            // Master Timeline
             const tl = gsap.timeline({ 
                 scrollTrigger: { trigger: ".ops-wrapper", start: "top top", end: "bottom bottom", scrub: 1 }
             });
 
-            // PHASE 1: Seamless Compression
+            // PHASE 1: Compression
             tl.to("#card-1", { autoAlpha: 0, y: -20, duration: 1 }, 0)
-              .to("#v-powder", { autoAlpha: 0, scale: tabScale, duration: 1 }, 0) // Compresses exactly to tablet size
-              .fromTo("#v-tablet-hero", { autoAlpha: 0, yPercent: 0, xPercent: 0 }, { autoAlpha: 1, yPercent: 0, xPercent: 0, duration: 1 }, 0) // Hero appears
+              .to("#v-powder", { autoAlpha: 0, scale: tabScale, duration: 1 }, 0) 
+              .fromTo("#v-tablet-hero", { autoAlpha: 0, yPercent: 0 }, { autoAlpha: 1, yPercent: 0, duration: 1 }, 0)
               .fromTo("#card-2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 0.5);
 
-            // PHASE 2: Jar Rises, Hero Drops (Bounces to bottom)
+            // PHASE 2: Jar Rises & Continuous Pour Starts
             tl.to("#card-2", { autoAlpha: 0, y: -20, duration: 1 }, 2)
               .to("#v-jar-empty", { autoAlpha: 1, yPercent: 0, duration: 1.5, ease: "power2.out" }, 2)
-              // Hero falls, tumbling slightly, and bounces at the bottom of the pile
-              .to("#v-tablet-hero", { yPercent: 37, rotation: 15, duration: 1.5, ease: "bounce.out" }, 2) 
-              .to("#v-tablet-hero", { opacity: 0.95, duration: 0.1 }, 3.4) // Glass illusion snap
+              .to("#v-tablet-hero", { yPercent: -45, rotation: 15, duration: 1.5, ease: "power2.in" }, 2) 
+              .to("#v-tablet-hero", { opacity: 0.95, duration: 0.1 }, 3.4)
               .fromTo("#card-3", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 3.5);
 
-            // PHASE 3: The Vertical Rain (Organic Pile)
+            // PHASE 3: The Heavy Density Rain
             extraTabs.forEach((tab, i) => {
                 let coords = pileCoords[i];
-                let delay = 2.2 + (i * 0.12); // Staggered rain sequence
-                let easeType = coords.bounce ? "bounce.out" : "power2.in"; // Only bottom layer bounces
+                let delay = 2.0 + (i * 0.08); // High-frequency stagger for a rapid pour
+                let easeType = coords.bounce ? "bounce.out" : "power2.in";
                 let fallDuration = coords.bounce ? 1.5 : 1.2;
 
                 tl.to(tab, { autoAlpha: 1, duration: 0.1 }, delay)
-                  // Falls straight down (X is locked), rotating into final position
                   .to(tab, { yPercent: coords.y, rotation: coords.rot, duration: fallDuration, ease: easeType }, delay)
-                  .to(tab, { opacity: 0.95, duration: 0.1 }, delay + fallDuration - 0.1); // Glass Illusion
+                  .to(tab, { opacity: 0.95, duration: 0.1 }, delay + fallDuration - 0.1); 
             });
 
-            // PHASE 4: Final Crossfade to Sealed Container
+            // PHASE 4: Crossfade
             tl.to("#card-3", { autoAlpha: 0, y: -20, duration: 1 }, 6)
-              .to(".tab-asset, #v-jar-empty", { autoAlpha: 0, duration: 1.5 }, 6) // Erase the pile
-              .to("#v-jar-filled", { autoAlpha: 1, duration: 1.5 }, 6) // Reveal flawless final product
+              .to(".tab-asset, #v-jar-empty", { autoAlpha: 0, duration: 1.5 }, 6)
+              .to("#v-jar-filled", { autoAlpha: 1, duration: 1.5 }, 6)
               .fromTo("#card-4", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 7);
               
             ScrollTrigger.create({ start: "top -50", onUpdate: self => document.getElementById("navbar").classList.toggle("shadow-sm", self.direction === 1) });
