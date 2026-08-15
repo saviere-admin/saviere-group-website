@@ -10,6 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +18,6 @@
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { corporate: { primary: '#821D30', 50: '#fdf8f9', 900: '#1a0509', 950: '#0d0204' } } } } }
     </script>
     
-    <!-- Core Animation Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -25,46 +25,31 @@
     
     <style>
         body { background-color: #ffffff; color: #0d0204; cursor: none; overflow-x: hidden; }
-        
-        /* Custom Magnetic Cursor */
         .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
         .cursor-dot { width: 8px; height: 8px; background: #821D30; }
         .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); transition: width 0.3s, height 0.3s, background 0.3s; }
         
-        /* White Frosted Glass Header */
-        .glass-header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
-        
-        /* Global Fixed 3D Canvas (Eliminates Blank Space) */
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.85; }
-        
-        .content-layer { position: relative; z-index: 10; }
-        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(130, 29, 48, 0.1); border-radius: 2rem; padding: 4rem; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease; }
-        .glass-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -15px rgba(130, 29, 48, 0.15); border-color: rgba(130, 29, 48, 0.4); }
-        
+        /* Universal White Frosted Header */
+        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s ease; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
-        .text-balance { text-wrap: balance; }
+
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.85; }
+        .content-layer { position: relative; z-index: 10; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(130, 29, 48, 0.1); border-radius: 2rem; padding: 4rem; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease; }
         
-        /* Seamless Story Pining */
         .story-panel { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; }
         .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased">
-
-    <!-- Interactive Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
-
-    <!-- 3D Parallax Liquid Helix Canvas -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- White Frosted Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center hover-trigger">
-                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain">
-            </a>
+            <a href="index.html" class="flex items-center hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
                 <a href="#vision" class="nav-link hover-trigger">Vision</a>
                 <a href="#mandate" class="nav-link hover-trigger">The Impact</a>
@@ -76,156 +61,117 @@
     </header>
 
     <main class="content-layer">
-        <!-- Hero Section -->
         <section id="vision" class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-12">
             <div class="max-w-7xl mx-auto w-full">
                 <p class="reveal transform translate-y-12 text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
-                <h1 class="reveal transform translate-y-12 font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] text-gray-900 leading-[1.05] tracking-tight text-balance mb-8 max-w-5xl">
-                    Architecting a <span class="text-corporate-primary italic">better, cleaner</span> world.
+                <h1 class="reveal transform translate-y-12 font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] text-gray-900 leading-[1.05] tracking-tight mb-8 max-w-5xl" style="text-wrap: balance;">
+                    Architecting a <span class="text-corporate-primary italic">cleaner, biological</span> future.
                 </h1>
-                <p class="reveal transform translate-y-12 text-lg md:text-2xl text-gray-600 font-light leading-relaxed text-balance max-w-3xl">
+                <p class="reveal transform translate-y-12 text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl mb-8" style="text-wrap: balance;">
                     Savière Group is a visionary apex holding entity. We engineer sustainable, asset-light businesses across accessible healthcare, green energy, and eco-conscious hospitality.
                 </p>
             </div>
         </section>
 
-        <!-- Seamless 3D Scrollytelling Story (Zero Blank Space) -->
+        <!-- Seamless 3D Scrollytelling Story -->
         <section id="mandate" class="relative">
             <div id="story-container" class="h-screen sticky top-0 max-w-7xl mx-auto px-6 overflow-hidden">
-                
                 <div class="story-panel" id="panel-1">
                     <div class="glass-card max-w-4xl mr-auto hover-trigger">
                         <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">01 — The Plastic Crisis</p>
-                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">The global oral care industry produces <span class="text-corporate-primary">billions</span> of single-use plastic tubes annually.</h2>
-                        <p class="text-xl text-gray-600 font-light leading-relaxed">Traditional toothpaste consists of up to 50% dead-weight water, generating a massive, unnecessary logistical carbon footprint in a water-stressed world.</p>
+                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">The oral care industry produces <span class="text-corporate-primary">billions</span> of unrecyclable tubes annually.</h2>
+                        <p class="text-xl text-gray-600 font-light leading-relaxed">Traditional paste consists of up to 50% dead-weight water, generating a massive, unnecessary logistical carbon footprint.</p>
                     </div>
                 </div>
-
                 <div class="story-panel" id="panel-2">
                     <div class="glass-card max-w-4xl ml-auto hover-trigger">
                         <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">02 — The Biological Threat</p>
-                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">This leads to the daily ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
-                        <p class="text-xl text-gray-600 font-light leading-relaxed">The oral cavity is the primary gateway to the vascular system. Daily ingestion of microplastics from degraded tubes is clinically linked to severe systemic and metabolic health risks.</p>
+                        <h2 class="font-serif text-4xl md:text-6xl text-gray-900 leading-tight mb-6">This leads to the ingestion of <span class="text-corporate-primary">systemic toxins</span>.</h2>
+                        <p class="text-xl text-gray-600 font-light leading-relaxed">The oral cavity is the gateway to the vascular system. Daily ingestion of microplastics from degraded tubes is a direct vector for severe metabolic risks.</p>
                     </div>
                 </div>
-
                 <div class="story-panel" id="panel-3">
                     <div class="glass-card max-w-5xl mx-auto text-center border-corporate-primary/30 shadow-2xl hover-trigger">
-                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">03 — The Net-Zero Vision</p>
-                        <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl text-gray-900 leading-tight mb-8">We eliminate water.<br>We eliminate plastic.<br>We restore the ecosystem.</h2>
-                        <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">Led by Medical Doctors and Environmental Advocates, our subsidiaries replace toxic synthetics with biomimetic science. Everything we build is vegan, cruelty-free, and engineered for a safe Earth.</p>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-corporate-primary mb-6">03 — The Net-Zero Mandate</p>
+                        <h2 class="font-serif text-5xl md:text-6xl text-gray-900 leading-tight mb-6">We eliminate water.<br>We eliminate plastic.<br>We restore the ecosystem.</h2>
+                        <p class="text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">Led by Medical Doctors, our subsidiaries replace toxic synthetics with biomimetic science. Everything we build is vegan, cruelty-free, and engineered for a safe Earth.</p>
                     </div>
                 </div>
             </div>
-            <!-- Spacer to map out the scroll distance -->
             <div style="height: 300vh;"></div>
         </section>
-
     </main>
 
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 mb-16">
-            <div class="space-y-6">
-                <img src="./assets/TransBGWHorizontal.png" class="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500 hover-trigger">
-                <p class="text-white/80 text-sm font-light">Savière Group Private Limited.<br>Cyberabad, Hyderabad, India.</p>
+    <!-- Universal Uniform Footer -->
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20 mt-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-2 space-y-6">
+                <img src="./assets/TransBGWHorizontal.png" class="h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
+                <p class="text-white/80 text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
             </div>
-            <div class="flex flex-col md:items-end space-y-4">
-                <h4 class="font-serif text-sm font-bold uppercase tracking-[0.2em] text-white/50">Collaboration</h4>
-                <a href="mailto:connect@savieregroup.com" class="text-white text-xl font-light hover:text-white/70 hover-trigger">connect@savieregroup.com</a>
-                <a href="sitemap.html" class="text-xs text-white/60 hover:text-white mt-4 tracking-widest uppercase hover-trigger">Corporate Directory</a>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Architecture</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="active-operations.html" class="hover:text-white transition-colors hover-trigger">The Dots Company</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Estates</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hospitals</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Corporate Portal</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance & Ethics</a></li>
+                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory & Sitemap</a></li>
+                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
+                </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
-            <p>© 2026 Savière Group. Safe for Earth.</p>
-            <div class="hidden sm:flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
+            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
+            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
         </div>
     </footer>
 
     <script>
-        // 1. Lenis Smooth Scrolling (Buttery smooth momentum)
-        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-
-        // 2. Custom Magnetic Cursor
+        
         const cursorDot = document.querySelector('.cursor-dot'); const cursorOutline = document.querySelector('.cursor-outline');
-        window.addEventListener('mousemove', (e) => {
-            cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
-            cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' });
-        });
-        document.querySelectorAll('.hover-trigger').forEach(el => {
-            el.addEventListener('mouseenter', () => { cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px'; cursorOutline.style.background = 'rgba(130,29,48,0.1)'; });
-            el.addEventListener('mouseleave', () => { cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px'; cursorOutline.style.background = 'transparent'; });
-        });
+        window.addEventListener('mousemove', (e) => { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' }); });
+        document.querySelectorAll('.hover-trigger').forEach(el => { el.addEventListener('mouseenter', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)'; }); });
 
-        // 3. Three.js Parallax Liquid Helix
         const canvas = document.getElementById('bg-canvas');
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0xffffff, 0.015);
+        scene.fog = new THREE.FogExp2(0xffffff, 0.02);
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         
-        // Massive Liquid Helix structure
-        const geometry = new THREE.TorusKnotGeometry(25, 8, 400, 80);
-        const material = new THREE.PointsMaterial({ color: 0x821D30, size: 0.1, transparent: true, opacity: 0.6 });
-        const particles = new THREE.Points(geometry, material);
+        const particlesCount = 2000; const geometry = new THREE.BufferGeometry();
+        const posArray = new Float32Array(particlesCount * 3); const targetArray = new Float32Array(particlesCount * 3); 
+        for(let i=0; i < particlesCount * 3; i+=3) {
+            posArray[i] = (Math.random() - 0.5) * 50; posArray[i+1] = (Math.random() - 0.5) * 50; posArray[i+2] = (Math.random() - 0.5) * 50;
+            const r = 15, theta = Math.random() * 2 * Math.PI, phi = Math.acos((Math.random() * 2) - 1);
+            targetArray[i] = r * Math.sin(phi) * Math.cos(theta); targetArray[i+1] = r * Math.sin(phi) * Math.sin(theta); targetArray[i+2] = r * Math.cos(phi);
+        }
+        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.15, color: '#821D30', transparent: true, opacity: 0.6 }));
         scene.add(particles);
+        camera.position.z = 40;
 
-        camera.position.z = 60;
-        
-        // Tie camera fly-through to Lenis scroll
-        let scrollY = 0;
-        lenis.on('scroll', (e) => { scrollY = e.animatedScroll; });
-
-        function animate3D() {
-            requestAnimationFrame(animate3D);
-            particles.rotation.y += 0.001;
-            particles.rotation.x += 0.0005;
-            
-            // Camera flies *through* the 3D structure as you scroll down
-            camera.position.y = -(scrollY * 0.015);
-            camera.position.z = 60 - (scrollY * 0.025);
-            camera.rotation.x = scrollY * 0.0002;
-            
-            renderer.render(scene, camera);
-        } animate3D();
-
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
-
-        // 4. GSAP Seamless Scroll Scrubbing Story
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray('.reveal').forEach(el => el.style.visibility = 'visible');
-
-            // Hero Load
             gsap.to(".reveal", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.2 });
-
-            // Pinned Story Sequence
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#net-zero-story",
-                    start: "top top",
-                    end: "+=300%",
-                    scrub: 1,
-                    pin: true
-                }
-            });
-
-            tl.to("#panel-1", { opacity: 1, y: 0, duration: 1 })
-              .to("#panel-1", { opacity: 0, y: -50, duration: 1, delay: 0.5 })
-              .to("#panel-2", { opacity: 1, y: 0, duration: 1 }, "-=0.5") 
-              .to("#panel-2", { opacity: 0, y: -50, duration: 1, delay: 0.5 })
-              .to("#panel-3", { opacity: 1, y: 0, duration: 1 }, "-=0.5");
-              
-            ScrollTrigger.create({
-                start: "top -50",
-                onUpdate: self => {
-                    const header = document.getElementById("navbar");
-                    if(self.direction === 1) header.classList.add("shadow-sm");
-                    else header.classList.remove("shadow-sm");
-                }
-            });
+            const tl = gsap.timeline({ scrollTrigger: { trigger: "#mandate", start: "top top", end: "+=300%", scrub: 1, pin: true }});
+            tl.to("#panel-1", { opacity: 1, y: 0, duration: 1 }).to("#panel-1", { opacity: 0, y: -50, duration: 1, delay: 0.5 });
+            tl.to(posArray, { endArray: targetArray, duration: 2, onUpdate: () => { geometry.attributes.position.needsUpdate = true; }, ease: "power2.inOut" }, 1.5);
+            tl.to("#panel-2", { opacity: 1, y: 0, duration: 1 }, 1.5).to("#panel-2", { opacity: 0, y: -50, duration: 1, delay: 0.5 });
+            tl.to("#panel-3", { opacity: 1, y: 0, duration: 1 }, 3.5);
         });
+
+        function animate3D() { requestAnimationFrame(animate3D); particles.rotation.y += 0.001; particles.rotation.x += 0.0005; renderer.render(scene, camera); } animate3D();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     </script>
 </body>
 </html>

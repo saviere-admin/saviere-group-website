@@ -1,166 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Governance & Ethics | Savière Group</title>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="manifest" href="./site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Governance | Savière Group</title>
+    <meta name="theme-color" content="#821D30">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['"The Seasons"', 'Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        corporate: {
-                            primary: '#821D30',
-                            dark: '#54101e',
-                            50: '#fcf6f6',
-                            950: '#0a0103',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
     <style>
-        body { background-color: #fcf8f8; color: #0a0103; }
-        .border-corporate { border-color: rgba(130, 29, 48, 0.14); }
+        body{background:#fff;color:#0d0204; cursor: none;} 
+        .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.1);}
+        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        .nav-link:hover::after { width: 100%; }
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background: #821D30; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); transition: width 0.3s, height 0.3s, background 0.3s; }
     </style>
 </head>
-<body class="antialiased selection:bg-corporate-primary selection:text-white flex flex-col min-h-screen">
+<body class="antialiased">
+    <div class="cursor-dot"></div><div class="cursor-outline"></div>
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-corporate">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html">
-                <img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
-            </a>
-            <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">
-                <a href="index.html" class="hover:text-corporate-primary">Overview</a>
-                <a href="#mandate" class="text-corporate-primary font-bold">Governance</a>
-                <a href="active-operations.html" class="hover:text-corporate-primary">Operations</a>
-                <a href="roadmap.html" class="hover:text-corporate-primary">Roadmap</a>
-                <a href="sitemap.html" class="hover:text-corporate-primary">Directory</a>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
+                <a href="index.html" class="nav-link hover-trigger">Overview</a>
+                <a href="governance.html" class="text-corporate-primary font-bold hover-trigger">Governance</a>
+                <a href="active-operations.html" class="nav-link hover-trigger">DOTS</a>
+                <a href="roadmap.html" class="nav-link hover-trigger">Pipeline</a>
             </nav>
-            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-white bg-corporate-primary hover:bg-corporate-dark">
-                Corporate Portal
-            </a>
         </div>
     </header>
 
-    <main class="flex-grow pt-32 md:pt-48 pb-24">
-        <section id="mandate" class="px-4 sm:px-6 lg:px-8 mb-20">
-            <div class="max-w-7xl mx-auto">
-                <p class="text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-4">Corporate Governance Framework</p>
-                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl text-corporate-950 leading-tight max-w-4xl mb-8">
-                    Mission, Vision & The Savière Mandate.
-                </h1>
-                <p class="text-lg text-gray-700 leading-relaxed max-w-3xl font-light">
-                    Industrial scale and massive profitability must remain fundamentally aligned with ecological responsibility and biological health. Our operations adhere to an unyielding ethical charter.
-                </p>
+    <main class="pt-40 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+        <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Corporate Architecture</p>
+        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-8">Governance & Ethics.</h1>
+        <p class="text-xl text-gray-600 font-light mb-20 max-w-3xl">Profitability without systemic improvement is a corporate failure. We adhere to an absolute ethical protocol across all operations.</p>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-corporate-50 hover-trigger transition-all hover:shadow-lg hover:-translate-y-2">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Biological Purity</h3>
+                <p class="text-gray-600 font-light leading-relaxed">Every operation must structurally improve systemic biological health. A strict shift from reactive treatment to biological prevention.</p>
             </div>
-        </section>
-
-        <section class="px-4 sm:px-6 lg:px-8 mb-24">
-            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-10 border border-corporate">
-                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">01 / THE MISSION</span>
-                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Systemic Biological Elevation</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        To deploy accessible preventative health protocols, clean energy systems, and luxury hospitality experiences that leave zero ecological debt. Shifting the human paradigm from reactive disease management to active, sustainable wellness.
-                    </p>
-                </div>
-
-                <div class="bg-white p-10 border border-corporate">
-                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">02 / THE VISION</span>
-                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">A Benchmark in Ethical Scale</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        To build a globally respected conglomerate platform proving that commercial viability, high-margin asset-light architectures, and absolute environmental stewardship are mutually reinforcing engines.
-                    </p>
-                </div>
-
-                <div class="bg-white p-10 border border-corporate">
-                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">03 / CRUELTY-FREE & VEGAN</span>
-                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Non-Negotiable Ethics</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Strictly zero animal derivatives and zero animal testing across all consumer goods, pharmaceutical R&D, and future hospitality amenities. Normalizing cruelty-free choices across every supply chain.
-                    </p>
-                </div>
-
-                <div class="bg-white p-10 border border-corporate">
-                    <span class="text-corporate-primary font-mono text-xs font-bold block mb-4">04 / NET-ZERO & SAFE FOR EARTH</span>
-                    <h3 class="font-serif text-2xl text-corporate-950 mb-3">Carbon-Efficient Infrastructure</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Eliminating single-use plastics, engineering logistics to remove water weight, and deploying decentralized clean energy systems from day one.
-                    </p>
-                </div>
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-corporate-50 hover-trigger transition-all hover:shadow-lg hover:-translate-y-2">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Vegan & Cruelty-Free</h3>
+                <p class="text-gray-600 font-light leading-relaxed">An absolute ethical framework. Zero animal derivatives and strictly no animal testing across all pharmaceutical and hospitality supply chains.</p>
             </div>
-        </section>
-
-        <!-- Founder's Thesis -->
-        <section id="founder" class="px-4 sm:px-6 lg:px-8 py-20 bg-white border-y border-corporate">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-7">
-                    <p class="text-xs font-bold uppercase tracking-[0.25em] text-corporate-primary mb-3">Leadership Mandate</p>
-                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-corporate-950 mb-6">Scientific Rigor. Long-Distance Discipline.</h2>
-                    <p class="text-base text-gray-700 leading-relaxed mb-6 font-light">
-                        Savière Group was envisioned and is guided by Chairman & Managing Director, <strong class="text-corporate-950 font-semibold">Tanmai Aasrith Varma Ayenampudi</strong>. A licensed Medical Doctor by profession and a dedicated environmental advocate, <strong class="text-corporate-950 font-semibold">Tanmai</strong> applies clinical precision and diagnostic inquiry to sustainable industrial problem-solving.
-                    </p>
-                    <p class="text-base text-gray-700 leading-relaxed mb-8 font-light">
-                        As an avid long-distance runner, <strong class="text-corporate-950 font-semibold">Tanmai</strong> approaches enterprise architecture with endurance, disciplined pacing, and the long-term stamina required to build lasting institutions for a better world.
-                    </p>
-                    <div class="border-l-2 border-corporate-primary pl-6 py-2">
-                        <p class="font-serif text-2xl text-corporate-950">Dr. Tanmai Aasrith Varma Ayenampudi</p>
-                        <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mt-1">MBBS • CHAIRMAN & MANAGING DIRECTOR</p>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5 bg-corporate-50 border border-corporate p-8 sm:p-10">
-                    <h4 class="font-serif text-xl text-corporate-primary mb-4">Institutional Registry</h4>
-                    <ul class="space-y-4 text-xs text-gray-600">
-                        <li class="flex justify-between border-b border-corporate pb-2">
-                            <span class="font-bold text-gray-900">Apex Entity</span>
-                            <span>Saviere Group Private Limited</span>
-                        </li>
-                        <li class="flex justify-between border-b border-corporate pb-2">
-                            <span class="font-bold text-gray-900">Headquarters</span>
-                            <span>Cyberabad, Hyderabad, India</span>
-                        </li>
-                        <li class="flex justify-between border-b border-corporate pb-2">
-                            <span class="font-bold text-gray-900">Mandate</span>
-                            <span>Net-Zero • Vegan • Asset-Light</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="font-bold text-gray-900">Correspondence</span>
-                            <span>connect@savieregroup.com</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-corporate-50 hover-trigger transition-all hover:shadow-lg hover:-translate-y-2">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Net-Zero Infrastructure</h3>
+                <p class="text-gray-600 font-light leading-relaxed">Operations must be carbon efficient and safe for the Earth. Deploying clean energy and eliminating logistical water waste from inception.</p>
             </div>
-        </section>
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-corporate-50 hover-trigger transition-all hover:shadow-lg hover:-translate-y-2">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Asset-Light Geometries</h3>
+                <p class="text-gray-600 font-light leading-relaxed">Leveraging clinical networks, management contracts, and specialized IP to scale aggressively without incurring physical corporate bloat.</p>
+            </div>
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-corporate-primary text-white pt-16 pb-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/20 pb-12">
-            <a href="index.html">
-                <img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group" class="h-12 sm:h-16 w-auto object-contain">
-            </a>
-            <div class="flex gap-8 text-xs font-semibold uppercase tracking-widest text-white/80">
-                <a href="index.html" class="hover:text-white">Overview</a>
-                <a href="active-operations.html" class="hover:text-white">Operations</a>
-                <a href="roadmap.html" class="hover:text-white">Roadmap</a>
-                <a href="sitemap.html" class="hover:text-white">Directory</a>
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-2 space-y-6">
+                <img src="./assets/TransBGWHorizontal.png" class="h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
+                <p class="text-white/80 text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
+            </div>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Architecture</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="active-operations.html" class="hover:text-white transition-colors hover-trigger">The Dots Company</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Estates</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hospitals</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Corporate Portal</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance & Ethics</a></li>
+                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory & Sitemap</a></li>
+                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
+                </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto pt-8 text-center text-xs text-white/60">
-            © 2026 Savière Group Private Limited. Net-Zero. Carbon Efficient. Animal Cruelty-Free. Safe for Earth.
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
+            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
+            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
         </div>
     </footer>
+    
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot'); const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' }); });
+        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)'; }); });
+    </script>
 </body>
 </html>

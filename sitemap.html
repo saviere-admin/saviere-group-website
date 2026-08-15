@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +8,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
-    <style>body{background:#fff;color:#0d0204;} .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.1);}</style>
+    <style>
+        body{background:#fff;color:#0d0204; cursor: none;} 
+        .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.1);}
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background: #821D30; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); transition: width 0.3s, height 0.3s, background 0.3s; }
+    </style>
 </head>
 <body class="antialiased">
+    <div class="cursor-dot"></div><div class="cursor-outline"></div>
+
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
-            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-corporate-primary">&larr; Portal</a>
+            <a href="index.html" class="hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12"></a>
+            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-corporate-primary hover-trigger">&larr; Portal</a>
         </div>
     </header>
 
-    <main class="pt-32 pb-24 px-6 max-w-4xl mx-auto min-h-screen">
-        <h1 class="font-serif text-4xl md:text-5xl text-gray-900 mb-12 mt-12">Corporate Directory</h1>
-        <div class="space-y-6 text-lg font-light text-corporate-primary">
-            <a href="index.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">Home Portal</a>
-            <a href="governance.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">Governance & Ethics</a>
-            <a href="active-operations.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">The Dots Company</a>
-            <a href="roadmap.html" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">20-Year Legacy Plan</a>
-            <a href="sitemap.xml" class="block border-b border-gray-200 pb-4 hover:pl-2 transition-all">Sitemap (XML)</a>
+    <main class="pt-40 pb-24 px-6 max-w-4xl mx-auto min-h-screen">
+        <p class="text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4">Architecture</p>
+        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-12">Corporate Directory.</h1>
+        <div class="space-y-8 text-2xl font-serif text-gray-900">
+            <a href="index.html" class="block border-b border-gray-200 pb-6 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Home Portal</a>
+            <a href="governance.html" class="block border-b border-gray-200 pb-6 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Governance & Ethics</a>
+            <a href="active-operations.html" class="block border-b border-gray-200 pb-6 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">The Dots Company</a>
+            <a href="roadmap.html" class="block border-b border-gray-200 pb-6 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">20-Year Legacy Plan</a>
+            <a href="sitemap.xml" class="block border-b border-gray-200 pb-6 hover:text-corporate-primary hover:pl-4 transition-all hover-trigger">Sitemap (XML)</a>
         </div>
     </main>
 
-    <footer class="bg-corporate-primary text-white py-12 px-6"><div class="max-w-7xl mx-auto"><img src="./assets/TransBGWHorizontal.png" class="h-16 mb-4"><p class="text-xs text-white/60">© 2026 Savière Group. Safe for Earth.</p></div></footer>
+    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-2 space-y-6">
+                <img src="./assets/TransBGWHorizontal.png" class="h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
+                <p class="text-white/80 text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
+            </div>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Architecture</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="active-operations.html" class="hover:text-white transition-colors hover-trigger">The Dots Company</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Estates</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hospitals</a></li>
+                    <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Corporate Portal</h4>
+                <ul class="space-y-3 text-sm text-white/80 font-light">
+                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance & Ethics</a></li>
+                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory & Sitemap</a></li>
+                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
+            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
+            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
+        </div>
+    </footer>
+    
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot'); const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' }); });
+        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)'; }); });
+    </script>
 </body>
 </html>
