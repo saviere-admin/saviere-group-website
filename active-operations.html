@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=8">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=8">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=8">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=8">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=8">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=8">
-    <link rel="manifest" href="site.webmanifest?v=8">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=9">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=9">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=9">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=9">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=9">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=9">
+    <link rel="manifest" href="site.webmanifest?v=9">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,32 +36,38 @@
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
 
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; }
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 100; }
         #mobile-menu.open { transform: translateY(0); }
 
-        /* Apple-Tier GSAP Pinned Layout */
-        .ops-pin-container { width: 100vw; height: 100vh; display: flex; flex-direction: row; background: #fcfcfc; border-bottom: 1px solid rgba(130,29,48,0.1); }
+        /* Apple-Tier Layout */
+        .ops-pin-container { width: 100vw; height: 100dvh; display: flex; flex-direction: row; background: #fcfcfc; border-bottom: 1px solid rgba(130,29,48,0.1); overflow: hidden; }
         
-        .text-col { width: 45%; height: 100%; position: relative; display: flex; align-items: center; padding-left: 5%; }
+        .text-col { width: 45%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
         .visual-col { width: 55%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
+        .step-card { position: absolute; width: 85%; max-width: 500px; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); opacity: 0; }
+
+        .seq-img { position: absolute; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15)); margin: auto; }
+        
+        /* DESKTOP SCALING: Much Larger Tablets */
+        .img-powder { width: 45vh; height: 45vh; }
+        .img-tablet { width: 25vh; height: 25vh; }
+        .extra-tab  { width: 18vh; height: 18vh; } 
+        .img-jar    { width: 60vh; height: 60vh; }
+
+        /* MOBILE OVERRIDES */
         @media (max-width: 768px) {
             .ops-pin-container { flex-direction: column; }
-            .visual-col { width: 100%; height: 50vh; }
-            .text-col { width: 100%; height: 50vh; padding: 0 1.5rem; align-items: flex-start; margin-top: -2rem; }
+            .visual-col { width: 100%; height: 50dvh; }
+            .text-col { width: 100%; height: 50dvh; align-items: flex-start; padding-top: 2rem; }
+            .step-card { width: calc(100% - 3rem); padding: 1.5rem; top: 0; }
+            
+            /* Mobile Sizing (Using VW so it fills the screen perfectly) */
+            .img-powder { width: 60vw; height: 60vw; max-height: 40vh; }
+            .img-tablet { width: 35vw; height: 35vw; max-height: 30vh; }
+            .extra-tab  { width: 25vw; height: 25vw; max-height: 20vh; } 
+            .img-jar    { width: 70vw; height: 70vw; max-height: 45vh; }
         }
-
-        .step-card { position: absolute; width: 90%; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); opacity: 0; }
-        @media (max-width: 768px) { .step-card { width: calc(100% - 3rem); padding: 1.5rem; } }
-
-        /* Mathematically Controlled High-Res Images */
-        .seq-img { position: absolute; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15)); }
-        
-        /* Proportions driven by Viewport Height (vh) to prevent stretching */
-        .img-powder { width: 35vh; height: 35vh; }
-        .img-tablet { width: 15vh; height: 15vh; }
-        .extra-tab  { width: 10vh; height: 10vh; } 
-        .img-jar    { width: 55vh; height: 55vh; }
         
     </style>
 </head>
@@ -80,7 +86,7 @@
             </nav>
             <div class="flex items-center gap-4 relative z-50">
                 <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
-                <button id="menu-toggle" class="md:hidden text-corporate-primary p-2 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+                <button id="menu-btn" class="md:hidden text-corporate-primary p-2 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
     </header>
@@ -102,7 +108,6 @@
 
         <section class="ops-pin-container" id="ops-pin-container">
             
-            <!-- Text Cards -->
             <div class="text-col">
                 <div class="step-card" id="card-1">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">1. Clinical Chemistry</h3>
@@ -110,30 +115,33 @@
                 </div>
                 <div class="step-card" id="card-2">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">2. Anhydrous Compression</h3>
-                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Water is eliminated. Ingredients are powerfully compressed into our signature 600mg solid-state tablets, slashing shipping carbon by 70%.</p>
+                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Water is eliminated. Ingredients are powerfully compressed into our signature 600mg solid-state tablets.</p>
                 </div>
                 <div class="step-card" id="card-3">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">3. Transparent Vaults</h3>
-                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Tablets cascade into sustainable glass vessels, completely eliminating the daily ingestion of microplastics from degraded tubes.</p>
+                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Tablets cascade into sustainable glass vessels, completely eliminating the daily ingestion of microplastics.</p>
                 </div>
                 <div class="step-card" id="card-4">
                     <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">4. Airtight Preservation</h3>
-                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">A heavy brushed-aluminum lid descends to seal the environment perfectly, ensuring clinical integrity and freshness.</p>
+                    <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">The environment is sealed, preserving pristine clinical freshness without chemical preservatives.</p>
                 </div>
             </div>
 
-            <!-- Visual Assets (Cache busted to bypass 404 history) -->
+            <!-- Fully Loaded PNG Matrix -->
             <div class="visual-col">
-                <img src="./assets/tab-powder.png?v=8" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
-                <img src="./assets/dot.png?v=8" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet-1">
+                <img src="./assets/tab-powder.png?v=9" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
                 
-                <img src="./assets/dot.png?v=8" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-2">
-                <img src="./assets/dot.png?v=8" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-3">
-                <img src="./assets/dot.png?v=8" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-4">
-                <img src="./assets/dot.png?v=8" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-5">
+                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img img-tablet" id="v-tablet-1">
                 
-                <img src="./assets/emptyjar.png?v=8" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
-                <img src="./assets/filledjar.png?v=8" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
+                <!-- Cascading Extras -->
+                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-2">
+                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-3">
+                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-4">
+                <img src="./assets/dot.png?v=9" alt="DOTS Tablet" class="seq-img extra-tab" id="v-tablet-5">
+                
+                <!-- Vessels -->
+                <img src="./assets/emptyjar.png?v=9" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
+                <img src="./assets/filledjar.png?v=9" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
             </div>
             
         </section>
@@ -142,7 +150,7 @@
     <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div class="md:col-span-2 space-y-6">
-                <img src="./assets/TransBGWHorizontal.png" class="h-12 md:h-16 w-auto object-contain hover-trigger transition-transform hover:scale-105 duration-500">
+                <img src="./assets/TransBGWHorizontal.png" class="h-12 md:h-16 w-auto object-contain">
                 <p class="text-white/80 text-sm font-light leading-relaxed max-w-xs">Apex corporate operating platform.<br>Cyberabad, Hyderabad, Telangana, India.</p>
             </div>
             <div>
@@ -153,18 +161,9 @@
                     <li><a href="roadmap.html" class="hover:text-white transition-colors hover-trigger">Savière Hotels</a></li>
                 </ul>
             </div>
-            <div>
-                <h4 class="font-serif text-sm font-bold uppercase tracking-widest text-white/50 mb-6">Corporate Portal</h4>
-                <ul class="space-y-3 text-sm text-white/80 font-light">
-                    <li><a href="governance.html" class="hover:text-white transition-colors hover-trigger">Governance</a></li>
-                    <li><a href="sitemap.html" class="hover:text-white transition-colors hover-trigger">Directory</a></li>
-                    <li><a href="mailto:connect@savieregroup.com" class="hover:text-white transition-colors hover-trigger">connect@savieregroup.com</a></li>
-                </ul>
-            </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex text-[10px] text-white/60 tracking-widest uppercase">
             <p>© 2026 Savière Group. Safe for Earth.</p>
-            <div class="flex gap-4"><span>Net-Zero</span><span>Cruelty-Free</span></div>
         </div>
     </footer>
 
@@ -175,67 +174,63 @@
         gsap.ticker.lagSmoothing(0);
         
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2; let ringX = mouseX, ringY = mouseY;
-        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
-        function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
-        document.querySelectorAll('.hover-trigger, a, button').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(130,29,48,0.1)'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; }); });
+        window.addEventListener('mousemove', (e) => { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; });
 
-        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
+        document.getElementById('menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
 
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // 1. Precise Initial States
+            // Set precise initial states
             gsap.set("#v-powder", { opacity: 1, scale: 1, y: 0 });
-            gsap.set("#v-tablet-1", { opacity: 0, scale: 2, y: -50 });
-            gsap.set(".extra-tab", { opacity: 0, scale: 0.5, y: "-40vh" }); 
-            gsap.set("#v-jar-empty", { opacity: 0, y: "30vh", scale: 1 });
-            gsap.set("#v-jar-filled", { opacity: 0, y: 0, scale: 1 });
+            gsap.set("#v-tablet-1", { opacity: 0, scale: 1.5, y: "-20vh" });
+            gsap.set(".extra-tab", { opacity: 0, scale: 0.8, y: "-40vh" }); 
+            gsap.set("#v-jar-empty", { opacity: 0, y: "40vh", scale: 1 });
+            gsap.set("#v-jar-filled", { opacity: 0, y: "5vh", scale: 1 });
 
             gsap.set(".step-card", { opacity: 0, y: 50 });
             gsap.set("#card-1", { opacity: 1, y: 0 });
 
+            // Master Timeline
             const tl = gsap.timeline({ 
                 scrollTrigger: { 
                     trigger: "#ops-pin-container", 
                     start: "top top", 
-                    end: "+=400%", // Smooth, long scrub length
+                    end: "+=400%", 
                     scrub: 1,
                     pin: true 
                 }
             });
 
-            // Phase 1: Powder compresses into Hero Tablet
+            // Phase 1: Powder -> Hero Tablet
             tl.to("#card-1", { opacity: 0, y: -50, duration: 1 }, 0)
               .to("#v-powder", { opacity: 0, scale: 0.5, duration: 1 }, 0)
               .to("#v-tablet-1", { opacity: 1, scale: 1, y: 0, duration: 1, ease: "power2.out" }, 0)
               .to("#card-2", { opacity: 1, y: 0, duration: 1 }, 0);
 
-            // Phase 2: Empty Jar Rises & Tablets Cascade Down
+            // Phase 2: Tablet Drops, Jar Rises, Extras Rain Down
             tl.to("#card-2", { opacity: 0, y: -50, duration: 1 }, 2)
-              .to("#v-jar-empty", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, 2)
+              .to("#v-jar-empty", { opacity: 1, y: "5vh", duration: 1.5, ease: "power2.out" }, 2)
               
-              // Hero tablet drops
-              .to("#v-tablet-1", { y: "15vh", scale: 0.5, duration: 1.5, ease: "power2.in" }, 2)
+              .to("#v-tablet-1", { y: "20vh", scale: 0.8, duration: 1.5, ease: "power2.in" }, 2)
               .to("#v-tablet-1", { opacity: 0, duration: 0.2 }, 3.3) 
 
-              // Extra tablets rain down
               .to("#v-tablet-2", { opacity: 1, duration: 0.1 }, 2.2)
-              .to("#v-tablet-2", { y: "12vh", x: "3vw", rotation: 45, duration: 1.3, ease: "power2.in" }, 2.2)
+              .to("#v-tablet-2", { y: "22vh", x: "4vw", rotation: 45, duration: 1.3, ease: "power2.in" }, 2.2)
               .to("#v-tablet-2", { opacity: 0, duration: 0.2 }, 3.3)
 
               .to("#v-tablet-3", { opacity: 1, duration: 0.1 }, 2.4)
-              .to("#v-tablet-3", { y: "16vh", x: "-2vw", rotation: -60, duration: 1.1, ease: "power2.in" }, 2.4)
+              .to("#v-tablet-3", { y: "18vh", x: "-3vw", rotation: -60, duration: 1.1, ease: "power2.in" }, 2.4)
               .to("#v-tablet-3", { opacity: 0, duration: 0.2 }, 3.3)
 
               .to("#v-tablet-4", { opacity: 1, duration: 0.1 }, 2.6)
-              .to("#v-tablet-4", { y: "14vh", x: "1vw", rotation: 120, duration: 0.9, ease: "power2.in" }, 2.6)
+              .to("#v-tablet-4", { y: "20vh", x: "2vw", rotation: 120, duration: 0.9, ease: "power2.in" }, 2.6)
               .to("#v-tablet-4", { opacity: 0, duration: 0.2 }, 3.3)
 
               .to("#card-3", { opacity: 1, y: 0, duration: 1 }, 3.5);
 
-            // Phase 3 & 4: Fade out Empty Jar, Fade in perfectly sealed Filled Jar
+            // Phase 3: Seamless Blend to Filled Jar
             tl.to("#card-3", { opacity: 0, y: -50, duration: 1 }, 5)
               .to("#v-jar-empty", { opacity: 0, duration: 1.5 }, 5)
               .to("#v-jar-filled", { opacity: 1, duration: 1.5 }, 5)
