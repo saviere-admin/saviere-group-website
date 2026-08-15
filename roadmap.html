@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pipeline | Savière Group</title>
     <meta name="theme-color" content="#821D30">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <style>
         body{background:#fff;color:#0d0204; cursor: none;} 
-        .glass-header{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.1);}
+        .cursor-follower { position: fixed; top: 0; left: 0; width: 40px; height: 40px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: exclusion; transition: transform 0.15s ease-out, width 0.3s, height 0.3s; transform: translate(-50%, -50%); }
+        .glass-header{background:rgba(255,255,255,0.7);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(130,29,48,0.05);}
         .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
-        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
-        .cursor-dot { width: 8px; height: 8px; background: #821D30; }
-        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(130,29,48,0.5); transition: width 0.3s, height 0.3s, background 0.3s; }
     </style>
 </head>
 <body class="antialiased">
-    <div class="cursor-dot"></div><div class="cursor-outline"></div>
+    <div class="cursor-follower" id="cursor"></div>
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
@@ -30,6 +31,7 @@
                 <a href="active-operations.html" class="nav-link hover-trigger">DOTS</a>
                 <a href="roadmap.html" class="text-corporate-primary font-bold hover-trigger">Pipeline</a>
             </nav>
+            <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
         </div>
     </header>
 
@@ -40,21 +42,27 @@
         <div class="space-y-16 max-w-4xl border-l-2 border-corporate-primary/20 pl-10 ml-4 relative">
             <div class="relative hover-trigger">
                 <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-corporate-primary border-4 border-white"></div>
-                <span class="text-xs font-bold text-corporate-primary uppercase tracking-widest">Phase 1</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">Consumer FMCG Engine</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">Scale The Dots Company establishing domestic market presence, zero-waste supply chains, and clinically validated formulations.</p>
+                <span class="text-xs font-bold text-corporate-primary uppercase tracking-widest">Years 1–3</span>
+                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">The Single Anchor & FMCG</h3>
+                <p class="text-xl text-gray-600 font-light leading-relaxed">Saviere Group Pvt. Ltd. acts as the central lifetime anchor. We launch The Dots Company as our cash-flow engine, dominating the D2C market with our anhydrous Nano-HAp protocol.</p>
             </div>
             <div class="relative hover-trigger">
                 <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Phase 2</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">Savière Hospitals</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">Deploy asset-light outpatient medical centers prioritizing systemic biomarker screening and accessible proactive wellness.</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Years 3–5</span>
+                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">The Asset Vaults</h3>
+                <p class="text-xl text-gray-600 font-light leading-relaxed">As free cash flow accumulates, we incorporate Savière Estates LLP. This entity securely holds our trademarks, formulations, and proprietary hardware, licensing them back to operations to maximize depreciation tax shields.</p>
             </div>
             <div class="relative hover-trigger">
                 <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Phase 3</span>
-                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">Hotels, Cafes & Green Micro-Grids</h3>
-                <p class="text-xl text-gray-600 font-light leading-relaxed">Expand into management contracts for zero-carbon, plant-based luxury hospitality alongside decentralized clean energy micro-grids.</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Years 5–15</span>
+                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">Vertical Multi-Threading</h3>
+                <p class="text-xl text-gray-600 font-light leading-relaxed">Aggressive expansion into Savière Hotels, Hospitals, Green Energy, and Lifestyle. Each launches as an asset-light entity plugging directly into our central HR and data pool.</p>
+            </div>
+            <div class="relative hover-trigger">
+                <div class="absolute -left-[49px] top-2 w-5 h-5 rounded-full bg-gray-300 border-4 border-white"></div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Years 15+</span>
+                <h3 class="font-serif text-4xl text-gray-900 mt-3 mb-4">The Delegation Transition</h3>
+                <p class="text-xl text-gray-600 font-light leading-relaxed">Appointing professional CEOs across the subsidiaries while stepping up to the apex board, paving the way for the Savière Philanthropic Foundation.</p>
             </div>
         </div>
     </main>
@@ -83,16 +91,17 @@
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-[10px] text-white/60 tracking-widest uppercase gap-4">
-            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
-            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-between text-[10px] text-white/60 tracking-widest uppercase">
+            <p>© 2026 Savière Group. Safe for Earth.</p>
+            <div class="hidden sm:flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span></div>
         </div>
     </footer>
     
     <script>
-        const cursorDot = document.querySelector('.cursor-dot'); const cursorOutline = document.querySelector('.cursor-outline');
-        window.addEventListener('mousemove', (e) => { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; cursorOutline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: 'forwards' }); });
-        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)'; }); });
+        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', (e) => { gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.15 }); });
+        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(2)'; cursor.style.background = '#821D30'; }); el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; cursor.style.background = '#fff'; }); });
     </script>
 </body>
 </html>
