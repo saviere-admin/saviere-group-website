@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=21">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=21">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=21">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=21">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=21">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=21">
-    <link rel="manifest" href="site.webmanifest?v=21">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=22">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=22">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=22">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=22">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=22">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=22">
+    <link rel="manifest" href="site.webmanifest?v=22">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,9 +45,8 @@
         .text-col { width: 45%; height: 100%; position: relative; z-index: 40; }
         .visual-col { width: 55%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
 
-        .centered-absolute { position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; }
-
         .step-card {
+            position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;
             width: 85%; max-width: 500px; height: fit-content;
             background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
             padding: 3rem; border-radius: 1.5rem; border: 1px solid rgba(130,29,48,0.1);
@@ -55,11 +54,18 @@
             opacity: 0; visibility: hidden; 
         }
 
-        .art-director { position: relative; width: 65vh; height: 65vh; }
+        /* =========================================================
+           RESPONSIVE PROPORTION LOCKING
+           ========================================================= */
+        .art-director { 
+            position: relative; 
+            width: 55vh; height: 55vh; /* Desktop scale */
+            max-width: 75vw; max-height: 75vw; /* Mobile scale lock */
+            margin: auto;
+        }
 
         .seq-img {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; 
+            position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;
             object-fit: contain;
             opacity: 0; visibility: hidden;
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
@@ -70,21 +76,16 @@
         .tab-asset, #v-powder { z-index: 20; }
         #v-jar-filled { z-index: 30; }
 
-        /* Strict Proportions */
-        .img-powder { width: 40vh; height: 40vh; }
-        .img-jar    { width: 55vh; height: 55vh; }
-        .img-tablet, .tablet-item { width: 14vh; height: 14vh; }
+        /* RELATIVE SIZING: Mathematically locks tablet sizes to jar size universally */
+        .img-jar    { width: 100%; height: 100%; }
+        .img-powder { width: 72.7%; height: 72.7%; }
+        .tab-asset  { width: 25.45%; height: 25.45%; } 
 
         @media (max-width: 768px) {
             .ops-sticky { flex-direction: column-reverse; } 
             .text-col { width: 100%; height: 45vh; padding: 0 1.5rem; }
             .visual-col { width: 100%; height: 55vh; }
             .step-card { width: 100%; max-width: 100%; padding: 1.5rem; margin-top: -2rem; }
-            .art-director { width: 85vw; height: 85vw; } 
-            
-            .img-powder { width: 55vw; height: 55vw; max-height: 40vh; }
-            .img-jar    { width: 70vw; height: 70vw; max-height: 45vh; }
-            .img-tablet, .tablet-item { width: 22vw; height: 22vw; max-height: 15vh; }
         }
     </style>
 </head>
@@ -127,19 +128,19 @@
             <section class="ops-sticky">
                 
                 <div class="text-col">
-                    <div class="step-card centered-absolute" id="card-1">
+                    <div class="step-card" id="card-1">
                         <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">1. Clinical Chemistry</h3>
                         <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Formulated with biomimetic Nano-HAp to rebuild enamel and Xylitol to selectively starve pathogenic bacteria.</p>
                     </div>
-                    <div class="step-card centered-absolute" id="card-2">
+                    <div class="step-card" id="card-2">
                         <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">2. Anhydrous Compression</h3>
                         <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Water is eliminated. Ingredients are powerfully compressed into our signature uniform solid-state tablets.</p>
                     </div>
-                    <div class="step-card centered-absolute" id="card-3">
+                    <div class="step-card" id="card-3">
                         <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">3. Transparent Vaults</h3>
                         <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">A perfectly calibrated supply cascades into sustainable glass vessels, eliminating daily microplastic ingestion.</p>
                     </div>
-                    <div class="step-card centered-absolute" id="card-4">
+                    <div class="step-card" id="card-4">
                         <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mb-3">4. Airtight Preservation</h3>
                         <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">The environment is flawlessly sealed, preserving pristine clinical freshness without chemical preservatives.</p>
                     </div>
@@ -147,39 +148,39 @@
 
                 <div class="visual-col">
                     <div class="art-director">
-                        <img src="./assets/emptyjar.png?v=21" alt="Empty Glass Jar" class="seq-img centered-absolute" id="v-jar-empty">
-                        <img src="./assets/tab-powder.png?v=21" alt="Tablet Powder" class="seq-img centered-absolute" id="v-powder">
+                        <img src="./assets/emptyjar.png?v=22" alt="Empty Glass Jar" class="seq-img img-jar" id="v-jar-empty">
+                        <img src="./assets/tab-powder.png?v=22" alt="Tablet Powder" class="seq-img img-powder" id="v-powder">
                         
                         <!-- Hero Tablet -->
-                        <img src="./assets/dot.png?v=21" alt="DOTS Tablet" class="seq-img img-tablet tab-asset centered-absolute" id="v-tablet-hero">
+                        <img src="./assets/dot.png?v=22" alt="DOTS Tablet" class="seq-img tab-asset" id="v-tablet-hero">
                         
-                        <!-- Layer 1 (Bottom - Hits internal floor) -->
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
+                        <!-- Layer 1 (Bottom) -->
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
                         <!-- Layer 2 -->
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
                         <!-- Layer 3 -->
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
                         <!-- Layer 4 -->
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
                         <!-- Layer 5 (Top) -->
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
-                        <img src="./assets/dot.png?v=21" class="seq-img tab-asset tablet-item centered-absolute">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
+                        <img src="./assets/dot.png?v=22" class="seq-img tab-asset tablet-item">
                         
-                        <img src="./assets/filledjar.png?v=21" alt="Filled Glass Jar" class="seq-img centered-absolute" id="v-jar-filled">
+                        <img src="./assets/filledjar.png?v=22" alt="Filled Glass Jar" class="seq-img img-jar" id="v-jar-filled">
                     </div>
                 </div>
 
@@ -221,13 +222,6 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
-
-            // ==========================================
-            // CALIBRATED DENSE-PILE PHYSICS ENGINE
-            // ==========================================
-            // Floor set to 170 (exactly touching internal glass base, eliminating overlap).
-            // Layers overlap deeply (25 yPercent steps) for dense realism.
-            // X bounds strictly constrained (-65 to 65) to prevent glass-wall phasing.
 
             const pileCoords = [
                 // Layer 1 (Bottom Floor)
@@ -277,7 +271,7 @@
                 scrollTrigger: { trigger: ".ops-wrapper", start: "top top", end: "bottom bottom", scrub: 1 }
             });
 
-            // PHASE 1: Compression
+            // PHASE 1: Compression (Powder shrinks exactly to the 25.45% tablet width size)
             tl.to("#card-1", { autoAlpha: 0, y: -20, duration: 1 }, 0)
               .to("#v-powder", { autoAlpha: 0, scale: 0.35, duration: 1 }, 0) 
               .fromTo("#v-tablet-hero", { autoAlpha: 0, yPercent: 0 }, { autoAlpha: 1, yPercent: 0, duration: 1 }, 0)
@@ -286,7 +280,6 @@
             // PHASE 2: Jar Rises & Continuous Pour Starts
             tl.to("#card-2", { autoAlpha: 0, y: -20, duration: 1 }, 2)
               .to("#v-jar-empty", { autoAlpha: 1, yPercent: 0, duration: 1.5, ease: "power2.out" }, 2)
-              // Hero drops and crowns the pile
               .to("#v-tablet-hero", { yPercent: 45, rotation: 15, duration: 1.5, ease: "power2.in" }, 2) 
               .to("#v-tablet-hero", { opacity: 0.95, duration: 0.1 }, 3.4)
               .fromTo("#card-3", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 3.5);
