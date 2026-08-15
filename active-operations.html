@@ -8,19 +8,18 @@
     <meta name="theme-color" content="#821D30">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=26">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=26">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=26">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=26">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=26">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=26">
-    <link rel="manifest" href="site.webmanifest?v=26">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=27">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=27">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=27">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=27">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png?v=27">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png?v=27">
+    <link rel="manifest" href="site.webmanifest?v=27">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
     
-    <!-- Three.js & GSAP Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -30,7 +29,8 @@
         body { background-color: #fcfcfc; color: #0d0204; overflow-x: hidden; cursor: none; }
         
         /* Minimalist Dot Cursor */
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 10px; height: 10px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s; }
+        .cursor-hover { transform: translate(-50%, -50%) scale(3.5); background: rgba(130,29,48,0.15); border: 0.5px solid rgba(130,29,48,0.3); }
         @media (pointer: coarse) { .cursor-dot { display: none !important; } body { cursor: auto; } }
 
         .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
@@ -46,8 +46,6 @@
         .text-col { width: 45%; height: 100%; position: relative; z-index: 40; }
         .visual-col { width: 55%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
 
-        .centered-absolute { position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; }
-
         .step-card {
             position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;
             width: 85%; max-width: 500px; height: fit-content;
@@ -57,7 +55,6 @@
             opacity: 0; visibility: hidden; 
         }
 
-        /* WebGL Canvas Container */
         #webgl-canvas { width: 100%; height: 100%; display: block; outline: none; }
 
         @media (max-width: 768px) {
@@ -83,17 +80,17 @@
             </nav>
             <div class="flex items-center gap-4 relative z-50">
                 <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
-                <button id="menu-toggle" class="md:hidden text-corporate-primary p-2 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+                <button id="menu-toggle" class="md:hidden text-corporate-primary p-2 focus:outline-none hover-trigger"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
     </header>
 
     <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8">
-        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-3xl font-serif text-corporate-900">Overview</a>
-        <a href="governance.html" class="text-3xl font-serif text-corporate-900">Governance</a>
-        <a href="active-operations.html" class="text-3xl font-serif text-corporate-primary font-bold">The Dots Company</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-corporate-900">Pipeline</a>
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary hover-trigger"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <a href="index.html" class="text-3xl font-serif text-corporate-900 hover-trigger">Overview</a>
+        <a href="governance.html" class="text-3xl font-serif text-corporate-900 hover-trigger">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-corporate-primary font-bold hover-trigger">The Dots Company</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-corporate-900 hover-trigger">Pipeline</a>
     </div>
 
     <main class="relative z-10 bg-white pt-32">
@@ -125,7 +122,6 @@
                     </div>
                 </div>
 
-                <!-- Three.js Canvas Container -->
                 <div class="visual-col">
                     <canvas id="webgl-canvas"></canvas>
                 </div>
@@ -161,18 +157,19 @@
         gsap.ticker.add((time)=>{ lenis.raf(time * 1000) }); 
         gsap.ticker.lagSmoothing(0);
         
-        // Single Dot Cursor
+        // Dynamic Dot Cursor Hover Logic
         const dot = document.querySelector('.cursor-dot');
-        window.addEventListener('mousemove', (e) => { 
-            dot.style.left = e.clientX + 'px'; 
-            dot.style.top = e.clientY + 'px'; 
+        window.addEventListener('mousemove', (e) => { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; });
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => dot.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => dot.classList.remove('cursor-hover'));
         });
 
         document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
 
         // ==========================================
-        // THREE.JS WEBGL ENGINE
+        // TRUE THREE.JS ORGANIC PHYSICS ENGINE
         // ==========================================
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
@@ -180,16 +177,15 @@
             const canvas = document.getElementById('webgl-canvas');
             const scene = new THREE.Scene();
             
-            // The Absolute Orthographic Camera (Prevents any perspective distortion or CSS flexing)
-            const frustumSize = 1000;
-            const camera = new THREE.OrthographicCamera(-500, 500, 500, -500, 0.1, 1000);
+            // Expanded FrustumSize (1350) acts as a native "Zoom Out", allowing the jar to breathe.
+            const frustumSize = 1350; 
+            const camera = new THREE.OrthographicCamera(-frustumSize/2, frustumSize/2, frustumSize/2, -frustumSize/2, 0.1, 1000);
             camera.position.z = 100;
 
             const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.outputEncoding = THREE.sRGBEncoding;
 
-            // Handle Resize: Forces the 1000x1000 grid to scale perfectly within any container size
             function resize() {
                 const width = canvas.clientWidth;
                 const height = canvas.clientHeight;
@@ -208,7 +204,6 @@
             }
             window.addEventListener('resize', resize);
 
-            // Asset Loader
             const loader = new THREE.TextureLoader();
             const loadTex = (url) => {
                 const tex = loader.load(url, () => renderer.render(scene, camera));
@@ -216,15 +211,13 @@
                 return tex;
             };
 
-            const texEmpty = loadTex('./assets/emptyjar.png?v=27');
-            const texPowder = loadTex('./assets/tab-powder.png?v=27');
-            const texDot = loadTex('./assets/dot.png?v=27');
-            const texFilled = loadTex('./assets/filledjar.png?v=27');
+            const texEmpty = loadTex('./assets/emptyjar.png?v=28');
+            const texPowder = loadTex('./assets/tab-powder.png?v=28');
+            const texDot = loadTex('./assets/dot.png?v=28');
+            const texFilled = loadTex('./assets/filledjar.png?v=28');
 
-            // Global 1000x1000 Base Geometry (Matches the 2000x2000px 1:1 image ratio perfectly)
             const geo = new THREE.PlaneGeometry(1000, 1000);
 
-            // Create Meshes with rigorous Z-indexing depth
             const mEmpty = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: texEmpty, transparent: true, opacity: 0, depthWrite: false }));
             mEmpty.position.z = 0; scene.add(mEmpty);
 
@@ -233,31 +226,38 @@
 
             const matDotTemplate = new THREE.MeshBasicMaterial({ map: texDot, transparent: true, opacity: 0, depthWrite: false });
             
-            // Hero Tablet
+            // Fixed tablet scale mathematically locked to 18% 
+            const tabScale = 0.18;
+            
             const mHero = new THREE.Mesh(geo, matDotTemplate.clone());
-            mHero.position.z = 2; mHero.scale.set(0.2, 0.2, 1);
+            mHero.position.z = 2; mHero.scale.set(tabScale, tabScale, 1);
             scene.add(mHero);
 
-            // The Pyramid Coordinate Matrix (Absolute WebGL Units)
-            // X spans ±120 safely inside the 275 unit jar width. Y safely bottoms out at -280.
+            // The Organic Chaos Matrix
             const pileCoords = [
-                // Bottom Floor
-                { x: -120, y: -280, rot: 0.2 }, { x: -60, y: -285, rot: -0.4 }, { x: 0, y: -275, rot: 0.6 }, { x: 60, y: -282, rot: -0.2 }, { x: 120, y: -280, rot: 0.8 },
-                // Layer 2
-                { x: -90, y: -235, rot: -0.5 }, { x: -30, y: -240, rot: 0.3 }, { x: 30, y: -232, rot: -0.8 }, { x: 90, y: -238, rot: 0.5 },
-                // Layer 3
-                { x: -60, y: -190, rot: 0.9 }, { x: 0, y: -195, rot: -0.3 }, { x: 60, y: -188, rot: 0.7 },
-                // Layer 4
-                { x: -30, y: -145, rot: -0.6 }, { x: 30, y: -148, rot: 0.4 }
+                { x: -110, y: -300, rot: -0.5 },
+                { x: 0,    y: -305, rot: 0.2 },
+                { x: 100,  y: -295, rot: -0.8 },
+                { x: -65,  y: -260, rot: 0.7 },
+                { x: 45,   y: -255, rot: -0.3 },
+                { x: -130, y: -230, rot: 1.2 },
+                { x: 110,  y: -240, rot: -1.0 },
+                { x: -25,  y: -210, rot: 0.1 },
+                { x: 65,   y: -195, rot: 0.9 },
+                { x: -85,  y: -180, rot: -0.6 },
+                { x: 20,   y: -160, rot: -0.4 },
+                { x: -40,  y: -140, rot: 0.5 },
+                { x: 75,   y: -145, rot: -1.1 },
+                { x: -10,  y: -110, rot: 0.8 }
             ];
 
             const tabs = [];
             pileCoords.forEach((c, i) => {
                 const m = new THREE.Mesh(geo, matDotTemplate.clone());
-                // Starts offscreen incredibly high, increments Z to prevent texture clipping (z-fighting)
-                m.position.set(c.x, 800, 2 + (i * 0.01)); 
-                m.rotation.z = c.rot - 1.5;
-                m.scale.set(0.2, 0.2, 1);
+                // Spawns with randomized high Z-rotations to tumble downwards
+                m.position.set(c.x, 800 + Math.random() * 200, 2 + (i * 0.01)); 
+                m.rotation.z = c.rot - (Math.random() * 3); 
+                m.scale.set(tabScale, tabScale, 1);
                 scene.add(m);
                 tabs.push({ mesh: m, targetY: c.y, targetRot: c.rot });
             });
@@ -265,10 +265,7 @@
             const mFilled = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: texFilled, transparent: true, opacity: 0, depthWrite: false }));
             mFilled.position.z = 3; scene.add(mFilled);
 
-            // Force initial sizing calculations
             resize();
-
-            // Tie Three.js renderer directly into GSAP's 60fps internal engine
             gsap.ticker.add(() => renderer.render(scene, camera));
 
             // Setup Text States
@@ -279,30 +276,28 @@
                 scrollTrigger: { trigger: ".ops-wrapper", start: "top top", end: "bottom bottom", scrub: 1 }
             });
 
-            // PHASE 1: Compression
+            // PHASE 1: Mathematical Powder Blending
             tl.to("#card-1", { autoAlpha: 0, y: -20, duration: 1 }, 0)
-              // Shrinks powder perfectly to 20% scale matching the dot
-              .to(mPowder.scale, { x: 0.2, y: 0.2, duration: 1 }, 0)
+              // Shrinks powder perfectly to 18% to match the Hero tablet size
+              .to(mPowder.scale, { x: tabScale, y: tabScale, duration: 1 }, 0)
               .to(mPowder.material, { opacity: 0, duration: 0.2 }, 0.8)
-              // Fades Hero exactly over the shrunk powder
+              // Hero fades in exactly over the footprint of the powder
               .fromTo(mHero.material, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.8)
               .fromTo("#card-2", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 0.5);
 
-            // PHASE 2: Jar Rises & Hero Drops
+            // PHASE 2: Jar Rises & Hero Bounds
             tl.to("#card-2", { autoAlpha: 0, y: -20, duration: 1 }, 2)
               .to(mEmpty.material, { opacity: 1, duration: 1.5, ease: "power2.out" }, 2)
-              // Hero drops down to cap the pyramid
-              .to(mHero.position, { y: -100, duration: 1.5, ease: "power2.in" }, 2)
-              .to(mHero.rotation, { z: 0.25, duration: 1.5, ease: "power2.in" }, 2)
-              .to(mHero.material, { opacity: 0.95, duration: 0.1 }, 3.4) // Glass illusion
+              .to(mHero.position, { y: -65, duration: 1.4, ease: "power2.in" }, 2)
+              .to(mHero.rotation, { z: -0.2, duration: 1.4, ease: "power2.in" }, 2)
+              .to(mHero.material, { opacity: 0.95, duration: 0.1 }, 3.3) 
               .fromTo("#card-3", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1 }, 3.5);
 
-            // PHASE 3: The Heavy Matrix Rain
+            // PHASE 3: Continuous Organic Pour
             tabs.forEach((t, i) => {
-                let delay = 2.0 + (i * 0.08); 
-                // Only the bottom 5 tablets trigger the physical bounce effect
-                let easeType = i < 5 ? "bounce.out" : "power2.in";
-                let fallDur = i < 5 ? 1.5 : 1.2;
+                let delay = 2.0 + (i * 0.09); // Extremely fluid continuous staggering
+                let easeType = i < 3 ? "bounce.out" : "power2.in"; // Bottom layer impacts, rest stack
+                let fallDur = i < 3 ? 1.5 : 1.2;
 
                 tl.to(t.mesh.material, { opacity: 1, duration: 0.1 }, delay)
                   .to(t.mesh.position, { y: t.targetY, duration: fallDur, ease: easeType }, delay)
@@ -310,7 +305,7 @@
                   .to(t.mesh.material, { opacity: 0.95, duration: 0.1 }, delay + fallDur - 0.1);
             });
 
-            // PHASE 4: WebGL Crossfade
+            // PHASE 4: Crossfade
             const hideList = [mHero.material, mEmpty.material, ...tabs.map(t => t.mesh.material)];
             
             tl.to("#card-3", { autoAlpha: 0, y: -20, duration: 1 }, 6)
