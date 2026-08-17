@@ -1,0 +1,47 @@
+# ==========================================
+# SAVIÈRE GROUP | ROBOTS.TXT
+# ==========================================
+
+# As a condition of accessing this website, you agree to abide by the following content signals:
+# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
+# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
+# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
+
+User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+
+# Keep Googlebot crawling your visual assets
+Allow: /assets/
+
+# BEGIN Cloudflare Managed content
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CloudflareBrowserRenderingCrawler
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+# END Cloudflare Managed Content
+
+# SITEMAP DECLARATION (Critical for Google Indexing)
+Sitemap: https://savieregroup.com/sitemap.xml
