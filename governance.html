@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Governance | Savière Group</title>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500&family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',bg:'#FDF8F9'}}}}}</script>
     <style>
-        body { background-color: #0A0A0A; color: #FDF8F9; font-family: 'Nunito Sans', sans-serif; overflow-x: hidden; }
-        .nav-link { position: relative; color: rgba(253, 248, 249, 0.6); transition: color 0.4s; font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; padding-bottom: 4px; }
-        .nav-link:hover, .nav-link.active { color: #FDF8F9; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #D4AF37; transition: width 0.4s; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .reveal { opacity: 0; transform: translateY(15px); transition: opacity 1s ease-out, transform 1s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        body{background-color:#0A0A0A;color:#FDF8F9;overflow-x:hidden;}
+        .pill-header{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:80rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1);border-radius:9999px;z-index:100;transition:all 0.3s ease;padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+        .nav-link{position:relative;color:rgba(253,248,249,0.7);transition:color 0.3s;padding:0.5rem 0;font-family:'Poppins',sans-serif;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;}
+        .nav-link:hover,.nav-link.active{color:#FDF8F9;}
+        .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#D4AF37;transition:width 0.3s ease;}
+        .nav-link:hover::after,.nav-link.active::after{width:100%;}
+        .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease-out,transform 0.8s ease-out;}
+        .reveal.visible{opacity:1;transform:translateY(0);}
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
-
-    <header class="w-full fixed top-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5 px-8 py-6 flex justify-between items-center">
-        <a href="index.html" class="font-family-serif font-serif text-xl tracking-wide text-white">Savière</a>
-        <nav class="hidden md:flex gap-8">
+    <header class="pill-header">
+        <a href="index.html" class="flex-shrink-0 font-serif text-xl tracking-wide text-white">Savière Group</a>
+        <nav class="hidden lg:flex gap-8 items-center">
             <a href="about.html" class="nav-link">About</a>
             <a href="governance.html" class="nav-link active">Governance</a>
             <a href="active-operations.html" class="nav-link">Operations</a>
@@ -28,53 +29,38 @@
         </nav>
     </header>
 
-    <main class="flex-grow pt-40 px-8 max-w-7xl mx-auto w-full">
-        <div class="mb-24 reveal">
-            <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight">Governance.</h1>
-            <p class="font-sans text-xl text-white/60 font-light leading-relaxed max-w-3xl">
-                As the group develops, Savière intends to institutionalize the following core principles to ensure our growth never compromises our integrity, scientific rigor, or environmental responsibilities.
-            </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-x-16 gap-y-16 reveal border-t border-white/10 pt-16">
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">01 — Integrity</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">We operate transparently, lawfully, and responsibly across all current and future verticals.</p>
+    <main class="flex-grow pt-48 pb-24 px-6">
+        <section class="max-w-[80rem] mx-auto reveal">
+            <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight">Growth without shortcuts.</h1>
+            <p class="font-sans text-xl text-white/60 font-light leading-relaxed max-w-3xl mb-16">As the group develops, Savière intends to institutionalize the following core principles to ensure our growth never compromises our integrity, scientific rigor, or environmental responsibilities.</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 border-t border-white/10 pt-16">
+                <div>
+                    <h3 class="font-serif text-2xl text-white mb-3">01 — Scientific Rigour</h3>
+                    <p class="font-sans text-white/60 font-light leading-relaxed text-sm">Claims must be proportional to evidence. We rely on verified literature and empirical data over speculation.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-2xl text-white mb-3">02 — Anti-Corruption</h3>
+                    <p class="font-sans text-white/60 font-light leading-relaxed text-sm">Savière intends to operate strictly through documented, lawful, and transparent processes, avoiding all improper influence.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-2xl text-white mb-3">03 — Environmental Responsibility</h3>
+                    <p class="font-sans text-white/60 font-light leading-relaxed text-sm">Environmental considerations—concerning materials, water, and energy—must be incorporated deeply into product design from inception.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-2xl text-white mb-3">04 — Product Responsibility</h3>
+                    <p class="font-sans text-white/60 font-light leading-relaxed text-sm">Safety, quality, and customer welfare must always precede growth metrics and operational speed.</p>
+                </div>
             </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">02 — Scientific Rigour</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Claims must be proportional to evidence. We rely on verified literature and empirical data over speculation.</p>
-            </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">03 — Product Responsibility</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Safety, quality, and customer welfare must always precede growth metrics and operational speed.</p>
-            </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">04 — Anti-Corruption</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Savière intends to operate strictly through documented, lawful, and transparent processes, avoiding all improper influence.</p>
-            </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">05 — Environmental Responsibility</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Environmental impact—concerning materials, water, and energy—must be incorporated deeply into product and operational design.</p>
-            </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">06 — Responsible Scale</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Corporate growth and expansion should not compromise our governance frameworks, product quality, or overarching ethics.</p>
-            </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">07 — Animal Welfare</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Where applicable across our supply chains, Savière seeks cruelty-free approaches and responsible material sourcing.</p>
-            </div>
-            <div>
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">08 — Accountability</span>
-                <p class="font-sans text-white/60 font-light leading-relaxed">Decisions should remain traceable, and corporate responsibilities must be clearly defined as the institution matures.</p>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="border-t border-white/5 px-8 py-12 mt-24 text-[9px] text-white/40 tracking-widest uppercase font-subheading">
-        <div>© 2026 Savière Group Private Limited.</div>
+    <footer class="border-t border-white/10 pt-12 pb-12 px-6 mt-auto">
+        <div class="max-w-[80rem] mx-auto text-[10px] text-white/40 tracking-widest uppercase font-subheading flex justify-between">
+            <p>© 2026 Savière Group Private Limited.</p>
+            <a href="sitemap.html" class="hover:text-white transition-colors">Directory</a>
+        </div>
     </footer>
-    <script> document.addEventListener("DOMContentLoaded", () => { const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => obs.observe(el)); }); </script>
+    <script>document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});</script>
 </body>
 </html>

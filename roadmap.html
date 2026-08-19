@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadmap | Savière Group</title>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500&family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',bg:'#FDF8F9'}}}}}</script>
     <style>
-        body { background-color: #0A0A0A; color: #FDF8F9; font-family: 'Nunito Sans', sans-serif; overflow-x: hidden; }
-        .nav-link { position: relative; color: rgba(253, 248, 249, 0.6); transition: color 0.4s; font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; padding-bottom: 4px; }
-        .nav-link:hover, .nav-link.active { color: #FDF8F9; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #D4AF37; transition: width 0.4s; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .reveal { opacity: 0; transform: translateY(15px); transition: opacity 1s ease-out, transform 1s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        body{background-color:#0A0A0A;color:#FDF8F9;overflow-x:hidden;}
+        .pill-header{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:80rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1);border-radius:9999px;z-index:100;transition:all 0.3s ease;padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+        .nav-link{position:relative;color:rgba(253,248,249,0.7);transition:color 0.3s;padding:0.5rem 0;font-family:'Poppins',sans-serif;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;}
+        .nav-link:hover,.nav-link.active{color:#FDF8F9;}
+        .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#D4AF37;transition:width 0.3s ease;}
+        .nav-link:hover::after,.nav-link.active::after{width:100%;}
+        .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease-out,transform 0.8s ease-out;}
+        .reveal.visible{opacity:1;transform:translateY(0);}
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
-
-    <header class="w-full fixed top-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5 px-8 py-6 flex justify-between items-center">
-        <a href="index.html" class="font-family-serif font-serif text-xl tracking-wide text-white">Savière</a>
-        <nav class="hidden md:flex gap-8">
+    <header class="pill-header">
+        <a href="index.html" class="flex-shrink-0 font-serif text-xl tracking-wide text-white">Savière Group</a>
+        <nav class="hidden lg:flex gap-8 items-center">
             <a href="about.html" class="nav-link">About</a>
             <a href="governance.html" class="nav-link">Governance</a>
             <a href="active-operations.html" class="nav-link">Operations</a>
@@ -28,62 +29,37 @@
         </nav>
     </header>
 
-    <main class="flex-grow pt-40 px-8 max-w-7xl mx-auto w-full">
-        <div class="mb-24 reveal">
+    <main class="flex-grow pt-48 pb-24 px-6">
+        <section class="max-w-[80rem] mx-auto reveal">
             <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight">Building Savière.</h1>
-            <p class="font-sans text-lg text-white/60 font-light leading-relaxed max-w-2xl">
-                Strategic priorities may evolve with technology, markets, capital availability, regulation, and evidence of opportunity. We intend to sequence our growth deliberately.
-            </p>
-        </div>
-
-        <div class="space-y-12 border-l border-white/10 pl-8 ml-4 reveal">
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-saviere-gold bg-[#0A0A0A] py-1">01</span>
-                <h3 class="font-serif text-2xl text-white mb-2">Foundation</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Establishing core corporate, financial, IP, and governance foundations.</p>
-            </div>
+            <p class="font-sans text-lg text-white/60 font-light leading-relaxed max-w-2xl mb-16">Strategic priorities evolve with market conditions, technological development, capital availability, and evidence of opportunity.</p>
             
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">02</span>
-                <h3 class="font-serif text-2xl text-white mb-2">First Business</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Developing and preparing to commercialize our initial sustainable consumer product.</p>
+            <div class="space-y-12 border-l border-white/10 pl-8 ml-4">
+                <div class="relative">
+                    <span class="absolute -left-[37px] top-2 font-serif text-sm text-saviere-gold bg-[#0A0A0A] py-1">01</span>
+                    <h3 class="font-serif text-2xl text-white mb-2">Foundation</h3>
+                    <p class="font-sans text-sm text-white/50 font-light">Establishing core corporate, financial, IP, and governance foundations.</p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">02</span>
+                    <h3 class="font-serif text-2xl text-white mb-2">First Business</h3>
+                    <p class="font-sans text-sm text-white/50 font-light">Developing and preparing to commercialize our initial sustainable consumer product.</p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">03</span>
+                    <h3 class="font-serif text-2xl text-white mb-2">Capability & Adjacencies</h3>
+                    <p class="font-sans text-sm text-white/50 font-light">Building in-house R&D and entering new industries solely where existing capabilities yield a measurable advantage.</p>
+                </div>
             </div>
-            
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">03</span>
-                <h3 class="font-serif text-2xl text-white mb-2">Capability</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Building in-house R&D, quality control, manufacturing, and supply-chain capabilities.</p>
-            </div>
-            
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">04</span>
-                <h3 class="font-serif text-2xl text-white mb-2">Adjacencies</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Entering new industries solely where existing capabilities yield a genuine, measurable advantage.</p>
-            </div>
-            
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">05</span>
-                <h3 class="font-serif text-2xl text-white mb-2">Industrial Scale</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Developing strategic manufacturing, logistics, technology, and infrastructure capabilities.</p>
-            </div>
-            
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">06</span>
-                <h3 class="font-serif text-2xl text-white mb-2">Global Expansion</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Expanding organically and through meticulously selected partnerships or acquisitions where appropriate.</p>
-            </div>
-            
-            <div class="relative">
-                <span class="absolute -left-[37px] top-2 font-serif text-sm text-white/20 bg-[#0A0A0A] py-1">07</span>
-                <h3 class="font-serif text-2xl text-white mb-2">Institution</h3>
-                <p class="font-sans text-sm text-white/50 font-light max-w-2xl">Cementing an enduring, multi-generational enterprise built on evidence and execution.</p>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="border-t border-white/5 px-8 py-12 mt-24 text-[9px] text-white/40 tracking-widest uppercase font-subheading">
-        <div>© 2026 Savière Group Private Limited.</div>
+    <footer class="border-t border-white/10 pt-12 pb-12 px-6 mt-auto">
+        <div class="max-w-[80rem] mx-auto text-[10px] text-white/40 tracking-widest uppercase font-subheading flex justify-between">
+            <p>© 2026 Savière Group Private Limited.</p>
+            <a href="sitemap.html" class="hover:text-white transition-colors">Directory</a>
+        </div>
     </footer>
-    <script> document.addEventListener("DOMContentLoaded", () => { const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => obs.observe(el)); }); </script>
+    <script>document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});</script>
 </body>
 </html>
