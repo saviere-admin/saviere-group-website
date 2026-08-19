@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operations | Savière Group</title>
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',bg:'#FDF8F9'}}}}};</script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
     <style>
-        body{background-color:#FDF8F9;color:#0A0A0A;overflow-x:hidden;}
-        .pill-header{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:80rem;background:rgba(253,248,249,0.85);backdrop-filter:blur(16px);border:1px solid rgba(82,10,30,0.08);border-radius:9999px;box-shadow:0 10px 40px -10px rgba(82,10,30,0.1);z-index:100;transition:all 0.3s ease;padding:0.6rem 2rem;display:flex;align-items:center;justify-content:space-between;}
-        .nav-link{position:relative;color:#0A0A0A;transition:color 0.3s;padding:0.5rem 0;font-family:'Poppins',sans-serif;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;}
-        .nav-link:hover,.nav-link.active{color:#520A1E;}
-        .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#520A1E;transition:width 0.3s ease;}
-        .nav-link:hover::after,.nav-link.active::after{width:100%;}
-        .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease-out,transform 0.8s ease-out;}
-        .reveal.visible{opacity:1;transform:translateY(0);}
+        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
+        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.1); z-index: 100; transition: all 0.3s ease; padding: 0.6rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+        .nav-link:hover, .nav-link.active { color: #520A1E; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
@@ -24,43 +24,45 @@
         <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto"></a>
         <nav class="hidden lg:flex gap-8 items-center">
             <a href="index.html" class="nav-link">Vision</a>
-            <a href="about.html" class="nav-link">The Legacy</a>
+            <a href="about.html" class="nav-link">Legacy</a>
             <a href="governance.html" class="nav-link">Governance</a>
-            <a href="active-operations.html" class="nav-link active font-bold">Operations</a>
-            <a href="roadmap.html" class="nav-link">Pipeline</a>
+            <a href="active-operations.html" class="nav-link active">Operations</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
         </nav>
     </header>
 
     <main class="flex-grow pt-48 pb-24 px-6 max-w-[80rem] mx-auto w-full">
         <section class="reveal mb-20 text-center">
-            <p class="font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-crimson mb-4">Phase 1 Operations</p>
-            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-8 tracking-tight">The Dots Company.</h1>
+            <p class="font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-crimson mb-4">Phase 1 Intervention</p>
+            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-8 tracking-tight">FMCG Healthcare Engine.</h1>
             <p class="font-sans text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
-                Replacing plastic silica paste with clinical-grade, zero-water biomimetic Nano-HAp tablets.
+                An engineered, zero-waste intervention designed to replace highly pollutive, water-heavy synthetics with sustainable, earth-safe alternatives.
             </p>
         </section>
 
-        <section class="grid md:grid-cols-3 gap-8 reveal border-t border-gray-200 pt-16">
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <h3 class="font-serif text-2xl text-saviere-black mb-6">1. Clinical Chemistry</h3>
-                <p class="font-sans text-sm text-gray-600 font-light leading-relaxed mb-6">Formulated with biomimetic Nano-HAp to rebuild enamel, Xylitol to selectively starve bacteria, and Zinc Citrate to neutralize odors.</p>
+        <section class="grid md:grid-cols-2 gap-16 reveal border-t border-gray-200 pt-16">
+            <div>
+                <h3 class="font-serif text-3xl text-saviere-crimson mb-6">The Engineering Context</h3>
+                <ul class="space-y-6 font-sans text-base text-gray-600 font-light leading-relaxed">
+                    <li class="flex gap-4"><span class="text-saviere-gold font-bold">—</span> Conventional consumer products are transported with substantial dead-weight water content.</li>
+                    <li class="flex gap-4"><span class="text-saviere-gold font-bold">—</span> Traditional tube packaging generates ongoing material and micro-plastic waste challenges globally.</li>
+                    <li class="flex gap-4"><span class="text-saviere-gold font-bold">—</span> Solid-format architectures provide massive opportunities for more efficient packaging and logistics.</li>
+                </ul>
             </div>
-            
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <h3 class="font-serif text-2xl text-saviere-black mb-6">2. Anhydrous Compression</h3>
-                <p class="font-sans text-sm text-gray-600 font-light leading-relaxed mb-6">Water is eliminated. Active ingredients are pressed into precise 600mg solid-state tablets, slashing global shipping carbon emissions by 70%.</p>
-            </div>
-
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <h3 class="font-serif text-2xl text-saviere-black mb-6">3. Transparent Vaults</h3>
-                <p class="font-sans text-sm text-gray-600 font-light leading-relaxed mb-6">Tablets drop into sustainable, transparent glass vessels sealed with an airtight lid, preventing daily microplastic ingestion.</p>
+            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                <h3 class="font-serif text-3xl text-saviere-black mb-6">Strategic Execution</h3>
+                <p class="font-sans text-base text-gray-600 font-light leading-relaxed mb-6">Savière Group is currently in active research and development of highly compact, waterless formulations. Our focus remains on optimizing solid dosage formats, moisture stability, and infinite-recyclability packaging systems.</p>
+                <div class="border-t border-gray-100 pt-6">
+                    <p class="font-sans text-[10px] font-bold uppercase tracking-widest text-gray-400">Status: Intellectual Property Pending</p>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-saviere-crimson text-white pt-12 pb-12 px-6 mt-auto">
-        <div class="max-w-[80rem] mx-auto text-[10px] text-white/50 tracking-widest uppercase font-subheading font-bold flex justify-between">
-            <p>© 2026 Savière Group Private Limited.</p>
+    <footer class="bg-white border-t border-saviere-crimson/10 py-12 px-6 mt-auto">
+        <div class="max-w-[80rem] mx-auto flex justify-between items-center gap-6">
+            <img src="./assets/TransBGRHorizontal.png" class="h-10 w-auto object-contain">
+            <p class="text-[10px] text-gray-400 tracking-widest uppercase font-subheading">© 2026 Savière Group.</p>
         </div>
     </footer>
     <script>document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});</script>
