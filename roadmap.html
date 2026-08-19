@@ -9,69 +9,79 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
     <style>
-        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
+        body { background-color: #FDF8F9; color: #0A0A0A; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
         .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding-bottom: 4px; }
-        .nav-link:hover, .nav-link.active { color: #520A1E; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-link:hover, .nav-link.active { color: #520A1E; border-bottom: 2px solid #520A1E; }
+        .saviere-text { font-family: 'Marcellus', serif; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
-        <div class="max-w-[90rem] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+        <div class="max-w-[90rem] mx-auto px-6 h-24 flex items-center justify-between">
             <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto"></a>
-            <nav class="hidden lg:flex gap-10 font-subheading text-[11px] font-bold uppercase tracking-[0.2em]">
-                <a href="index.html" class="nav-link">Vision</a>
+            <nav class="hidden lg:flex gap-10 font-subheading text-xs font-bold uppercase tracking-[0.2em]">
+                <a href="index.html" class="nav-link">Portal</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
                 <a href="active-operations.html" class="nav-link">Operations</a>
-                <a href="roadmap.html" class="nav-link active text-saviere-crimson">Pipeline</a>
+                <a href="roadmap.html" class="nav-link active text-saviere-crimson">Roadmap</a>
             </nav>
             <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
     </header>
 
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40 transition-transform transform translate-y-full duration-300 ease-in-out">
+    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40 transition-transform transform translate-y-full duration-300 ease-in-out flex hidden">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
-        <a href="about.html" class="text-3xl font-serif text-saviere-black">The Legacy</a>
-        <a href="governance.html" class="text-3xl font-serif text-saviere-black">Governance</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-saviere-crimson font-bold">Pipeline</a>
+        <a href="index.html" class="text-3xl font-serif text-saviere-black">Portal</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-crimson font-bold">Roadmap</a>
     </div>
 
-    <main class="flex-grow pt-40 pb-24 px-6 max-w-5xl mx-auto w-full">
-        <p class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4 mt-8 reveal">Strategic Expansion</p>
-        <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-16 tracking-tight reveal">The Legacy Plan.</h1>
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-[90rem] mx-auto w-full">
+        <p class="font-subheading text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-6 reveal">Strategic Expansion</p>
+        <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-16 tracking-tight reveal">The Legacy Roadmap.</h1>
         
-        <div class="space-y-12 md:space-y-16 border-l-2 border-saviere-crimson/20 pl-8 md:pl-12 ml-4 relative reveal">
-            <div class="relative bg-white p-8 md:p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm transition-transform hover:-translate-y-2">
-                <div class="absolute -left-[41px] md:-left-[57px] top-10 w-4 h-4 md:w-5 md:h-5 rounded-full bg-saviere-crimson border-4 border-white"></div>
-                <span class="font-mono text-[10px] font-bold text-saviere-crimson uppercase tracking-widest block mb-2">Phase 1</span>
-                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">The Dots Company</h3>
-                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">Our flagship FMCG brand replacing traditional 100g plastic toothpaste tubes with innovative, zero-water Nano-HAp tablets.</p>
+        <div class="space-y-16 border-l-2 border-saviere-crimson/20 pl-8 md:pl-16 ml-4 md:ml-8 relative reveal">
+            <!-- Phase 1 -->
+            <div class="relative bg-white p-10 md:p-12 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:shadow-xl transition-shadow">
+                <div class="absolute -left-[41px] md:-left-[73px] top-12 w-4 h-4 md:w-5 md:h-5 rounded-full bg-saviere-crimson border-4 border-white"></div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-mono text-xs font-bold text-saviere-crimson uppercase tracking-widest">Phase 1 (2026 – 2028)</span>
+                </div>
+                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">FMCG Engine Initiation</h3>
+                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed mb-6">Launch The Dots Company (D2C) to address critical gaps in daily hygiene. We are replacing pollutive synthetics with deeply researched biomimetics. Centralize and secure all intellectual property within <span class="saviere-text">Savière Estates</span> (IP Vault).</p>
             </div>
             
-            <div class="relative bg-white p-8 md:p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm transition-transform hover:-translate-y-2">
-                <div class="absolute -left-[41px] md:-left-[57px] top-10 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="font-mono text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Phase 2</span>
-                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">Savière Hospitals</h3>
-                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">Future-focused, accessible healthcare spaces prioritizing wellness and community health. We are shifting focus toward proactive biological diagnostics.</p>
+            <!-- Phase 2 -->
+            <div class="relative bg-white p-10 md:p-12 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:shadow-xl transition-shadow">
+                <div class="absolute -left-[41px] md:-left-[73px] top-12 w-4 h-4 md:w-5 md:h-5 rounded-full bg-saviere-gold border-4 border-white"></div>
+                <span class="font-mono text-xs font-bold text-saviere-gold uppercase tracking-widest block mb-4">Phase 2 (2028 – 2032)</span>
+                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">Healthcare Expansion</h3>
+                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">Deploy asset-light <span class="saviere-text">Savière Hospitals</span>. With a vast majority of medical spend being purely reactive, we are shifting the paradigm toward proactive, accessible biological diagnostics and preventative clinics.</p>
             </div>
             
-            <div class="relative bg-white p-8 md:p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm transition-transform hover:-translate-y-2">
-                <div class="absolute -left-[41px] md:-left-[57px] top-10 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="font-mono text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Phase 3</span>
-                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">Eco-Conscious Living</h3>
-                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">Expanding into Savière Hotels and Vegan Cafes. Bringing asset-light, eco-conscious, and experiential living to luxury real estate.</p>
+            <!-- Phase 3 -->
+            <div class="relative bg-white p-10 md:p-12 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:shadow-xl transition-shadow">
+                <div class="absolute -left-[41px] md:-left-[73px] top-12 w-4 h-4 md:w-5 md:h-5 rounded-full bg-saviere-silver border-4 border-white"></div>
+                <span class="font-mono text-xs font-bold text-gray-400 uppercase tracking-widest block mb-4">Phase 3 (2032 – 2040)</span>
+                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">Multi-Threaded Verticals</h3>
+                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">Expand into <span class="saviere-text">Savière Hotels</span> and <span class="saviere-text">Savière Lifestyle</span> (Vegan Cafes / Horology). Redefining living and staying as an experience, fully integrated with <span class="saviere-text">Savière Green Energy</span> infrastructure.</p>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="relative bg-white p-10 md:p-12 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:shadow-xl transition-shadow">
+                <div class="absolute -left-[41px] md:-left-[73px] top-12 w-4 h-4 md:w-5 md:h-5 rounded-full bg-saviere-black border-4 border-white"></div>
+                <span class="font-mono text-xs font-bold text-saviere-black uppercase tracking-widest block mb-4">Phase 4 (2040+)</span>
+                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">Conglomerate Maturation</h3>
+                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">Scale the portfolio globally. Initiate public offerings or M&A for mature operating companies, and establish the Savière Philanthropic Foundation.</p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-saviere-crimson text-white py-12 px-6 border-t border-saviere-black/20">
+    <footer class="bg-saviere-crimson text-white py-12 px-6">
         <div class="max-w-[90rem] mx-auto flex justify-between items-center gap-6">
             <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
             <p class="text-[10px] text-white/60 tracking-widest uppercase font-bold">© 2026 Savière Group.</p>
@@ -79,15 +89,11 @@
     </footer>
 
     <script>
-        const menuBtn = document.getElementById('menu-toggle');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(0)'; });
-        closeBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(-100%)'; });
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
+        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+        const menuBtn = document.getElementById('menu-toggle'); const mobileMenu = document.getElementById('mobile-menu'); const closeBtn = document.getElementById('close-menu-btn');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); setTimeout(() => mobileMenu.style.transform = 'translateY(0)', 10); });
+        closeBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(100%)'; setTimeout(() => mobileMenu.classList.add('hidden'), 300); });
+        document.addEventListener("DOMContentLoaded", () => { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => observer.observe(el)); });
     </script>
 </body>
 </html>
