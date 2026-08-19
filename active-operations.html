@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operations | Savière Group</title>
+    <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,16 +12,15 @@
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
-        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding-bottom: 4px; }
-        .nav-link:hover, .nav-link.active { color: #520A1E; border-bottom: 2px solid #520A1E; }
-        .saviere-text { font-family: 'Marcellus', serif; }
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+        .nav-link:hover, .nav-link.active { color: #520A1E; border-color: #520A1E; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
-        <div class="max-w-[90rem] mx-auto px-6 h-24 flex items-center justify-between">
+        <div class="max-w-[90rem] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto"></a>
             <nav class="hidden lg:flex gap-10 font-subheading text-xs font-bold uppercase tracking-[0.2em]">
                 <a href="index.html" class="nav-link">Portal</a>
@@ -49,43 +49,48 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 reveal">
-            <div class="bg-white p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:border-saviere-gold transition-colors">
-                <span class="text-4xl block mb-6">♻️</span>
+            <div class="bg-white p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-saviere-crimson/10 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-saviere-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </div>
                 <h3 class="font-serif text-2xl text-saviere-black mb-4">Eliminating Plastic Vectors</h3>
                 <p class="text-base text-gray-600 font-light leading-relaxed">
-                    Over 1.5 billion non-recyclable multi-laminate tubes enter Indian landfills annually. Our impending consumer intervention removes single-use plastics entirely from the daily routine, opting for infinitely recyclable preservation infrastructure.
+                    Over 1.5 billion non-recyclable multi-laminate tubes enter Indian landfills annually. Our impending consumer intervention removes single-use plastics entirely, opting for infinitely recyclable preservation infrastructure.
                 </p>
             </div>
-            <div class="bg-white p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:border-saviere-gold transition-colors">
-                <span class="text-4xl block mb-6">💧</span>
+            <div class="bg-white p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-saviere-gold/10 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-saviere-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
                 <h3 class="font-serif text-2xl text-saviere-black mb-4">Anhydrous Compression</h3>
                 <p class="text-base text-gray-600 font-light leading-relaxed">
                     Standard formulations carry up to 50% dead-weight water. By compressing our formulations, we dramatically slash shipping carbon emissions and eliminate massive logistical water waste on a global scale.
                 </p>
             </div>
-            <div class="bg-white p-10 rounded-3xl border border-saviere-crimson/10 shadow-sm hover:border-saviere-gold transition-colors">
-                <span class="text-4xl block mb-6">🧬</span>
-                <h3 class="font-serif text-2xl text-saviere-black mb-4">Clinical Purity</h3>
-                <p class="text-base text-gray-600 font-light leading-relaxed">
+            <div class="bg-saviere-crimson text-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
+                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <h3 class="font-serif text-2xl mb-4">Clinical Purity</h3>
+                <p class="text-base text-white/90 font-light leading-relaxed">
                     With over 66 million citizens suffering from endemic groundwater fluorosis, distributing synthetic fluoride is a systemic failure of care. We are engineering advanced, non-toxic chemistry to restore biological equilibrium safely.
                 </p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-saviere-crimson text-white py-12 px-6">
+    <footer class="bg-saviere-crimson text-white py-12 px-6 mt-auto border-t border-saviere-black/20">
         <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
-            <p class="text-[10px] text-white/60 tracking-widest uppercase font-bold">© 2026 Savière Group. A For-Profit Enterprise.</p>
+            <p class="text-[10px] text-white/60 tracking-widest uppercase font-bold">© 2026 <span class="font-serif">Savière</span> Group.</p>
         </div>
     </footer>
 
     <script>
-        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
         const menuBtn = document.getElementById('menu-toggle'); const mobileMenu = document.getElementById('mobile-menu'); const closeBtn = document.getElementById('close-menu-btn');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); setTimeout(() => mobileMenu.style.transform = 'translateY(0)', 10); });
         closeBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(100%)'; setTimeout(() => mobileMenu.classList.add('hidden'), 300); });
-        document.addEventListener("DOMContentLoaded", () => { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => observer.observe(el)); });
+        document.addEventListener("DOMContentLoaded", () => { const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => obs.observe(el)); });
     </script>
 </body>
 </html>

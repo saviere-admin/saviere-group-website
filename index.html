@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savière Group | Architecting a Sustainable Biological Future</title>
-    <meta name="description" content="Savière Group Private Limited is an impact-driven, for-profit conglomerate building sustainable, asset-light businesses across wellness, green energy, and eco-conscious hospitality.">
+    <meta name="description" content="Savière Group Private Limited is an impact-driven conglomerate building sustainable, asset-light businesses across wellness, green energy, and eco-conscious hospitality.">
+    
     <meta name="theme-color" content="#ffffff">
-
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 
-    <!-- COMPLETE GOOGLE KNOWLEDGE PANEL SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Corporation",
       "name": "Savière Group",
       "legalName": "Saviere Group Private Limited",
-      "alternateName": [
-        "Saviere", "Saviere Group", "Saviere Group of Companies", "Saviere Group Limited", "Saviere Private Limited", "A Saviere Company", "Savière"
-      ],
+      "alternateName": ["Saviere", "Saviere Group", "Saviere Private Limited", "Savière"],
       "url": "https://savieregroup.com",
       "logo": "https://savieregroup.com/assets/TransBGRHorizontal.png",
       "sameAs": ["https://www.linkedin.com/company/saviere-group"],
@@ -27,9 +24,7 @@
       "founder": {
         "@type": "Person",
         "name": "Dr. Tanmai Aasrith Varma Ayenampudi",
-        "alternateName": ["Tanmai Aasrith Varma Ayenampudi", "Tanmai"],
-        "jobTitle": "Chairman & Managing Director",
-        "description": "Medical Doctor, Environmental Advocate, and Founder of Savière Group."
+        "jobTitle": "Chairman & Managing Director"
       }
     }
     </script>
@@ -52,21 +47,18 @@
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
-        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding-bottom: 4px; }
-        .nav-link:hover, .nav-link.active { color: #520A1E; border-bottom: 2px solid #520A1E; }
-        .saviere-text { font-family: 'Marcellus', serif; font-weight: normal; }
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+        .nav-link:hover, .nav-link.active { color: #520A1E; border-color: #520A1E; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        .map-point { cursor: pointer; transition: all 0.3s ease; fill: #C0C0C0; }
-        .map-point:hover, .map-point.active { fill: #520A1E; transform: scale(1.1); transform-origin: center; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
-        <div class="max-w-[90rem] mx-auto px-6 h-24 flex items-center justify-between">
+        <div class="max-w-[90rem] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto"></a>
-            <nav class="hidden lg:flex gap-10 font-subheading text-xs font-bold uppercase tracking-[0.2em]">
+            <nav class="hidden lg:flex gap-10 font-subheading text-[11px] font-bold uppercase tracking-[0.2em]">
                 <a href="index.html" class="nav-link active">Portal</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
@@ -87,86 +79,48 @@
     </div>
 
     <main class="flex-grow pt-32 pb-24">
-        <!-- Hero Section -->
         <section class="min-h-[85vh] flex flex-col justify-center px-6">
             <div class="max-w-[90rem] mx-auto w-full reveal">
-                <div class="inline-flex items-center gap-3 px-4 py-2 border border-saviere-crimson/20 rounded-full bg-white mb-8">
-                    <span class="w-2 h-2 rounded-full bg-saviere-crimson animate-pulse"></span>
-                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson">Cyberabad • Sovereign Holding Platform</p>
-                </div>
+                <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson mb-6 border border-saviere-crimson/20 rounded-full px-4 py-2 inline-block bg-white shadow-sm">Cyberabad • Sovereign Holding Platform</p>
                 <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl text-saviere-black leading-[1.05] tracking-tight mb-8 max-w-6xl">
-                    Industrial scale. <br><span class="italic text-saviere-crimson">Biological precision.</span>
+                    Industrial scale.<br><span class="italic text-saviere-crimson">Biological precision.</span>
                 </h1>
                 <p class="font-sans text-xl md:text-2xl text-gray-600 font-light leading-relaxed max-w-4xl mb-12">
-                    <span class="saviere-text font-bold">Savière Group</span> is a for-profit, impact-driven conglomerate. We engineer asset-light infrastructure across consumer wellness, green energy, and experiential hospitality.
+                    <span class="font-serif font-bold text-saviere-crimson">Savière Group</span> is a for-profit, impact-driven conglomerate. We engineer asset-light infrastructure across consumer wellness, green energy, and experiential hospitality.
                 </p>
-                
-                <div class="grid md:grid-cols-2 gap-12 max-w-5xl border-t border-saviere-crimson/10 pt-12">
-                    <div>
-                        <h3 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-3">Our Vision</h3>
-                        <p class="font-serif text-2xl text-saviere-black leading-snug">To establish a globally scalable industrial benchmark where massive profitability is structurally inseparable from absolute environmental preservation and animal welfare.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-3">Our Mission</h3>
-                        <p class="font-sans text-lg text-gray-600 font-light leading-relaxed">To utilize asset-light infrastructure to deploy accessible, preventative healthcare protocols, clean energy systems, and luxury hospitality experiences that leave a net-zero footprint.</p>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- Interactive Geographic Simulator -->
-        <section class="py-24 px-6 bg-saviere-black text-white">
-            <div class="max-w-[90rem] mx-auto reveal">
-                <div class="grid lg:grid-cols-12 gap-16 items-center">
-                    <div class="lg:col-span-5">
-                        <p class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">Macroeconomic Intelligence</p>
-                        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">The Ecological & Clinical Deficit.</h2>
-                        <p class="font-sans text-lg text-white/70 font-light leading-relaxed mb-8">
-                            Select a region to analyze the systemic failures across legacy FMCG and medical infrastructures. <span class="saviere-text">Savière</span> is engineering the interventions required to reverse these specific macro-deficits.
-                        </p>
-                        
-                        <div id="data-panel" class="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
-                            <h4 id="sim-title" class="font-serif text-2xl text-saviere-gold mb-4">Indian Subcontinent</h4>
-                            <div class="space-y-6">
-                                <div>
-                                    <span id="sim-stat-1" class="font-serif text-4xl text-white block mb-1">66 Million+</span>
-                                    <p id="sim-desc-1" class="text-xs font-subheading uppercase tracking-widest text-white/50">Citizens with Endemic Fluorosis</p>
-                                </div>
-                                <div class="border-t border-white/10 pt-6">
-                                    <span id="sim-stat-2" class="font-serif text-4xl text-white block mb-1">1.5 Billion</span>
-                                    <p id="sim-desc-2" class="text-xs font-subheading uppercase tracking-widest text-white/50">Plastic Laminate Tubes Landfilled Annually</p>
-                                </div>
-                            </div>
-                        </div>
+        <section class="py-24 px-6 bg-white border-y border-saviere-crimson/10">
+            <div class="max-w-[90rem] mx-auto">
+                <div class="text-center max-w-4xl mx-auto mb-20 reveal">
+                    <p class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">Macroeconomic Intelligence</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">The Ecological & Clinical Deficit.</h2>
+                    <p class="font-sans text-gray-600 font-light leading-relaxed text-lg">By analyzing the intersection of clinical pathology and industrial waste, <span class="font-serif">Savière</span> targets the root causes of global health decay.</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="bg-saviere-bg p-10 rounded-3xl border border-saviere-crimson/10 reveal shadow-sm hover:-translate-y-2 transition-transform duration-300">
+                        <span class="font-serif text-5xl text-saviere-crimson block mb-6">1.5B</span>
+                        <h3 class="font-subheading text-sm uppercase tracking-widest text-saviere-black font-bold mb-4 border-b border-gray-200 pb-4">Toxic Vectors</h3>
+                        <p class="text-base text-gray-600 font-light leading-relaxed mb-6">Over 1.5 billion non-recyclable multi-laminate tubes enter Indian landfills annually, leaching systemic microplastics directly into biomes.</p>
                     </div>
-                    
-                    <div class="lg:col-span-7 flex justify-center relative">
-                        <!-- Abstract World/India Map SVG -->
-                        <svg viewBox="0 0 800 400" class="w-full h-auto drop-shadow-2xl">
-                            <!-- Abstract Map representation -->
-                            <path d="M 100 100 Q 150 50 200 150 T 400 200 T 700 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5"/>
-                            <path d="M 50 250 Q 250 350 450 250 T 750 300" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5"/>
-                            
-                            <!-- Interactive Nodes -->
-                            <g class="map-point active" onclick="updateSimulator('india')" transform="translate(550, 180)">
-                                <circle r="15" fill="rgba(212,175,55,0.2)" class="animate-ping"/>
-                                <circle r="6" fill="#D4AF37"/>
-                                <text x="-15" y="-15" fill="#D4AF37" font-family="Poppins" font-size="10" font-weight="bold" letter-spacing="2">INDIA</text>
-                            </g>
-                            
-                            <g class="map-point" onclick="updateSimulator('global')" transform="translate(250, 120)">
-                                <circle r="15" fill="rgba(192,192,192,0.2)" class="animate-ping" style="animation-delay: 1s;"/>
-                                <circle r="6" fill="#C0C0C0"/>
-                                <text x="-20" y="-15" fill="#C0C0C0" font-family="Poppins" font-size="10" font-weight="bold" letter-spacing="2">GLOBAL</text>
-                            </g>
-                        </svg>
+                    <div class="bg-saviere-bg p-10 rounded-3xl border border-saviere-crimson/10 reveal shadow-sm hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 100ms;">
+                        <span class="font-serif text-5xl text-saviere-crimson block mb-6">66M+</span>
+                        <h3 class="font-subheading text-sm uppercase tracking-widest text-saviere-black font-bold mb-4 border-b border-gray-200 pb-4">Endemic Fluorosis</h3>
+                        <p class="text-base text-gray-600 font-light leading-relaxed mb-6">Clinical data reveals over 66 million citizens across India suffer from endemic groundwater fluorosis. Distributing neurotoxic fluoride is a failure of care.</p>
+                    </div>
+                    <div class="bg-saviere-bg p-10 rounded-3xl border border-saviere-crimson/30 reveal shadow-lg hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 200ms;">
+                        <span class="font-serif text-5xl text-saviere-crimson block mb-6">50%</span>
+                        <h3 class="font-subheading text-sm uppercase tracking-widest text-saviere-black font-bold mb-4 border-b border-gray-200 pb-4">Logistical Exhaustion</h3>
+                        <p class="text-base text-gray-600 font-light leading-relaxed mb-6">Standard FMCG pastes consist of 50% dead-weight water, generating massive, entirely unnecessary carbon freight emissions that accelerate climate decay.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-saviere-crimson text-white pt-20 pb-12 px-6 lg:px-12 border-t border-saviere-black/20">
+    <footer class="bg-saviere-crimson text-white pt-20 pb-12 px-6 border-t border-saviere-black/20">
         <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/10 pb-12 mb-8">
             <a href="index.html" class="inline-block"><img src="./assets/TransBGWHorizontal.png" alt="Savière Group" class="h-12 w-auto object-contain"></a>
             <div class="flex gap-8 font-subheading text-[10px] uppercase tracking-widest font-bold">
@@ -175,64 +129,17 @@
             </div>
         </div>
         <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between text-[10px] text-white/50 tracking-widest uppercase font-bold">
-            <p>© 2026 Savière Group Pvt Ltd. A For-Profit Enterprise.</p>
+            <p>© 2026 <span class="font-serif">Savière</span> Group Pvt Ltd. A For-Profit Enterprise.</p>
             <div class="flex gap-6 mt-4 md:mt-0"><span>Net-Zero</span><span>Cruelty-Free</span></div>
         </div>
     </footer>
 
     <script>
-        // Native Menu
-        const menuBtn = document.getElementById('menu-toggle');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBtn = document.getElementById('menu-toggle'); const closeBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); setTimeout(() => mobileMenu.style.transform = 'translateY(0)', 10); });
         closeBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(100%)'; setTimeout(() => mobileMenu.classList.add('hidden'), 300); });
-
-        // Native Observer
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-
-        // Simulator Logic
-        function updateSimulator(region) {
-            const title = document.getElementById('sim-title');
-            const stat1 = document.getElementById('sim-stat-1');
-            const desc1 = document.getElementById('sim-desc-1');
-            const stat2 = document.getElementById('sim-stat-2');
-            const desc2 = document.getElementById('sim-desc-2');
-            const panel = document.getElementById('data-panel');
-
-            // Quick fade effect
-            panel.style.opacity = 0;
-            
-            setTimeout(() => {
-                if(region === 'india') {
-                    title.innerText = "Indian Subcontinent";
-                    stat1.innerText = "66 Million+";
-                    desc1.innerText = "Citizens with Endemic Fluorosis";
-                    stat2.innerText = "1.5 Billion";
-                    desc2.innerText = "Plastic Tubes Landfilled Annually";
-                } else {
-                    title.innerText = "Global Overview";
-                    stat1.innerText = "20 Billion+";
-                    desc1.innerText = "Plastic Tubes Landfilled Annually";
-                    stat2.innerText = "1.5M Metric Tons";
-                    desc2.innerText = "Excess Logistical Water Freight";
-                }
-                panel.style.opacity = 1;
-            }, 300);
-
-            // Update UI Active states
-            document.querySelectorAll('.map-point').forEach(el => {
-                el.classList.remove('active');
-                el.querySelector('circle:nth-child(2)').setAttribute('fill', '#C0C0C0');
-                el.querySelector('text').setAttribute('fill', '#C0C0C0');
-            });
-            event.currentTarget.classList.add('active');
-            event.currentTarget.querySelector('circle:nth-child(2)').setAttribute('fill', '#D4AF37');
-            event.currentTarget.querySelector('text').setAttribute('fill', '#D4AF37');
-        }
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(100%)'; setTimeout(() => mobileMenu.classList.add('hidden'), 300); }));
+        document.addEventListener("DOMContentLoaded", () => { const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => obs.observe(el)); });
     </script>
 </body>
 </html>
