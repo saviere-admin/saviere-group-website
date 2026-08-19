@@ -1,124 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pipeline | Savière Group</title>
-    <meta name="theme-color" content="#821D30">
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=6">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=6">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20-Year Legacy Roadmap | Savière Group</title>
+    <meta name="description" content="The 20-year phased expansion plan of Savière Group across FMCG, preventative healthcare, clean energy grids, and experiential living.">
+    <meta name="theme-color" content="#520A1E">
+
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9',900:'#1a0509'}}}}}</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Avenir', 'sans-serif'],
+                        serif: ['"The Seasons"', 'Marcellus', 'serif'],
+                        subheading: ['Poppins', 'sans-serif']
+                    },
+                    colors: {
+                        saviere: {
+                            crimson: '#520A1E',
+                            gold: '#D4AF37',
+                            silver: '#C0C0C0',
+                            black: '#0A0A0A',
+                            bg: '#FDF8F9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body{background:#fff;color:#0d0204; cursor: none; overflow-x: hidden;} 
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #821D30; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
-        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(130,29,48,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s; }
-        @media (hover: none) and (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } }
-        
-        .glass-header{background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(130,29,48,0.05);}
-        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        body { background-color: #FDF8F9; color: #0A0A0A; }
+        .glass-header {
+            background: rgba(253, 248, 249, 0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(82, 10, 30, 0.08);
+        }
+        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after { width: 100%; }
-
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; }
-        #mobile-menu.open { transform: translateY(0); }
-
-        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.1; pointer-events: none; }
-        .content-layer { position: relative; z-index: 10; }
+        .nav-link.active::after { width: 100%; }
     </style>
 </head>
-<body class="antialiased">
-    <div class="cursor-dot"></div><div class="cursor-ring"></div>
-    <canvas id="bg-geom"></canvas>
+<body class="antialiased selection:bg-saviere-crimson selection:text-white flex flex-col min-h-screen">
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="hover-trigger relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain"></a>
-            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
-                <a href="index.html" class="nav-link hover-trigger">Overview</a>
-                <a href="governance.html" class="nav-link hover-trigger">Governance</a>
-                <a href="active-operations.html" class="nav-link hover-trigger">DOTS</a>
-                <a href="roadmap.html" class="nav-link text-corporate-primary font-bold hover-trigger">Pipeline</a>
+            <a href="index.html"><img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain"></a>
+            <nav class="hidden lg:flex items-center gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em] text-saviere-black">
+                <a href="index.html" class="nav-link hover:text-saviere-crimson">Overview</a>
+                <a href="about.html" class="nav-link hover:text-saviere-crimson">The Legacy</a>
+                <a href="governance.html" class="nav-link hover:text-saviere-crimson">Governance</a>
+                <a href="active-operations.html" class="nav-link hover:text-saviere-crimson">Operations</a>
+                <a href="roadmap.html" class="nav-link text-saviere-crimson active">Roadmap</a>
             </nav>
-            <div class="flex items-center gap-4 relative z-50">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white bg-corporate-primary rounded-full hover-trigger shadow-lg">Connect</a>
-                <button id="menu-toggle" class="md:hidden text-corporate-primary p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+            <div class="flex items-center gap-4">
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[11px] font-semibold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-opacity-90">Connect</a>
+                <button id="menu-toggle-btn" class="lg:hidden p-2 text-saviere-crimson focus:outline-none"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden flex-col fixed inset-x-0 top-20 bg-saviere-bg border-b border-saviere-crimson/20 p-8 shadow-2xl lg:hidden z-40">
+            <div class="flex flex-col gap-6 font-subheading text-sm font-semibold uppercase tracking-widest text-saviere-black">
+                <a href="index.html">Overview</a>
+                <a href="about.html">The Legacy</a>
+                <a href="governance.html">Governance</a>
+                <a href="active-operations.html">Operations</a>
+                <a href="roadmap.html" class="text-saviere-crimson">Roadmap</a>
+                <a href="mailto:connect@savieregroup.com" class="text-saviere-gold">connect@savieregroup.com</a>
             </div>
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8">
-        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-3xl font-serif text-corporate-900">Overview</a>
-        <a href="governance.html" class="text-3xl font-serif text-corporate-900">Governance</a>
-        <a href="active-operations.html" class="text-3xl font-serif text-corporate-900">The Dots Company</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-corporate-primary font-bold">Pipeline</a>
-    </div>
+    <main class="flex-grow pt-32 md:pt-44 pb-24">
+        <!-- Roadmap Header -->
+        <section class="px-6 mb-20">
+            <div class="max-w-7xl mx-auto">
+                <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4">Strategic Horizons</p>
+                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-8">
+                    The 20-Year Phased Legacy.
+                </h1>
+                <p class="text-gray-700 text-lg font-light leading-relaxed max-w-3xl">
+                    Disciplined endurance applied to enterprise building. A structured, phased roadmap scaling capital, operating assets, and institutional impact over two decades.
+                </p>
+            </div>
+        </section>
 
-    <!-- Restored Original Alignment Timeline -->
-    <main class="content-layer pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
-        <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-corporate-primary mb-4 mt-8">Strategic Expansion</p>
-        <h1 class="font-serif text-4xl sm:text-6xl md:text-8xl text-gray-900 mb-16 tracking-tight">The Legacy Plan.</h1>
-        
-        <div class="space-y-12 md:space-y-16 max-w-4xl border-l-2 border-corporate-primary/20 pl-8 md:pl-10 ml-2 md:ml-4 relative">
-            <div class="relative hover-trigger bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-sm transition-all hover:shadow-xl hover:-translate-y-1">
-                <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-corporate-primary border-4 border-white"></div>
-                <span class="text-[10px] font-bold text-corporate-primary uppercase tracking-widest">Phase 1</span>
-                <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Consumer Healthcare Engine</h3>
-                <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Scale The Dots Company, dominating the market with our anhydrous clinical protocol.</p>
+        <!-- Timeline Grid -->
+        <section class="px-6 mb-20">
+            <div class="max-w-7xl mx-auto space-y-12">
+                
+                <!-- Phase 1 -->
+                <div class="bg-white p-8 sm:p-12 border-l-4 border-saviere-crimson shadow-sm">
+                    <span class="font-mono text-xs font-bold text-saviere-crimson block mb-2">PHASE 01 • 2026 – 2028</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-saviere-black mb-4">FMCG Engine Initiation & IP Consolidation</h3>
+                    <p class="text-sm text-gray-700 font-light leading-relaxed max-w-3xl mb-4">
+                        Commercial launch of The Dots Company via high-velocity D2C channels and institutional B2B procurement. Complete consolidation of trademark portfolios within Savière Estates.
+                    </p>
+                    <div class="flex flex-wrap gap-2 font-subheading text-[10px] font-semibold uppercase tracking-wider text-saviere-crimson">
+                        <span class="border border-saviere-crimson/20 px-3 py-1 bg-saviere-bg">D2C Scaling</span>
+                        <span class="border border-saviere-crimson/20 px-3 py-1 bg-saviere-bg">Quick Commerce</span>
+                        <span class="border border-saviere-crimson/20 px-3 py-1 bg-saviere-bg">IP Vault Protection</span>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="bg-white p-8 sm:p-12 border-l-4 border-saviere-gold shadow-sm">
+                    <span class="font-mono text-xs font-bold text-saviere-gold block mb-2">PHASE 02 • 2028 – 2032</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-saviere-black mb-4">Healthcare & Preventative Expansion</h3>
+                    <p class="text-sm text-gray-700 font-light leading-relaxed max-w-3xl mb-4">
+                        Deploying the first asset-light clinical wellness hubs (Savière Hospitals) focusing on preventative diagnostics, oral-systemic preservation, and community health access.
+                    </p>
+                    <div class="flex flex-wrap gap-2 font-subheading text-[10px] font-semibold uppercase tracking-wider text-saviere-gold">
+                        <span class="border border-saviere-gold/30 px-3 py-1 bg-saviere-bg">Asset-Light Clinics</span>
+                        <span class="border border-saviere-gold/30 px-3 py-1 bg-saviere-bg">Preventative Medicine</span>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="bg-white p-8 sm:p-12 border-l-4 border-saviere-silver shadow-sm">
+                    <span class="font-mono text-xs font-bold text-saviere-silver block mb-2">PHASE 03 • 2032 – 2040</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-saviere-black mb-4">Hospitality & Clean Infrastructure</h3>
+                    <p class="text-sm text-gray-700 font-light leading-relaxed max-w-3xl mb-4">
+                        Scaling Savière Hotels through asset-right management contracts (100% plant-based culinary programs) and deploying decentralized clean-energy microgrids via Savière Green Energy.
+                    </p>
+                    <div class="flex flex-wrap gap-2 font-subheading text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+                        <span class="border border-gray-200 px-3 py-1 bg-saviere-bg">Experiential Living</span>
+                        <span class="border border-gray-200 px-3 py-1 bg-saviere-bg">Clean Tech Grids</span>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="bg-white p-8 sm:p-12 border-l-4 border-saviere-black shadow-sm">
+                    <span class="font-mono text-xs font-bold text-saviere-black block mb-2">PHASE 04 • 2040+</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-saviere-black mb-4">Institutional Maturation & Philanthropy</h3>
+                    <p class="text-sm text-gray-700 font-light leading-relaxed max-w-3xl">
+                        Global scaling of operating subsidiaries and establishing the Savière Philanthropic Foundation for long-term ecological restoration and universal healthcare subsidies.
+                    </p>
+                </div>
+
             </div>
-            <div class="relative hover-trigger bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-sm transition-all hover:shadow-xl hover:-translate-y-1">
-                <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phase 2</span>
-                <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Accessible Healthcare</h3>
-                <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Deploy Savière Hospitals, prioritizing systemic biomarker screening and proactive biological wellness.</p>
-            </div>
-            <div class="relative hover-trigger bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-sm transition-all hover:shadow-xl hover:-translate-y-1">
-                <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phase 3</span>
-                <h3 class="font-serif text-2xl md:text-4xl text-gray-900 mt-2 mb-4">Eco-Conscious Living</h3>
-                <p class="text-sm md:text-xl text-gray-600 font-light leading-relaxed">Launch Savière Hotels and Clean-Tech Energy, expanding into plant-based hospitality and green micro-grids.</p>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="bg-corporate-primary text-white pt-24 pb-12 px-6 lg:px-8 relative z-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div class="md:col-span-2 space-y-6">
-                <img src="./assets/TransBGWHorizontal.png" class="h-12 md:h-16 w-auto object-contain">
-                <p class="text-white/80 text-sm font-light max-w-xs">Apex corporate operating platform.<br>Cyberabad, India.</p>
+    <!-- Footer -->
+    <footer class="bg-saviere-crimson text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/15 pb-12">
+            <a href="index.html"><img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group" class="h-12 sm:h-16 w-auto object-contain"></a>
+            <div class="flex flex-wrap gap-8 font-subheading text-xs font-semibold uppercase tracking-widest text-white/80">
+                <a href="index.html" class="hover:text-white">Overview</a>
+                <a href="about.html" class="hover:text-white">The Legacy</a>
+                <a href="governance.html" class="hover:text-white">Governance</a>
+                <a href="active-operations.html" class="hover:text-white">Operations</a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-6 text-[10px] text-white/60 tracking-widest uppercase">
-            <p>© 2026 Savière Group. Safe for Earth.</p>
+        <div class="max-w-7xl mx-auto pt-8 text-center text-xs text-white/60">
+            © 2026 Savière Group Private Limited. Strategic Horizons. Safe for Earth.
         </div>
     </footer>
-    
+
     <script>
-        const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
-        let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2; let ringX = mouseX, ringY = mouseY;
-        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
-        function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
-        document.querySelectorAll('.hover-trigger, a').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(130,29,48,0.1)'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; }); });
-
-        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
-        document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
-
-        const canvas = document.getElementById('bg-geom'); const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        const group = new THREE.Group();
-        for(let i=0; i<5; i++){
-            const mesh = new THREE.Mesh(new THREE.BoxGeometry(4,4,4), new THREE.MeshBasicMaterial({ color: '#821D30', wireframe: true }));
-            mesh.position.set((Math.random()-0.5)*20, (Math.random()-0.5)*20, (Math.random()-0.5)*10);
-            group.add(mesh);
-        }
-        scene.add(group); camera.position.z = 25;
-
-        function animate() { requestAnimationFrame(animate); group.rotation.x += 0.002; group.rotation.y += 0.001; renderer.render(scene, camera); } animate();
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        document.getElementById('menu-toggle-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
     </script>
 </body>
 </html>
