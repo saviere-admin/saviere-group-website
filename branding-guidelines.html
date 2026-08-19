@@ -3,48 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savière Branding Guidelines</title>
-    <!-- Hidden from Search Engines -->
+    <title>Brand Architecture | Savière Group</title>
+    <!-- CRITICAL: HIDES FROM SEARCH ENGINES -->
     <meta name="robots" content="noindex, nofollow">
+    
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // STRICT PASSWORD PROTECTION
-        if (prompt("Enter Secure Corporate Access Code:") !== "7013759945") {
-            document.documentElement.innerHTML = "<div style='display:flex;height:100vh;align-items:center;justify-content:center;font-family:sans-serif;background:#520A1E;color:#fff;'><h2>Access Denied.</h2></div>";
+        // STRICT PASSWORD PROTECTION SCRIPT
+        const auth = prompt("Enter Corporate Access Code (Hint: Provided via text):");
+        if (auth !== "7013759945") {
+            document.documentElement.innerHTML = `
+                <div style="display:flex;height:100vh;background-color:#520A1E;color:white;align-items:center;justify-content:center;font-family:sans-serif;flex-direction:column;">
+                    <h1 style="font-size:3rem;margin-bottom:10px;">Access Denied.</h1>
+                    <p style="font-size:1rem;color:#D4AF37;">Unauthorized IP Logged.</p>
+                </div>`;
             window.stop();
         }
+        
         tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',silver:'#C0C0C0',black:'#0A0A0A',bg:'#FDF8F9'}}}}};
     </script>
 </head>
-<body class="bg-saviere-bg text-saviere-black antialiased p-12">
-    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3xl shadow-xl border border-saviere-crimson/20">
-        <h1 class="font-serif text-5xl text-saviere-crimson mb-2">Savière Group</h1>
-        <p class="font-subheading text-xs font-bold uppercase tracking-widest text-gray-500 mb-12">Official Brand Architecture</p>
+<body class="bg-saviere-bg text-saviere-black antialiased p-6 md:p-12">
 
-        <h2 class="font-serif text-2xl border-b border-gray-200 pb-2 mb-6">The Color Ecosystem</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <div><div class="h-24 bg-[#520A1E] rounded-xl mb-2"></div><p class="font-bold text-sm">Savière Crimson</p><p class="text-xs text-gray-500">#520A1E</p></div>
-            <div><div class="h-24 bg-[#D4AF37] rounded-xl mb-2"></div><p class="font-bold text-sm">Champagne Gold</p><p class="text-xs text-gray-500">#D4AF37</p></div>
-            <div><div class="h-24 bg-[#C0C0C0] rounded-xl mb-2"></div><p class="font-bold text-sm">Brushed Silver</p><p class="text-xs text-gray-500">#C0C0C0</p></div>
-            <div><div class="h-24 bg-[#0A0A0A] rounded-xl mb-2"></div><p class="font-bold text-sm">Onyx Black</p><p class="text-xs text-gray-500">#0A0A0A</p></div>
-            <div><div class="h-24 bg-[#FDF8F9] border rounded-xl mb-2"></div><p class="font-bold text-sm">Alabaster White</p><p class="text-xs text-gray-500">#FDF8F9</p></div>
+    <div class="max-w-5xl mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-saviere-crimson/20">
+        <div class="border-b border-gray-200 pb-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
+            <div>
+                <h1 class="font-serif text-4xl md:text-5xl text-saviere-crimson mb-2">Savière Group</h1>
+                <p class="font-subheading text-xs font-bold uppercase tracking-widest text-gray-500">Official Brand Architecture</p>
+            </div>
+            <p class="font-mono text-xs text-saviere-gold mt-4 md:mt-0 bg-saviere-gold/10 px-3 py-1 rounded">Clearance: Level 1</p>
         </div>
 
-        <h2 class="font-serif text-2xl border-b border-gray-200 pb-2 mb-6">Typography Architecture</h2>
-        <div class="space-y-8">
-            <div>
-                <p class="font-serif text-4xl mb-2">The Seasons / Marcellus</p>
-                <p class="font-sans text-sm text-gray-600"><strong>Use for:</strong> Logos, Main Document Titles, H1 Headings. (Projects luxury, warmth, and legacy).</p>
+        <h2 class="font-serif text-2xl mb-8">The Color Ecosystem</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
+            <div><div class="h-24 bg-[#520A1E] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Savière Crimson</p><p class="text-xs font-mono text-gray-500">#520A1E</p></div>
+            <div><div class="h-24 bg-[#D4AF37] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Champagne Gold</p><p class="text-xs font-mono text-gray-500">#D4AF37</p></div>
+            <div><div class="h-24 bg-[#C0C0C0] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Brushed Silver</p><p class="text-xs font-mono text-gray-500">#C0C0C0</p></div>
+            <div><div class="h-24 bg-[#0A0A0A] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Onyx Black</p><p class="text-xs font-mono text-gray-500">#0A0A0A</p></div>
+            <div><div class="h-24 bg-[#FDF8F9] border rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Alabaster</p><p class="text-xs font-mono text-gray-500">#FDF8F9</p></div>
+        </div>
+
+        <h2 class="font-serif text-2xl mb-8 border-t border-gray-100 pt-12">Typography Hierarchy</h2>
+        <div class="space-y-12">
+            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                <p class="font-serif text-4xl mb-4 text-saviere-black">Marcellus (The Seasons)</p>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Logos, Main Document Titles, `H1` and `H2` Headings.<br><strong>Psychology:</strong> Projects luxury, institutional warmth, and multi-decade legacy.</p>
             </div>
-            <div>
-                <p class="font-subheading font-bold text-2xl mb-2">Poppins</p>
-                <p class="font-sans text-sm text-gray-600"><strong>Use for:</strong> Navigation, Buttons, Eyebrow text, Sub-headings. (Geometric, friendly balance).</p>
+            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                <p class="font-subheading font-bold text-3xl mb-4 uppercase tracking-widest text-saviere-crimson">Poppins</p>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Navigation bars, Action Buttons, Eyebrow text (tiny uppercase tags above headers).<br><strong>Psychology:</strong> Geometric, modern, friendly balance to the heavy serif.</p>
             </div>
-            <div>
-                <p class="font-sans text-2xl mb-2">Avenir / Nunito Sans</p>
-                <p class="font-sans text-sm text-gray-600"><strong>Use for:</strong> Long paragraphs, Email signatures, Legal contracts. (Flawless mobile/digital readability).</p>
+            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                <p class="font-sans text-2xl mb-4 text-gray-800">Nunito Sans (Avenir Alternative)</p>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> All long-form paragraphs, email signatures, legal B2B contracts.<br><strong>Psychology:</strong> Flawless mobile/digital readability and clean data presentation.</p>
             </div>
         </div>
     </div>
