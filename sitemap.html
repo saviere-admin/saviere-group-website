@@ -5,39 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Directory | Savière Group</title>
     <meta name="theme-color" content="#ffffff">
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif'],serif:['"The Seasons"','Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Nunito Sans"', 'sans-serif'], serif: ['Marcellus', 'serif'], subheading: ['Poppins', 'sans-serif'] },
+                    colors: { saviere: { crimson: '#520A1E', gold: '#D4AF37', silver: '#C0C0C0', black: '#0A0A0A', bg: '#FDF8F9' } }
+                }
+            }
+        }
+    </script>
     <style>
-        body{background:#ffffff;color:#0A0A0A;} 
-        .glass-header{background:rgba(255,255,255,0.85);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(82, 10, 30, 0.05);}
+        body{background:#FDF8F9;color:#0A0A0A;} 
+        .glass-header{background:rgba(255,255,255,0.95);backdrop-filter:blur(24px);border-bottom:1px solid rgba(82, 10, 30, 0.05);}
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10"></a>
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest text-saviere-crimson">&larr; Portal</a>
+        <div class="max-w-[90rem] mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
+            <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain"></a>
+            <a href="index.html" class="font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-crimson">&larr; Return to Portal</a>
         </div>
     </header>
 
-    <main class="pt-32 pb-24 px-6 max-w-4xl mx-auto min-h-screen">
-        <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4">Architecture</p>
-        <h1 class="font-serif text-4xl md:text-5xl text-gray-900 mb-12">Corporate Directory.</h1>
-        <div class="space-y-6 text-xl md:text-2xl font-serif text-gray-900">
-            <a href="index.html" class="block border-b border-gray-200 pb-4 hover:text-saviere-crimson hover:pl-4 transition-all">Home Portal</a>
-            <a href="about.html" class="block border-b border-gray-200 pb-4 hover:text-saviere-crimson hover:pl-4 transition-all">The Legacy</a>
-            <a href="governance.html" class="block border-b border-gray-200 pb-4 hover:text-saviere-crimson hover:pl-4 transition-all">Governance & Ethics</a>
-            <a href="active-operations.html" class="block border-b border-gray-200 pb-4 hover:text-saviere-crimson hover:pl-4 transition-all">Phase 1 Operations</a>
-            <a href="roadmap.html" class="block border-b border-gray-200 pb-4 hover:text-saviere-crimson hover:pl-4 transition-all">Legacy Plan</a>
-            <a href="sitemap.xml" class="block border-b border-gray-200 pb-4 hover:text-saviere-crimson hover:pl-4 transition-all text-sm font-sans text-gray-400">Sitemap (XML)</a>
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-4xl mx-auto w-full">
+        <p class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4">Architecture</p>
+        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-16">Corporate Directory.</h1>
+        <div class="space-y-8 text-xl md:text-3xl font-serif text-gray-900">
+            <a href="index.html" class="block border-b border-gray-200 pb-6 hover:text-saviere-crimson hover:pl-4 transition-all">Home Portal</a>
+            <a href="about.html" class="block border-b border-gray-200 pb-6 hover:text-saviere-crimson hover:pl-4 transition-all">The Legacy</a>
+            <a href="governance.html" class="block border-b border-gray-200 pb-6 hover:text-saviere-crimson hover:pl-4 transition-all">Governance & Ethics</a>
+            <a href="active-operations.html" class="block border-b border-gray-200 pb-6 hover:text-saviere-crimson hover:pl-4 transition-all">Phase 1 Operations</a>
+            <a href="roadmap.html" class="block border-b border-gray-200 pb-6 hover:text-saviere-crimson hover:pl-4 transition-all">20-Year Legacy Plan</a>
+            <a href="sitemap.xml" class="block border-b border-gray-200 pb-6 text-gray-400 hover:text-saviere-crimson hover:pl-4 transition-all font-sans text-sm md:text-lg">Sitemap (XML)</a>
         </div>
     </main>
 
-    <footer class="bg-saviere-crimson text-white pt-10 pb-10 px-6 relative z-20">
-        <div class="max-w-7xl mx-auto text-[10px] text-white/60 tracking-widest uppercase">
+    <footer class="bg-saviere-crimson text-white py-12 px-6">
+        <div class="max-w-[90rem] mx-auto text-center text-[10px] text-white/60 tracking-widest uppercase font-bold">
             <p>© 2026 Savière Group. Safe for Earth.</p>
         </div>
     </footer>

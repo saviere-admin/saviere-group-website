@@ -13,99 +13,87 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
-        .glass-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
-        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; }
-        .nav-link:hover, .nav-link.active { color: #520A1E; }
-        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s; margin-top: 4px; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .nav-link { border-bottom: 2px solid transparent; padding-bottom: 4px; transition: all 0.3s ease; color: #0A0A0A; }
+        .nav-link:hover, .nav-link.active { color: #520A1E; border-color: #520A1E; }
         .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto"></a>
-            <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em]">
+        <div class="max-w-[90rem] mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+            <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto"></a>
+            <nav class="hidden lg:flex gap-10 font-subheading text-[11px] font-bold uppercase tracking-[0.2em]">
                 <a href="index.html" class="nav-link">Vision</a>
-                <a href="about.html" class="nav-link active text-saviere-crimson">The Legacy</a>
+                <a href="about.html" class="nav-link active">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
                 <a href="active-operations.html" class="nav-link">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
-            <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+            <a href="mailto:connect@savieregroup.com" class="hidden lg:flex px-8 py-3.5 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-saviere-black transition-colors shadow-md">Connect</a>
         </div>
     </header>
 
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40">
-        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
-        <a href="about.html" class="text-3xl font-serif text-saviere-crimson font-bold">The Legacy</a>
-        <a href="governance.html" class="text-3xl font-serif text-saviere-black">Governance</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black">Pipeline</a>
-    </div>
-
     <main class="flex-grow pt-32 pb-24 px-6">
         <div class="max-w-7xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4 reveal">The Origin Story</p>
-            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-16 reveal">
+            <p class="text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6 reveal">The Origin Story</p>
+            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-20 reveal">
                 Sa • Vi • Ère — An Era Built on Generational Resilience.
             </h1>
             
-            <div class="grid md:grid-cols-12 gap-12 max-w-6xl mb-24 reveal">
-                <div class="md:col-span-7 space-y-6 font-sans text-lg text-gray-700 font-light leading-relaxed">
+            <div class="grid lg:grid-cols-12 gap-16 mb-32 reveal">
+                <div class="lg:col-span-7 space-y-8 font-sans text-xl text-gray-700 font-light leading-relaxed">
                     <p>The name <strong>Savière</strong> is not merely a corporate identifier; it is a profound familial anchor. It synthesizes the names of the founder's parents—<strong>Satish Kumar Ayenampudi</strong> and <strong>Vijaya Kumari Ayenampudi</strong>—with the French concept of <strong>Ère</strong> (Era).</p>
-                    <p>Their enduring mentorship instilled an absolute moral imperative into this conglomerate: any enterprise built under this name must uplift human health, practice non-violence toward all sentient beings, and actively leave the planet cleaner than we inherited it. It is a tribute written in infrastructure.</p>
-                    <blockquote class="italic text-gray-500 font-serif text-lg border-l-2 border-saviere-crimson pl-4 my-8">
+                    <p>Their enduring mentorship instilled an absolute moral imperative into this conglomerate: any enterprise built under this name must uplift human health, practice non-violence toward all sentient beings, and actively leave the planet cleaner than we inherited it. It is a tribute written in permanent infrastructure.</p>
+                    <blockquote class="italic text-gray-500 font-serif text-2xl border-l-4 border-saviere-crimson pl-6 my-10">
                         "A society grows great when individuals plant trees in whose shade they shall never sit."
                     </blockquote>
                 </div>
-                <div class="md:col-span-5 bg-white p-10 border border-saviere-crimson/10 rounded-3xl shadow-sm">
-                    <h3 class="font-serif text-2xl text-saviere-crimson mb-6">Etymology</h3>
-                    <div class="space-y-6 font-subheading text-xs text-saviere-black">
-                        <div class="border-b border-gray-100 pb-4">
-                            <span class="text-saviere-gold font-bold uppercase tracking-widest block mb-1">Sa (స)</span>
-                            <span class="text-gray-600 font-normal">Satish Kumar Ayenampudi — Representing unwavering resilience, discipline, and absolute support.</span>
+                <div class="lg:col-span-5 bg-white p-12 border border-saviere-crimson/10 rounded-2xl shadow-sm">
+                    <h3 class="font-serif text-3xl text-saviere-crimson mb-8">Etymology</h3>
+                    <div class="space-y-8 font-subheading text-sm text-saviere-black">
+                        <div class="border-b border-gray-100 pb-6">
+                            <span class="text-saviere-gold font-bold uppercase tracking-widest block mb-2 text-base">Sa (స)</span>
+                            <span class="text-gray-600 font-normal leading-relaxed">Satish Kumar Ayenampudi — Representing unwavering resilience, discipline, and absolute support.</span>
                         </div>
-                        <div class="border-b border-gray-100 pb-4">
-                            <span class="text-saviere-gold font-bold uppercase tracking-widest block mb-1">Vi (వి)</span>
-                            <span class="text-gray-600 font-normal">Vijaya Kumari Ayenampudi — Representing deep compassion, nurturance, and ethical clarity.</span>
+                        <div class="border-b border-gray-100 pb-6">
+                            <span class="text-saviere-gold font-bold uppercase tracking-widest block mb-2 text-base">Vi (వి)</span>
+                            <span class="text-gray-600 font-normal leading-relaxed">Vijaya Kumari Ayenampudi — Representing deep compassion, nurturance, and ethical clarity.</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-saviere-crimson text-white rounded-3xl p-10 md:p-16 relative overflow-hidden shadow-xl reveal">
-                <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Founder Section -->
+            <div class="bg-saviere-crimson text-white rounded-3xl p-12 md:p-20 relative overflow-hidden shadow-2xl reveal">
+                <div class="relative z-10 grid md:grid-cols-2 gap-16 items-center">
                     <div>
-                        <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-3">Leadership Mandate</p>
-                        <h2 class="font-serif text-3xl sm:text-5xl mb-6 leading-tight">Medical Rigor.<br>Marathon Stamina.</h2>
-                        <div class="pt-6 border-t border-white/20">
-                            <p class="font-serif text-2xl">Dr. Tanmai Aasrith Varma Ayenampudi</p>
-                            <p class="font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-gold mt-2">Founder, Chairman & Managing Director</p>
+                        <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4">Leadership Mandate</p>
+                        <h2 class="font-serif text-4xl sm:text-5xl mb-8 leading-tight">Medical Rigor.<br>Marathon Stamina.</h2>
+                        <div class="pt-8 border-t border-white/20 mt-12">
+                            <p class="font-serif text-3xl">Dr. Tanmai Aasrith Varma Ayenampudi</p>
+                            <p class="font-subheading text-xs font-bold uppercase tracking-widest text-saviere-gold mt-3">Founder, Chairman & Managing Director</p>
                         </div>
                     </div>
-                    <div class="font-sans text-sm md:text-base text-white/80 font-light leading-relaxed space-y-6">
-                        <p>As a medical doctor by profession, Dr. Tanmai approaches broken consumer supply chains with diagnostic precision. The oral cavity is a window to systemic health; treating it with abrasive plastics and neurotoxins is a fundamental failure of medical care. We intervene where the industry has neglected the patient.</p>
-                        <p>Furthermore, drawing from the intense discipline of long-distance running, Dr. Tanmai builds the Savière Group with the pacing, endurance, and stamina required for a multi-decade, generational legacy.</p>
+                    <div class="font-sans text-base md:text-lg text-white/90 font-light leading-relaxed space-y-8">
+                        <p>As a medical doctor by profession, Dr. Tanmai approaches broken consumer supply chains with diagnostic precision. The oral cavity is a window to systemic health; treating it with abrasive plastics and neurotoxins is a fundamental failure of medical care. Savière Group intervenes where the industry has neglected the patient.</p>
+                        <p>Furthermore, drawing from the intense physical and mental discipline of long-distance running, Dr. Tanmai builds the Savière Group with the pacing, endurance, and stamina required for a multi-decade, generational legacy. This is not a sprint for quarterly margins; it is an ultramarathon for planetary survival.</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-saviere-crimson text-white py-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer class="bg-saviere-crimson text-white py-16 px-6">
+        <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
-            <p class="text-[10px] text-white/60 tracking-widest uppercase">© 2026 Savière Group. In Honor of Satish & Vijaya.</p>
+            <p class="text-[10px] text-white/60 tracking-widest uppercase font-bold">© 2026 Savière Group. In Honor of Satish & Vijaya.</p>
         </div>
     </footer>
 
     <script>
         const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-        const mobileMenu = document.getElementById('mobile-menu');
-        document.getElementById('menu-toggle').addEventListener('click', () => { mobileMenu.classList.remove('hidden'); mobileMenu.classList.add('flex'); });
-        document.getElementById('close-menu-btn').addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); });
         gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.reveal').forEach(el => { gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.2, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } }); });
     </script>
 </body>
