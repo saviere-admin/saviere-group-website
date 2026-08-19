@@ -33,6 +33,100 @@
         </div>
     </header>
 
+    <!-- Interactive Comparison Engine -->
+<section class="py-16 px-6 max-w-[90rem] mx-auto">
+    <div class="text-center mb-12">
+        <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">The Paradigm Shift</h3>
+        <p class="text-gray-600 font-light">Toggle to observe the systemic intervention.</p>
+    </div>
+
+    <!-- The Toggle Switch -->
+    <div class="flex justify-center mb-12">
+        <div class="bg-gray-100 p-1.5 rounded-full inline-flex relative shadow-inner">
+            <button id="btn-legacy" class="relative z-10 px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-colors duration-300 text-white">Legacy Industry</button>
+            <button id="btn-saviere" class="relative z-10 px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-colors duration-300 text-gray-500 hover:text-saviere-black">Savière Evolution</button>
+            <!-- The sliding background pill -->
+            <div id="toggle-pill" class="absolute top-1.5 left-1.5 w-[calc(50%-0.375rem)] h-[calc(100%-0.75rem)] bg-saviere-crimson rounded-full transition-transform duration-300 ease-in-out"></div>
+        </div>
+    </div>
+
+    <!-- The Content Cards -->
+    <div class="relative min-h-[400px] max-w-5xl mx-auto overflow-hidden">
+        
+        <!-- Legacy Content -->
+        <div id="content-legacy" class="absolute inset-0 transition-all duration-500 ease-in-out transform translate-x-0 opacity-100">
+            <div class="grid md:grid-cols-3 gap-6 h-full">
+                <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                    <span class="text-4xl block mb-4">🚱</span>
+                    <h4 class="font-serif text-xl mb-2">50% Water Waste</h4>
+                    <p class="text-sm text-gray-500 font-light">Formulations rely heavily on dead-weight water, causing massive global freight emissions.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                    <span class="text-4xl block mb-4">🏭</span>
+                    <h4 class="font-serif text-xl mb-2">1.5B Plastic Tubes</h4>
+                    <p class="text-sm text-gray-500 font-light">Multi-laminate tubes enter landfills annually, shedding microplastics for 500+ years.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                    <span class="text-4xl block mb-4">⚠️</span>
+                    <h4 class="font-serif text-xl mb-2">Systemic Toxicity</h4>
+                    <p class="text-sm text-gray-500 font-light">Synthetic fluorides and abrasive plastics enter the vascular system daily through the oral cavity.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saviere Content -->
+        <div id="content-saviere" class="absolute inset-0 transition-all duration-500 ease-in-out transform translate-x-full opacity-0">
+            <div class="grid md:grid-cols-3 gap-6 h-full">
+                <div class="bg-white p-8 rounded-3xl border border-saviere-gold/40 shadow-lg">
+                    <span class="text-4xl block mb-4">🌱</span>
+                    <h4 class="font-serif text-xl text-saviere-crimson mb-2">Anhydrous Compression</h4>
+                    <p class="text-sm text-gray-600 font-light">Water is eliminated entirely. Solid-state formulas reduce shipping footprints by over 70%.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-saviere-gold/40 shadow-lg">
+                    <span class="text-4xl block mb-4">🏛️</span>
+                    <h4 class="font-serif text-xl text-saviere-crimson mb-2">Infinite Vaults</h4>
+                    <p class="text-sm text-gray-600 font-light">Products are housed in refillable, architectural glass and aluminum, achieving absolute zero plastic waste.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-saviere-gold/40 shadow-lg">
+                    <span class="text-4xl block mb-4">🧬</span>
+                    <h4 class="font-serif text-xl text-saviere-crimson mb-2">Clinical Biomimetics</h4>
+                    <p class="text-sm text-gray-600 font-light">Doctor-formulated Nano-HAp actively remineralizes enamel without neurotoxic accumulation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const btnLegacy = document.getElementById('btn-legacy');
+    const btnSaviere = document.getElementById('btn-saviere');
+    const togglePill = document.getElementById('toggle-pill');
+    const contentLegacy = document.getElementById('content-legacy');
+    const contentSaviere = document.getElementById('content-saviere');
+
+    btnLegacy.addEventListener('click', () => {
+        togglePill.style.transform = 'translateX(0)';
+        btnLegacy.classList.replace('text-gray-500', 'text-white');
+        btnSaviere.classList.replace('text-white', 'text-gray-500');
+        
+        contentLegacy.style.transform = 'translateX(0)';
+        contentLegacy.style.opacity = '1';
+        contentSaviere.style.transform = 'translateX(100%)';
+        contentSaviere.style.opacity = '0';
+    });
+
+    btnSaviere.addEventListener('click', () => {
+        togglePill.style.transform = 'translateX(100%)';
+        btnSaviere.classList.replace('text-gray-500', 'text-white');
+        btnLegacy.classList.replace('text-white', 'text-gray-500');
+        
+        contentSaviere.style.transform = 'translateX(0)';
+        contentSaviere.style.opacity = '1';
+        contentLegacy.style.transform = 'translateX(-100%)';
+        contentLegacy.style.opacity = '0';
+    });
+</script>
+
     <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
