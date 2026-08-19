@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
@@ -16,6 +18,7 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
         #mobile-menu.open { transform: translateY(0); }
+        .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
@@ -27,13 +30,14 @@
                 <a href="index.html" class="nav-link">Vision</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link text-saviere-crimson active">Governance</a>
+                <a href="active-operations.html" class="nav-link">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
             <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8 z-40">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
         <a href="about.html" class="text-3xl font-serif text-saviere-black">The Legacy</a>
@@ -42,26 +46,26 @@
     </div>
 
     <main class="flex-grow pt-32 pb-24 px-6 max-w-7xl mx-auto">
-        <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4">Corporate Architecture</p>
-        <h1 class="font-serif text-4xl sm:text-6xl md:text-8xl text-saviere-black mb-8 tracking-tight">Governance & Ethics.</h1>
-        <p class="text-base md:text-2xl text-gray-600 font-light mb-16 max-w-4xl leading-relaxed">
+        <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4 reveal">Corporate Architecture</p>
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-8xl text-saviere-black mb-8 tracking-tight reveal">Governance & Ethics.</h1>
+        <p class="text-base md:text-2xl text-gray-600 font-light mb-16 max-w-4xl leading-relaxed reveal">
             Profitability without systemic improvement is a failure. My mandate ensures we operate with absolute environmental stewardship, biological purity, and ethical scale.
         </p>
         
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm">
+        <div class="grid md:grid-cols-2 gap-8 reveal">
+            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm transition-transform hover:-translate-y-2">
                 <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">Biological Purity</h3>
-                <p class="text-gray-600 font-light leading-relaxed">Every operation must structurally improve systemic biological health. A strict shift from reactive treatment to biological prevention.</p>
+                <p class="text-gray-600 font-light leading-relaxed">Every operation must structurally improve systemic biological health. A strict shift from reactive treatment to preventative medicine.</p>
             </div>
-            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm">
+            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm transition-transform hover:-translate-y-2">
                 <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">Vegan Mandate</h3>
-                <p class="text-gray-600 font-light leading-relaxed">An absolute ethical framework. Zero animal derivatives and strictly no animal testing across all supply chains.</p>
+                <p class="text-gray-600 font-light leading-relaxed">An absolute ethical framework. We operate entirely cruelty-free, ensuring zero animal derivatives and no animal testing across all supply chains.</p>
             </div>
-            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm">
+            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm transition-transform hover:-translate-y-2">
                 <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">Net-Zero Infrastructure</h3>
                 <p class="text-gray-600 font-light leading-relaxed">Operations must be carbon efficient and safe for the Earth. Deploying clean energy and eliminating logistical waste from inception.</p>
             </div>
-            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm">
+            <div class="p-10 border border-saviere-crimson/10 rounded-3xl bg-white shadow-sm transition-transform hover:-translate-y-2">
                 <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">Sustainable Scale</h3>
                 <p class="text-gray-600 font-light leading-relaxed">We leverage intelligent logistics, clean infrastructure, and specialized R&D to scale aggressively without ecological bloat.</p>
             </div>
@@ -76,8 +80,10 @@
     </footer>
 
     <script>
+        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
         document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
+        gsap.to(".reveal", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out" });
     </script>
 </body>
 </html>

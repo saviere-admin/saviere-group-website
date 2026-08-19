@@ -8,12 +8,10 @@
     <meta name="theme-color" content="#ffffff">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-    <!-- Exact Favicons from Repository -->
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 
-    <!-- Branding Guidelines Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,30 +20,27 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Nunito Sans"', 'Avenir', 'sans-serif'],
-                        serif: ['Marcellus', 'serif'],
-                        subheading: ['Poppins', 'sans-serif']
-                    },
+                    fontFamily: { sans: ['"Nunito Sans"', 'sans-serif'], serif: ['Marcellus', 'serif'], subheading: ['Poppins', 'sans-serif'] },
                     colors: { saviere: { crimson: '#520A1E', gold: '#D4AF37', silver: '#C0C0C0', black: '#0A0A0A', bg: '#FDF8F9' } }
                 }
             }
         }
     </script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
-        
-        /* Pristine White Frosted Glass Header */
-        .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
         .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .glass-card { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
-
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
         #mobile-menu.open { transform: translateY(0); }
+        .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased selection:bg-saviere-crimson selection:text-white flex flex-col min-h-screen">
@@ -53,17 +48,15 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center relative z-50">
-                <!-- EXACT REPO FILE: Transparent Background, Burgundy Text -->
                 <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
             </a>
-            
             <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em] text-saviere-black">
                 <a href="index.html" class="nav-link text-saviere-crimson active">Vision</a>
                 <a href="about.html" class="nav-link hover:text-saviere-crimson transition-colors">The Legacy</a>
                 <a href="governance.html" class="nav-link hover:text-saviere-crimson transition-colors">Governance</a>
+                <a href="active-operations.html" class="nav-link hover:text-saviere-crimson transition-colors">Operations</a>
                 <a href="roadmap.html" class="nav-link hover:text-saviere-crimson transition-colors">Pipeline</a>
             </nav>
-            
             <div class="flex items-center gap-4 relative z-50">
                 <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-opacity-90 transition-all rounded-full shadow-lg">Connect</a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson focus:outline-none">
@@ -78,62 +71,59 @@
         <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold mobile-link">Vision</a>
         <a href="about.html" class="text-3xl font-serif text-saviere-black mobile-link">The Legacy</a>
         <a href="governance.html" class="text-3xl font-serif text-saviere-black mobile-link">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-saviere-black mobile-link">Operations</a>
         <a href="roadmap.html" class="text-3xl font-serif text-saviere-black mobile-link">Pipeline</a>
     </div>
 
     <main class="flex-grow pt-32 pb-24">
-        <!-- Hero Section -->
-        <section class="min-h-[80vh] flex flex-col justify-center px-6 relative bg-transparent">
-            <div class="max-w-7xl mx-auto w-full text-center">
-                <div class="inline-flex items-center gap-3 px-3 py-1.5 border border-saviere-crimson/20 rounded-full bg-white mb-6">
-                    <span class="w-2 h-2 rounded-full bg-saviere-crimson animate-pulse"></span>
-                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson">Cyberabad • Apex Holding Entity</p>
-                </div>
-                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] text-saviere-black leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
-                    Architecting clinical scale & sustainable infrastructure.
+        <section class="min-h-[85vh] flex flex-col justify-center px-6 relative">
+            <div class="max-w-7xl mx-auto w-full text-center reveal">
+                <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson mb-6">Cyberabad • Apex Holding Platform</p>
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] text-saviere-black leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
+                    Restoring biological equilibrium through <span class="italic text-saviere-crimson">clinical scale</span>.
                 </h1>
-                <p class="font-sans text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
-                    Savière Group is a forward-thinking operating platform. We deploy asset-light geometries across accessible healthcare, clean energy, and zero-waste consumer goods.
+                <p class="font-sans text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto mb-10">
+                    Profitability without planetary improvement is a profound institutional failure. Savière Group is an asset-light operating platform engineered to systematically resolve the most critical health and ecological crises of our era.
                 </p>
+                <blockquote class="italic text-gray-500 font-serif text-lg">"The health of the soil, plant, animal, and man is one and indivisible."</blockquote>
             </div>
         </section>
 
         <!-- The Crisis Matrix -->
         <section class="py-24 px-6 bg-white border-y border-saviere-crimson/10">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-4xl mx-auto mb-16">
+                <div class="text-center max-w-4xl mx-auto mb-16 reveal">
                     <p class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">The Systemic Reset</p>
-                    <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">Addressing global market failures through medical precision.</h2>
+                    <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">Why the earth requires a medical intervention.</h2>
+                    <p class="font-sans text-gray-600 font-light leading-relaxed">We refuse to inherit an ecosystem built on depletion. By analyzing the intersection of clinical pathology and industrial waste, we target the root causes of global health decay.</p>
                 </div>
                 
                 <div class="grid lg:grid-cols-3 gap-8">
-                    <div class="glass-card p-10">
-                        <span class="font-mono text-xs font-bold text-gray-400 block mb-4">01 — The Plastic Crisis</span>
-                        <h3 class="font-serif text-2xl text-saviere-black mb-4">Billions of Single-Use Tubes</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed">The global FMCG industry dumps massive quantities of non-recyclable laminate tubes into landfills annually, generating an entirely unnecessary carbon footprint.</p>
+                    <div class="glass-card p-10 reveal">
+                        <span class="font-serif text-4xl text-saviere-crimson block mb-2">1.5 Billion</span>
+                        <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Toxic Vectors</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">The FMCG sector injects over 1.5 billion non-recyclable multi-laminate tubes into Indian landfills annually. These take centuries to degrade, leaching systemic microplastics directly into terrestrial and marine biomes.</p>
                     </div>
-                    <div class="glass-card p-10">
-                        <span class="font-mono text-xs font-bold text-gray-400 block mb-4">02 — The Biological Threat</span>
-                        <h3 class="font-serif text-2xl text-saviere-black mb-4">Systemic Toxin Ingestion</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed">The oral cavity is the primary gateway to the vascular system. Daily ingestion of microplastics from degraded tubes represents a profound failure of preventative medicine.</p>
+                    <div class="glass-card p-10 reveal" style="transition-delay: 100ms;">
+                        <span class="font-serif text-4xl text-saviere-crimson block mb-2">66 Million</span>
+                        <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Endemic Fluorosis</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Over 66 million citizens across India suffer from endemic groundwater fluorosis. Continuing to distribute neurotoxic synthetic fluoride pastes into these vulnerable demographics represents a catastrophic failure of care.</p>
                     </div>
-                    <div class="glass-card p-10 border-saviere-crimson/30 shadow-xl">
-                        <span class="font-mono text-xs font-bold text-saviere-crimson block mb-4">03 — The Medical Mandate</span>
-                        <h3 class="font-serif text-2xl text-saviere-black mb-4">A Zero-Waste Future</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed">Led by Medical Doctors, our upcoming phase-one subsidiary is engineered to eliminate unnecessary water weight and strictly prohibit plastic packaging.</p>
+                    <div class="glass-card p-10 border-saviere-crimson/30 shadow-xl reveal" style="transition-delay: 200ms;">
+                        <span class="font-serif text-4xl text-saviere-crimson block mb-2">50% Waste</span>
+                        <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Logistical Exhaustion</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Traditional consumer pastes consist of up to 50% dead-weight water. In a world facing profound water scarcity, this generates massive, entirely unnecessary carbon freight emissions.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Deep Crimson Footer -->
     <footer class="bg-saviere-crimson text-white pt-20 pb-10 px-6 relative z-20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 text-center md:text-left">
             <div class="space-y-6">
                 <a href="index.html" class="inline-block">
-                    <!-- EXACT REPO FILE: Transparent Background, White Text -->
-                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-14 md:h-20 w-auto object-contain mx-auto md:mx-0 drop-shadow-md">
+                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-12 md:h-16 w-auto object-contain mx-auto md:mx-0 drop-shadow-md">
                 </a>
                 <p class="text-white/80 text-sm leading-relaxed max-w-sm font-light mx-auto md:mx-0">
                     Savière Group Private Limited.<br>Cyberabad, Hyderabad, Telangana, India.
@@ -150,13 +140,11 @@
     </footer>
 
     <script>
+        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
         document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
-        
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('navbar');
-            if(window.scrollY > 50) { header.classList.add('shadow-sm'); } else { header.classList.remove('shadow-sm'); }
-        });
+        gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.reveal').forEach(el => el.style.visibility = 'visible'); gsap.to(".reveal", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.1 });
+        window.addEventListener('scroll', () => { const header = document.getElementById('navbar'); if(window.scrollY > 50) { header.classList.add('shadow-sm'); } else { header.classList.remove('shadow-sm'); } });
     </script>
 </body>
 </html>

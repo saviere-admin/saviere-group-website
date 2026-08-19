@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
@@ -16,6 +18,7 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
         #mobile-menu.open { transform: translateY(0); }
+        .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
@@ -27,13 +30,14 @@
                 <a href="index.html" class="nav-link">Vision</a>
                 <a href="about.html" class="nav-link text-saviere-crimson active">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
+                <a href="active-operations.html" class="nav-link">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
             <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8 z-40">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
         <a href="about.html" class="text-3xl font-serif text-saviere-crimson font-bold">The Legacy</a>
@@ -43,17 +47,17 @@
 
     <main class="flex-grow pt-32 pb-24 px-6">
         <div class="max-w-7xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4">The Origin Story</p>
-            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-16">
+            <p class="text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4 reveal">The Origin Story</p>
+            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-16 reveal">
                 Sa • Vi • Ère — An Era Built on Generational Resilience.
             </h1>
             
             <div class="grid md:grid-cols-12 gap-12 max-w-6xl mb-24">
-                <div class="md:col-span-7 space-y-6 font-sans text-lg text-gray-700 font-light leading-relaxed">
-                    <p>The name <strong>Savière</strong> is a profound familial anchor. It synthesizes the names of the founder's parents—<strong>Satish Kumar Ayenampudi</strong> and <strong>Vijaya Kumari Ayenampudi</strong>—with the French concept of <strong>Ère</strong> (Era).</p>
+                <div class="md:col-span-7 space-y-6 font-sans text-lg text-gray-700 font-light leading-relaxed reveal">
+                    <p>The name <strong>Savière</strong> is not merely a corporate identifier; it is a profound familial anchor. It synthesizes the names of the founder's parents—<strong>Satish Kumar Ayenampudi</strong> and <strong>Vijaya Kumari Ayenampudi</strong>—with the French concept of <strong>Ère</strong> (Era).</p>
                     <p>Their enduring mentorship instilled an absolute moral imperative: any enterprise built under this name must uplift human health, practice non-violence toward all sentient beings, and actively leave the planet cleaner than we inherited it.</p>
                 </div>
-                <div class="md:col-span-5 bg-white p-10 border border-saviere-crimson/10 rounded-3xl shadow-sm">
+                <div class="md:col-span-5 bg-white p-10 border border-saviere-crimson/10 rounded-3xl shadow-sm reveal">
                     <h3 class="font-serif text-2xl text-saviere-crimson mb-6">Etymology</h3>
                     <div class="space-y-6 font-subheading text-xs text-saviere-black">
                         <div class="border-b border-gray-100 pb-4">
@@ -67,19 +71,39 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Founder Section -->
+            <div class="bg-saviere-crimson text-white rounded-3xl p-10 md:p-16 relative overflow-hidden reveal">
+                <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-3">Leadership Mandate</p>
+                        <h2 class="font-serif text-3xl sm:text-5xl mb-6 leading-tight">Medical Rigor.<br>Marathon Stamina.</h2>
+                        <div class="pt-6 border-t border-white/20">
+                            <p class="font-serif text-2xl">Dr. Tanmai Aasrith Varma Ayenampudi</p>
+                            <p class="font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-gold mt-2">Founder, Chairman & Managing Director</p>
+                        </div>
+                    </div>
+                    <div class="font-sans text-sm md:text-base text-white/80 font-light leading-relaxed space-y-6">
+                        <p>As a medical doctor by profession, Dr. Tanmai approaches broken consumer supply chains with diagnostic precision. The oral cavity is a window to systemic health; treating it with abrasive plastics and neurotoxins is a fundamental failure of care.</p>
+                        <p>Furthermore, drawing from the intense discipline of long-distance running, Dr. Tanmai builds the Savière Group with the pacing and stamina required for a multi-decade, generational legacy.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="bg-saviere-crimson text-white py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
-            <p class="text-[10px] text-white/60 tracking-widest uppercase">© 2026 Savière Group.</p>
+            <p class="text-[10px] text-white/60 tracking-widest uppercase">© 2026 Savière Group. Safe for Earth.</p>
         </div>
     </footer>
 
     <script>
+        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
         document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
+        gsap.to(".reveal", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out" });
     </script>
 </body>
 </html>
