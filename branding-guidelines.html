@@ -8,10 +8,9 @@
     <meta name="robots" content="noindex, nofollow">
     
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // STRICT PASSWORD PROTECTION SCRIPT
         const auth = prompt("Enter Corporate Access Code:");
         if (auth !== "7013759945") {
             document.documentElement.innerHTML = `
@@ -25,10 +24,13 @@
     </script>
 </head>
 <body class="bg-saviere-bg text-saviere-black antialiased p-6 md:p-12">
-    <div class="max-w-[90rem] mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-saviere-crimson/20">
-        <div class="border-b border-gray-200 pb-6 mb-12">
-            <h1 class="font-serif text-4xl md:text-5xl text-saviere-crimson mb-2"><span class="font-serif">Savière</span> Group</h1>
-            <p class="font-subheading text-xs font-bold uppercase tracking-widest text-gray-500">Official Brand Architecture & Asset Vault</p>
+    <div class="max-w-6xl mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-saviere-crimson/20">
+        <div class="border-b border-gray-200 pb-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
+            <div>
+                <h1 class="font-serif text-4xl md:text-5xl text-saviere-crimson mb-2"><span class="font-serif">Savière</span> Group</h1>
+                <p class="font-subheading text-xs font-bold uppercase tracking-widest text-gray-500">Official Brand Architecture & Asset Vault</p>
+            </div>
+            <p class="font-mono text-xs text-saviere-gold mt-4 md:mt-0 bg-saviere-gold/10 px-3 py-1 rounded">Clearance: Level 1</p>
         </div>
 
         <h2 class="font-serif text-2xl mb-8">The Color Ecosystem</h2>
@@ -40,51 +42,33 @@
             <div><div class="h-24 bg-[#FDF8F9] border rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Alabaster</p><p class="text-xs font-mono text-gray-500">#FDF8F9</p></div>
         </div>
 
-        <h2 class="font-serif text-2xl mb-8 border-t border-gray-100 pt-12">Typography Hierarchy</h2>
-        <div class="space-y-8 mb-16">
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                <p class="font-serif text-4xl mb-4 text-saviere-black">Marcellus (The Seasons)</p>
-                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Logos, Main Document Titles, Headings, and the word <span class="font-serif">Savière</span> globally.<br><strong>Psychology:</strong> Projects luxury, institutional warmth, and multi-decade legacy.</p>
-            </div>
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                <p class="font-subheading font-bold text-3xl mb-4 uppercase tracking-widest text-saviere-crimson">Poppins</p>
-                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Navigation bars, Action Buttons, Eyebrow text.<br><strong>Psychology:</strong> Geometric, modern, friendly balance to the heavy serif.</p>
-            </div>
-        </div>
-
         <h2 class="font-serif text-2xl mb-8 border-t border-gray-100 pt-12">Asset Library & Logos</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-gray-500">TransBGRHorizontal.png</p>
-                <img src="./assets/TransBGRHorizontal.png" class="h-10 object-contain w-full">
+                <p class="font-subheading text-xs font-bold uppercase mb-4 text-gray-500">TransBGRHorizontal.png (Primary Header)</p>
+                <img src="./assets/TransBGRHorizontal.png" alt="Header Logo" class="h-12 object-contain bg-white p-2 rounded">
+                <p class="text-xs text-gray-500 mt-4"><a href="./assets/TransBGRHorizontal.png" download class="text-saviere-crimson underline">Download</a></p>
             </div>
             <div class="bg-saviere-crimson p-6 rounded-2xl border border-saviere-crimson">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-white/70">TransBGWHorizontal.png</p>
-                <img src="./assets/TransBGWHorizontal.png" class="h-10 object-contain w-full">
+                <p class="font-subheading text-xs font-bold uppercase mb-4 text-white/70">TransBGWHorizontal.png (Footer / Dark)</p>
+                <img src="./assets/TransBGWHorizontal.png" alt="Footer Logo" class="h-12 object-contain bg-saviere-black/20 p-2 rounded">
+                <p class="text-xs text-white/50 mt-4"><a href="./assets/TransBGWHorizontal.png" download class="text-saviere-gold underline">Download</a></p>
             </div>
             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-gray-500">SGLFullWhiteBGRHorizontal.png</p>
-                <img src="./assets/SGLFullWhiteBGRHorizontal.png" class="h-10 object-contain w-full">
+                <p class="font-subheading text-xs font-bold uppercase mb-4 text-gray-500">TransBGWSwan.png (Crest Icon)</p>
+                <img src="./assets/TransBGWSwan.png" alt="Swan Crest" class="h-16 object-contain bg-white p-2 rounded">
+            </div>
+            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                <p class="font-subheading text-xs font-bold uppercase mb-4 text-gray-500">SGLFullWhiteBGRHorizontal.png</p>
+                <img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Full Width Logo" class="h-12 object-contain bg-saviere-crimson p-2 rounded">
             </div>
             <div class="bg-saviere-crimson p-6 rounded-2xl border border-saviere-crimson">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-white/70">SGLFullTrasnBGRHorizontal.png</p>
-                <img src="./assets/SGLFullTrasnBGRHorizontal.png" class="h-10 object-contain w-full bg-white/90 p-2 rounded">
+                <p class="font-subheading text-xs font-bold uppercase mb-4 text-white/70">SGLFullTrasnBGRHorizontal.png</p>
+                <img src="./assets/SGLFullTrasnBGRHorizontal.png" alt="Full Width Logo" class="h-12 object-contain bg-white/90 p-2 rounded">
             </div>
             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-gray-500">RedBGWHorizontal.png</p>
-                <img src="./assets/RedBGWHorizontal.png" class="h-10 object-contain w-full rounded">
-            </div>
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-gray-500">WhiteBGRHorizontal.png</p>
-                <img src="./assets/WhiteBGRHorizontal.png" class="h-10 object-contain w-full rounded border">
-            </div>
-            <div class="bg-saviere-crimson p-6 rounded-2xl border border-saviere-crimson">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-white/70">TransBGWSwan.png</p>
-                <img src="./assets/TransBGWSwan.png" class="h-16 object-contain w-full">
-            </div>
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-gray-500">TransBGWSwan (2).png</p>
-                <img src="./assets/TransBGWSwan (2).png" class="h-16 object-contain w-full bg-saviere-crimson/10 rounded p-2">
+                <p class="font-subheading text-xs font-bold uppercase mb-4 text-gray-500">RedBGWHorizontal.png</p>
+                <img src="./assets/RedBGWHorizontal.png" alt="Full Width Logo" class="h-12 object-contain bg-white p-2 rounded">
             </div>
         </div>
 
