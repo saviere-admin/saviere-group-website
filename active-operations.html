@@ -2,52 +2,100 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Operations | Savière Group</title>
+    
+    <meta name="theme-color" content="#520A1E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
-        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
-        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.15); z-index: 100; transition: all 0.3s ease; padding: 0.6rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; cursor: none; }
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #520A1E; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
+        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(82,10,30,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
+        @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } body { cursor: auto; } }
+
+        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.08); z-index: 90; transition: all 0.3s ease; padding: 0.6rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; background: rgba(253, 248, 249, 0.95); backdrop-filter: blur(30px); }
+        #mobile-menu.open { transform: translateY(0); }
+
+        .nav-link { position: relative; color: #0A0A0A; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #D4AF37; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .glass-card { background: #FFFFFF; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 1.5rem; padding: 3rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .glass-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
+
+        .glass-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 1.5rem; padding: 3rem; box-shadow: 0 15px 35px -10px rgba(82, 10, 30, 0.05); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-card:hover { transform: translateY(-6px); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 20px 45px -5px rgba(82, 10, 30, 0.1); background: rgba(255, 255, 255, 0.8); }
+
+        /* VW Scaling for Mobile visibility */
+        .scale-shape { width: 12vw; height: 12vw; min-width: 60px; min-height: 60px; border-radius: 50%; background: linear-gradient(135deg, #D4AF37, #520A1E); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2), 0 15px 30px rgba(82,10,30,0.3); }
+        @media (max-width: 768px) { .scale-shape { width: 25vw; height: 25vw; } }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
     
-    <header class="pill-header">
-        <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain"></a>
+    <div class="cursor-dot"></div><div class="cursor-ring"></div>
+
+    <header class="pill-header" id="navbar">
+        <a href="index.html" class="flex-shrink-0 hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain"></a>
         <nav class="hidden lg:flex gap-8 items-center">
-            <a href="index.html" class="nav-link">Group</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="governance.html" class="nav-link">Governance</a>
-            <a href="active-operations.html" class="nav-link active">Operations</a>
-            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="index.html" class="nav-link hover-trigger">Group</a>
+            <a href="about.html" class="nav-link hover-trigger">About</a>
+            <a href="governance.html" class="nav-link hover-trigger">Governance</a>
+            <a href="active-operations.html" class="nav-link active font-bold hover-trigger">Operations</a>
+            <a href="roadmap.html" class="nav-link hover-trigger">Roadmap</a>
         </nav>
-        <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-block font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-bg bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-gold hover:text-saviere-black transition-colors shadow-sm">Connect</a>
+        <div class="flex items-center gap-4">
+            <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-flex font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-bg bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-gold hover:text-saviere-black transition-colors shadow-sm hover-trigger">Connect</a>
+            <button id="menu-btn" class="lg:hidden text-saviere-crimson p-2 focus:outline-none hover-trigger z-50">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
     </header>
 
+    <div id="mobile-menu" class="fixed inset-0 flex flex-col justify-center items-center gap-8">
+        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson hover-trigger">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <a href="index.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Group</a>
+        <a href="about.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">About</a>
+        <a href="governance.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-saviere-crimson font-bold hover-trigger">Operations</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Roadmap</a>
+        <a href="mailto:connect@savieregroup.com" class="mt-8 font-subheading text-xs font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-4 rounded-full hover-trigger">Contact Us</a>
+    </div>
+
     <main class="flex-grow pt-48 pb-0 max-w-full w-full">
-        <section class="reveal mb-20 text-center px-6 max-w-[80rem] mx-auto">
-            <h1 class="font-serif text-5xl md:text-7xl text-saviere-crimson mb-6 tracking-tight">Tooth Dots</h1>
-            <span class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson bg-saviere-gold/20 border border-saviere-gold px-5 py-2.5 rounded-full inline-block mb-8">Under Development</span>
+        <section class="reveal mb-20 text-center px-6 max-w-[80rem] mx-auto relative">
+            <div class="scale-shape absolute -top-10 left-10 opacity-20"></div>
+            <div class="scale-shape absolute top-20 right-10 opacity-40 transform scale-75"></div>
+            
+            <h1 class="font-serif text-5xl md:text-7xl text-saviere-crimson mb-6 tracking-tight relative z-10">Tooth Dots</h1>
+            <span class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson bg-saviere-gold/20 border border-saviere-gold/50 px-5 py-2.5 rounded-full inline-block mb-8 relative z-10 backdrop-blur-md">Under Development</span>
         </section>
 
-        <section class="grid md:grid-cols-2 gap-10 md:gap-16 reveal border-t border-saviere-crimson/20 pt-16 px-6 max-w-[80rem] mx-auto mb-32">
+        <section class="grid md:grid-cols-2 gap-10 md:gap-16 reveal border-t border-saviere-crimson/15 pt-16 px-6 max-w-[80rem] mx-auto mb-32 relative z-10">
             <div class="flex flex-col justify-center">
                 <h3 class="font-serif text-3xl md:text-4xl text-saviere-crimson mb-6">The Context</h3>
                 <p class="font-sans text-base md:text-lg text-saviere-black/80 font-light leading-relaxed mb-8">
                     Our current investigation focuses on the packaging inefficiencies, moisture stability, and logistical footprint of conventional oral care. We are examining how transitioning away from liquid-heavy formats could potentially streamline logistics and reduce consumer material waste.
                 </p>
-                <div class="glass-card !p-6 md:!p-8">
+                <div class="glass-card hover-trigger !p-6 md:!p-8">
                     <p class="font-serif text-xl text-saviere-crimson mb-4">Areas of Investigation:</p>
                     <ul class="space-y-3 font-sans text-sm md:text-base text-saviere-black/80 font-light">
                         <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> Waterless formulation stability</li>
@@ -58,8 +106,8 @@
                 </div>
             </div>
             
-            <div class="bg-saviere-crimson p-10 rounded-[2rem] shadow-2xl relative overflow-hidden text-saviere-bg">
-                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-saviere-gold/10 rounded-full blur-3xl"></div>
+            <div class="bg-saviere-crimson p-10 md:p-16 rounded-[2rem] shadow-2xl relative overflow-hidden text-saviere-bg hover-trigger">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-saviere-gold/15 rounded-full blur-3xl"></div>
                 <h3 class="font-serif text-3xl md:text-4xl text-saviere-gold mb-10 relative z-10">Development Process</h3>
                 <div class="space-y-10 relative z-10">
                     <div class="flex items-start gap-5">
@@ -90,11 +138,24 @@
 
     <footer class="bg-saviere-bg border-t border-saviere-crimson/20 pt-16 pb-12 px-6 mt-auto">
         <div class="max-w-[80rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain opacity-90">
+            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain opacity-90 hover-trigger">
             <p class="text-[10px] text-saviere-black/40 tracking-widest uppercase font-subheading">© 2026 Savière Group.</p>
         </div>
     </footer>
     <script>
+        const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2; let ringX = mouseX, ringY = mouseY;
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
+        function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(212,175,55,0.1)'; ring.style.borderColor = '#D4AF37'; });
+            el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.5)'; });
+        });
+
+        const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); });
+        closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
+
         document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});
     </script>
 </body>
