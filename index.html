@@ -18,118 +18,166 @@
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         
-        /* Frosted Glass Floating Header referencing image_2b3a87.jpg */
-        .pill-header {
-            position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
-            width: calc(100% - 2rem); max-width: 80rem;
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 9999px;
-            box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.1);
-            z-index: 100; transition: all 0.3s ease; padding: 0.6rem 2rem;
-            display: flex; align-items: center; justify-content: space-between;
+        /* Luxurious Frosted Glass Utilities */
+        .glass-header {
+            background: rgba(253, 248, 249, 0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 4px 30px rgba(82, 10, 30, 0.03);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 1.5rem; padding: 3rem; 
+            box-shadow: 0 8px 32px 0 rgba(82, 10, 30, 0.04);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px); border-color: rgba(212, 175, 55, 0.5); /* Gold tint on hover */
+            box-shadow: 0 15px 40px -5px rgba(82, 10, 30, 0.08); background: rgba(255, 255, 255, 0.6);
+        }
+        .glass-menu {
+            background: rgba(253, 248, 249, 0.9); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
         }
         
+        /* Typography Highlights */
         .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         
-        .glass-card { background: #FFFFFF; border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 1.5rem; padding: 3rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .glass-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen relative">
 
-    <header class="pill-header">
-        <a href="index.html" class="flex-shrink-0">
-            <!-- Referencing image_2b4cd0.png vault -->
-            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain">
+    <!-- Frosted Glass Pill Header -->
+    <header class="fixed top-4 md:top-6 left-50 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[80rem] glass-header rounded-full z-50 flex items-center justify-between px-6 py-3 md:px-8 md:py-4 transition-all">
+        <a href="index.html" class="flex-shrink-0 z-50">
+            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-7 md:h-9 w-auto object-contain">
         </a>
+        
+        <!-- Desktop Nav -->
         <nav class="hidden lg:flex gap-8 items-center">
-            <a href="index.html" class="nav-link active">Vision</a>
-            <a href="about.html" class="nav-link">Legacy</a>
+            <a href="index.html" class="nav-link active">Group</a>
+            <a href="about.html" class="nav-link">About</a>
             <a href="governance.html" class="nav-link">Governance</a>
             <a href="active-operations.html" class="nav-link">Operations</a>
             <a href="roadmap.html" class="nav-link">Roadmap</a>
         </nav>
-        <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-block font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-black transition-colors shadow-sm">Connect</a>
+        
+        <div class="hidden lg:block">
+            <a href="mailto:connect@savieregroup.com" class="font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-7 py-3 rounded-full hover:bg-saviere-black transition-colors shadow-sm">Connect</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="lg:hidden z-50 p-2 text-saviere-black focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
     </header>
 
-    <main class="flex-grow pt-40 pb-24 px-6 max-w-[80rem] mx-auto w-full">
-        <!-- Hero -->
-        <section class="min-h-[65vh] flex flex-col justify-center reveal text-center border-b border-saviere-crimson/10 pb-20">
-            <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Secunderabad • Apex Holding Entity</p>
+    <!-- Frosted Glass Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 glass-menu z-40 transform translate-x-full opacity-0 transition-all duration-500 ease-in-out flex flex-col justify-center items-center">
+        <nav class="flex flex-col gap-8 items-center text-center">
+            <a href="index.html" class="font-serif text-3xl text-saviere-crimson">Group</a>
+            <a href="about.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">About</a>
+            <a href="governance.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">Governance</a>
+            <a href="active-operations.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">Operations</a>
+            <a href="roadmap.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">Roadmap</a>
+            <a href="mailto:connect@savieregroup.com" class="mt-8 font-subheading text-xs font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-4 rounded-full">Contact Us</a>
+        </nav>
+    </div>
+
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-[80rem] mx-auto w-full relative z-10">
+        <!-- Minimalist Hero -->
+        <section class="min-h-[65vh] flex flex-col justify-center reveal text-center pb-20 relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent -z-10 rounded-[3rem]"></div>
+            <p class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Emerging Enterprise</p>
             <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-saviere-black leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
-                Building enduring businesses for a changing world.
+                Building enduring businesses.
             </h1>
-            <p class="font-sans text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-4xl mx-auto mb-12">
-                <span class="font-serif">Savière</span> Group is a diversified enterprise architecting asset-light, highly scalable infrastructure across consumer products, real estate, and energy. We deploy strategic capital to solve systemic industrial inefficiencies.
+            <p class="font-sans text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto mb-12">
+                <span class="font-serif text-saviere-black">Savière</span> Group is an emerging Indian diversified enterprise currently focusing on sustainable consumer products, deliberately built for long-term scale across adjacent industries.
             </p>
         </section>
 
-        <!-- Vision & Mission -->
-        <section class="py-24 reveal grid md:grid-cols-2 gap-16 border-b border-saviere-crimson/10">
-            <div class="space-y-6">
-                <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">The Corporate Vision</h2>
-                <h3 class="font-serif text-4xl text-saviere-black leading-tight">To establish a globally scalable industrial benchmark.</h3>
+        <!-- Frosted Operations & Strategy -->
+        <section class="py-24 reveal grid md:grid-cols-2 gap-10 md:gap-16">
+            <div class="glass-card flex flex-col justify-center">
+                <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">Current Focus</h2>
+                <h3 class="font-serif text-4xl text-saviere-black leading-tight mb-6">Tooth Dots</h3>
                 <p class="font-sans text-gray-600 font-light leading-relaxed text-lg">
-                    We envision a future where aggressive capital expansion and massive business scaling are structurally inseparable from absolute ecological preservation and human welfare. True industrial power is measured by the inefficiencies it eliminates.
+                    Our first foundational business initiative investigates waterless oral care to address packaging inefficiencies, logistical weight, and moisture stability in daily consumer routines. Currently in active product development.
                 </p>
             </div>
-            <div class="space-y-6 bg-white p-12 rounded-3xl border border-gray-100 shadow-sm">
-                <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">The Mission Statement</h2>
+            <div class="flex flex-col justify-center p-8 md:p-12">
+                <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">Strategic Ambition</h2>
                 <p class="font-sans text-gray-700 font-light leading-relaxed text-lg">
-                    To architect and rapidly scale asset-light operating models—across consumer goods, clean energy, and eco-conscious hospitality—that maximize long-term shareholder value while actively engineering a zero-waste, carbon-efficient economy.
+                    While our immediate focus remains rigorously narrowed on completing R&D and scaling our first consumer product line, the group's long-term architecture is designed to eventually explore adjacent sectors where disciplined capital and engineering provide a genuine market advantage.
                 </p>
             </div>
         </section>
 
-        <!-- Macro Imperatives -->
+        <!-- Frosted Principles -->
         <section class="py-24 reveal">
             <div class="text-center max-w-4xl mx-auto mb-16">
-                <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">Systemic Industrial Crises.</h2>
-                <p class="font-sans text-gray-600 font-light leading-relaxed text-lg">We identify massive, legacy supply-chain failures and deploy targeted corporate architecture to monopolize the solution.</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">How We Build.</h2>
             </div>
-            
             <div class="grid lg:grid-cols-3 gap-8">
                 <div class="glass-card">
-                    <span class="font-serif text-4xl text-saviere-crimson block mb-2">1.5 Billion</span>
-                    <h3 class="font-subheading text-[10px] font-bold uppercase tracking-wider text-saviere-black mb-4">Toxic Vectors</h3>
-                    <p class="text-sm text-gray-600 font-light leading-relaxed">The global consumer sector injects over 1.5 billion non-recyclable multi-laminate tubes into Indian landfills annually. We engineer zero-waste alternatives to capture this transitioning market.</p>
+                    <div class="w-10 h-1 bg-saviere-crimson mb-6 opacity-80"></div>
+                    <h3 class="font-serif text-2xl text-saviere-black mb-4">Solve real problems.</h3>
+                    <p class="font-sans text-sm text-gray-600 font-light leading-relaxed">We aim to direct our engineering and capital toward measurable inefficiencies in consumer markets and sustainable design.</p>
                 </div>
                 <div class="glass-card">
-                    <span class="font-serif text-4xl text-saviere-crimson block mb-2">50%</span>
-                    <h3 class="font-subheading text-[10px] font-bold uppercase tracking-wider text-saviere-black mb-4">Logistical Exhaustion</h3>
-                    <p class="text-sm text-gray-600 font-light leading-relaxed">Legacy FMCG formulations are roughly 50% dead-weight water. Transporting liquid-heavy goods generates massive, unnecessary carbon freight emissions.</p>
+                    <div class="w-10 h-1 bg-saviere-crimson mb-6 opacity-80"></div>
+                    <h3 class="font-serif text-2xl text-saviere-black mb-4">Engineer excellent products.</h3>
+                    <p class="font-sans text-sm text-gray-600 font-light leading-relaxed">Quality precedes scale. Products must be developed through scientific discipline and rigorous validation before commercialization.</p>
                 </div>
                 <div class="glass-card">
-                    <span class="font-serif text-4xl text-saviere-crimson block mb-2">Capital Drain</span>
-                    <h3 class="font-subheading text-[10px] font-bold uppercase tracking-wider text-saviere-black mb-4">Heavy Infrastructure</h3>
-                    <p class="text-sm text-gray-600 font-light leading-relaxed">Traditional conglomerates bleed capital into heavy asset ownership. We utilize agile, asset-light management frameworks to ensure aggressive profitability and strategic tax efficiency.</p>
+                    <div class="w-10 h-1 bg-saviere-crimson mb-6 opacity-80"></div>
+                    <h3 class="font-serif text-2xl text-saviere-black mb-4">Allocate deliberately.</h3>
+                    <p class="font-sans text-sm text-gray-600 font-light leading-relaxed">We operate with strict financial discipline to ensure sustainable, organic growth rather than pursuing growth at any cost.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white border-t border-saviere-crimson/10 pt-16 pb-12 px-6 mt-auto">
+    <footer class="bg-white border-t border-saviere-crimson/10 pt-16 pb-12 px-6 mt-auto relative z-10">
         <div class="max-w-[80rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 text-center md:text-left">
             <div>
-                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 w-auto object-contain mx-auto md:mx-0 mb-6">
+                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain mx-auto md:mx-0 mb-6 opacity-90">
                 <p class="text-gray-500 text-sm font-light leading-relaxed max-w-sm mx-auto md:mx-0">
                     Savière Group Private Limited.<br>Secunderabad, Telangana, India.
                 </p>
             </div>
             <div class="flex flex-col md:items-end justify-center">
-                <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.2em] text-saviere-gold mb-3">Enterprise Collaboration</p>
-                <a href="mailto:connect@savieregroup.com" class="text-xl text-saviere-black font-light hover:text-saviere-crimson transition-colors mb-4">connect@savieregroup.com</a>
+                <a href="mailto:connect@savieregroup.com" class="font-serif text-xl md:text-2xl text-saviere-black hover:text-saviere-crimson transition-colors mb-4">connect@savieregroup.com</a>
             </div>
         </div>
         <div class="max-w-[80rem] mx-auto border-t border-gray-100 pt-8 flex justify-between items-center text-[10px] text-gray-400 tracking-widest uppercase font-subheading">
-            <p>© 2026 Savière Group Pvt Ltd. A For-Profit Enterprise.</p>
+            <p>© 2026 Savière Group Pvt Ltd.</p>
         </div>
     </footer>
-    <script>document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});</script>
+
+    <script>
+        // Smooth Reveal Logic
+        document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});
+        
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X icon
+            } else {
+                mobileMenu.classList.add('translate-x-full', 'opacity-0');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Hamburger icon
+            }
+        });
+    </script>
 </body>
 </html>

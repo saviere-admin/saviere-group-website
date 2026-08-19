@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,68 +7,88 @@
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}};</script>
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
-        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.1); z-index: 100; transition: all 0.3s ease; padding: 0.6rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .glass-header { background: rgba(253, 248, 249, 0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 4px 30px rgba(82, 10, 30, 0.03); }
+        .glass-card { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 1.5rem; padding: 3rem; box-shadow: 0 8px 32px 0 rgba(82, 10, 30, 0.04); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(212, 175, 55, 0.5); box-shadow: 0 15px 40px -5px rgba(82, 10, 30, 0.08); background: rgba(255, 255, 255, 0.6); }
+        .glass-menu { background: rgba(253, 248, 249, 0.9); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
         .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
-    <header class="pill-header">
-        <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto"></a>
+    <!-- Header & Menu identical to index -->
+    <header class="fixed top-4 md:top-6 left-50 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[80rem] glass-header rounded-full z-50 flex items-center justify-between px-6 py-3 md:px-8 md:py-4 transition-all">
+        <a href="index.html" class="flex-shrink-0 z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-7 md:h-9 w-auto object-contain"></a>
         <nav class="hidden lg:flex gap-8 items-center">
-            <a href="index.html" class="nav-link">Vision</a>
-            <a href="about.html" class="nav-link">Legacy</a>
+            <a href="index.html" class="nav-link">Group</a>
+            <a href="about.html" class="nav-link">About</a>
             <a href="governance.html" class="nav-link active">Governance</a>
             <a href="active-operations.html" class="nav-link">Operations</a>
             <a href="roadmap.html" class="nav-link">Roadmap</a>
         </nav>
+        <div class="hidden lg:block"><a href="mailto:connect@savieregroup.com" class="font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-7 py-3 rounded-full hover:bg-saviere-black transition-colors shadow-sm">Connect</a></div>
+        <button id="menu-btn" class="lg:hidden z-50 p-2 text-saviere-black focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
     </header>
 
-    <main class="flex-grow pt-40 pb-24 px-6 max-w-[80rem] mx-auto w-full">
+    <div id="mobile-menu" class="fixed inset-0 glass-menu z-40 transform translate-x-full opacity-0 transition-all duration-500 ease-in-out flex flex-col justify-center items-center">
+        <nav class="flex flex-col gap-8 items-center text-center">
+            <a href="index.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">Group</a>
+            <a href="about.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">About</a>
+            <a href="governance.html" class="font-serif text-3xl text-saviere-crimson">Governance</a>
+            <a href="active-operations.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">Operations</a>
+            <a href="roadmap.html" class="font-serif text-3xl text-saviere-black hover:text-saviere-crimson transition-colors">Roadmap</a>
+            <a href="mailto:connect@savieregroup.com" class="mt-8 font-subheading text-xs font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-4 rounded-full">Contact Us</a>
+        </nav>
+    </div>
+
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-[80rem] mx-auto w-full relative z-10">
         <section class="reveal mb-20 text-center">
-            <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson mb-4">Corporate Strategy</p>
-            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-8 tracking-tight">Growth without bloat.</h1>
+            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-8 tracking-tight">Corporate Governance.</h1>
             <p class="font-sans text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
-                We are architecting a highly profitable, scalable institution that utilizes smart legal frameworks and asset-light operations to maximize expansion.
+                Savière Group is committed to building systems that demand integrity. As the group scales, we intend to institutionalize the following governance frameworks to guide our conduct.
             </p>
         </section>
 
-        <section class="grid md:grid-cols-2 gap-8 reveal">
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">01 — Asset-Light Geometries</span>
-                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm">Mirroring the operational structures of elite global hospitality brands like Marriott, we prioritize management contracts, intellectual property licensing, and strategic partnerships over heavy real estate ownership to scale aggressively.</p>
+        <section class="grid md:grid-cols-2 gap-8 md:gap-10 reveal">
+            <div class="glass-card">
+                <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">01 — Integrity & Anti-Corruption</span>
+                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm md:text-base">Savière intends to operate strictly through documented, lawful, and transparent processes. We do not regard informal payments or improper influence as acceptable methods of business.</p>
             </div>
             
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">02 — Financial Structuring</span>
-                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm">Our corporate architecture is designed for immense tax efficiency. We meticulously plan multi-year capital deployment, offset expenditures, and prepare to leverage governmental tax holidays to reinvest capital directly into scaling.</p>
+            <div class="glass-card">
+                <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">02 — Scientific Integrity</span>
+                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm md:text-base">Our claims should be proportional to available evidence. We intend to rely on verified literature and empirical data to inform our product development and market positioning.</p>
             </div>
 
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">03 — Environmental Accountability</span>
-                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm">We maintain a strict net-zero philosophy not out of mere charity, but because efficiency equals profitability. Eliminating material waste directly expands our operational margins.</p>
+            <div class="glass-card">
+                <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">03 — Product Responsibility</span>
+                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm md:text-base">Safety, quality, and customer welfare must consistently precede growth metrics. We aim to ensure responsible sourcing and supply chain accountability.</p>
             </div>
             
-            <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <span class="font-serif text-saviere-gold text-2xl mb-2 block">04 — The Vegan Mandate</span>
-                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm">An absolute ethical boundary. Across all current and future verticals, we guarantee zero animal derivatives and strictly no animal testing.</p>
+            <div class="glass-card">
+                <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">04 — Environmental Responsibility</span>
+                <p class="font-sans text-gray-600 font-light leading-relaxed text-sm md:text-base">We intend to thoughtfully integrate environmental considerations into our product design. As our businesses develop, principles such as seeking cruelty-free approaches will inform our operational standards.</p>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white border-t border-saviere-crimson/10 py-12 px-6 mt-auto">
-        <div class="max-w-[80rem] mx-auto flex justify-between items-center gap-6">
-            <img src="./assets/TransBGRHorizontal.png" class="h-10 w-auto object-contain">
+    <footer class="bg-white border-t border-saviere-crimson/10 pt-16 pb-12 px-6 mt-auto relative z-10">
+        <div class="max-w-[80rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain opacity-90">
             <p class="text-[10px] text-gray-400 tracking-widest uppercase font-subheading">© 2026 Savière Group.</p>
         </div>
     </footer>
-    <script>document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});</script>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});
+        const menuBtn = document.getElementById('menu-btn'); const mobileMenu = document.getElementById('mobile-menu'); const menuIcon = document.getElementById('menu-icon'); let isMenuOpen = false;
+        menuBtn.addEventListener('click', () => { isMenuOpen = !isMenuOpen; if(isMenuOpen) { mobileMenu.classList.remove('translate-x-full', 'opacity-0'); menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); } else { mobileMenu.classList.add('translate-x-full', 'opacity-0'); menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); } });
+    </script>
 </body>
 </html>
