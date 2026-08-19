@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Architecture | Savière Group</title>
-    <!-- CRITICAL: HIDES FROM SEARCH ENGINES -->
+    <!-- HIDES FROM SEARCH ENGINES -->
     <meta name="robots" content="noindex, nofollow">
     
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // STRICT PASSWORD PROTECTION SCRIPT
-        const auth = prompt("Enter Corporate Access Code (Hint: Provided via text):");
+        const auth = prompt("Enter Corporate Access Code:");
         if (auth !== "7013759945") {
             document.documentElement.innerHTML = `
                 <div style="display:flex;height:100vh;background-color:#520A1E;color:white;align-items:center;justify-content:center;font-family:sans-serif;flex-direction:column;">
@@ -21,20 +21,13 @@
                 </div>`;
             window.stop();
         }
-        
         tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',silver:'#C0C0C0',black:'#0A0A0A',bg:'#FDF8F9'}}}}};
     </script>
 </head>
 <body class="bg-saviere-bg text-saviere-black antialiased p-6 md:p-12">
-
     <div class="max-w-5xl mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-saviere-crimson/20">
-        <div class="border-b border-gray-200 pb-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
-            <div>
-                <h1 class="font-serif text-4xl md:text-5xl text-saviere-crimson mb-2">Savière Group</h1>
-                <p class="font-subheading text-xs font-bold uppercase tracking-widest text-gray-500">Official Brand Architecture</p>
-            </div>
-            <p class="font-mono text-xs text-saviere-gold mt-4 md:mt-0 bg-saviere-gold/10 px-3 py-1 rounded">Clearance: Level 1</p>
-        </div>
+        <h1 class="font-serif text-4xl md:text-5xl text-saviere-crimson mb-2">Savière Group</h1>
+        <p class="font-subheading text-xs font-bold uppercase tracking-widest text-gray-500 mb-12 border-b border-gray-200 pb-6">Official Brand Architecture</p>
 
         <h2 class="font-serif text-2xl mb-8">The Color Ecosystem</h2>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
@@ -46,18 +39,14 @@
         </div>
 
         <h2 class="font-serif text-2xl mb-8 border-t border-gray-100 pt-12">Typography Hierarchy</h2>
-        <div class="space-y-12">
+        <div class="space-y-8">
             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
                 <p class="font-serif text-4xl mb-4 text-saviere-black">Marcellus (The Seasons)</p>
-                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Logos, Main Document Titles, `H1` and `H2` Headings.<br><strong>Psychology:</strong> Projects luxury, institutional warmth, and multi-decade legacy.</p>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Logos, Main Document Titles, Headings.<br><strong>Psychology:</strong> Projects luxury, institutional warmth, and multi-decade legacy.</p>
             </div>
             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
                 <p class="font-subheading font-bold text-3xl mb-4 uppercase tracking-widest text-saviere-crimson">Poppins</p>
-                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Navigation bars, Action Buttons, Eyebrow text (tiny uppercase tags above headers).<br><strong>Psychology:</strong> Geometric, modern, friendly balance to the heavy serif.</p>
-            </div>
-            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                <p class="font-sans text-2xl mb-4 text-gray-800">Nunito Sans (Avenir Alternative)</p>
-                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> All long-form paragraphs, email signatures, legal B2B contracts.<br><strong>Psychology:</strong> Flawless mobile/digital readability and clean data presentation.</p>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed"><strong>Application:</strong> Navigation bars, Action Buttons, Eyebrow text.<br><strong>Psychology:</strong> Geometric, modern, friendly balance to the heavy serif.</p>
             </div>
         </div>
     </div>

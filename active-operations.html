@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operations | Savière Group</title>
-    <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
     <style>
-        body { background-color: #FDF8F9; color: #0A0A0A; }
-        .glass-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
+        .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
         .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding-bottom: 4px; }
-        .nav-link:hover, .nav-link.active { color: #520A1E; }
+        .nav-link:hover, .nav-link.active { color: #520A1E; border-color: #520A1E; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .glass-card { background: #ffffff; border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 1.5rem; padding: 3rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
@@ -26,61 +23,78 @@
 
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
         <div class="max-w-[90rem] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto"></a>
-            <nav class="hidden lg:flex gap-10 font-subheading text-[11px] font-bold uppercase tracking-[0.18em]">
+            <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto"></a>
+            <nav class="hidden lg:flex gap-10 font-subheading text-[11px] font-bold uppercase tracking-[0.2em]">
                 <a href="index.html" class="nav-link">Vision</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
                 <a href="active-operations.html" class="nav-link active text-saviere-crimson">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
-            <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson focus:outline-none"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+            <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8 z-40 transition-transform transform translate-y-full duration-300 ease-in-out">
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40 transition-transform transform translate-y-full duration-300 ease-in-out">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-3xl font-serif text-saviere-black mobile-link">Vision</a>
-        <a href="about.html" class="text-3xl font-serif text-saviere-black mobile-link">The Legacy</a>
-        <a href="governance.html" class="text-3xl font-serif text-saviere-black mobile-link">Governance</a>
-        <a href="active-operations.html" class="text-3xl font-serif text-saviere-crimson font-bold mobile-link">Operations</a>
+        <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
+        <a href="about.html" class="text-3xl font-serif text-saviere-black">The Legacy</a>
+        <a href="governance.html" class="text-3xl font-serif text-saviere-black">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-saviere-crimson font-bold">Operations</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black">Pipeline</a>
     </div>
 
-    <main class="flex-grow pt-32 pb-24 px-6 max-w-[90rem] mx-auto w-full">
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-[90rem] mx-auto w-full">
         <div class="text-center mb-20 reveal">
             <p class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4">Phase 1 Intervention</p>
-            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-6 tracking-tight">The DOTS Protocol.</h1>
-            <p class="font-sans text-lg md:text-xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
-                An anhydrous (zero-water), solid-state toothpaste tablet engineered to replace standard 100g silica paste tubes.
+            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-6 tracking-tight">The Dots Company.</h1>
+            <p class="font-sans text-lg md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
+                An engineered, zero-waste intervention designed to replace highly pollutive, water-heavy synthetics with a sustainable, earth-safe alternative.
             </p>
         </div>
 
-        <div class="space-y-10 max-w-5xl mx-auto reveal">
-            <div class="glass-card shadow-sm">
-                <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">1. Eliminating Plastic Micro-Vectors</h3>
-                <p class="text-base text-gray-600 font-light leading-relaxed">
-                    Standard oral care relies on abrasive silica gels packaged in single-use plastic tubes, which continuously shed microplastics into the paste. Our intervention removes single-use plastics entirely, completely eliminating the metabolic and carcinogenic risks associated with daily microplastic ingestion.
-                </p>
-            </div>
-            
-            <div class="glass-card shadow-sm">
-                <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">2. Anhydrous Compression</h3>
-                <p class="text-base text-gray-600 font-light leading-relaxed">
-                    Traditional toothpaste consists of up to 50% water, generating a massive, unnecessary logistical carbon footprint. Pressed into a precise 600mg format, we compress our active biomimetic chemistry, slashing shipping weight by 70%.
-                </p>
+        <!-- Interactive Comparison Engine -->
+        <section class="py-16 reveal">
+            <div class="flex justify-center mb-12">
+                <div class="bg-gray-100 p-1.5 rounded-full inline-flex relative shadow-inner">
+                    <button id="btn-legacy" class="relative z-10 px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-colors duration-300 text-white">Legacy Industry</button>
+                    <button id="btn-saviere" class="relative z-10 px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-colors duration-300 text-gray-500 hover:text-saviere-black">Savière Evolution</button>
+                    <div id="toggle-pill" class="absolute top-1.5 left-1.5 w-[calc(50%-0.375rem)] h-[calc(100%-0.75rem)] bg-saviere-crimson rounded-full transition-transform duration-300 ease-in-out"></div>
+                </div>
             </div>
 
-            <div class="glass-card shadow-sm border-saviere-crimson/30">
-                <h3 class="font-serif text-2xl md:text-3xl text-saviere-black mb-4">3. Clinical Biomimetics (Nano-HAp)</h3>
-                <p class="text-base text-gray-600 font-light leading-relaxed">
-                    DOTS utilizes Nano-HAp particles to seamlessly bind to the enamel matrix, filling micro-fissures, reducing dentin hypersensitivity, and reversing early-stage caries without the neurotoxic risks of fluoride ingestion. It is further formulated with non-cariogenic sugar alcohols (Xylitol/Erythritol) that selectively starve Streptococcus mutans, actively preventing pathogenic plaque biofilms.
-                </p>
+            <div class="relative min-h-[400px] max-w-5xl mx-auto overflow-hidden">
+                <div id="content-legacy" class="absolute inset-0 transition-all duration-500 ease-in-out transform translate-x-0 opacity-100">
+                    <div class="grid md:grid-cols-2 gap-6 h-full">
+                        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                            <h4 class="font-serif text-2xl mb-2">50% Water Waste</h4>
+                            <p class="text-base text-gray-500 font-light">Traditional formulations carry up to 50% dead-weight water. This creates massive logistical water waste globally.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                            <h4 class="font-serif text-2xl mb-2">1.5B Plastic Tubes</h4>
+                            <p class="text-base text-gray-500 font-light">Over 1.5 billion non-recyclable laminate tubes enter Indian landfills yearly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-saviere" class="absolute inset-0 transition-all duration-500 ease-in-out transform translate-x-full opacity-0 pointer-events-none">
+                    <div class="grid md:grid-cols-2 gap-6 h-full">
+                        <div class="bg-white p-8 rounded-3xl border border-saviere-gold/40 shadow-lg">
+                            <h4 class="font-serif text-2xl text-saviere-crimson mb-2">Anhydrous Compression</h4>
+                            <p class="text-base text-gray-600 font-light">By compressing our formulations into a solid state, we slash shipping carbon emissions and eliminate water waste.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl border border-saviere-gold/40 shadow-lg">
+                            <h4 class="font-serif text-2xl text-saviere-crimson mb-2">Infinite Vaults</h4>
+                            <p class="text-base text-gray-600 font-light">Products are housed in infinitely recyclable preservation vaults, achieving absolute zero plastic waste.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="bg-saviere-crimson text-white py-12 px-6 mt-auto">
-        <div class="max-w-[90rem] mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
+    <footer class="bg-saviere-crimson text-white py-12 px-6">
+        <div class="max-w-[90rem] mx-auto flex justify-between items-center gap-6">
             <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
             <p class="text-[10px] text-white/60 tracking-widest uppercase font-bold">© 2026 Savière Group. Safe for Earth.</p>
         </div>
@@ -92,9 +106,33 @@
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(0)'; });
         closeBtn.addEventListener('click', () => { mobileMenu.style.transform = 'translateY(-100%)'; });
+        
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 });
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+        // Toggle Logic
+        const btnLegacy = document.getElementById('btn-legacy');
+        const btnSaviere = document.getElementById('btn-saviere');
+        const togglePill = document.getElementById('toggle-pill');
+        const contentLegacy = document.getElementById('content-legacy');
+        const contentSaviere = document.getElementById('content-saviere');
+
+        btnLegacy.addEventListener('click', () => {
+            togglePill.style.transform = 'translateX(0)';
+            btnLegacy.classList.replace('text-gray-500', 'text-white');
+            btnSaviere.classList.replace('text-white', 'text-gray-500');
+            contentLegacy.style.transform = 'translateX(0)'; contentLegacy.style.opacity = '1'; contentLegacy.classList.remove('pointer-events-none');
+            contentSaviere.style.transform = 'translateX(100%)'; contentSaviere.style.opacity = '0'; contentSaviere.classList.add('pointer-events-none');
+        });
+
+        btnSaviere.addEventListener('click', () => {
+            togglePill.style.transform = 'translateX(100%)';
+            btnSaviere.classList.replace('text-gray-500', 'text-white');
+            btnLegacy.classList.replace('text-white', 'text-gray-500');
+            contentSaviere.style.transform = 'translateX(0)'; contentSaviere.style.opacity = '1'; contentSaviere.classList.remove('pointer-events-none');
+            contentLegacy.style.transform = 'translateX(-100%)'; contentLegacy.style.opacity = '0'; contentLegacy.classList.add('pointer-events-none');
         });
     </script>
 </body>
