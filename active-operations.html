@@ -1,104 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operations | Savière Group</title>
-    <meta name="theme-color" content="#ffffff">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500&family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}},animation:{'fade-in-up':'fadeInUp 0.8s ease-out forwards'},keyframes:{fadeInUp:{'0%':{opacity:'0',transform:'translateY(20px)'},'100%':{opacity:'1',transform:'translateY(0)'}}}}}}</script>
     <style>
-        body { background-color: #FDF8F9; color: #0A0A0A; }
-        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.15); z-index: 100; transition: all 0.3s ease; padding: 0.5rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; }
-        .nav-link:hover, .nav-link.active { color: #520A1E; }
-        .saviere-font { font-family: 'Marcellus', serif; }
-        .glass-card { background: #ffffff; border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 1.5rem; padding: 3rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.12); border-color: #520A1E; }
+        body { background-color: #0A0A0A; color: #FDF8F9; font-family: 'Nunito Sans', sans-serif; overflow-x: hidden; }
+        .nav-link { position: relative; color: rgba(253, 248, 249, 0.6); transition: color 0.4s; font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; padding-bottom: 4px; }
+        .nav-link:hover, .nav-link.active { color: #FDF8F9; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #D4AF37; transition: width 0.4s; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .reveal { opacity: 0; transform: translateY(15px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <header class="pill-header" id="navbar">
-        <a href="index.html" class="flex-shrink-0 py-2"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto"></a>
-        <nav class="hidden lg:flex gap-8 items-center">
-            <a href="index.html" class="nav-link">Vision</a>
-            <a href="about.html" class="nav-link">The Legacy</a>
+    <header class="w-full fixed top-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5 px-8 py-6 flex justify-between items-center">
+        <a href="index.html" class="font-family-serif font-serif text-xl tracking-wide text-white">Savière</a>
+        <nav class="hidden md:flex gap-8">
+            <a href="about.html" class="nav-link">About</a>
             <a href="governance.html" class="nav-link">Governance</a>
-            <a href="active-operations.html" class="nav-link active text-saviere-crimson">Operations</a>
+            <a href="active-operations.html" class="nav-link active">Operations</a>
             <a href="roadmap.html" class="nav-link">Roadmap</a>
-            <a href="mailto:connect@savieregroup.com" class="ml-4 px-6 py-3 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-saviere-black transition-colors rounded-full shadow-sm">Connect</a>
         </nav>
-        <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson focus:outline-none"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-2xl flex flex-col justify-center items-center gap-8 z-[110] transition-opacity duration-300 opacity-0 pointer-events-none">
-        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-3xl font-serif text-saviere-black mobile-link">Vision</a>
-        <a href="about.html" class="text-3xl font-serif text-saviere-black mobile-link">The Legacy</a>
-        <a href="governance.html" class="text-3xl font-serif text-saviere-black mobile-link">Governance</a>
-        <a href="active-operations.html" class="text-3xl font-serif text-saviere-crimson font-bold mobile-link">Operations</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black mobile-link">Roadmap</a>
-    </div>
+    <main class="flex-grow pt-40 px-8 max-w-7xl mx-auto w-full">
+        <h2 class="font-subheading text-[10px] uppercase tracking-widest text-white/50 mb-6 reveal">Developing</h2>
+        <h1 class="font-serif text-5xl md:text-7xl text-white mb-20 tracking-tight reveal">Tooth Dots.</h1>
 
-    <main class="flex-grow pt-40 pb-24 px-6 max-w-[80rem] mx-auto w-full animate-fade-in-up">
-        <div class="text-center mb-20">
-            <p class="font-subheading text-[10px] md:text-xs font-bold uppercase tracking-widest text-saviere-crimson mb-4">Phase 1 Intervention</p>
-            <h1 class="font-serif text-5xl md:text-7xl text-saviere-black mb-6 tracking-tight">FMCG Healthcare Engine.</h1>
-            <p class="font-sans text-lg md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
-                An engineered, zero-waste clinical protocol designed to replace highly pollutive, water-heavy synthetics with an accessible, Earth-safe alternative.
-            </p>
+        <div class="grid md:grid-cols-2 gap-16 reveal">
+            <div class="border-t border-white/10 pt-8">
+                <h3 class="font-serif text-2xl text-white mb-6">The Engineering Context</h3>
+                <ul class="space-y-4 font-sans text-sm text-white/60 font-light leading-relaxed">
+                    <li class="flex gap-4"><span class="text-saviere-gold opacity-50">—</span> Conventional oral-care products are transported with substantial water content.</li>
+                    <li class="flex gap-4"><span class="text-saviere-gold opacity-50">—</span> Traditional tube packaging generates ongoing material and waste challenges globally.</li>
+                    <li class="flex gap-4"><span class="text-saviere-gold opacity-50">—</span> Solid-format oral care provides opportunities for more efficient packaging and logistics.</li>
+                    <li class="flex gap-4"><span class="text-saviere-gold opacity-50">—</span> Consumers are increasingly seeking convenient, lower-waste alternatives.</li>
+                </ul>
+            </div>
+
+            <div class="border-t border-white/10 pt-8">
+                <h3 class="font-serif text-2xl text-white mb-6">Current Investigation</h3>
+                <p class="font-sans text-sm text-white/60 font-light leading-relaxed mb-6">
+                    Savière is currently focused on the development of a waterless oral care solution. Our ongoing research and engineering efforts are evaluating:
+                </p>
+                <div class="grid grid-cols-2 gap-4 font-subheading text-[10px] uppercase tracking-widest text-white/40">
+                    <p>Waterless Formulation</p>
+                    <p>Solid Dosage Format</p>
+                    <p>Moisture Stability</p>
+                    <p>Packaging Efficiency</p>
+                    <p>Portability</p>
+                    <p>Manufacturing Scalability</p>
+                </div>
+            </div>
         </div>
 
-        <div class="space-y-10 max-w-5xl mx-auto">
-            <div class="glass-card">
-                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">1. Eliminating Plastic Waste</h3>
-                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">
-                    Over <strong class="font-semibold text-gray-900">1.5 billion</strong> non-recyclable multi-laminate tubes enter Indian landfills annually. Our impending consumer intervention removes single-use plastics entirely from the daily routine, opting for infinitely recyclable, airtight preservation.
-                </p>
+        <div class="mt-32 border border-white/5 p-12 text-center reveal">
+            <h3 class="font-subheading text-[10px] uppercase tracking-widest text-white/50 mb-8">Development Process</h3>
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 font-serif text-lg md:text-xl text-white/80">
+                <span>Research</span>
+                <span class="text-white/20">→</span>
+                <span>Formulate</span>
+                <span class="text-white/20">→</span>
+                <span>Test</span>
+                <span class="text-white/20">→</span>
+                <span>Validate</span>
+                <span class="text-white/20">→</span>
+                <span>Scale</span>
             </div>
-            
-            <div class="glass-card">
-                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">2. Anhydrous Compression</h3>
-                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">
-                    Standard FMCG formulations carry up to <strong class="font-semibold text-gray-900">50% dead-weight water</strong>. By compressing our active biomimetic chemistry into a solid state, we slash shipping carbon emissions and eliminate massive logistical water waste on a global scale.
-                </p>
-            </div>
-
-            <div class="glass-card border-saviere-crimson/30 shadow-xl">
-                <h3 class="font-serif text-3xl md:text-4xl text-saviere-black mb-4">3. Clinical Biomimetics</h3>
-                <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">
-                    With over <strong class="font-semibold text-gray-900">66 million citizens</strong> suffering from endemic groundwater fluorosis (WHO Data), distributing synthetic fluoride is a systemic failure of care. We utilize advanced, non-toxic chemistry to restore biological equilibrium safely.
-                </p>
-            </div>
+            <p class="mt-8 font-sans text-xs text-white/40 italic">Note: The Tooth Dots product is currently under development and is not yet commercially available.</p>
         </div>
     </main>
 
-    <footer class="bg-saviere-crimson text-white pt-24 pb-12 px-6">
-        <div class="max-w-[80rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-white/10 pb-16 mb-8 text-center md:text-left">
-            <div>
-                <a href="index.html" class="inline-block mb-6"><img src="./assets/TransBGWHorizontal.png" alt="Savière Group" class="h-12 md:h-16 w-auto object-contain"></a>
-                <p class="text-white/80 text-sm font-light leading-relaxed max-w-sm mx-auto md:mx-0">Savière Group Private Limited.<br>Secunderabad, Hyderabad, Telangana, India.</p>
-            </div>
-            <div class="flex flex-col md:items-end justify-center">
-                <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.2em] text-saviere-gold mb-3">Enterprise Collaboration</p>
-                <a href="mailto:connect@savieregroup.com" class="text-xl md:text-2xl font-light hover:text-saviere-gold transition-colors mb-4">connect@savieregroup.com</a>
-                <a href="https://www.linkedin.com/company/saviere-group" target="_blank" class="text-xs text-white/60 hover:text-white uppercase tracking-widest font-bold">Follow on LinkedIn</a>
-            </div>
-        </div>
-        <div class="max-w-[80rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-white/50 tracking-widest uppercase font-bold">
-            <p>© 2026 <span class="saviere-font text-white text-xs">Savière</span> Group Pvt Ltd. A For-Profit Enterprise.</p>
-            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span></div>
-        </div>
+    <footer class="border-t border-white/5 px-8 py-12 mt-24 text-[9px] text-white/40 tracking-widest uppercase font-subheading">
+        <div>© 2026 Savière Group Private Limited.</div>
     </footer>
-
-    <script>
-        const menuBtn = document.getElementById('menu-toggle'); const closeBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => { mobileMenu.classList.remove('pointer-events-none'); mobileMenu.style.opacity = '1'; });
-        closeBtn.addEventListener('click', () => { mobileMenu.style.opacity = '0'; setTimeout(() => mobileMenu.classList.add('pointer-events-none'), 300); });
-    </script>
+    <script> document.addEventListener("DOMContentLoaded", () => { const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => obs.observe(el)); }); </script>
 </body>
 </html>
