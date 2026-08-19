@@ -212,5 +212,267 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
     </script>
+    <!-- ========================================== -->
+    <!-- SAVIÈRE LIVE IMPACT STORIES MODULE         -->
+    <!-- ========================================== -->
+    
+    <!-- Floating Trigger Button (Bottom Left) -->
+    <button id="story-trigger" class="fixed bottom-8 left-6 z-[90] bg-white border border-saviere-crimson/20 text-saviere-crimson rounded-full px-5 py-3 shadow-[0_10px_40px_-10px_rgba(82,10,30,0.3)] hover:scale-105 transition-transform flex items-center gap-3 group">
+        <div class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-saviere-crimson opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-saviere-crimson"></span>
+        </div>
+        <span class="font-subheading text-[10px] font-bold uppercase tracking-[0.2em] group-hover:text-saviere-gold transition-colors">Live Impact</span>
+    </button>
+
+    <!-- Full Screen Story Overlay -->
+    <div id="story-overlay" class="fixed inset-0 z-[120] bg-saviere-black/95 backdrop-blur-2xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center">
+        
+        <!-- Mobile/Desktop Constrained Container -->
+        <div class="relative w-full h-full max-w-md bg-saviere-crimson shadow-2xl sm:rounded-3xl sm:h-[85vh] overflow-hidden flex flex-col">
+            
+            <!-- Progress Bars -->
+            <div class="absolute top-0 left-0 w-full p-4 flex gap-2 z-20" id="story-progress-container">
+                <!-- Bars injected via JS -->
+            </div>
+
+            <!-- Top Controls -->
+            <div class="absolute top-8 left-0 w-full px-6 flex justify-between items-center z-20">
+                <div class="flex items-center gap-3">
+                    <img src="./assets/TransBGWSwan.png" alt="Savière Crest" class="h-6 w-auto">
+                    <span class="font-serif text-white text-lg tracking-widest">Savière</span>
+                </div>
+                <button id="story-close" class="text-white/80 hover:text-white p-2">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Tap Zones for Navigation -->
+            <div id="story-tap-left" class="absolute top-20 bottom-20 left-0 w-1/3 z-10 cursor-pointer"></div>
+            <div id="story-tap-right" class="absolute top-20 bottom-20 right-0 w-2/3 z-10 cursor-pointer"></div>
+
+            <!-- Story Content -->
+            <div class="flex-grow flex flex-col justify-center items-center p-8 text-center relative z-0">
+                <p id="story-eyebrow" class="font-subheading text-[10px] font-bold uppercase tracking-[0.3em] text-saviere-gold mb-6 animate-pulse">Since you opened this page</p>
+                
+                <!-- Ticking Statistic -->
+                <div class="mb-8">
+                    <span id="story-stat" class="font-serif text-6xl md:text-7xl text-white block mb-2 drop-shadow-lg">0</span>
+                    <h2 id="story-title" class="font-subheading text-sm md:text-base uppercase tracking-widest text-white/90 font-bold border-b border-white/20 pb-4 inline-block px-4">Tubes Landfilled</h2>
+                </div>
+                
+                <p id="story-desc" class="font-sans text-sm md:text-base text-white/70 font-light leading-relaxed max-w-xs">
+                    Multi-laminate tubes take over 500 years to degrade, shedding microplastics directly into marine biomes.
+                </p>
+            </div>
+
+            <!-- Bottom Controls (Share) -->
+            <div class="absolute bottom-0 left-0 w-full p-6 z-20 bg-gradient-to-t from-saviere-black/80 to-transparent flex justify-center">
+                <button id="story-share" class="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all text-white font-subheading text-[10px] uppercase tracking-widest font-bold backdrop-blur-md">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-5.368m0 5.368l5.662 3.397m-5.662-3.397a3 3 0 000-5.368m5.662 3.397a3 3 0 100-5.368m0 0l-5.662 3.397m5.662-3.397a3 3 0 000 5.368z"></path></svg>
+                    Share Statistic
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Story Data Configuration
+        // Rates represent amount per second globally based on macro environmental data.
+        const saviereStories = [
+            {
+                eyebrow: "The Plastic Hemorrhage",
+                title: "Tubes Landfilled",
+                desc: "Global cosmetic and oral care industries dump billions of non-recyclable laminate tubes yearly. They take 500+ years to degrade.",
+                ratePerSecond: 634, // ~20B a year
+                format: "number"
+            },
+            {
+                eyebrow: "Logistical Exhaustion",
+                title: "Liters of Water Shipped",
+                desc: "Standard FMCG formulations carry up to 50% dead-weight water. Shipping liquid generates entirely unnecessary carbon freight emissions.",
+                ratePerSecond: 47.5, // ~1.5M metric tons a year
+                format: "decimal"
+            },
+            {
+                eyebrow: "Systemic Contamination",
+                title: "Microplastics Ingested",
+                desc: "Degrading tubes shed polymers. Daily buccal absorption of these micro-vectors is clinically linked to severe endocrine disruption.",
+                ratePerSecond: 12500, // Abstract ticking metric for visual scale
+                format: "number"
+            },
+            {
+                eyebrow: "The Vegan Mandate",
+                title: "Animals Exploited",
+                desc: "Globally, millions of animals undergo testing for standard cosmetic safety. Savière operates with an absolute, cruelty-free mandate.",
+                ratePerSecond: 15, // Abstract metric
+                format: "number"
+            },
+            {
+                eyebrow: "The Intervention",
+                title: "A Zero-Waste Future",
+                desc: "Savière Group is engineering asset-light, anhydrous consumer protocols to halt this systemic decay and restore biological equilibrium.",
+                ratePerSecond: 0, // Static story
+                format: "static",
+                staticText: "Savière"
+            }
+        ];
+
+        // State Variables
+        let currentStory = 0;
+        let storyInterval;
+        let tickerInterval;
+        let sessionStartTime = Date.now();
+        const STORY_DURATION = 8000; // 8 seconds per story
+        let progressStart = 0;
+
+        // DOM Elements
+        const triggerBtn = document.getElementById('story-trigger');
+        const overlay = document.getElementById('story-overlay');
+        const closeBtn = document.getElementById('story-close');
+        const tapLeft = document.getElementById('story-tap-left');
+        const tapRight = document.getElementById('story-tap-right');
+        const shareBtn = document.getElementById('story-share');
+        const progressContainer = document.getElementById('story-progress-container');
+        
+        const uiEyebrow = document.getElementById('story-eyebrow');
+        const uiStat = document.getElementById('story-stat');
+        const uiTitle = document.getElementById('story-title');
+        const uiDesc = document.getElementById('story-desc');
+
+        // Initialize Progress Bars
+        function initProgressBars() {
+            progressContainer.innerHTML = '';
+            saviereStories.forEach((_, index) => {
+                const barWrapper = document.createElement('div');
+                barWrapper.className = 'flex-1 h-1 bg-white/20 rounded-full overflow-hidden';
+                const barFill = document.createElement('div');
+                barFill.id = `progress-fill-${index}`;
+                barFill.className = 'h-full bg-white w-0';
+                barWrapper.appendChild(barFill);
+                progressContainer.appendChild(barWrapper);
+            });
+        }
+
+        function updateContent() {
+            const data = saviereStories[currentStory];
+            uiEyebrow.innerText = data.eyebrow;
+            uiTitle.innerText = data.title;
+            uiDesc.innerText = data.desc;
+            
+            if (data.format === "static") {
+                uiStat.innerText = data.staticText;
+                uiStat.classList.add("font-serif");
+                clearInterval(tickerInterval);
+            } else {
+                startTicker(data);
+            }
+        }
+
+        function startTicker(data) {
+            clearInterval(tickerInterval);
+            tickerInterval = setInterval(() => {
+                const secondsElapsed = (Date.now() - sessionStartTime) / 1000;
+                const currentCount = secondsElapsed * data.ratePerSecond;
+                
+                if (data.format === "decimal") {
+                    uiStat.innerText = currentCount.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                } else {
+                    uiStat.innerText = Math.floor(currentCount).toLocaleString();
+                }
+            }, 50);
+        }
+
+        function animateProgress() {
+            const currentFill = document.getElementById(`progress-fill-${currentStory}`);
+            const elapsed = Date.now() - progressStart;
+            const percentage = Math.min((elapsed / STORY_DURATION) * 100, 100);
+            currentFill.style.width = `${percentage}%`;
+
+            if (percentage >= 100) {
+                nextStory();
+            }
+        }
+
+        function nextStory() {
+            document.getElementById(`progress-fill-${currentStory}`).style.width = '100%';
+            if (currentStory < saviereStories.length - 1) {
+                currentStory++;
+                resetStoryState();
+            } else {
+                closeStories();
+            }
+        }
+
+        function prevStory() {
+            document.getElementById(`progress-fill-${currentStory}`).style.width = '0%';
+            if (currentStory > 0) {
+                currentStory--;
+                document.getElementById(`progress-fill-${currentStory}`).style.width = '0%';
+                resetStoryState();
+            } else {
+                resetStoryState(); // restart first story
+            }
+        }
+
+        function resetStoryState() {
+            progressStart = Date.now();
+            updateContent();
+        }
+
+        function openStories() {
+            sessionStartTime = Date.now(); // Reset counter to make it impactful "Since you clicked"
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            initProgressBars();
+            currentStory = 0;
+            resetStoryState();
+            storyInterval = setInterval(animateProgress, 16); // ~60fps progress update
+        }
+
+        function closeStories() {
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            clearInterval(storyInterval);
+            clearInterval(tickerInterval);
+            
+            // Reset all bars
+            saviereStories.forEach((_, idx) => {
+                const fill = document.getElementById(`progress-fill-${idx}`);
+                if(fill) fill.style.width = '0%';
+            });
+        }
+
+        // Share Functionality
+        shareBtn.addEventListener('click', async () => {
+            const data = saviereStories[currentStory];
+            const currentStat = uiStat.innerText;
+            const shareText = data.format === "static" 
+                ? `Savière Group: ${data.desc}` 
+                : `Since I opened this page, ${currentStat} ${data.title.toLowerCase()} have occurred. The Earth requires a medical intervention. See the live data at Savière Group.`;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Savière Group Impact',
+                        text: shareText,
+                        url: 'https://savieregroup.com'
+                    });
+                } catch (err) { console.log('Share dismissed'); }
+            } else {
+                navigator.clipboard.writeText(`${shareText} https://savieregroup.com`);
+                const originalText = shareBtn.innerHTML;
+                shareBtn.innerHTML = "Copied to Clipboard!";
+                setTimeout(() => shareBtn.innerHTML = originalText, 2000);
+            }
+        });
+
+        // Event Listeners
+        triggerBtn.addEventListener('click', openStories);
+        closeBtn.addEventListener('click', closeStories);
+        tapRight.addEventListener('click', nextStory);
+        tapLeft.addEventListener('click', prevStory);
+
+    </script>
+
+
 </body>
 </html>
