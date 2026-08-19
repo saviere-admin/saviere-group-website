@@ -4,31 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Directory | Savière Group</title>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>body{background-color:#0A0A0A;color:#FDF8F9;}</style>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',bg:'#FDF8F9'}}}}};</script>
+    <style>
+        body{background-color:#FDF8F9;color:#0A0A0A;}
+    </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
-    <header class="border-b border-white/10 px-8 py-6">
-        <a href="index.html" class="font-serif text-xl tracking-wide text-white">Savière Group</a>
+    <header class="border-b border-gray-200 px-8 py-6 bg-white">
+        <a href="index.html" class="font-serif text-xl tracking-wide text-saviere-black">Savière Group</a>
     </header>
 
     <main class="flex-grow pt-20 px-8 max-w-4xl mx-auto w-full">
-        <h1 class="font-serif text-4xl text-white mb-12">Corporate Directory.</h1>
-        <div class="space-y-6 text-lg font-light text-white/70">
-            <a href="index.html" class="block border-b border-white/10 pb-4 hover:pl-2 transition-all hover:text-white">Home Portal</a>
-            <a href="about.html" class="block border-b border-white/10 pb-4 hover:pl-2 transition-all hover:text-white">About the Group</a>
-            <a href="governance.html" class="block border-b border-white/10 pb-4 hover:pl-2 transition-all hover:text-white">Governance Framework</a>
-            <a href="active-operations.html" class="block border-b border-white/10 pb-4 hover:pl-2 transition-all hover:text-white">Active Operations</a>
-            <a href="roadmap.html" class="block border-b border-white/10 pb-4 hover:pl-2 transition-all hover:text-white">Building Savière</a>
-            <a href="sitemap.xml" class="block border-b border-white/10 pb-4 hover:pl-2 transition-all text-sm font-sans text-white/40">Sitemap (XML)</a>
+        <h1 class="font-serif text-4xl text-saviere-black mb-12">Corporate Directory.</h1>
+        <div class="space-y-6 text-lg font-light text-gray-600">
+            <a href="index.html" class="block border-b border-gray-100 pb-4 hover:pl-2 transition-all hover:text-saviere-crimson">Home Portal</a>
+            <a href="about.html" class="block border-b border-gray-100 pb-4 hover:pl-2 transition-all hover:text-saviere-crimson">About the Group</a>
+            <a href="governance.html" class="block border-b border-gray-100 pb-4 hover:pl-2 transition-all hover:text-saviere-crimson">Governance Framework</a>
+            <a href="active-operations.html" class="block border-b border-gray-100 pb-4 hover:pl-2 transition-all hover:text-saviere-crimson">Active Operations</a>
+            <a href="roadmap.html" class="block border-b border-gray-100 pb-4 hover:pl-2 transition-all hover:text-saviere-crimson">Building Savière</a>
+            <!-- Guidelines omitted by design to enforce secrecy -->
         </div>
     </main>
-
-    <footer class="border-t border-white/10 pt-12 pb-12 px-6 mt-auto">
-        <div class="max-w-[80rem] mx-auto text-[10px] text-white/40 tracking-widest uppercase">
-            <p>© 2026 Savière Group Private Limited.</p>
-        </div>
-    </footer>
 </body>
 </html>
