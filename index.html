@@ -2,45 +2,50 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Savière Group | Architecting a Sustainable Biological Future</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savière Group | Architecting a Sustainable Future</title>
     
     <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { corporate: { primary: '#821D30', 50: '#fdf8f9', 900: '#1a0509' } } } } }
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { corporate: { primary: '#821D30', 50: '#fdf8f9' } } } } }
     </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     
     <style>
         body { background-color: #fdf8f9; color: #0d0204; overflow-x: hidden; }
         
-        /* Unified White Frosted Glass Header */
-        .glass-header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.1); }
+        /* Pristine White Frosted Glass Header */
+        .glass-header { 
+            background: rgba(255, 255, 255, 0.75); 
+            backdrop-filter: blur(24px) saturate(180%); 
+            -webkit-backdrop-filter: blur(24px) saturate(180%); 
+            border-bottom: 1px solid rgba(130, 29, 48, 0.05); 
+        }
         
         /* Frosted Glass Elements */
-        .glass-panel { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.05); border-radius: 1.5rem; padding: 2.5rem; transition: transform 0.3s ease; }
-        .glass-panel:hover { transform: translateY(-5px); border-color: rgba(130, 29, 48, 0.3); }
-        .glass-btn { background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(130, 29, 48, 0.3); color: #821D30; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; }
-        .glass-btn:hover { background: #821D30; color: #ffffff; border-color: #821D30; box-shadow: 0 10px 20px rgba(130, 29, 48, 0.2); }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.6); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.05); 
+            border-radius: 1.5rem; 
+            padding: 2.5rem; 
+            transition: transform 0.3s ease, border-color 0.3s ease; 
+        }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(130, 29, 48, 0.2); }
 
         .nav-link::after { content: ''; display: block; width: 0; height: 1.5px; background: #821D30; transition: width 0.3s ease; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         
         #mobile-menu { transform: translateY(-100%); transition: transform 0.4s ease-in-out; }
         #mobile-menu.open { transform: translateY(0); }
-
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.4; }
-        .content-layer { position: relative; z-index: 10; }
     </style>
 </head>
-<body class="antialiased">
-
-    <canvas id="bg-canvas"></canvas>
+<body class="antialiased selection:bg-corporate-primary selection:text-white">
 
     <!-- UNIFORM HEADER -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
@@ -48,7 +53,7 @@
             <a href="index.html" class="relative z-50">
                 <img src="./assets/TransBGRHorizontal_2.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain">
             </a>
-            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-corporate-900">
+            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-gray-800">
                 <a href="index.html" class="nav-link text-corporate-primary font-bold active">Overview</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
@@ -56,7 +61,7 @@
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
             <div class="flex items-center gap-4 relative z-50">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex glass-btn">Connect</a>
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-corporate-primary border border-corporate-primary/30 rounded-full hover:bg-corporate-primary hover:text-white transition-all">Connect</a>
                 <button id="menu-toggle" class="md:hidden p-2 text-corporate-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
@@ -66,54 +71,53 @@
     <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center gap-8">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <a href="index.html" class="text-2xl font-serif text-corporate-primary font-bold">Overview</a>
-        <a href="about.html" class="text-2xl font-serif text-corporate-900">The Legacy</a>
-        <a href="governance.html" class="text-2xl font-serif text-corporate-900">Governance</a>
-        <a href="active-operations.html" class="text-2xl font-serif text-corporate-900">Operations</a>
-        <a href="roadmap.html" class="text-2xl font-serif text-corporate-900">Pipeline</a>
+        <a href="about.html" class="text-2xl font-serif text-gray-900">The Legacy</a>
+        <a href="governance.html" class="text-2xl font-serif text-gray-900">Governance</a>
+        <a href="active-operations.html" class="text-2xl font-serif text-gray-900">Operations</a>
+        <a href="roadmap.html" class="text-2xl font-serif text-gray-900">Pipeline</a>
     </div>
 
-    <main class="content-layer">
-        <section class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-12">
-            <div class="max-w-7xl mx-auto w-full">
-                <p class="text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
-                <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl text-gray-900 leading-[1.05] tracking-tight mb-8 max-w-5xl">
-                    Architecting a <span class="text-corporate-primary italic">cleaner, biological</span> infrastructure.
-                </h1>
-                <p class="text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl">
-                    Savière Group is a forward-thinking operating platform. We engineer sustainable, asset-light businesses across preventative healthcare, green energy, and eco-conscious consumer goods.
-                </p>
-            </div>
+    <main class="relative z-10 pt-32 pb-24">
+        <!-- Hero Section -->
+        <section class="flex flex-col justify-center px-6 pt-12 pb-20 max-w-7xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
+            <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl text-gray-900 leading-[1.05] tracking-tight mb-8 max-w-5xl">
+                Architecting a <span class="text-corporate-primary italic">cleaner, biological</span> infrastructure.
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl">
+                Savière Group is a forward-thinking operating platform. We engineer sustainable, asset-light businesses across preventative healthcare, green energy, and eco-conscious consumer goods.
+            </p>
         </section>
 
         <!-- Systemic Data Crisis Section -->
-        <section class="py-24 px-6 relative z-10">
+        <section class="py-20 px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-4xl mx-auto mb-20">
+                <div class="mb-16">
                     <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37] mb-4">The Global Crisis</p>
                     <h2 class="font-serif text-4xl md:text-5xl text-gray-900 leading-tight mb-6">The Industrial System is Broken.</h2>
-                    <p class="font-sans text-gray-600 leading-relaxed font-light text-lg">We refuse to inherit an ecosystem designed to fail. By analyzing macro-environmental and clinical data, we identify the greatest threats to human biology.</p>
+                    <p class="font-sans text-gray-600 leading-relaxed font-light text-lg max-w-3xl">By analyzing macro-environmental and clinical data, we identify the greatest threats to human biology to engineer precise, sustainable solutions.</p>
                 </div>
                 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="glass-panel">
+                    <div class="glass-card">
                         <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">66M+</span>
                         <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Fluorosis Burden (India)</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">According to clinical data, over 66 million Indians suffer from endemic groundwater fluorosis. Distributing synthetic fluoride in these corridors is a profound failure.</p>
+                        <p class="text-base text-gray-600 font-light leading-relaxed">Over 66 million people suffer from endemic groundwater fluorosis. Distributing traditional synthetic products in these corridors is a profound clinical failure.</p>
                     </div>
-                    <div class="glass-panel">
+                    <div class="glass-card">
                         <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">80%</span>
                         <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Microplastic Ingestion</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Recent studies detected microplastics in 80% of human blood samples tested. The degradation of single-use consumer packaging is a direct, systemic vector.</p>
+                        <p class="text-base text-gray-600 font-light leading-relaxed">Microplastics are continuously detected in human biology. The degradation of single-use consumer packaging is a direct, systemic vector for this exposure.</p>
                     </div>
-                    <div class="glass-panel">
+                    <div class="glass-card">
                         <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">1.5B+</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Landfilled Plastic Tubes</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Over 1.5 billion non-recyclable tubes enter Indian landfills annually (20 billion globally). Taking 500+ years to degrade, they leach directly into our water tables.</p>
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Landfilled Plastic</h3>
+                        <p class="text-base text-gray-600 font-light leading-relaxed">Over 1.5 billion non-recyclable multi-laminate items enter Indian landfills annually. Taking 500+ years to degrade, they leach directly into our water tables.</p>
                     </div>
-                    <div class="glass-panel">
+                    <div class="glass-card">
                         <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">50%</span>
                         <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Water Dead-Weight</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Standard FMCG products consist of up to 50% water. Shipping millions of metric tons of water globally creates massive, unnecessary carbon freight emissions.</p>
+                        <p class="text-base text-gray-600 font-light leading-relaxed">Standard FMCG personal care products consist of up to 50% water. Shipping millions of metric tons of water globally creates massive carbon freight emissions.</p>
                     </div>
                 </div>
             </div>
@@ -121,21 +125,18 @@
     </main>
 
     <!-- UNIFORM FOOTER -->
-    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 mt-12 relative z-20">
+    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 mt-12">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <img src="./assets/TransBGWHorizontal_2.png" alt="Savière Group" class="h-12 w-auto object-contain">
-            <div class="flex gap-6 text-[10px] uppercase tracking-widest text-white/60">
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-widest text-white/60">
                 <a href="mailto:connect@savieregroup.com" class="hover:text-white transition">Contact</a>
-                <a href="sitemap.xml" class="hover:text-white transition">Sitemap</a>
                 <span>© 2026 Savière Group. Safe for Earth.</span>
             </div>
         </div>
     </footer>
 
     <script>
-        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-        
-        // Universal Mobile Menu Logic
+        // Uniform Mobile Menu Logic
         const btn = document.getElementById('menu-toggle');
         const menu = document.getElementById('mobile-menu');
         const closeBtn = document.getElementById('close-menu-btn');
@@ -143,24 +144,6 @@
             btn.addEventListener('click', () => menu.classList.add('open'));
             closeBtn.addEventListener('click', () => menu.classList.remove('open'));
         }
-
-        // 3D Particle Network Globe
-        const canvas = document.getElementById('bg-canvas'); const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        const globeGroup = new THREE.Group(); scene.add(globeGroup);
-        const geometry = new THREE.BufferGeometry(); const posArray = new Float32Array(1500 * 3);
-        for(let i=0; i<4500; i+=3) {
-            const r=15, theta=2*Math.PI*Math.random(), phi=Math.acos(2*Math.random()-1);
-            posArray[i]=r*Math.sin(phi)*Math.cos(theta); posArray[i+1]=r*Math.sin(phi)*Math.sin(theta); posArray[i+2]=r*Math.cos(phi); 
-        }
-        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        globeGroup.add(new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.1, color: '#821D30', transparent: true, opacity: 0.5 })));
-        
-        camera.position.z = 35; globeGroup.position.x = window.innerWidth>768?15:0;
-        function animate() { requestAnimationFrame(animate); globeGroup.rotation.y += 0.002; renderer.render(scene, camera); } animate();
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); globeGroup.position.x = window.innerWidth>768?15:0; });
     </script>
 </body>
 </html>
