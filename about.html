@@ -1,87 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Legacy | Savière Group</title>
     <meta name="theme-color" content="#ffffff">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30',50:'#fdf8f9'}}}}}</script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
     <style>
-        body { background-color: #fdf8f9; overflow-x: hidden; }
-        .glass-header { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
-        .glass-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.05); border-radius: 1.5rem; padding: 2.5rem; }
-        .nav-link::after { content: ''; display: block; width: 0; height: 1.5px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
+        .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.4s ease-in-out; }
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
         #mobile-menu.open { transform: translateY(0); }
     </style>
 </head>
-<body class="antialiased">
-    
-    <!-- UNIFORM HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal_2.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain"></a>
-            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-gray-800">
-                <a href="index.html" class="nav-link">Overview</a>
-                <a href="about.html" class="nav-link text-corporate-primary font-bold active">The Legacy</a>
+            <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto"></a>
+            <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em] text-saviere-black">
+                <a href="index.html" class="nav-link">Vision</a>
+                <a href="about.html" class="nav-link text-saviere-crimson active">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
-                <a href="active-operations.html" class="nav-link">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
-            <div class="flex items-center gap-4 relative z-50">
-                <button id="menu-toggle" class="md:hidden p-2 text-corporate-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
-            </div>
+            <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
     </header>
 
-    <!-- UNIFORM MOBILE MENU -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center gap-8">
-        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-2xl font-serif text-gray-900">Overview</a>
-        <a href="about.html" class="text-2xl font-serif text-corporate-primary font-bold">The Legacy</a>
-        <a href="governance.html" class="text-2xl font-serif text-gray-900">Governance</a>
-        <a href="active-operations.html" class="text-2xl font-serif text-gray-900">Operations</a>
-        <a href="roadmap.html" class="text-2xl font-serif text-gray-900">Pipeline</a>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8">
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
+        <a href="about.html" class="text-3xl font-serif text-saviere-crimson font-bold">The Legacy</a>
+        <a href="governance.html" class="text-3xl font-serif text-saviere-black">Governance</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black">Pipeline</a>
     </div>
 
-    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
-        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-12 tracking-tight">Sa • Vi • Ère</h1>
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
-                <p>The name <strong>Savière</strong> is a profound familial anchor. It synthesizes the names of the founder's parents—<strong>Satish Kumar Ayenampudi</strong> and <strong>Vijaya Kumari Ayenampudi</strong>—with the French concept of <strong>Ère</strong> (Era).</p>
-                <p>Their enduring mentorship instilled an absolute moral imperative: any business built under this name must uplift human health, practice non-violence toward all sentient beings, and actively restore the planet.</p>
-                <p>The iconic Swan emblem abstracts the Telugu scripts <strong>స (Sa)</strong> and <strong>వి (Vi)</strong> into graceful, fluid currents—symbolizing biological purity and the strength of a continuous legacy.</p>
-            </div>
-            <div class="glass-card">
-                <h3 class="font-serif text-3xl mb-6 text-gray-900">Medical Rigor. Marathon Stamina.</h3>
-                <p class="font-light leading-relaxed mb-6 text-gray-600">"Massive business growth and ecological preservation are not competing priorities; they are the twin engines of any enterprise built to endure."</p>
-                <p class="font-bold tracking-widest text-xs uppercase text-corporate-primary">Dr. Tanmai Aasrith Varma Ayenampudi</p>
+    <main class="flex-grow pt-32 pb-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4">The Origin Story</p>
+            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-16">
+                Sa • Vi • Ère — An Era Built on Generational Resilience.
+            </h1>
+            
+            <div class="grid md:grid-cols-12 gap-12 max-w-6xl mb-24">
+                <div class="md:col-span-7 space-y-6 font-sans text-lg text-gray-700 font-light leading-relaxed">
+                    <p>The name <strong>Savière</strong> is a profound familial anchor. It synthesizes the names of the founder's parents—<strong>Satish Kumar Ayenampudi</strong> and <strong>Vijaya Kumari Ayenampudi</strong>—with the French concept of <strong>Ère</strong> (Era).</p>
+                    <p>Their enduring mentorship instilled an absolute moral imperative: any enterprise built under this name must uplift human health, practice non-violence toward all sentient beings, and actively leave the planet cleaner than we inherited it.</p>
+                </div>
+                <div class="md:col-span-5 bg-white p-10 border border-saviere-crimson/10 rounded-3xl shadow-sm">
+                    <h3 class="font-serif text-2xl text-saviere-crimson mb-6">Etymology</h3>
+                    <div class="space-y-6 font-subheading text-xs text-saviere-black">
+                        <div class="border-b border-gray-100 pb-4">
+                            <span class="text-saviere-gold font-bold uppercase tracking-widest block mb-1">Sa (స)</span>
+                            <span class="text-gray-600 font-normal">Satish Kumar Ayenampudi — Resilience & Discipline</span>
+                        </div>
+                        <div class="border-b border-gray-100 pb-4">
+                            <span class="text-saviere-gold font-bold uppercase tracking-widest block mb-1">Vi (వి)</span>
+                            <span class="text-gray-600 font-normal">Vijaya Kumari Ayenampudi — Compassion & Clarity</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- UNIFORM FOOTER -->
-    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 mt-12">
+    <footer class="bg-saviere-crimson text-white py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <img src="./assets/TransBGWHorizontal_2.png" alt="Savière Group" class="h-12 w-auto object-contain">
-            <div class="flex gap-6 text-[10px] uppercase tracking-widest text-white/60">
-                <a href="mailto:connect@savieregroup.com" class="hover:text-white transition">Contact</a>
-                <span>© 2026 Savière Group. Safe for Earth.</span>
-            </div>
+            <img src="./assets/TransBGWHorizontal.png" class="h-12 w-auto object-contain">
+            <p class="text-[10px] text-white/60 tracking-widest uppercase">© 2026 Savière Group.</p>
         </div>
     </footer>
 
     <script>
-        const btn = document.getElementById('menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-        const closeBtn = document.getElementById('close-menu-btn');
-        if(btn && menu && closeBtn) {
-            btn.addEventListener('click', () => menu.classList.add('open'));
-            closeBtn.addEventListener('click', () => menu.classList.remove('open'));
-        }
+        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
+        document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
     </script>
 </body>
 </html>

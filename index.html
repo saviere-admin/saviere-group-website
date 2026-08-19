@@ -2,148 +2,161 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savière Group | Architecting a Sustainable Future</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Savière Group | Architecting a Sustainable Biological Future</title>
     
     <meta name="theme-color" content="#ffffff">
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Exact Favicons from Repository -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+
+    <!-- Branding Guidelines Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { corporate: { primary: '#821D30', 50: '#fdf8f9' } } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Nunito Sans"', 'Avenir', 'sans-serif'],
+                        serif: ['Marcellus', 'serif'],
+                        subheading: ['Poppins', 'sans-serif']
+                    },
+                    colors: { saviere: { crimson: '#520A1E', gold: '#D4AF37', silver: '#C0C0C0', black: '#0A0A0A', bg: '#FDF8F9' } }
+                }
+            }
+        }
     </script>
     
     <style>
-        body { background-color: #fdf8f9; color: #0d0204; overflow-x: hidden; }
+        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         
         /* Pristine White Frosted Glass Header */
-        .glass-header { 
-            background: rgba(255, 255, 255, 0.75); 
-            backdrop-filter: blur(24px) saturate(180%); 
-            -webkit-backdrop-filter: blur(24px) saturate(180%); 
-            border-bottom: 1px solid rgba(130, 29, 48, 0.05); 
-        }
-        
-        /* Frosted Glass Elements */
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.6); 
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255, 255, 255, 0.9); 
-            box-shadow: 0 8px 32px rgba(0,0,0,0.05); 
-            border-radius: 1.5rem; 
-            padding: 2.5rem; 
-            transition: transform 0.3s ease, border-color 0.3s ease; 
-        }
-        .glass-card:hover { transform: translateY(-5px); border-color: rgba(130, 29, 48, 0.2); }
-
-        .nav-link::after { content: ''; display: block; width: 0; height: 1.5px; background: #821D30; transition: width 0.3s ease; margin-top: 4px; }
+        .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.4s ease-in-out; }
+
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
+
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
         #mobile-menu.open { transform: translateY(0); }
     </style>
 </head>
-<body class="antialiased selection:bg-corporate-primary selection:text-white">
+<body class="antialiased selection:bg-saviere-crimson selection:text-white flex flex-col min-h-screen">
 
-    <!-- UNIFORM HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="relative z-50">
-                <img src="./assets/TransBGRHorizontal_2.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain">
+            <a href="index.html" class="flex items-center relative z-50">
+                <!-- EXACT REPO FILE: Transparent Background, Burgundy Text -->
+                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
             </a>
-            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-gray-800">
-                <a href="index.html" class="nav-link text-corporate-primary font-bold active">Overview</a>
-                <a href="about.html" class="nav-link">The Legacy</a>
-                <a href="governance.html" class="nav-link">Governance</a>
-                <a href="active-operations.html" class="nav-link">Operations</a>
-                <a href="roadmap.html" class="nav-link">Pipeline</a>
+            
+            <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em] text-saviere-black">
+                <a href="index.html" class="nav-link text-saviere-crimson active">Vision</a>
+                <a href="about.html" class="nav-link hover:text-saviere-crimson transition-colors">The Legacy</a>
+                <a href="governance.html" class="nav-link hover:text-saviere-crimson transition-colors">Governance</a>
+                <a href="roadmap.html" class="nav-link hover:text-saviere-crimson transition-colors">Pipeline</a>
             </nav>
+            
             <div class="flex items-center gap-4 relative z-50">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-widest text-corporate-primary border border-corporate-primary/30 rounded-full hover:bg-corporate-primary hover:text-white transition-all">Connect</a>
-                <button id="menu-toggle" class="md:hidden p-2 text-corporate-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-opacity-90 transition-all rounded-full shadow-lg">Connect</a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- UNIFORM MOBILE MENU -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center gap-8">
-        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <a href="index.html" class="text-2xl font-serif text-corporate-primary font-bold">Overview</a>
-        <a href="about.html" class="text-2xl font-serif text-gray-900">The Legacy</a>
-        <a href="governance.html" class="text-2xl font-serif text-gray-900">Governance</a>
-        <a href="active-operations.html" class="text-2xl font-serif text-gray-900">Operations</a>
-        <a href="roadmap.html" class="text-2xl font-serif text-gray-900">Pipeline</a>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8">
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold mobile-link">Vision</a>
+        <a href="about.html" class="text-3xl font-serif text-saviere-black mobile-link">The Legacy</a>
+        <a href="governance.html" class="text-3xl font-serif text-saviere-black mobile-link">Governance</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black mobile-link">Pipeline</a>
     </div>
 
-    <main class="relative z-10 pt-32 pb-24">
+    <main class="flex-grow pt-32 pb-24">
         <!-- Hero Section -->
-        <section class="flex flex-col justify-center px-6 pt-12 pb-20 max-w-7xl mx-auto">
-            <p class="text-xs font-bold uppercase tracking-[0.3em] text-corporate-primary mb-6">Cyberabad, India</p>
-            <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl text-gray-900 leading-[1.05] tracking-tight mb-8 max-w-5xl">
-                Architecting a <span class="text-corporate-primary italic">cleaner, biological</span> infrastructure.
-            </h1>
-            <p class="text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl">
-                Savière Group is a forward-thinking operating platform. We engineer sustainable, asset-light businesses across preventative healthcare, green energy, and eco-conscious consumer goods.
-            </p>
+        <section class="min-h-[80vh] flex flex-col justify-center px-6 relative bg-transparent">
+            <div class="max-w-7xl mx-auto w-full text-center">
+                <div class="inline-flex items-center gap-3 px-3 py-1.5 border border-saviere-crimson/20 rounded-full bg-white mb-6">
+                    <span class="w-2 h-2 rounded-full bg-saviere-crimson animate-pulse"></span>
+                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson">Cyberabad • Apex Holding Entity</p>
+                </div>
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] text-saviere-black leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
+                    Architecting clinical scale & sustainable infrastructure.
+                </h1>
+                <p class="font-sans text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
+                    Savière Group is a forward-thinking operating platform. We deploy asset-light geometries across accessible healthcare, clean energy, and zero-waste consumer goods.
+                </p>
+            </div>
         </section>
 
-        <!-- Systemic Data Crisis Section -->
-        <section class="py-20 px-6">
+        <!-- The Crisis Matrix -->
+        <section class="py-24 px-6 bg-white border-y border-saviere-crimson/10">
             <div class="max-w-7xl mx-auto">
-                <div class="mb-16">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37] mb-4">The Global Crisis</p>
-                    <h2 class="font-serif text-4xl md:text-5xl text-gray-900 leading-tight mb-6">The Industrial System is Broken.</h2>
-                    <p class="font-sans text-gray-600 leading-relaxed font-light text-lg max-w-3xl">By analyzing macro-environmental and clinical data, we identify the greatest threats to human biology to engineer precise, sustainable solutions.</p>
+                <div class="text-center max-w-4xl mx-auto mb-16">
+                    <p class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">The Systemic Reset</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">Addressing global market failures through medical precision.</h2>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="glass-card">
-                        <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">66M+</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Fluorosis Burden (India)</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Over 66 million people suffer from endemic groundwater fluorosis. Distributing traditional synthetic products in these corridors is a profound clinical failure.</p>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-10">
+                        <span class="font-mono text-xs font-bold text-gray-400 block mb-4">01 — The Plastic Crisis</span>
+                        <h3 class="font-serif text-2xl text-saviere-black mb-4">Billions of Single-Use Tubes</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">The global FMCG industry dumps massive quantities of non-recyclable laminate tubes into landfills annually, generating an entirely unnecessary carbon footprint.</p>
                     </div>
-                    <div class="glass-card">
-                        <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">80%</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Microplastic Ingestion</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Microplastics are continuously detected in human biology. The degradation of single-use consumer packaging is a direct, systemic vector for this exposure.</p>
+                    <div class="glass-card p-10">
+                        <span class="font-mono text-xs font-bold text-gray-400 block mb-4">02 — The Biological Threat</span>
+                        <h3 class="font-serif text-2xl text-saviere-black mb-4">Systemic Toxin Ingestion</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">The oral cavity is the primary gateway to the vascular system. Daily ingestion of microplastics from degraded tubes represents a profound failure of preventative medicine.</p>
                     </div>
-                    <div class="glass-card">
-                        <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">1.5B+</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Landfilled Plastic</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Over 1.5 billion non-recyclable multi-laminate items enter Indian landfills annually. Taking 500+ years to degrade, they leach directly into our water tables.</p>
-                    </div>
-                    <div class="glass-card">
-                        <span class="font-serif text-5xl text-corporate-primary block font-bold mb-4">50%</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 mb-3">Water Dead-Weight</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed">Standard FMCG personal care products consist of up to 50% water. Shipping millions of metric tons of water globally creates massive carbon freight emissions.</p>
+                    <div class="glass-card p-10 border-saviere-crimson/30 shadow-xl">
+                        <span class="font-mono text-xs font-bold text-saviere-crimson block mb-4">03 — The Medical Mandate</span>
+                        <h3 class="font-serif text-2xl text-saviere-black mb-4">A Zero-Waste Future</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Led by Medical Doctors, our upcoming phase-one subsidiary is engineered to eliminate unnecessary water weight and strictly prohibit plastic packaging.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- UNIFORM FOOTER -->
-    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 mt-12">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <img src="./assets/TransBGWHorizontal_2.png" alt="Savière Group" class="h-12 w-auto object-contain">
-            <div class="flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-widest text-white/60">
-                <a href="mailto:connect@savieregroup.com" class="hover:text-white transition">Contact</a>
-                <span>© 2026 Savière Group. Safe for Earth.</span>
+    <!-- Deep Crimson Footer -->
+    <footer class="bg-saviere-crimson text-white pt-20 pb-10 px-6 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 text-center md:text-left">
+            <div class="space-y-6">
+                <a href="index.html" class="inline-block">
+                    <!-- EXACT REPO FILE: Transparent Background, White Text -->
+                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-14 md:h-20 w-auto object-contain mx-auto md:mx-0 drop-shadow-md">
+                </a>
+                <p class="text-white/80 text-sm leading-relaxed max-w-sm font-light mx-auto md:mx-0">
+                    Savière Group Private Limited.<br>Cyberabad, Hyderabad, Telangana, India.
+                </p>
+                <div class="text-xs text-white/70 pt-2">
+                    <a href="mailto:connect@savieregroup.com" class="text-saviere-gold underline hover:text-white transition-colors">connect@savieregroup.com</a>
+                </div>
             </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-[11px] text-white/60 tracking-widest uppercase font-medium">
+            <p>© 2026 Savière Group Pvt Ltd. Safe for Earth.</p>
+            <div class="flex gap-6"><span>Net-Zero</span><span>Cruelty-Free</span><span>Asset-Light</span></div>
         </div>
     </footer>
 
     <script>
-        // Uniform Mobile Menu Logic
-        const btn = document.getElementById('menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-        const closeBtn = document.getElementById('close-menu-btn');
-        if(btn && menu && closeBtn) {
-            btn.addEventListener('click', () => menu.classList.add('open'));
-            closeBtn.addEventListener('click', () => menu.classList.remove('open'));
-        }
+        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
+        document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
+        
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navbar');
+            if(window.scrollY > 50) { header.classList.add('shadow-sm'); } else { header.classList.remove('shadow-sm'); }
+        });
     </script>
 </body>
 </html>
