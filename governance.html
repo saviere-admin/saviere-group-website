@@ -4,61 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Governance | Savière Group</title>
-    <meta name="theme-color" content="#821D30">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30'}}}}}</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body { background-color: #ffffff; overflow-x: hidden; }
-        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
-        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        body { background-color: #fdf8f9; overflow-x: hidden; }
+        .glass-header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(130, 29, 48, 0.1); }
+        .glass-panel { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.05); border-radius: 1.5rem; padding: 2.5rem; transition: transform 0.3s ease; }
+        .glass-panel:hover { transform: translateY(-5px); border-color: rgba(130, 29, 48, 0.3); }
+        .glass-btn { background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(130, 29, 48, 0.3); color: #821D30; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; }
+        .nav-link::after { content: ''; display: block; width: 0; height: 1.5px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.1; pointer-events: none; }
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.4s ease-in-out; }
+        #mobile-menu.open { transform: translateY(0); }
+        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none; }
+        .content-layer { position: relative; z-index: 10; }
     </style>
 </head>
 <body class="antialiased">
     <canvas id="bg-geom"></canvas>
+    
+    <!-- UNIFORM HEADER -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal_2.png" alt="Savière Group" class="h-8 md:h-12 w-auto"></a>
+            <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal_2.png" alt="Savière Group" class="h-8 md:h-12 w-auto object-contain"></a>
             <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-gray-900">
-                <a href="index.html" class="nav-link">Vision</a>
+                <a href="index.html" class="nav-link">Overview</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link text-corporate-primary font-bold active">Governance</a>
                 <a href="active-operations.html" class="nav-link">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
+            <div class="flex items-center gap-4 relative z-50">
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex glass-btn">Connect</a>
+                <button id="menu-toggle" class="md:hidden p-2 text-corporate-primary"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+            </div>
         </div>
     </header>
 
-    <main class="relative z-10 pt-32 pb-24 px-6 max-w-7xl mx-auto">
+    <!-- UNIFORM MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center gap-8">
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-corporate-primary"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <a href="index.html" class="text-2xl font-serif text-corporate-900">Overview</a>
+        <a href="about.html" class="text-2xl font-serif text-corporate-900">The Legacy</a>
+        <a href="governance.html" class="text-2xl font-serif text-corporate-primary font-bold">Governance</a>
+        <a href="active-operations.html" class="text-2xl font-serif text-corporate-900">Operations</a>
+        <a href="roadmap.html" class="text-2xl font-serif text-corporate-900">Pipeline</a>
+    </div>
+
+    <main class="content-layer pt-32 pb-24 px-6 max-w-7xl mx-auto">
         <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-12 tracking-tight">Uncompromising Equilibrium.</h1>
         <p class="text-xl text-gray-600 font-light mb-16 max-w-4xl leading-relaxed">
             Profitability without systemic biological improvement is an institutional failure. Operating under the framework of planetary boundaries, our governance ensures multi-billion dollar commercial growth remains structurally inseparable from environmental preservation.
         </p>
         
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+            <div class="glass-panel">
                 <h3 class="font-serif text-3xl text-gray-900 mb-4">Biological Purity</h3>
                 <p class="text-gray-600 font-light leading-relaxed">Shifting from reactive disease treatment to proactive biological preservation. Every product and clinical service must actively improve systemic health.</p>
             </div>
-            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+            <div class="glass-panel">
                 <h3 class="font-serif text-3xl text-gray-900 mb-4">The Vegan Mandate</h3>
                 <p class="text-gray-600 font-light leading-relaxed">An absolute ethical framework. Zero animal derivatives and strictly zero animal testing across all pharmaceutical, consumer, and hospitality pipelines.</p>
             </div>
-            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+            <div class="glass-panel">
                 <h3 class="font-serif text-3xl text-gray-900 mb-4">Net-Zero Infrastructure</h3>
                 <p class="text-gray-600 font-light leading-relaxed">Designing out single-use plastics and integrating decentralized clean solar microgrids into all future physical facilities.</p>
             </div>
-            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+            <div class="glass-panel">
                 <h3 class="font-serif text-3xl text-gray-900 mb-4">Asset-Light Geometries</h3>
                 <p class="text-gray-600 font-light leading-relaxed">Leveraging highly specialized Intellectual Property vaults and strict CDMO (Contract Manufacturing) partnerships to scale aggressively without balance-sheet bloat.</p>
             </div>
         </div>
     </main>
 
+    <!-- UNIFORM FOOTER -->
+    <footer class="bg-corporate-primary text-white pt-20 pb-10 px-6 mt-12 relative z-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <img src="./assets/TransBGWHorizontal_2.png" alt="Savière Group" class="h-12 w-auto object-contain">
+            <div class="flex gap-6 text-[10px] uppercase tracking-widest text-white/60">
+                <a href="mailto:connect@savieregroup.com" class="hover:text-white transition">Contact</a>
+                <a href="sitemap.xml" class="hover:text-white transition">Sitemap</a>
+                <span>© 2026 Savière Group. Safe for Earth.</span>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        const btn = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu-btn');
+        if(btn && menu && closeBtn) { btn.addEventListener('click', () => menu.classList.add('open')); closeBtn.addEventListener('click', () => menu.classList.remove('open')); }
+
         const canvas = document.getElementById('bg-geom'); const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
