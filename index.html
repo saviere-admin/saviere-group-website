@@ -4,12 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Savière Group | Architecting a Sustainable Biological Future</title>
+    <meta name="description" content="Savière Group Private Limited is an apex operating conglomerate dedicated to preventative wellness, clean energy infrastructure, and zero-waste consumer goods.">
     
     <meta name="theme-color" content="#ffffff">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+
+    <!-- Perfected Google Knowledge Panel Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": "Savière Group",
+      "legalName": "Saviere Group Private Limited",
+      "alternateName": [
+        "Saviere",
+        "Saviere Group",
+        "Saviere Group of Companies",
+        "Saviere Group Limited",
+        "Saviere Private Limited",
+        "A Saviere Company"
+      ],
+      "url": "https://savieregroup.com",
+      "logo": "https://savieregroup.com/assets/TransBGRHorizontal.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/saviere-group"
+      ],
+      "foundingDate": "2026",
+      "founder": {
+        "@type": "Person",
+        "name": "Dr. Tanmai Aasrith Varma Ayenampudi",
+        "alternateName": "Tanmai Aasrith Varma Ayenampudi",
+        "jobTitle": "Chairman & Managing Director",
+        "honorificPrefix": "Dr.",
+        "description": "Medical Doctor, Environmental Advocate, and Founder of Savière Group."
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Secunderabad, Hyderabad",
+        "addressRegion": "Telangana",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "connect@savieregroup.com",
+        "contactType": "Corporate Inquiries"
+      }
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,12 +63,17 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['"Nunito Sans"', 'Avenir', 'sans-serif'], serif: ['Marcellus', 'serif'], subheading: ['Poppins', 'sans-serif'] },
+                    fontFamily: { sans: ['"Nunito Sans"', 'sans-serif'], serif: ['Marcellus', 'serif'], subheading: ['Poppins', 'sans-serif'] },
                     colors: { saviere: { crimson: '#520A1E', gold: '#D4AF37', silver: '#C0C0C0', black: '#0A0A0A', bg: '#FDF8F9' } }
                 }
             }
         }
     </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         .glass-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
@@ -34,17 +83,16 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .glass-card { background: #ffffff; border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; padding: 2.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .glass-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
+        .reveal { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- White Frosted Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center">
+            <a href="index.html" class="flex items-center relative z-50">
                 <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain">
             </a>
-            
             <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em]">
                 <a href="index.html" class="nav-link active">Vision</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
@@ -52,32 +100,33 @@
                 <a href="active-operations.html" class="nav-link">Operations</a>
                 <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
-            
-            <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+            <div class="flex items-center gap-4 relative z-50">
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-saviere-black transition-colors rounded-full shadow-lg">Connect</a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold">Vision</a>
-        <a href="about.html" class="text-3xl font-serif text-saviere-black">The Legacy</a>
-        <a href="governance.html" class="text-3xl font-serif text-saviere-black">Governance</a>
-        <a href="active-operations.html" class="text-3xl font-serif text-saviere-black">Operations</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black">Pipeline</a>
+        <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold mobile-link">Vision</a>
+        <a href="about.html" class="text-3xl font-serif text-saviere-black mobile-link">The Legacy</a>
+        <a href="governance.html" class="text-3xl font-serif text-saviere-black mobile-link">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-saviere-black mobile-link">Operations</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black mobile-link">Pipeline</a>
     </div>
 
     <main class="flex-grow pt-32 pb-24">
         <!-- Hero Section -->
-        <section class="min-h-[85vh] flex flex-col justify-center px-6">
-            <div class="max-w-7xl mx-auto w-full text-center">
+        <section class="min-h-[85vh] flex flex-col justify-center px-6 relative">
+            <div class="max-w-7xl mx-auto w-full text-center reveal">
                 <div class="inline-flex items-center gap-3 px-3 py-1.5 border border-saviere-crimson/20 rounded-full bg-white mb-8 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-saviere-crimson animate-pulse"></span>
-                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson">Cyberabad • Apex Holding Entity</p>
+                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson">Secunderabad • Apex Holding Entity</p>
                 </div>
                 <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] text-saviere-black leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
                     Restoring biological equilibrium through <span class="italic text-saviere-crimson">clinical scale</span>.
@@ -95,48 +144,45 @@
         <!-- The Crisis Matrix -->
         <section class="py-24 px-6 bg-white border-y border-saviere-crimson/10">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-4xl mx-auto mb-16">
+                <div class="text-center max-w-4xl mx-auto mb-16 reveal">
                     <p class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">The Systemic Reset</p>
                     <h2 class="font-serif text-4xl md:text-5xl text-saviere-black leading-tight mb-6">Why the Earth requires a medical intervention.</h2>
                     <p class="font-sans text-gray-600 font-light leading-relaxed text-lg">We refuse to inherit an ecosystem built on depletion. By analyzing the intersection of clinical pathology and industrial waste, we target the root causes of global health decay.</p>
                 </div>
                 
                 <div class="grid lg:grid-cols-3 gap-8">
-                    <div class="glass-card">
+                    <div class="glass-card reveal">
                         <span class="font-serif text-4xl text-saviere-crimson block mb-2">1.5 Billion</span>
                         <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Toxic Vectors</h3>
                         <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">The global consumer sector injects over 1.5 billion non-recyclable multi-laminate tubes into Indian landfills annually. Taking centuries to degrade, they continuously leach systemic microplastics directly into terrestrial and marine biomes.</p>
-                        <p class="text-xs text-gray-400 italic">Data Ref: National Green Tribunal (NGT) & Global Environmental Audits</p>
                     </div>
-                    <div class="glass-card">
+                    <div class="glass-card reveal" style="transition-delay: 100ms;">
                         <span class="font-serif text-4xl text-saviere-crimson block mb-2">66 Million</span>
                         <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Endemic Fluorosis</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">Over 66 million people across 19 Indian states suffer from endemic groundwater fluorosis. Continuing to distribute neurotoxic synthetic fluoride pastes into these vulnerable demographics represents a catastrophic failure of medical care.</p>
-                        <p class="text-xs text-gray-400 italic">Data Ref: Ministry of Health & Family Welfare, India</p>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">Clinical data reveals over 66 million citizens across 19+ states suffer from endemic groundwater fluorosis. Continuing to distribute neurotoxic synthetic fluoride pastes into these vulnerable demographics represents a catastrophic failure of medical care.</p>
                     </div>
-                    <div class="glass-card border-saviere-crimson/30 shadow-xl">
+                    <div class="glass-card border-saviere-crimson/30 shadow-xl reveal" style="transition-delay: 200ms;">
                         <span class="font-serif text-4xl text-saviere-crimson block mb-2">50% Waste</span>
                         <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Logistical Exhaustion</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">Traditional paste formulations are roughly 50% dead-weight water. In a world facing profound water scarcity, this generates massive, entirely unnecessary carbon freight emissions that accelerate climate decay.</p>
-                        <p class="text-xs text-gray-400 italic">Data Ref: Global Water Institute</p>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">Standard FMCG pastes consist of up to 50% dead-weight water. In a world facing profound water scarcity, this generates massive, entirely unnecessary carbon freight emissions that accelerate climate decay.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Deep Crimson Footer -->
     <footer class="bg-saviere-crimson text-white pt-20 pb-10 px-6 relative z-20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 text-center md:text-left">
             <div class="space-y-6">
                 <a href="index.html" class="inline-block">
-                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-14 md:h-16 w-auto object-contain mx-auto md:mx-0 drop-shadow-md">
+                    <img src="./assets/TransBGWHorizontal.png" alt="Savière Group Limited" class="h-14 md:h-16 w-auto object-contain mx-auto md:mx-0">
                 </a>
                 <p class="text-white/80 text-sm leading-relaxed max-w-sm font-light mx-auto md:mx-0">
-                    Savière Group Private Limited.<br>Cyberabad, Hyderabad, Telangana, India.
+                    Savière Group Private Limited.<br>Secunderabad, Telangana, India.
                 </p>
-                <div class="text-xs text-white/70 pt-2">
+                <div class="text-xs text-white/70 pt-2 flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                     <a href="mailto:connect@savieregroup.com" class="text-saviere-gold underline hover:text-white transition-colors">connect@savieregroup.com</a>
+                    <a href="https://www.linkedin.com/company/saviere-group" target="_blank" class="text-saviere-gold underline hover:text-white transition-colors">LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -147,19 +193,17 @@
     </footer>
 
     <script>
-        const menuBtn = document.getElementById('menu-toggle');
-        const closeBtn = document.getElementById('close-menu-btn');
+        const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
         const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            mobileMenu.classList.add('flex');
+        document.getElementById('menu-toggle').addEventListener('click', () => { mobileMenu.classList.remove('hidden'); mobileMenu.classList.add('flex'); });
+        document.getElementById('close-menu-btn').addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); });
+        document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); }); });
+        
+        gsap.registerPlugin(ScrollTrigger); 
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.2, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
         });
-
-        closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('flex');
-        });
+        window.addEventListener('scroll', () => { const header = document.getElementById('navbar'); if(window.scrollY > 50) { header.classList.add('shadow-sm'); } else { header.classList.remove('shadow-sm'); } });
     </script>
 </body>
 </html>

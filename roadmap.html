@@ -12,11 +12,11 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
-        .glass-header { background: rgba(253, 248, 249, 0.90); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .glass-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #520A1E; }
         .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
-        #mobile-menu.open { transform: translateY(0); }
         .reveal { visibility: hidden; }
     </style>
 </head>
@@ -25,18 +25,18 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto"></a>
-            <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em] text-saviere-black">
+            <nav class="hidden lg:flex gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em]">
                 <a href="index.html" class="nav-link">Vision</a>
                 <a href="about.html" class="nav-link">The Legacy</a>
                 <a href="governance.html" class="nav-link">Governance</a>
                 <a href="active-operations.html" class="nav-link">Operations</a>
-                <a href="roadmap.html" class="nav-link text-saviere-crimson active font-bold">Pipeline</a>
+                <a href="roadmap.html" class="nav-link active text-saviere-crimson">Pipeline</a>
             </nav>
             <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8 z-40">
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 backdrop-blur-xl flex-col justify-center items-center gap-8 z-40">
         <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <a href="index.html" class="text-3xl font-serif text-saviere-black">Vision</a>
         <a href="about.html" class="text-3xl font-serif text-saviere-black">The Legacy</a>
@@ -53,7 +53,7 @@
                 <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-saviere-crimson border-4 border-white"></div>
                 <span class="text-[10px] font-bold text-saviere-crimson uppercase tracking-widest">Phase 1</span>
                 <h3 class="font-serif text-2xl md:text-4xl text-saviere-black mt-2 mb-4">Consumer Healthcare Engine</h3>
-                <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Establish the FMCG engine to address critical gaps in hygiene. Centralize and secure all trademarks and proprietary formulations under our corporate vault.</p>
+                <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Establish the FMCG engine to address critical gaps in hygiene. Centralize and secure all trademarks and proprietary formulations under our corporate IP vault.</p>
             </div>
             
             <div class="relative bg-white p-6 md:p-8 rounded-3xl border border-saviere-crimson/10 shadow-sm transition-transform hover:-translate-y-2">
@@ -67,7 +67,7 @@
                 <div class="absolute -left-[37px] md:-left-[46px] top-8 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gray-300 border-4 border-white"></div>
                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phase 3</span>
                 <h3 class="font-serif text-2xl md:text-4xl text-saviere-black mt-2 mb-4">Eco-Conscious Living</h3>
-                <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Expand into Savière Hotels. Redefining luxury through 100% plant-based hospitality and net-zero microgrid integration.</p>
+                <p class="text-sm md:text-lg text-gray-600 font-light leading-relaxed">Expand into Savière Hotels and Vegan Cafes. Redefining luxury through 100% plant-based hospitality and net-zero microgrid integration.</p>
             </div>
         </div>
     </main>
@@ -81,8 +81,9 @@
 
     <script>
         const lenis = new Lenis({ duration: 1.2, smooth: true }); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-        document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
-        document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
+        const mobileMenu = document.getElementById('mobile-menu');
+        document.getElementById('menu-toggle').addEventListener('click', () => { mobileMenu.classList.remove('hidden'); mobileMenu.classList.add('flex'); });
+        document.getElementById('close-menu-btn').addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); });
         gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.reveal').forEach(el => { gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.2, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } }); });
     </script>
 </body>
