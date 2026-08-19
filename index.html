@@ -2,12 +2,13 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Savière Group | Architecting a Sustainable Biological Future</title>
     <meta name="description" content="Savière Group Private Limited is an impact-driven conglomerate building sustainable, asset-light businesses across wellness, green energy, and eco-conscious hospitality.">
-    
     <meta name="theme-color" content="#ffffff">
+
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 
     <!-- COMPLETE GOOGLE KNOWLEDGE PANEL SCHEMA -->
     <script type="application/ld+json">
@@ -23,14 +24,16 @@
       "founder": {
         "@type": "Person",
         "name": "Dr. Tanmai Aasrith Varma Ayenampudi",
-        "jobTitle": "Chairman & Managing Director"
+        "alternateName": ["Tanmai Aasrith Varma Ayenampudi"],
+        "jobTitle": "Chairman & Managing Director",
+        "description": "Medical Doctor, Environmental Advocate, and Founder of Savière Group."
       }
     }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -46,39 +49,36 @@
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
         
-        /* The Floating Pill Header */
-        .pill-header {
-            position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
-            width: calc(100% - 2rem); max-width: 80rem;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px);
-            border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 9999px;
-            box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.15);
-            z-index: 100; transition: all 0.3s ease; padding: 0.5rem 1.5rem;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        
+        /* Floating Pill Header */
+        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.15); z-index: 50; transition: all 0.3s ease; padding: 0.5rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
         .nav-link { position: relative; color: #0A0A0A; transition: color 0.3s; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
+        /* Card Styles */
         .glass-card { background: #ffffff; border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 1.5rem; padding: 2.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.12); border-color: #D4AF37; }
         
-        /* Bulletproof Reveal */
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        /* Native CSS Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Story Overlay Engine */
+        #story-overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; z-index: 9999; }
+        #story-overlay.story-active { opacity: 1; pointer-events: auto; }
+        .story-progress-bar { height: 100%; background: #ffffff; width: 0%; border-radius: 999px; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- UNIFIED FLOATING PILL HEADER -->
+    <!-- FLOATING PILL HEADER -->
     <header class="pill-header" id="navbar">
         <a href="index.html" class="flex-shrink-0 py-2">
             <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain">
         </a>
         <nav class="hidden lg:flex gap-8 items-center">
-            <a href="index.html" class="nav-link active">Portal</a>
+            <a href="index.html" class="nav-link active">Vision</a>
             <a href="about.html" class="nav-link">The Legacy</a>
             <a href="governance.html" class="nav-link">Governance</a>
             <a href="active-operations.html" class="nav-link">Operations</a>
@@ -90,18 +90,19 @@
         </button>
     </header>
 
-    <!-- UNIFIED MOBILE MENU -->
+    <!-- MOBILE MENU -->
     <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-2xl flex flex-col justify-center items-center gap-8 z-[110] transition-opacity duration-300 opacity-0 pointer-events-none">
         <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold mobile-link">Portal</a>
-        <a href="about.html" class="text-3xl font-serif text-saviere-black mobile-link">The Legacy</a>
-        <a href="governance.html" class="text-3xl font-serif text-saviere-black mobile-link">Governance</a>
-        <a href="active-operations.html" class="text-3xl font-serif text-saviere-black mobile-link">Operations</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black mobile-link">Roadmap</a>
+        <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold">Vision</a>
+        <a href="about.html" class="text-3xl font-serif text-saviere-black">The Legacy</a>
+        <a href="governance.html" class="text-3xl font-serif text-saviere-black">Governance</a>
+        <a href="active-operations.html" class="text-3xl font-serif text-saviere-black">Operations</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black">Roadmap</a>
     </div>
 
+    <!-- MAIN CONTENT -->
     <main class="flex-grow pt-40 pb-24">
         <!-- Hero Section -->
         <section class="min-h-[75vh] flex flex-col justify-center px-6">
@@ -116,16 +117,6 @@
                 <p class="font-sans text-lg md:text-2xl text-gray-600 font-light leading-relaxed max-w-4xl mx-auto mb-12">
                     <span class="font-serif font-bold text-saviere-crimson">Savière</span> Group is a for-profit, impact-driven conglomerate. We engineer asset-light infrastructure across consumer wellness, green energy, and experiential hospitality.
                 </p>
-                <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto border-t border-saviere-crimson/10 pt-12 text-left">
-                    <div>
-                        <h3 class="font-subheading text-[10px] font-bold uppercase tracking-[0.2em] text-saviere-gold mb-3">Our Vision</h3>
-                        <p class="font-serif text-xl text-saviere-black leading-snug">To establish a globally scalable industrial benchmark where massive profitability is structurally inseparable from absolute environmental preservation.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-subheading text-[10px] font-bold uppercase tracking-[0.2em] text-saviere-gold mb-3">Our Mission</h3>
-                        <p class="font-sans text-base text-gray-600 font-light leading-relaxed">To utilize asset-light infrastructure to deploy preventative healthcare protocols, clean energy systems, and luxury hospitality experiences that leave a net-zero footprint.</p>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -149,7 +140,7 @@
                         <div class="absolute -right-4 -top-4 opacity-5 font-serif text-9xl">02</div>
                         <span class="font-serif text-5xl text-saviere-crimson block mb-6">66M+</span>
                         <h3 class="font-subheading text-sm uppercase tracking-widest text-saviere-black font-bold mb-4 border-b border-gray-100 pb-4">Endemic Fluorosis</h3>
-                        <p class="text-base text-gray-600 font-light leading-relaxed mb-6">Clinical data (WHO) reveals over 66 million citizens across India suffer from endemic groundwater fluorosis. Distributing neurotoxic fluoride into these regions is a profound failure of care.</p>
+                        <p class="text-base text-gray-600 font-light leading-relaxed mb-6">Clinical data reveals over 66 million citizens across India suffer from endemic groundwater fluorosis. Distributing neurotoxic synthetic fluoride into these regions is a profound failure of care.</p>
                     </div>
                     <div class="glass-card reveal relative overflow-hidden border-saviere-crimson/30 shadow-xl" style="transition-delay: 200ms;">
                         <div class="absolute -right-4 -top-4 opacity-5 font-serif text-9xl text-saviere-crimson">03</div>
@@ -162,7 +153,7 @@
         </section>
     </main>
 
-    <!-- UNIFIED DEEP CRIMSON FOOTER -->
+    <!-- FOOTER -->
     <footer class="bg-saviere-crimson text-white pt-24 pb-12 px-6">
         <div class="max-w-[80rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-white/10 pb-16 mb-8 text-center md:text-left">
             <div>
@@ -183,41 +174,12 @@
         </div>
     </footer>
 
-    <!-- LIGHTWEIGHT NATIVE SCRIPTS -->
-    <script>
-        const menuBtn = document.getElementById('menu-toggle');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => { 
-            mobileMenu.classList.remove('pointer-events-none'); 
-            mobileMenu.style.opacity = '1'; 
-        });
-        closeBtn.addEventListener('click', () => { 
-            mobileMenu.style.opacity = '0'; 
-            setTimeout(() => mobileMenu.classList.add('pointer-events-none'), 300); 
-        });
-        document.querySelectorAll('.mobile-link').forEach(link => { 
-            link.addEventListener('click', () => { 
-                mobileMenu.style.opacity = '0'; 
-                setTimeout(() => mobileMenu.classList.add('pointer-events-none'), 300); 
-            }); 
-        });
-
-        // Bulletproof Intersection Observer for scrolling animations
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-    </script>
     <!-- ========================================== -->
     <!-- SAVIÈRE LIVE IMPACT STORIES MODULE         -->
     <!-- ========================================== -->
     
-    <!-- Floating Trigger Button (Bottom Left) -->
-    <button id="story-trigger" class="fixed bottom-8 left-6 z-[90] bg-white border border-saviere-crimson/20 text-saviere-crimson rounded-full px-5 py-3 shadow-[0_10px_40px_-10px_rgba(82,10,30,0.3)] hover:scale-105 transition-transform flex items-center gap-3 group">
+    <!-- Floating Trigger Button -->
+    <button id="story-trigger" class="fixed bottom-8 left-6 z-[60] bg-white border border-saviere-crimson/20 text-saviere-crimson rounded-full px-5 py-3 shadow-[0_10px_40px_-10px_rgba(82,10,30,0.3)] hover:scale-105 transition-transform flex items-center gap-3 group cursor-pointer">
         <div class="relative flex h-3 w-3">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-saviere-crimson opacity-75"></span>
           <span class="relative inline-flex rounded-full h-3 w-3 bg-saviere-crimson"></span>
@@ -226,10 +188,10 @@
     </button>
 
     <!-- Full Screen Story Overlay -->
-    <div id="story-overlay" class="fixed inset-0 z-[120] bg-saviere-black/95 backdrop-blur-2xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center">
+    <div id="story-overlay" class="fixed inset-0 bg-saviere-black/95 backdrop-blur-xl flex justify-center items-center">
         
         <!-- Mobile/Desktop Constrained Container -->
-        <div class="relative w-full h-full max-w-md bg-saviere-crimson shadow-2xl sm:rounded-3xl sm:h-[85vh] overflow-hidden flex flex-col">
+        <div class="relative w-full h-full sm:max-w-md sm:h-[85vh] bg-saviere-crimson sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col">
             
             <!-- Progress Bars -->
             <div class="absolute top-0 left-0 w-full p-4 flex gap-2 z-20" id="story-progress-container">
@@ -242,7 +204,7 @@
                     <img src="./assets/TransBGWSwan.png" alt="Savière Crest" class="h-6 w-auto">
                     <span class="font-serif text-white text-lg tracking-widest">Savière</span>
                 </div>
-                <button id="story-close" class="text-white/80 hover:text-white p-2">
+                <button id="story-close" class="text-white/80 hover:text-white p-2 cursor-pointer z-50">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
@@ -267,8 +229,8 @@
             </div>
 
             <!-- Bottom Controls (Share) -->
-            <div class="absolute bottom-0 left-0 w-full p-6 z-20 bg-gradient-to-t from-saviere-black/80 to-transparent flex justify-center">
-                <button id="story-share" class="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all text-white font-subheading text-[10px] uppercase tracking-widest font-bold backdrop-blur-md">
+            <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-saviere-black/80 to-transparent flex justify-center pointer-events-none">
+                <button id="story-share" class="pointer-events-auto flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all text-white font-subheading text-[10px] uppercase tracking-widest font-bold backdrop-blur-md">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-5.368m0 5.368l5.662 3.397m-5.662-3.397a3 3 0 000-5.368m5.662 3.397a3 3 0 100-5.368m0 0l-5.662 3.397m5.662-3.397a3 3 0 000 5.368z"></path></svg>
                     Share Statistic
                 </button>
@@ -276,203 +238,179 @@
         </div>
     </div>
 
+    <!-- MASTER SCRIPT: Handles Mobile Menu, Scroll Reveal, and Stories -->
     <script>
-        // Story Data Configuration
-        // Rates represent amount per second globally based on macro environmental data.
-        const saviereStories = [
-            {
-                eyebrow: "The Plastic Hemorrhage",
-                title: "Tubes Landfilled",
-                desc: "Global cosmetic and oral care industries dump billions of non-recyclable laminate tubes yearly. They take 500+ years to degrade.",
-                ratePerSecond: 634, // ~20B a year
-                format: "number"
-            },
-            {
-                eyebrow: "Logistical Exhaustion",
-                title: "Liters of Water Shipped",
-                desc: "Standard FMCG formulations carry up to 50% dead-weight water. Shipping liquid generates entirely unnecessary carbon freight emissions.",
-                ratePerSecond: 47.5, // ~1.5M metric tons a year
-                format: "decimal"
-            },
-            {
-                eyebrow: "Systemic Contamination",
-                title: "Microplastics Ingested",
-                desc: "Degrading tubes shed polymers. Daily buccal absorption of these micro-vectors is clinically linked to severe endocrine disruption.",
-                ratePerSecond: 12500, // Abstract ticking metric for visual scale
-                format: "number"
-            },
-            {
-                eyebrow: "The Vegan Mandate",
-                title: "Animals Exploited",
-                desc: "Globally, millions of animals undergo testing for standard cosmetic safety. Savière operates with an absolute, cruelty-free mandate.",
-                ratePerSecond: 15, // Abstract metric
-                format: "number"
-            },
-            {
-                eyebrow: "The Intervention",
-                title: "A Zero-Waste Future",
-                desc: "Savière Group is engineering asset-light, anhydrous consumer protocols to halt this systemic decay and restore biological equilibrium.",
-                ratePerSecond: 0, // Static story
-                format: "static",
-                staticText: "Savière"
-            }
-        ];
-
-        // State Variables
-        let currentStory = 0;
-        let storyInterval;
-        let tickerInterval;
-        let sessionStartTime = Date.now();
-        const STORY_DURATION = 8000; // 8 seconds per story
-        let progressStart = 0;
-
-        // DOM Elements
-        const triggerBtn = document.getElementById('story-trigger');
-        const overlay = document.getElementById('story-overlay');
-        const closeBtn = document.getElementById('story-close');
-        const tapLeft = document.getElementById('story-tap-left');
-        const tapRight = document.getElementById('story-tap-right');
-        const shareBtn = document.getElementById('story-share');
-        const progressContainer = document.getElementById('story-progress-container');
-        
-        const uiEyebrow = document.getElementById('story-eyebrow');
-        const uiStat = document.getElementById('story-stat');
-        const uiTitle = document.getElementById('story-title');
-        const uiDesc = document.getElementById('story-desc');
-
-        // Initialize Progress Bars
-        function initProgressBars() {
-            progressContainer.innerHTML = '';
-            saviereStories.forEach((_, index) => {
-                const barWrapper = document.createElement('div');
-                barWrapper.className = 'flex-1 h-1 bg-white/20 rounded-full overflow-hidden';
-                const barFill = document.createElement('div');
-                barFill.id = `progress-fill-${index}`;
-                barFill.className = 'h-full bg-white w-0';
-                barWrapper.appendChild(barFill);
-                progressContainer.appendChild(barWrapper);
-            });
-        }
-
-        function updateContent() {
-            const data = saviereStories[currentStory];
-            uiEyebrow.innerText = data.eyebrow;
-            uiTitle.innerText = data.title;
-            uiDesc.innerText = data.desc;
+        document.addEventListener("DOMContentLoaded", () => {
             
-            if (data.format === "static") {
-                uiStat.innerText = data.staticText;
-                uiStat.classList.add("font-serif");
-                clearInterval(tickerInterval);
-            } else {
-                startTicker(data);
-            }
-        }
+            // 1. MOBILE MENU LOGIC
+            const menuBtn = document.getElementById('menu-toggle');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        function startTicker(data) {
-            clearInterval(tickerInterval);
-            tickerInterval = setInterval(() => {
-                const secondsElapsed = (Date.now() - sessionStartTime) / 1000;
-                const currentCount = secondsElapsed * data.ratePerSecond;
+            menuBtn.addEventListener('click', () => { 
+                mobileMenu.classList.remove('pointer-events-none'); 
+                mobileMenu.style.opacity = '1'; 
+            });
+            closeMenuBtn.addEventListener('click', () => { 
+                mobileMenu.style.opacity = '0'; 
+                setTimeout(() => mobileMenu.classList.add('pointer-events-none'), 300); 
+            });
+            
+            // 2. NATIVE SCROLL REVEAL LOGIC
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // 3. INSTAGRAM STORIES LOGIC
+            const saviereStories = [
+                { eyebrow: "The Plastic Hemorrhage", title: "Tubes Landfilled", desc: "Global cosmetic industries dump billions of non-recyclable laminate tubes yearly. They take 500+ years to degrade.", ratePerSecond: 634, format: "number" },
+                { eyebrow: "Logistical Exhaustion", title: "Liters of Water Shipped", desc: "Standard FMCG formulations carry up to 50% dead-weight water. Shipping liquid generates entirely unnecessary carbon freight emissions.", ratePerSecond: 47.5, format: "decimal" },
+                { eyebrow: "Systemic Contamination", title: "Microplastics Ingested", desc: "Degrading tubes shed polymers. Daily buccal absorption of these micro-vectors is clinically linked to severe endocrine disruption.", ratePerSecond: 12500, format: "number" },
+                { eyebrow: "The Intervention", title: "A Zero-Waste Future", desc: "Savière Group is engineering asset-light, anhydrous consumer protocols to halt this systemic decay and restore biological equilibrium.", ratePerSecond: 0, format: "static", staticText: "Savière" }
+            ];
+
+            let currentStory = 0;
+            let storyInterval;
+            let tickerInterval;
+            let sessionStartTime = Date.now();
+            const STORY_DURATION = 8000; 
+            let progressStart = 0;
+
+            const triggerBtn = document.getElementById('story-trigger');
+            const overlay = document.getElementById('story-overlay');
+            const closeStoryBtn = document.getElementById('story-close');
+            const tapLeft = document.getElementById('story-tap-left');
+            const tapRight = document.getElementById('story-tap-right');
+            const shareBtn = document.getElementById('story-share');
+            const progressContainer = document.getElementById('story-progress-container');
+            
+            const uiEyebrow = document.getElementById('story-eyebrow');
+            const uiStat = document.getElementById('story-stat');
+            const uiTitle = document.getElementById('story-title');
+            const uiDesc = document.getElementById('story-desc');
+
+            function initProgressBars() {
+                progressContainer.innerHTML = '';
+                saviereStories.forEach((_, index) => {
+                    const barWrapper = document.createElement('div');
+                    barWrapper.className = 'flex-1 h-1 bg-white/20 rounded-full overflow-hidden';
+                    const barFill = document.createElement('div');
+                    barFill.id = `progress-fill-${index}`;
+                    barFill.className = 'story-progress-bar';
+                    barWrapper.appendChild(barFill);
+                    progressContainer.appendChild(barWrapper);
+                });
+            }
+
+            function updateContent() {
+                const data = saviereStories[currentStory];
+                uiEyebrow.innerText = data.eyebrow;
+                uiTitle.innerText = data.title;
+                uiDesc.innerText = data.desc;
                 
-                if (data.format === "decimal") {
-                    uiStat.innerText = currentCount.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                if (data.format === "static") {
+                    uiStat.innerText = data.staticText;
+                    uiStat.classList.add("font-serif");
+                    clearInterval(tickerInterval);
                 } else {
-                    uiStat.innerText = Math.floor(currentCount).toLocaleString();
+                    uiStat.classList.remove("font-serif");
+                    startTicker(data);
                 }
-            }, 50);
-        }
-
-        function animateProgress() {
-            const currentFill = document.getElementById(`progress-fill-${currentStory}`);
-            const elapsed = Date.now() - progressStart;
-            const percentage = Math.min((elapsed / STORY_DURATION) * 100, 100);
-            currentFill.style.width = `${percentage}%`;
-
-            if (percentage >= 100) {
-                nextStory();
             }
-        }
 
-        function nextStory() {
-            document.getElementById(`progress-fill-${currentStory}`).style.width = '100%';
-            if (currentStory < saviereStories.length - 1) {
-                currentStory++;
-                resetStoryState();
-            } else {
-                closeStories();
+            function startTicker(data) {
+                clearInterval(tickerInterval);
+                tickerInterval = setInterval(() => {
+                    const secondsElapsed = (Date.now() - sessionStartTime) / 1000;
+                    const currentCount = secondsElapsed * data.ratePerSecond;
+                    if (data.format === "decimal") {
+                        uiStat.innerText = currentCount.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    } else {
+                        uiStat.innerText = Math.floor(currentCount).toLocaleString();
+                    }
+                }, 50);
             }
-        }
 
-        function prevStory() {
-            document.getElementById(`progress-fill-${currentStory}`).style.width = '0%';
-            if (currentStory > 0) {
-                currentStory--;
+            function animateProgress() {
+                const currentFill = document.getElementById(`progress-fill-${currentStory}`);
+                if(!currentFill) return;
+                const elapsed = Date.now() - progressStart;
+                const percentage = Math.min((elapsed / STORY_DURATION) * 100, 100);
+                currentFill.style.width = `${percentage}%`;
+                if (percentage >= 100) nextStory();
+            }
+
+            function nextStory() {
+                document.getElementById(`progress-fill-${currentStory}`).style.width = '100%';
+                if (currentStory < saviereStories.length - 1) {
+                    currentStory++;
+                    resetStoryState();
+                } else {
+                    closeStories();
+                }
+            }
+
+            function prevStory() {
                 document.getElementById(`progress-fill-${currentStory}`).style.width = '0%';
+                if (currentStory > 0) {
+                    currentStory--;
+                    document.getElementById(`progress-fill-${currentStory}`).style.width = '0%';
+                    resetStoryState();
+                } else {
+                    resetStoryState(); 
+                }
+            }
+
+            function resetStoryState() {
+                progressStart = Date.now();
+                updateContent();
+                // Ensure previous bars are full
+                for(let i = 0; i < currentStory; i++) {
+                    document.getElementById(`progress-fill-${i}`).style.width = '100%';
+                }
+            }
+
+            function openStories() {
+                sessionStartTime = Date.now(); 
+                overlay.classList.add('story-active');
+                initProgressBars();
+                currentStory = 0;
                 resetStoryState();
-            } else {
-                resetStoryState(); // restart first story
+                storyInterval = setInterval(animateProgress, 16); 
             }
-        }
 
-        function resetStoryState() {
-            progressStart = Date.now();
-            updateContent();
-        }
+            function closeStories() {
+                overlay.classList.remove('story-active');
+                clearInterval(storyInterval);
+                clearInterval(tickerInterval);
+            }
 
-        function openStories() {
-            sessionStartTime = Date.now(); // Reset counter to make it impactful "Since you clicked"
-            overlay.classList.remove('opacity-0', 'pointer-events-none');
-            initProgressBars();
-            currentStory = 0;
-            resetStoryState();
-            storyInterval = setInterval(animateProgress, 16); // ~60fps progress update
-        }
+            // Share API
+            shareBtn.addEventListener('click', async () => {
+                const data = saviereStories[currentStory];
+                const currentStat = uiStat.innerText;
+                const shareText = data.format === "static" 
+                    ? `Savière Group: ${data.desc}` 
+                    : `Since I opened this page, ${currentStat} ${data.title.toLowerCase()} have occurred. The Earth requires a medical intervention. See the live data at Savière Group.`;
 
-        function closeStories() {
-            overlay.classList.add('opacity-0', 'pointer-events-none');
-            clearInterval(storyInterval);
-            clearInterval(tickerInterval);
-            
-            // Reset all bars
-            saviereStories.forEach((_, idx) => {
-                const fill = document.getElementById(`progress-fill-${idx}`);
-                if(fill) fill.style.width = '0%';
+                if (navigator.share) {
+                    try { await navigator.share({ title: 'Savière Group Impact', text: shareText, url: 'https://savieregroup.com' }); } 
+                    catch (err) { console.log('Share dismissed'); }
+                } else {
+                    navigator.clipboard.writeText(`${shareText} https://savieregroup.com`);
+                    const originalText = shareBtn.innerHTML;
+                    shareBtn.innerHTML = "Copied to Clipboard!";
+                    setTimeout(() => shareBtn.innerHTML = originalText, 2000);
+                }
             });
-        }
 
-        // Share Functionality
-        shareBtn.addEventListener('click', async () => {
-            const data = saviereStories[currentStory];
-            const currentStat = uiStat.innerText;
-            const shareText = data.format === "static" 
-                ? `Savière Group: ${data.desc}` 
-                : `Since I opened this page, ${currentStat} ${data.title.toLowerCase()} have occurred. The Earth requires a medical intervention. See the live data at Savière Group.`;
-
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'Savière Group Impact',
-                        text: shareText,
-                        url: 'https://savieregroup.com'
-                    });
-                } catch (err) { console.log('Share dismissed'); }
-            } else {
-                navigator.clipboard.writeText(`${shareText} https://savieregroup.com`);
-                const originalText = shareBtn.innerHTML;
-                shareBtn.innerHTML = "Copied to Clipboard!";
-                setTimeout(() => shareBtn.innerHTML = originalText, 2000);
-            }
+            // Bind Story Events
+            triggerBtn.addEventListener('click', openStories);
+            closeStoryBtn.addEventListener('click', closeStories);
+            tapRight.addEventListener('click', nextStory);
+            tapLeft.addEventListener('click', prevStory);
         });
-
-        // Event Listeners
-        triggerBtn.addEventListener('click', openStories);
-        closeBtn.addEventListener('click', closeStories);
-        tapRight.addEventListener('click', nextStory);
-        tapLeft.addEventListener('click', prevStory);
-
     </script>
-
-
 </body>
 </html>
