@@ -8,10 +8,12 @@
     <meta name="theme-color" content="#ffffff">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
+    <!-- Exact Favicons -->
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 
+    <!-- Brand Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -33,11 +35,11 @@
 
     <style>
         body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; }
-        .glass-header { background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
+        .glass-header { background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(82, 10, 30, 0.05); }
         .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s ease; margin-top: 4px; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
+        .glass-card { background: #ffffff; border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .glass-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(82, 10, 30, 0.15); border-color: #D4AF37; }
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s ease; z-index: 40; }
         #mobile-menu.open { transform: translateY(0); }
         .reveal { visibility: hidden; }
@@ -58,7 +60,7 @@
                 <a href="roadmap.html" class="nav-link hover:text-saviere-crimson transition-colors">Pipeline</a>
             </nav>
             <div class="flex items-center gap-4 relative z-50">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-opacity-90 transition-all rounded-full shadow-lg">Connect</a>
+                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-saviere-black transition-colors rounded-full shadow-lg">Connect</a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-saviere-crimson focus:outline-none">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
@@ -76,6 +78,7 @@
     </div>
 
     <main class="flex-grow pt-32 pb-24">
+        <!-- Hero Section -->
         <section class="min-h-[85vh] flex flex-col justify-center px-6 relative">
             <div class="max-w-7xl mx-auto w-full text-center reveal">
                 <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-crimson mb-6">Cyberabad • Apex Holding Platform</p>
@@ -85,7 +88,7 @@
                 <p class="font-sans text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto mb-10">
                     Profitability without planetary improvement is a profound institutional failure. Savière Group is an asset-light operating platform engineered to systematically resolve the most critical health and ecological crises of our era.
                 </p>
-                <blockquote class="italic text-gray-500 font-serif text-lg">"The health of the soil, plant, animal, and man is one and indivisible."</blockquote>
+                <blockquote class="italic text-gray-500 font-serif text-lg border-l-2 border-saviere-gold pl-4 inline-block">"The health of the soil, plant, animal, and man is one and indivisible."</blockquote>
             </div>
         </section>
 
@@ -102,17 +105,17 @@
                     <div class="glass-card p-10 reveal">
                         <span class="font-serif text-4xl text-saviere-crimson block mb-2">1.5 Billion</span>
                         <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Toxic Vectors</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed">The FMCG sector injects over 1.5 billion non-recyclable multi-laminate tubes into Indian landfills annually. These take centuries to degrade, leaching systemic microplastics directly into terrestrial and marine biomes.</p>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Over 1.5 billion non-recyclable laminate tubes enter Indian landfills yearly (Over 20B+ globally). Taking centuries to degrade, they leach systemic microplastics directly into terrestrial and marine biomes.</p>
                     </div>
                     <div class="glass-card p-10 reveal" style="transition-delay: 100ms;">
                         <span class="font-serif text-4xl text-saviere-crimson block mb-2">66 Million</span>
                         <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Endemic Fluorosis</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed">Over 66 million citizens across India suffer from endemic groundwater fluorosis. Continuing to distribute neurotoxic synthetic fluoride pastes into these vulnerable demographics represents a catastrophic failure of care.</p>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Over 66 million people across 19 Indian states suffer from endemic groundwater fluorosis (Over 200M+ globally). Distributing neurotoxic synthetic fluoride into these vulnerable demographics represents a catastrophic failure of care.</p>
                     </div>
-                    <div class="glass-card p-10 border-saviere-crimson/30 shadow-xl reveal" style="transition-delay: 200ms;">
+                    <div class="glass-card p-10 reveal" style="transition-delay: 200ms;">
                         <span class="font-serif text-4xl text-saviere-crimson block mb-2">50% Waste</span>
                         <h3 class="font-subheading text-xs uppercase tracking-wider text-saviere-black font-bold mb-4">Logistical Exhaustion</h3>
-                        <p class="text-sm text-gray-600 font-light leading-relaxed">Traditional consumer pastes consist of up to 50% dead-weight water. In a world facing profound water scarcity, this generates massive, entirely unnecessary carbon freight emissions.</p>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Traditional paste formulations are roughly 50% dead-weight water (Over 1.5M metric tons transported globally). In a world facing profound water scarcity, this generates massive, entirely unnecessary carbon freight emissions.</p>
                     </div>
                 </div>
             </div>
@@ -128,9 +131,6 @@
                 <p class="text-white/80 text-sm leading-relaxed max-w-sm font-light mx-auto md:mx-0">
                     Savière Group Private Limited.<br>Cyberabad, Hyderabad, Telangana, India.
                 </p>
-                <div class="text-xs text-white/70 pt-2">
-                    <a href="mailto:connect@savieregroup.com" class="text-saviere-gold underline hover:text-white transition-colors">connect@savieregroup.com</a>
-                </div>
             </div>
         </div>
         <div class="max-w-7xl mx-auto border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-[11px] text-white/60 tracking-widest uppercase font-medium">
@@ -144,7 +144,6 @@
         document.getElementById('menu-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); });
         document.getElementById('close-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); });
         gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.reveal').forEach(el => el.style.visibility = 'visible'); gsap.to(".reveal", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.1 });
-        window.addEventListener('scroll', () => { const header = document.getElementById('navbar'); if(window.scrollY > 50) { header.classList.add('shadow-sm'); } else { header.classList.remove('shadow-sm'); } });
     </script>
 </body>
 </html>
