@@ -1,163 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Governance & Ethics | Savière Group</title>
-    <meta name="description" content="The statutory governance, ethical charter, and mission statement of Savière Group Private Limited.">
-    <meta name="theme-color" content="#520A1E">
-
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="manifest" href="./site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Governance | Savière Group</title>
+    <meta name="theme-color" content="#821D30">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'Avenir', 'sans-serif'],
-                        serif: ['"The Seasons"', 'Marcellus', 'serif'],
-                        subheading: ['Poppins', 'sans-serif']
-                    },
-                    colors: {
-                        saviere: {
-                            crimson: '#520A1E',
-                            gold: '#D4AF37',
-                            silver: '#C0C0C0',
-                            black: '#0A0A0A',
-                            bg: '#FDF8F9'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],serif:['Playfair Display']},colors:{corporate:{primary:'#821D30'}}}}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body { background-color: #FDF8F9; color: #0A0A0A; }
-        .glass-header {
-            background: rgba(253, 248, 249, 0.85);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(82, 10, 30, 0.08);
-        }
-        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #520A1E; transition: width 0.3s; margin-top: 4px; }
-        .nav-link:hover::after { width: 100%; }
-        .nav-link.active::after { width: 100%; }
+        body { background-color: #ffffff; overflow-x: hidden; }
+        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(130, 29, 48, 0.05); }
+        .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: #821D30; transition: width 0.3s; margin-top: 4px; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        #bg-geom { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.1; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased selection:bg-saviere-crimson selection:text-white flex flex-col min-h-screen">
-
+<body class="antialiased">
+    <canvas id="bg-geom"></canvas>
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html"><img src="./assets/WhiteBGRHorizontal.png" alt="Savière Group" class="h-9 md:h-12 w-auto object-contain"></a>
-            <nav class="hidden lg:flex items-center gap-8 font-subheading text-xs font-semibold uppercase tracking-[0.18em] text-saviere-black">
-                <a href="index.html" class="nav-link hover:text-saviere-crimson">Overview</a>
-                <a href="about.html" class="nav-link hover:text-saviere-crimson">The Legacy</a>
-                <a href="governance.html" class="nav-link text-saviere-crimson active">Governance</a>
-                <a href="active-operations.html" class="nav-link hover:text-saviere-crimson">Operations</a>
-                <a href="roadmap.html" class="nav-link hover:text-saviere-crimson">Roadmap</a>
+            <a href="index.html" class="relative z-50"><img src="./assets/TransBGRHorizontal_2.png" alt="Savière Group" class="h-8 md:h-12 w-auto"></a>
+            <nav class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-gray-900">
+                <a href="index.html" class="nav-link">Vision</a>
+                <a href="about.html" class="nav-link">The Legacy</a>
+                <a href="governance.html" class="nav-link text-corporate-primary font-bold active">Governance</a>
+                <a href="active-operations.html" class="nav-link">Operations</a>
+                <a href="roadmap.html" class="nav-link">Pipeline</a>
             </nav>
-            <div class="flex items-center gap-4">
-                <a href="mailto:connect@savieregroup.com" class="hidden sm:inline-flex px-6 py-3 font-subheading text-[11px] font-semibold uppercase tracking-widest text-white bg-saviere-crimson hover:bg-opacity-90">Connect</a>
-                <button id="menu-toggle-btn" class="lg:hidden p-2 text-saviere-crimson focus:outline-none"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden flex-col fixed inset-x-0 top-20 bg-saviere-bg border-b border-saviere-crimson/20 p-8 shadow-2xl lg:hidden z-40">
-            <div class="flex flex-col gap-6 font-subheading text-sm font-semibold uppercase tracking-widest text-saviere-black">
-                <a href="index.html">Overview</a>
-                <a href="about.html">The Legacy</a>
-                <a href="governance.html" class="text-saviere-crimson">Governance</a>
-                <a href="active-operations.html">Operations</a>
-                <a href="roadmap.html">Roadmap</a>
-                <a href="mailto:connect@savieregroup.com" class="text-saviere-gold">connect@savieregroup.com</a>
-            </div>
         </div>
     </header>
 
-    <main class="flex-grow pt-32 md:pt-44 pb-24">
-        <!-- Mission & Vision -->
-        <section class="px-6 mb-24">
-            <div class="max-w-7xl mx-auto">
-                <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-4">Corporate Mandate</p>
-                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl text-saviere-black leading-tight max-w-5xl mb-12">
-                    Governance, Ethics & The Savière Mandate.
-                </h1>
-                
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="bg-white p-10 border border-saviere-crimson/15 shadow-sm">
-                        <span class="font-subheading text-xs font-bold uppercase tracking-widest text-saviere-crimson block mb-2">Our Vision</span>
-                        <h3 class="font-serif text-2xl sm:text-3xl text-saviere-black mb-4">Uncompromising Equilibrium</h3>
-                        <p class="text-gray-700 font-light leading-relaxed">
-                            To establish a globally scalable industrial benchmark where multi-billion dollar commercial growth is structurally inseparable from absolute environmental preservation, biological improvement, and animal welfare.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-10 border border-saviere-crimson/15 shadow-sm">
-                        <span class="font-subheading text-xs font-bold uppercase tracking-widest text-saviere-gold block mb-2">Our Mission</span>
-                        <h3 class="font-serif text-2xl sm:text-3xl text-saviere-black mb-4">Asset-Light Scale</h3>
-                        <p class="text-gray-700 font-light leading-relaxed">
-                            To architect, capitalize, and scale asset-light operating platforms across preventative medicine, sustainable consumer goods, and clean infrastructure that systematically leave the earth safer and cleaner than we found it.
-                        </p>
-                    </div>
-                </div>
+    <main class="relative z-10 pt-32 pb-24 px-6 max-w-7xl mx-auto">
+        <h1 class="font-serif text-5xl md:text-7xl text-gray-900 mb-12 tracking-tight">Uncompromising Equilibrium.</h1>
+        <p class="text-xl text-gray-600 font-light mb-16 max-w-4xl leading-relaxed">
+            Profitability without systemic biological improvement is an institutional failure. Operating under the framework of planetary boundaries, our governance ensures multi-billion dollar commercial growth remains structurally inseparable from environmental preservation.
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Biological Purity</h3>
+                <p class="text-gray-600 font-light leading-relaxed">Shifting from reactive disease treatment to proactive biological preservation. Every product and clinical service must actively improve systemic health.</p>
             </div>
-        </section>
-
-        <!-- 4 Ethical Pillars -->
-        <section id="mandate" class="px-6 py-20 bg-white border-y border-saviere-crimson/10">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="font-serif text-3xl sm:text-4xl text-saviere-black mb-12">The Four Institutional Pillars</h2>
-                
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="p-6 border border-saviere-crimson/10 bg-saviere-bg">
-                        <span class="font-mono text-xs font-bold text-saviere-crimson block mb-2">01 / HEALTH</span>
-                        <h4 class="font-serif text-xl text-saviere-black mb-3">Biological Preservation</h4>
-                        <p class="text-xs text-gray-600 font-light leading-relaxed">Every consumer product or clinical initiative must actively preserve biological biomes, moving away from reactive treatments toward holistic health.</p>
-                    </div>
-                    <div class="p-6 border border-saviere-crimson/10 bg-saviere-bg">
-                        <span class="font-mono text-xs font-bold text-saviere-crimson block mb-2">02 / VEGAN</span>
-                        <h4 class="font-serif text-xl text-saviere-black mb-3">Zero Animal Exploitation</h4>
-                        <p class="text-xs text-gray-600 font-light leading-relaxed">An unyielding non-negotiable charter: 0% animal derivatives, 0% animal testing across all pharmaceuticals, hospitality, and consumer lines.</p>
-                    </div>
-                    <div class="p-6 border border-saviere-crimson/10 bg-saviere-bg">
-                        <span class="font-mono text-xs font-bold text-saviere-crimson block mb-2">03 / NET-ZERO</span>
-                        <h4 class="font-serif text-xl text-saviere-black mb-3">Ecological Neutrality</h4>
-                        <p class="text-xs text-gray-600 font-light leading-relaxed">Designing out single-use plastics, minimizing carbon freight through anhydrous manufacturing, and integrating decentralized solar microgrids.</p>
-                    </div>
-                    <div class="p-6 border border-saviere-crimson/10 bg-saviere-bg">
-                        <span class="font-mono text-xs font-bold text-saviere-crimson block mb-2">04 / STRUCTURE</span>
-                        <h4 class="font-serif text-xl text-saviere-black mb-3">Asset-Light Geometries</h4>
-                        <p class="text-xs text-gray-600 font-light leading-relaxed">Deploying specialized intellectual property and contract manufacturing partnerships (CDMO) to scale rapidly without physical balance-sheet bloat.</p>
-                    </div>
-                </div>
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">The Vegan Mandate</h3>
+                <p class="text-gray-600 font-light leading-relaxed">An absolute ethical framework. Zero animal derivatives and strictly zero animal testing across all pharmaceutical, consumer, and hospitality pipelines.</p>
             </div>
-        </section>
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Net-Zero Infrastructure</h3>
+                <p class="text-gray-600 font-light leading-relaxed">Designing out single-use plastics and integrating decentralized clean solar microgrids into all future physical facilities.</p>
+            </div>
+            <div class="p-10 border border-corporate-primary/20 rounded-3xl bg-white/80 backdrop-blur-sm">
+                <h3 class="font-serif text-3xl text-gray-900 mb-4">Asset-Light Geometries</h3>
+                <p class="text-gray-600 font-light leading-relaxed">Leveraging highly specialized Intellectual Property vaults and strict CDMO (Contract Manufacturing) partnerships to scale aggressively without balance-sheet bloat.</p>
+            </div>
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-saviere-crimson text-white pt-20 pb-10 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/15 pb-12">
-            <a href="index.html"><img src="./assets/SGLFullWhiteBGRHorizontal.png" alt="Savière Group" class="h-12 sm:h-16 w-auto object-contain"></a>
-            <div class="flex flex-wrap gap-8 font-subheading text-xs font-semibold uppercase tracking-widest text-white/80">
-                <a href="index.html" class="hover:text-white">Overview</a>
-                <a href="about.html" class="hover:text-white">The Legacy</a>
-                <a href="active-operations.html" class="hover:text-white">Operations</a>
-                <a href="roadmap.html" class="hover:text-white">Roadmap</a>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-8 text-center text-xs text-white/60">
-            © 2026 Savière Group Private Limited. Governance Charter. Safe for Earth.
-        </div>
-    </footer>
-
     <script>
-        document.getElementById('menu-toggle-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        });
+        const canvas = document.getElementById('bg-geom'); const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
+        const torus = new THREE.Mesh(new THREE.TorusKnotGeometry(10, 3, 100, 16), new THREE.MeshBasicMaterial({ color: '#821D30', wireframe: true }));
+        scene.add(torus); camera.position.z = 35;
+        function animate() { requestAnimationFrame(animate); torus.rotation.x += 0.001; torus.rotation.y += 0.002; renderer.render(scene, camera); } animate();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     </script>
 </body>
 </html>
