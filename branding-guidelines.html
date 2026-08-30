@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="theme-color" content="#520A1E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Architecture | Savière Group</title>
-    <!-- Hidden from Search Engines -->
     <meta name="robots" content="noindex, nofollow">
-    
+    <meta name="theme-color" content="#520A1E">
+
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,10 +21,10 @@
                 </div>`;
             window.stop();
         }
-        tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',silver:'#C0C0C0',black:'#0A0A0A',bg:'#FDF8F9'}}}}};
+        tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',silver:'#C0C0C0',black:'#0A0A0A',white:'#FFFFFF'}}}}};
     </script>
 </head>
-<body class="bg-saviere-bg text-saviere-black antialiased p-6 md:p-12">
+<body class="bg-white text-saviere-black antialiased p-6 md:p-12">
     <div class="max-w-[90rem] mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-saviere-crimson/20">
         <div class="border-b border-gray-200 pb-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
             <div>
@@ -43,16 +35,14 @@
         </div>
 
         <h2 class="font-serif text-2xl mb-8">The Color Ecosystem</h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             <div><div class="h-24 bg-[#520A1E] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Savière Crimson</p><p class="text-xs font-mono text-gray-500">#520A1E</p></div>
             <div><div class="h-24 bg-[#D4AF37] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Champagne Gold</p><p class="text-xs font-mono text-gray-500">#D4AF37</p></div>
             <div><div class="h-24 bg-[#C0C0C0] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Brushed Silver</p><p class="text-xs font-mono text-gray-500">#C0C0C0</p></div>
             <div><div class="h-24 bg-[#0A0A0A] rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Onyx Black</p><p class="text-xs font-mono text-gray-500">#0A0A0A</p></div>
-            <div><div class="h-24 bg-[#FDF8F9] border rounded-xl mb-3 shadow-inner"></div><p class="font-bold text-sm font-subheading">Alabaster</p><p class="text-xs font-mono text-gray-500">#FDF8F9</p></div>
         </div>
 
         <h2 class="font-serif text-2xl mb-8 border-t border-gray-100 pt-12">Asset Library & Logos</h2>
-        <p class="font-sans text-sm text-gray-600 mb-8">Assets referenced securely via <strong>image_2b4cd0.png</strong> index.</p>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
                 <p class="font-subheading text-[10px] font-bold uppercase mb-4 text-gray-500">TransBGRHorizontal.png</p>

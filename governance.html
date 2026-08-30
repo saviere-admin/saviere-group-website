@@ -4,69 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Governance | Savière Group</title>
-    
+    <meta name="description" content="Corporate Governance Framework and Ethical Principles of Savière Group Private Limited.">
     <meta name="theme-color" content="#520A1E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+    <link rel="manifest" href="./site.webmanifest">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',bg:'#FDF8F9',black:'#0A0A0A'}}}}}</script>
+    <script>
+        tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',silver:'#C0C0C0',black:'#0A0A0A',white:'#FFFFFF'}}}}};
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
-        body { background-color: #FDF8F9; color: #0A0A0A; overflow-x: hidden; cursor: none; }
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #520A1E; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
-        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(82,10,30,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
+        body { background-color: #FFFFFF; color: #0A0A0A; overflow-x: hidden; cursor: none; }
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #520A1E; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(82,10,30,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
         @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } body { cursor: auto; } }
 
-        .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(253, 248, 249, 0.85); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 9999px; box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.08); z-index: 90; transition: all 0.3s ease; padding: 0.6rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-        
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; background: rgba(253, 248, 249, 0.95); backdrop-filter: blur(30px); }
-        #mobile-menu.open { transform: translateY(0); }
-
+        .pill-header {
+            position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 2rem); max-width: 80rem;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 9999px;
+            box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.08);
+            z-index: 90; transition: all 0.3s ease; padding: 0.6rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
         .nav-link { position: relative; color: #0A0A0A; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #D4AF37; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-        .glass-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 1.5rem; padding: 3rem; box-shadow: 0 15px 35px -10px rgba(82, 10, 30, 0.05); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .glass-card:hover { transform: translateY(-6px); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 20px 45px -5px rgba(82, 10, 30, 0.1); background: rgba(255, 255, 255, 0.8); }
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(30px); }
+        #mobile-menu.open { transform: translateY(0); }
 
-        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.4; pointer-events: none; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 10px 30px -10px rgba(82, 10, 30, 0.06); transition: all 0.4s ease; }
+        .glass-card:hover { transform: translateY(-6px); border-color: #D4AF37; }
         .reveal { opacity: 0; transform: translateY(30px); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen relative">
     <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
     <header class="pill-header" id="navbar">
-        <a href="index.html" class="flex-shrink-0 hover-trigger"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain"></a>
+        <a href="index.html" class="flex-shrink-0 hover-trigger">
+            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain">
+        </a>
         <nav class="hidden lg:flex gap-8 items-center">
             <a href="index.html" class="nav-link hover-trigger">Group</a>
             <a href="about.html" class="nav-link hover-trigger">About</a>
-            <a href="governance.html" class="nav-link active font-bold hover-trigger">Governance</a>
+            <a href="governance.html" class="nav-link active hover-trigger">Governance</a>
             <a href="active-operations.html" class="nav-link hover-trigger">Operations</a>
             <a href="roadmap.html" class="nav-link hover-trigger">Roadmap</a>
         </nav>
         <div class="flex items-center gap-4">
-            <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-flex font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-bg bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-gold hover:text-saviere-black transition-colors shadow-sm hover-trigger">Connect</a>
-            <button id="menu-btn" class="lg:hidden text-saviere-crimson p-2 focus:outline-none hover-trigger z-50">
+            <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-flex font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-gold hover:text-saviere-black transition-colors shadow-sm hover-trigger">Connect</a>
+            <button id="menu-btn" class="lg:hidden text-saviere-crimson p-2 focus:outline-none hover-trigger z-50" aria-label="Toggle Menu">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
     </header>
 
     <div id="mobile-menu" class="fixed inset-0 flex flex-col justify-center items-center gap-8">
-        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson hover-trigger">
+        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson hover-trigger" aria-label="Close Menu">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <a href="index.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Group</a>
@@ -77,162 +85,85 @@
         <a href="mailto:connect@savieregroup.com" class="mt-8 font-subheading text-xs font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-4 rounded-full hover-trigger">Contact Us</a>
     </div>
 
-    <main class="flex-grow pt-40 pb-0 w-full relative">
-        <section class="min-h-[55vh] flex flex-col justify-center text-center pb-16 px-6 relative max-w-[80rem] mx-auto">
-            <div id="canvas-container"></div>
-            <div class="relative z-10 reveal">
+    <main class="flex-grow pt-36 pb-24 w-full relative">
+        <section class="min-h-[45vh] flex flex-col justify-center text-center pb-16 px-6 max-w-[80rem] mx-auto">
+            <div class="reveal">
                 <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Corporate Integrity</p>
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-saviere-crimson leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
                     Growth without <span class="italic font-serif text-saviere-gold">shortcuts</span>.
                 </h1>
                 <p class="font-sans text-lg md:text-2xl text-saviere-black/80 font-light leading-relaxed max-w-3xl mx-auto">
-                    Savière intends to operate with institutional transparency, scientific rigor, and unequivocal accountability across every current and future business domain.
+                    Savière intends to operate with institutional transparency, scientific rigor, and unequivocal accountability across every business domain.
                 </p>
             </div>
         </section>
 
-        <section class="py-24 bg-saviere-crimson text-saviere-bg relative overflow-hidden">
-            <div class="absolute -right-20 -top-20 w-96 h-96 bg-saviere-gold/10 rounded-full blur-3xl"></div>
-            <div class="max-w-[80rem] mx-auto px-6 grid md:grid-cols-2 gap-16 relative z-10 reveal">
-                <div>
-                    <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">Our Standard</h2>
-                    <h3 class="font-serif text-3xl md:text-5xl text-saviere-bg leading-tight">Institutionalizing Integrity.</h3>
-                </div>
-                <div class="space-y-6 font-sans text-saviere-bg/85 font-light leading-relaxed text-lg flex flex-col justify-center border-l-2 border-saviere-gold/30 pl-8">
-                    <p>
-                        Savière does not regard informal payments or improper influence as part of doing business. We intend to build systems that require employees, suppliers, and partners to operate strictly through transparent, documented, and lawful processes.
-                    </p>
-                </div>
+        <!-- Statement Block -->
+        <section class="py-20 bg-saviere-crimson text-white">
+            <div class="max-w-[80rem] mx-auto px-6 grid md:grid-cols-2 gap-12 items-center reveal">
+                <h2 class="font-serif text-3xl md:text-5xl text-white leading-tight">Institutionalizing Integrity from Inception</h2>
+                <p class="font-sans text-white/85 font-light leading-relaxed text-lg border-l-2 border-saviere-gold pl-6">
+                    Savière does not regard informal payments or improper influence as part of doing business. We intend to build systems that require employees, suppliers, and partners to operate strictly through transparent, documented, and lawful processes.
+                </p>
             </div>
         </section>
 
-        <section class="py-32 px-6 max-w-[80rem] mx-auto">
-            <div class="text-center max-w-4xl mx-auto mb-20 reveal">
-                <h2 class="font-serif text-4xl md:text-6xl text-saviere-crimson leading-tight mb-6">Operating Principles</h2>
-                <div class="w-24 h-1 bg-saviere-gold mx-auto"></div>
-            </div>
-            
+        <!-- Governance Grid -->
+        <section class="py-24 px-6 max-w-[80rem] mx-auto">
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass-card reveal hover-trigger">
-                    <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">01 — Scientific Rigour</span>
+                    <span class="font-serif text-saviere-gold text-2xl mb-4 block">01 — Scientific Rigour</span>
                     <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Our claims must remain strictly proportional to evidence. We rely on primary scientific literature, empirical validation, and rigorous testing rather than aggressive marketing assertions.</p>
                 </div>
-                
                 <div class="glass-card reveal hover-trigger">
-                    <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">02 — Product Responsibility</span>
-                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Customer safety and biological welfare strictly precede margin expansion. Where applicable across consumer lines, we will seek cruelty-free approaches.</p>
+                    <span class="font-serif text-saviere-gold text-2xl mb-4 block">02 — Product Safety & Responsibility</span>
+                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Customer safety and biological welfare strictly precede margin expansion. Across all consumer lines, we commit to cruelty-free approaches and zero harmful adulteration[cite: 1, 2].</p>
                 </div>
-
                 <div class="glass-card reveal hover-trigger">
-                    <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">03 — Environmental Accountability</span>
-                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Environmental considerations—such as material efficiency, water reduction, and lower-impact logistics—are engineered into product economics directly from inception.</p>
+                    <span class="font-serif text-saviere-gold text-2xl mb-4 block">03 — Environmental Accountability</span>
+                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Material efficiency, water reduction, and lower-impact logistics are engineered into product economics directly from inception[cite: 2].</p>
                 </div>
-                
                 <div class="glass-card reveal hover-trigger">
-                    <span class="font-serif text-saviere-gold text-2xl md:text-3xl mb-4 block">04 — Regulatory Compliance</span>
+                    <span class="font-serif text-saviere-gold text-2xl mb-4 block">04 — Regulatory & Statutory Compliance</span>
                     <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Absolute adherence to lawful procurement, documented corporate decision-making, transparent accounting, and full international regulatory compliance.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- LUXURIOUS UNIFORM FOOTER -->
     <footer class="bg-[#520A1E] text-white pt-24 pb-12 px-6 relative z-20 overflow-hidden border-t-4 border-[#D4AF37]">
-        <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-32 top-0 w-64 h-64 bg-black/20 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-[80rem] mx-auto relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/10 pb-12 mb-12 gap-8">
-                <div class="max-w-md">
-                    <a href="index.html" class="inline-block mb-6 hover:opacity-80 transition-opacity">
-                        <img src="./assets/TransBGWHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain">
-                    </a>
-                    <p class="text-white/70 text-sm font-light leading-relaxed font-sans">
-                        Architecting sustainable infrastructure. Building enduring businesses for a changing world.
-                    </p>
-                </div>
-                <div class="text-left md:text-right">
-                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-3">Enterprise Collaboration</p>
-                    <a href="mailto:connect@savieregroup.com" class="font-serif text-2xl md:text-3xl text-white font-light hover:text-[#D4AF37] transition-colors">
-                        connect@savieregroup.com
-                    </a>
-                </div>
+        <div class="max-w-[80rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/10 pb-12 mb-8">
+            <a href="index.html"><img src="./assets/TransBGWHorizontal.png" alt="Savière Group" class="h-10 md:h-12 w-auto object-contain"></a>
+            <div class="flex flex-wrap gap-8 font-subheading text-xs font-semibold uppercase tracking-widest text-white/80">
+                <a href="index.html" class="hover:text-white">Group</a>
+                <a href="about.html" class="hover:text-white">About</a>
+                <a href="governance.html" class="hover:text-white">Governance</a>
+                <a href="active-operations.html" class="hover:text-white">Operations</a>
+                <a href="roadmap.html" class="hover:text-white">Roadmap</a>
             </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 mb-16 font-sans">
-                <div>
-                    <h4 class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-6">Headquarters</h4>
-                    <address class="text-white/70 text-xs md:text-sm font-light leading-relaxed not-italic">
-                        Savière Group Private Limited<br>
-                        Secunderabad<br>
-                        Telangana, India
-                    </address>
-                </div>
-                <div>
-                    <h4 class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-6">The Institution</h4>
-                    <ul class="space-y-4 text-xs md:text-sm font-light text-white/70">
-                        <li><a href="index.html" class="hover:text-white hover:pl-2 transition-all block">Overview</a></li>
-                        <li><a href="about.html" class="hover:text-white hover:pl-2 transition-all block">The Legacy</a></li>
-                        <li><a href="governance.html" class="hover:text-white hover:pl-2 transition-all block">Governance Framework</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-6">Portfolio</h4>
-                    <ul class="space-y-4 text-xs md:text-sm font-light text-white/70">
-                        <li><a href="active-operations.html" class="hover:text-white hover:pl-2 transition-all block">Active Operations</a></li>
-                        <li><a href="roadmap.html" class="hover:text-white hover:pl-2 transition-all block">Strategic Pipeline</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-6">Connect</h4>
-                    <ul class="space-y-4 text-xs md:text-sm font-light text-white/70">
-                        <li><a href="mailto:connect@savieregroup.com" class="hover:text-white hover:pl-2 transition-all block">Corporate Inquiries</a></li>
-                        <li><a href="sitemap.html" class="hover:text-white hover:pl-2 transition-all block">Directory Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-8">
-                <p class="text-white/50 text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase font-subheading text-center md:text-left">
-                    © 2026 Savière Group Pvt Ltd.
-                </p>
-                <div class="flex flex-wrap justify-center gap-3 text-[#D4AF37] text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] font-subheading">
-                    <span class="border border-[#D4AF37]/30 px-3 py-1.5 rounded-sm bg-[#D4AF37]/5">Net-Zero</span>
-                    <span class="border border-[#D4AF37]/30 px-3 py-1.5 rounded-sm bg-[#D4AF37]/5">Cruelty-Free</span>
-                    <span class="border border-[#D4AF37]/30 px-3 py-1.5 rounded-sm bg-[#D4AF37]/5">Asset-Light</span>
-                </div>
-            </div>
+        </div>
+        <div class="max-w-[80rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/50 tracking-widest uppercase font-subheading">
+            <p>© 2026 Savière Group Pvt Ltd.</p>
+            <p>Secunderabad, Telangana, India</p>
         </div>
     </footer>
 
     <script>
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2; let ringX = mouseX, ringY = mouseY;
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
-        document.querySelectorAll('.hover-trigger, a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(212,175,55,0.1)'; ring.style.borderColor = '#D4AF37'; });
-            el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.5)'; });
-        });
 
         const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); });
         closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
 
-        document.addEventListener("DOMContentLoaded",()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));});
-
-        // 3D Geometry
-        const container = document.getElementById('canvas-container'); const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
-
-        const geo = new THREE.OctahedronGeometry(12, 1);
-        const mat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.12 });
-        const obj = new THREE.Mesh(geo, mat); scene.add(obj); camera.position.z = 24;
-
-        function animate() { requestAnimationFrame(animate); obj.rotation.y += 0.002; obj.rotation.x += 0.001; renderer.render(scene, camera); } animate();
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.reveal').forEach(element => {
+                gsap.to(element, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } });
+            });
+        });
     </script>
 </body>
 </html>
