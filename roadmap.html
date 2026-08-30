@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Roadmap | Savière Group</title>
-    <meta name="description" content="The phased strategic roadmap and long-term expansion horizon of Savière Group.">
     <meta name="theme-color" content="#520A1E">
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -22,7 +21,6 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         body { background-color: #FFFFFF; color: #0A0A0A; overflow-x: hidden; cursor: none; }
@@ -49,7 +47,6 @@
 
         .timeline-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 10px 30px -10px rgba(82, 10, 30, 0.06); transition: all 0.4s ease; }
         .timeline-card:hover { transform: translateX(8px); border-color: #D4AF37; }
-        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.35; pointer-events: none; }
         .reveal { opacity: 0; transform: translateY(30px); }
     </style>
 </head>
@@ -88,15 +85,14 @@
     </div>
 
     <main class="flex-grow pt-36 pb-0 w-full relative">
-        <section class="min-h-[45vh] flex flex-col justify-center text-center pb-16 px-6 relative max-w-[80rem] mx-auto">
-            <div id="canvas-container"></div>
-            <div class="relative z-10 reveal">
+        <section class="min-h-[45vh] flex flex-col justify-center text-center pb-16 px-6 max-w-[80rem] mx-auto">
+            <div class="reveal">
                 <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Strategic Horizons</p>
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-saviere-crimson leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
                     Building <span class="italic font-serif text-saviere-gold">Savière</span>.
                 </h1>
                 <p class="font-sans text-lg md:text-2xl text-saviere-black/80 font-light leading-relaxed max-w-3xl mx-auto">
-                    Our expansion is sequenced deliberately. Priorities evolve with capital availability, technical readiness, and verified market evidence[cite: 2].
+                    Our expansion is sequenced deliberately. Priorities evolve with capital availability, technical readiness, and verified market evidence.
                 </p>
             </div>
         </section>
@@ -122,28 +118,28 @@
                     <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-saviere-gold border-4 border-white"></div>
                     <span class="font-subheading text-[10px] font-bold text-saviere-gold uppercase tracking-widest block mb-2">02 / First Business</span>
                     <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Consumer Validation</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Developing and validating our initial sustainable consumer product through rigorous laboratory testing[cite: 1, 2].</p>
+                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Developing and validating our initial sustainable consumer product through rigorous laboratory testing.</p>
                 </div>
 
                 <div class="relative timeline-card hover-trigger">
                     <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
                     <span class="font-subheading text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">03 / Capability Building</span>
                     <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Operational Scale</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Strengthening in-house operational quality, scaling manufacturing capacity, and securing resilient supply chains[cite: 2].</p>
+                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Strengthening in-house operational quality, scaling manufacturing capacity, and securing resilient supply chains.</p>
                 </div>
 
                 <div class="relative timeline-card hover-trigger">
                     <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
                     <span class="font-subheading text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">04 / Strategic Adjacencies</span>
                     <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Selective Domain Entry</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Evaluating entry into new sectors where our acquired operational capabilities create genuine advantages[cite: 2].</p>
+                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Evaluating entry into new sectors where our acquired operational capabilities create genuine advantages.</p>
                 </div>
 
                 <div class="relative timeline-card hover-trigger">
                     <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
                     <span class="font-subheading text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">05 / Global Institution</span>
                     <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Multi-Generational Enterprise</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Developing long-term infrastructure and expanding into targeted global markets through organic growth and partnerships[cite: 2].</p>
+                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Developing long-term infrastructure and expanding into targeted global markets through organic growth and partnerships.</p>
                 </div>
             </div>
         </section>
@@ -171,6 +167,7 @@
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(212,175,55,0.1)'; ring.style.borderColor = '#D4AF37'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.5)'; }); });
 
         const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); });
@@ -182,18 +179,6 @@
                 gsap.to(element, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } });
             });
         });
-
-        const container = document.getElementById('canvas-container'); const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
-
-        const geo = new THREE.CylinderGeometry(8, 8, 20, 16, 8, true);
-        const mat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.12 });
-        const cylinder = new THREE.Mesh(geo, mat); cylinder.rotation.z = Math.PI / 4; scene.add(cylinder); camera.position.z = 24;
-
-        function animate() { requestAnimationFrame(animate); cylinder.rotation.y += 0.002; cylinder.rotation.x += 0.001; renderer.render(scene, camera); } animate();
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     </script>
 </body>
 </html>

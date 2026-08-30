@@ -8,7 +8,6 @@
     <meta name="theme-color" content="#520A1E">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <!-- Favicon Suite -->
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
@@ -17,7 +16,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
     <link rel="manifest" href="./site.webmanifest">
 
-    <!-- Enterprise Knowledge Graph JSON-LD Schema -->
+    <!-- MASTER COMPANY-FIRST SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -28,7 +27,6 @@
           "name": "Savière Group",
           "legalName": "Savière Group Private Limited",
           "alternateName": [
-            "Savière",
             "Saviere",
             "Saviere Group",
             "Saviere Group of Companies",
@@ -40,7 +38,7 @@
           "logo": "https://savieregroup.com/assets/TransBGRHorizontal.png",
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Secunderabad",
+            "addressLocality": "Cyberabad, Hyderabad",
             "addressRegion": "Telangana",
             "addressCountry": "IN"
           },
@@ -55,6 +53,18 @@
             "Pediatric Cardiac Surgery"
           ],
           "description": "Savière Group is a diversified business enterprise focused on architecting sustainable, highly scalable operations across essential global industries, applying clinical precision to corporate building.",
+          "subOrganization": [
+            {
+              "@type": "Organization",
+              "name": "The Dots Company",
+              "description": "FMCG Operating Subsidiary delivering anhydrous solid-state oral care protocols."
+            },
+            {
+              "@type": "Organization",
+              "name": "Savière Estates",
+              "description": "Intellectual Property Vault and Asset Holding Entity."
+            }
+          ],
           "sameAs": [
             "https://www.linkedin.com/company/saviere-group",
             "https://www.crunchbase.com/organization/savi%C3%A8re-group-private-limited",
@@ -68,12 +78,28 @@
           "givenName": "Tanmai Aasrith Varma",
           "familyName": "Ayenampudi",
           "honorificPrefix": "Dr.",
-          "jobTitle": ["Founder", "Chairman", "Managing Director", "Physician"],
+          "jobTitle": [
+            "Founder",
+            "Chairman",
+            "Managing Director",
+            "Physician",
+            "Aspiring Pediatric Cardiac Surgeon"
+          ],
           "url": "https://tava.savieregroup.com",
-          "image": "https://aasrithvarma.github.io/assets/images/profile.jpg",
+          "image": "https://tava.savieregroup.com/assets/images/profile.jpg",
           "worksFor": {
             "@id": "https://savieregroup.com/#corporation"
           },
+          "sameAs": [
+            "https://www.wikidata.org/wiki/Q141156055",
+            "https://www.linkedin.com/in/aasrithvarma",
+            "https://amazon.com",
+            "https://goodreads.com",
+            "https://www.researchgate.net/profile/Tanmai-Aasrith-Varma-Ayenampudi",
+            "https://behance.net",
+            "https://orcid.org/0000-0002-3924-1188",
+            "https://www.crunchbase.com/person/tanmai-aasrith-varma-ayenampudi"
+          ],
           "parent": [
             {
               "@type": "Person",
@@ -87,7 +113,8 @@
               "@id": "https://savieregroup.com/#mother",
               "name": "Vijaya Kumari Ayenampudi",
               "givenName": "Vijaya Kumari",
-              "familyName": "Ayenampudi"
+              "familyName": "Ayenampudi",
+              "alternateName": "Vijaya Kumari Ayenampudi"
             }
           ],
           "alumniOf": [
@@ -107,7 +134,7 @@
               "award": "Doctor of Medicine (MD)",
               "alumniOf": {
                 "@type": "EducationalOrganization",
-                "name": "Progress University of Gyumri"
+                "name": "Progress University of Gyumri, Faculty of Medicine"
               }
             },
             {
@@ -132,14 +159,21 @@
               }
             }
           ],
-          "sameAs": [
-            "https://www.crunchbase.com/person/tanmai-aasrith-varma-ayenampudi",
-            "https://www.wikidata.org/wiki/Q141156055",
-            "https://www.linkedin.com/in/aasrithvarma",
-            "https://orcid.org/0000-0002-3924-1188",
-            "https://www.researchgate.net/profile/Tanmai-Aasrith-Varma-Ayenampudi",
-            "https://aasrithvarma.github.io/"
+          "knowsAbout": [
+            "Pediatric Cardiac Surgery",
+            "Congenital Heart Disease",
+            "Medical Artificial Intelligence",
+            "Cardiovascular Sciences"
           ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://savieregroup.com/#website",
+          "url": "https://savieregroup.com",
+          "name": "Savière Group",
+          "publisher": {
+            "@id": "https://savieregroup.com/#corporation"
+          }
         },
         {
           "@type": "Book",
@@ -155,48 +189,61 @@
     }
     </script>
 
-    <!-- Typography & Framework -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',silver:'#C0C0C0',black:'#0A0A0A',white:'#FFFFFF'}}}}};
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         body { background-color: #FFFFFF; color: #0A0A0A; overflow-x: hidden; cursor: none; }
+        
         .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: #520A1E; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity 0.3s; }
-        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(82,10,30,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
+        .cursor-ring { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1.5px solid rgba(82,10,30,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; }
         @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none !important; } body { cursor: auto; } }
 
         .pill-header {
             position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
             width: calc(100% - 2rem); max-width: 80rem;
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 9999px;
             box-shadow: 0 10px 40px -10px rgba(82, 10, 30, 0.08);
             z-index: 90; transition: all 0.3s ease; padding: 0.6rem 2rem;
             display: flex; align-items: center; justify-content: space-between;
         }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(82, 10, 30, 0.08); border-radius: 1.5rem; padding: 3rem; 
+            box-shadow: 0 15px 35px -10px rgba(82, 10, 30, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px); border-color: rgba(212, 175, 55, 0.4); 
+            box-shadow: 0 20px 45px -5px rgba(82, 10, 30, 0.1); background: rgba(255, 255, 255, 0.8);
+        }
+
+        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(30px); }
+        #mobile-menu.open { transform: translateY(0); }
+        
         .nav-link { position: relative; color: #0A0A0A; padding: 0.5rem 0; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #D4AF37; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-        #mobile-menu { transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(30px); }
-        #mobile-menu.open { transform: translateY(0); }
-
-        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(82, 10, 30, 0.1); border-radius: 1.5rem; padding: 3rem; box-shadow: 0 10px 30px -10px rgba(82, 10, 30, 0.06); transition: all 0.4s ease; }
-        .glass-card:hover { transform: translateY(-6px); border-color: #D4AF37; box-shadow: 0 20px 45px -5px rgba(82, 10, 30, 0.12); }
+        
         .reveal { opacity: 0; transform: translateY(30px); }
-        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.45; pointer-events: none; }
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; pointer-events: none; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
+
     <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
     <header class="pill-header" id="navbar">
@@ -212,15 +259,14 @@
         </nav>
         <div class="flex items-center gap-4">
             <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-flex font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-gold hover:text-saviere-black transition-colors shadow-sm hover-trigger">Connect</a>
-            <button id="menu-btn" class="lg:hidden text-saviere-crimson p-2 focus:outline-none hover-trigger z-50" aria-label="Toggle Menu">
+            <button id="menu-btn" class="lg:hidden text-saviere-crimson p-2 focus:outline-none hover-trigger z-50">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Drawer Overlay -->
     <div id="mobile-menu" class="fixed inset-0 flex flex-col justify-center items-center gap-8">
-        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson hover-trigger" aria-label="Close Menu">
+        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 text-saviere-crimson hover-trigger">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <a href="index.html" class="text-3xl font-serif text-saviere-crimson font-bold hover-trigger">Overview</a>
@@ -231,68 +277,69 @@
         <a href="mailto:connect@savieregroup.com" class="mt-8 font-subheading text-xs font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-4 rounded-full hover-trigger">Contact Us</a>
     </div>
 
-    <main class="flex-grow pt-36 pb-24 relative w-full">
-        <!-- Hero Section -->
+    <main class="flex-grow pt-32 pb-24 relative w-full">
+        <!-- Hero with 3D Architectural Wireframe -->
         <section class="min-h-[75vh] flex flex-col justify-center text-center pb-20 px-6 relative max-w-[80rem] mx-auto">
             <div id="canvas-container"></div>
             <div class="relative z-10 reveal">
-                <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Secunderabad • Emerging Enterprise</p>
+                <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6 drop-shadow-sm">Emerging Enterprise</p>
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-saviere-crimson leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
                     Building <span class="italic font-serif text-saviere-gold">enduring</span> businesses<br>for a changing world.
                 </h1>
-                <p class="font-sans text-lg md:text-2xl text-saviere-black/80 font-light leading-relaxed max-w-4xl mx-auto mb-12">
+                <p class="font-sans text-lg md:text-2xl text-saviere-black font-light leading-relaxed max-w-4xl mx-auto mb-12">
                     Savière Group is a diversified business enterprise focused on architecting sustainable, highly scalable operations across essential global industries.
                 </p>
             </div>
         </section>
 
-        <!-- Crimson Color Block Section -->
-        <section class="py-28 bg-saviere-crimson text-white relative overflow-hidden">
+        <!-- Bold Crimson Color Block Section -->
+        <section class="py-32 bg-saviere-crimson text-white relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-96 h-96 bg-saviere-gold/15 rounded-full blur-3xl"></div>
             <div class="max-w-[80rem] mx-auto px-6 grid md:grid-cols-2 gap-16 relative z-10 reveal">
                 <div class="space-y-6">
                     <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">Strategic Ambition</h2>
-                    <h3 class="font-serif text-4xl md:text-5xl text-white leading-tight">Deliberate Scale</h3>
+                    <h3 class="font-serif text-5xl text-white leading-tight">Deliberate Scale</h3>
                     <p class="font-sans text-white/80 font-light leading-relaxed text-lg border-l-2 border-saviere-gold pl-6">
                         We are currently focusing on laying the foundational architecture through sustainable consumer products, establishing the operational discipline required to confidently enter adjacent sectors over the long term.
                     </p>
                 </div>
-                <div class="space-y-6 bg-white/5 p-8 md:p-12 rounded-3xl border border-saviere-gold/30 backdrop-blur-md">
+                <div class="space-y-6 bg-white/5 p-8 md:p-12 rounded-3xl border border-saviere-gold/30 backdrop-blur-xl shadow-2xl hover-trigger">
                     <h2 class="font-subheading text-xs font-bold uppercase tracking-[0.2em] text-saviere-gold mb-4">The Mandate</h2>
                     <p class="font-sans text-white/90 font-light leading-relaxed text-lg">
-                        Savière Group combines strict capital discipline with engineering excellence, ensuring every expansion is rooted in empirical validation, ethical practices, and multi-decade economic viability.
+                        Savière Group is designed to evolve into a globally scalable institution. We combine strict capital discipline with engineering excellence, ensuring every expansion is rooted in empirical validation and long-term economic viability.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Operating Principles -->
-        <section class="py-28 px-6 max-w-[80rem] mx-auto">
-            <div class="text-center max-w-4xl mx-auto mb-16 reveal">
-                <h2 class="font-serif text-4xl md:text-6xl text-saviere-crimson leading-tight mb-6">Operating Philosophy</h2>
+        <!-- How We Build -->
+        <section class="py-32 px-6 max-w-[80rem] mx-auto">
+            <div class="text-center max-w-4xl mx-auto mb-20 reveal">
+                <h2 class="font-serif text-4xl md:text-6xl text-saviere-crimson leading-tight mb-6">Operating Philosophy.</h2>
                 <div class="w-24 h-1 bg-saviere-gold mx-auto"></div>
             </div>
             <div class="grid lg:grid-cols-3 gap-8">
                 <div class="glass-card reveal hover-trigger">
-                    <span class="font-serif text-saviere-gold text-2xl block mb-2">01</span>
-                    <h3 class="font-serif text-2xl text-saviere-crimson mb-4">Evidence First</h3>
+                    <h3 class="font-serif text-2xl text-saviere-crimson mb-4">Evidence First.</h3>
                     <p class="text-sm text-saviere-black/70 font-light leading-relaxed">We direct our resources toward measurable inefficiencies, ensuring product and market decisions are strictly guided by literature and empirical validation.</p>
                 </div>
                 <div class="glass-card reveal hover-trigger" style="transition-delay: 100ms;">
-                    <span class="font-serif text-saviere-gold text-2xl block mb-2">02</span>
-                    <h3 class="font-serif text-2xl text-saviere-crimson mb-4">Quality Before Scale</h3>
-                    <p class="text-sm text-saviere-black/70 font-light leading-relaxed">Excellence is engineered from inception. We develop resilient supply chains and proven formulations before expanding commercial reach.</p>
+                    <h3 class="font-serif text-2xl text-saviere-crimson mb-4">Quality before Scale.</h3>
+                    <p class="text-sm text-saviere-black/70 font-light leading-relaxed">Excellence is engineered from inception. We refuse to scale operations until structural durability and safety thresholds are absolutely proven.</p>
                 </div>
                 <div class="glass-card reveal hover-trigger" style="transition-delay: 200ms;">
-                    <span class="font-serif text-saviere-gold text-2xl block mb-2">03</span>
-                    <h3 class="font-serif text-2xl text-saviere-crimson mb-4">Build for Decades</h3>
-                    <p class="text-sm text-saviere-black/70 font-light leading-relaxed">We operate with the financial discipline required to build a multi-generational enterprise, evaluating progress over decades rather than short-term market cycles.</p>
+                    <h3 class="font-serif text-2xl text-saviere-crimson mb-4">Build for Decades.</h3>
+                    <p class="text-sm text-saviere-black/70 font-light leading-relaxed">We operate with the financial discipline required to build a multi-generational enterprise, evaluating success over decades rather than quarters.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Uniform Imperial Burgundy Footer -->
+    <!-- LUXURIOUS UNIFORM FOOTER -->
     <footer class="bg-[#520A1E] text-white pt-24 pb-12 px-6 relative z-20 overflow-hidden border-t-4 border-[#D4AF37]">
+        <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-32 top-0 w-64 h-64 bg-black/20 rounded-full blur-3xl pointer-events-none"></div>
+
         <div class="max-w-[80rem] mx-auto relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/10 pb-12 mb-12 gap-8">
                 <div class="max-w-md">
@@ -316,7 +363,7 @@
                     <h4 class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-6">Headquarters</h4>
                     <address class="text-white/70 text-xs md:text-sm font-light leading-relaxed not-italic">
                         Savière Group Private Limited<br>
-                        Secunderabad<br>
+                        Hyderabad<br>
                         Telangana, India
                     </address>
                 </div>
@@ -359,12 +406,13 @@
 
     <script>
         const dot = document.querySelector('.cursor-dot'); const ring = document.querySelector('.cursor-ring');
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, ringX = mouseX, ringY = mouseY;
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
         document.querySelectorAll('.hover-trigger, a, button').forEach(el => {
             el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(212,175,55,0.1)'; ring.style.borderColor = '#D4AF37'; });
-            el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.4)'; });
+            el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.5)'; });
         });
 
         const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
@@ -378,7 +426,6 @@
             });
         });
 
-        // 3D Geometric Canvas
         const canvasContainer = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -400,8 +447,8 @@
             requestAnimationFrame(animate);
             shape.rotation.x += 0.001; shape.rotation.y += 0.002;
             core.rotation.x -= 0.002; core.rotation.y -= 0.001;
-            camera.position.x += (mouseX * 0.005 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 0.005 - camera.position.y) * 0.05;
+            camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 10 - camera.position.y) * 0.05;
             camera.lookAt(scene.position);
             renderer.render(scene, camera);
         } animate();

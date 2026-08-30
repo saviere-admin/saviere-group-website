@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Governance | Savière Group</title>
-    <meta name="description" content="Corporate Governance Framework and Ethical Principles of Savière Group Private Limited.">
     <meta name="theme-color" content="#520A1E">
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -117,11 +116,11 @@
                 </div>
                 <div class="glass-card reveal hover-trigger">
                     <span class="font-serif text-saviere-gold text-2xl mb-4 block">02 — Product Safety & Responsibility</span>
-                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Customer safety and biological welfare strictly precede margin expansion. Across all consumer lines, we commit to cruelty-free approaches and zero harmful adulteration[cite: 1, 2].</p>
+                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Customer safety and biological welfare strictly precede margin expansion. Across all consumer lines, we commit to cruelty-free approaches and zero harmful adulteration.</p>
                 </div>
                 <div class="glass-card reveal hover-trigger">
                     <span class="font-serif text-saviere-gold text-2xl mb-4 block">03 — Environmental Accountability</span>
-                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Material efficiency, water reduction, and lower-impact logistics are engineered into product economics directly from inception[cite: 2].</p>
+                    <p class="font-sans text-saviere-black/70 font-light leading-relaxed text-sm md:text-base">Material efficiency, water reduction, and lower-impact logistics are engineered into product economics directly from inception.</p>
                 </div>
                 <div class="glass-card reveal hover-trigger">
                     <span class="font-serif text-saviere-gold text-2xl mb-4 block">04 — Regulatory & Statutory Compliance</span>
@@ -153,6 +152,10 @@
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(212,175,55,0.1)'; ring.style.borderColor = '#D4AF37'; });
+            el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.5)'; });
+        });
 
         const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); });

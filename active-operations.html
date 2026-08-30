@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Operations | Savière Group</title>
-    <meta name="description" content="Active operations and ongoing sustainable product R&D under the Savière Group umbrella.">
     <meta name="theme-color" content="#520A1E">
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -94,15 +93,15 @@
             <div class="flex flex-col justify-center">
                 <h3 class="font-serif text-3xl md:text-4xl text-saviere-crimson mb-6">The Context</h3>
                 <p class="font-sans text-base md:text-lg text-saviere-black/80 font-light leading-relaxed mb-8">
-                    Our foundational operation investigates the packaging inefficiencies, material waste, and logistical footprint of conventional consumer goods[cite: 1, 2]. We aim to address these challenges through solid-state, waterless formulation architectures[cite: 1, 2].
+                    Our foundational operation investigates the packaging inefficiencies, material waste, and logistical footprint of conventional consumer goods. We aim to address these challenges through solid-state, waterless formulation architectures.
                 </p>
-                <div class="glass-card !p-6 md:!p-8">
+                <div class="glass-card hover-trigger !p-6 md:!p-8">
                     <p class="font-serif text-xl text-saviere-crimson mb-4">Areas of Investigation</p>
                     <ul class="space-y-3 font-sans text-sm md:text-base text-saviere-black/80 font-light">
-                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> Waterless formulation stability[cite: 2]</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> Waterless formulation stability</li>
                         <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> High-efficiency material reduction</li>
                         <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> Product portability and shelf-life optimization</li>
-                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> Carbon-efficient supply chain logistics[cite: 2]</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-sm bg-saviere-gold"></span> Carbon-efficient supply chain logistics</li>
                     </ul>
                 </div>
             </div>
@@ -121,7 +120,7 @@
                         <span class="font-serif text-saviere-gold text-3xl opacity-80">02</span>
                         <div class="border-l border-saviere-gold/30 pl-6">
                             <p class="font-serif text-xl text-white">Testing & Validation</p>
-                            <p class="font-sans text-sm text-white/70 font-light mt-1">Securing moisture stability, environmental resilience, and strict quality thresholds[cite: 1].</p>
+                            <p class="font-sans text-sm text-white/70 font-light mt-1">Securing moisture stability, environmental resilience, and strict quality thresholds.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-5">
@@ -158,6 +157,7 @@
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, ringX = mouseX, ringY = mouseY;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
         function renderCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(renderCursor); } renderCursor();
+        document.querySelectorAll('.hover-trigger, a, button').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.background = 'rgba(212,175,55,0.1)'; ring.style.borderColor = '#D4AF37'; }); el.addEventListener('mouseleave', () => { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.background = 'transparent'; ring.style.borderColor = 'rgba(82,10,30,0.5)'; }); });
 
         const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); });
