@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-github-username/saviere-group-website
+  repo: saviere-admin/saviere-group-website
   branch: main 
 
 media_folder: "assets/uploads"
