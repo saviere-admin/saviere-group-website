@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: your-github-username/saviere-group-website
+  branch: main 
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: https://savieregroup.com
+logo_url: https://savieregroup.com/assets/TransBGRHorizontal.png
+
+collections:
+  - name: "press"
+    label: "Press Registry"
+    files:
+      - file: "press-data.json"
+        label: "Press Data"
+        name: "press_data"
+        fields:
+          - name: "articles"
+            label: "Articles"
+            widget: "list"
+            fields:
+              - {label: "ID", name: "id", widget: "string"}
+              - {label: "Headline", name: "title", widget: "string"}
+              - {label: "Category", name: "category", widget: "select", options: ["Press Release", "Media Coverage", "Announcement"]}
+              - {label: "Publish Date", name: "date", widget: "string"}
+              - {label: "Status", name: "status", widget: "select", options: ["Published", "Draft", "Archived"]}
+              - {label: "Content", name: "content", widget: "text"}
