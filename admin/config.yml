@@ -23,7 +23,7 @@ collections:
             fields:
               - {label: "ID", name: "id", widget: "string"}
               - {label: "Headline", name: "title", widget: "string"}
-              - {label: "Category", name: "category", widget: "select", options: ["Press Release", "Media Coverage", "Announcement"]}
+              - {label: "Category", name: "category", widget: "select", options: ["Press Release", "Media Coverage", "Company Announcement"]}
               - {label: "Publish Date", name: "date", widget: "string"}
               - {label: "Status", name: "status", widget: "select", options: ["Published", "Draft", "Archived"]}
               - {label: "Content", name: "content", widget: "text"}
