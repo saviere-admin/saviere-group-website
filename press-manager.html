@@ -5,119 +5,275 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editorial Control | Savière Group</title>
     <meta name="robots" content="noindex, nofollow">
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};</script>
+    <script>
+        tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};
+    </script>
 </head>
-<body class="bg-[#0A0A0A] text-white antialiased p-6 md:p-12 flex justify-center min-h-screen items-center relative overflow-hidden">
-    <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-saviere-crimson/20 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute -left-32 top-0 w-64 h-64 bg-saviere-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
+<body class="bg-saviere-black text-white antialiased min-h-screen flex flex-col font-sans selection:bg-saviere-gold selection:text-black">
 
-    <div class="w-full max-w-3xl bg-[#111111] shadow-2xl border border-white/10 p-10 md:p-16 rounded-3xl relative z-10">
-        
-        <div class="border-b border-white/10 pb-8 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+    <header class="border-b border-white/10 bg-white/5 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-[90rem] mx-auto px-6 py-4 flex justify-between items-center">
             <div>
-                <h1 class="font-serif text-4xl text-saviere-gold mb-2">Editorial Dashboard</h1>
-                <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-white/50">Restricted Edge Deployment Gateway</p>
+                <h1 class="font-serif text-2xl text-saviere-gold">Editorial Dashboard</h1>
+                <p class="font-subheading text-[9px] uppercase tracking-widest text-white/40">Secure GitHub Edge Gateway</p>
             </div>
-            <div class="font-subheading text-[10px] font-bold uppercase tracking-widest text-black border border-saviere-gold/30 px-3 py-1 bg-saviere-gold/90 rounded-sm">
-                Node: Active
+            <div id="connection-status" class="font-subheading text-[10px] font-bold uppercase tracking-widest text-yellow-500 border border-yellow-500/30 px-3 py-1 bg-yellow-500/10 rounded-sm">
+                Awaiting Auth
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[90rem] mx-auto w-full px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+        
+        <!-- Left Column: Authentication & Article Ledger -->
+        <div class="lg:col-span-4 space-y-6 flex flex-col h-full">
+            <div class="bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl">
+                <h2 class="font-serif text-lg text-white mb-4 border-b border-white/10 pb-2">1. Protocol Authentication</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">GitHub PAT Token</label>
+                        <input type="password" id="gh-token" class="w-full bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="ghp_...">
+                    </div>
+                    <div>
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">Repository</label>
+                        <input type="text" id="gh-repo" class="w-full bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="owner/repo">
+                    </div>
+                    <button id="connect-btn" class="w-full bg-saviere-gold text-black font-subheading text-xs font-bold uppercase tracking-widest py-3 rounded-lg hover:bg-white transition-all">
+                        Connect to Database
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl flex-grow overflow-hidden flex flex-col">
+                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-4">
+                    <h2 class="font-serif text-lg text-white">2. Article Ledger</h2>
+                    <button id="new-post-btn" class="font-subheading text-[9px] uppercase tracking-widest text-saviere-gold hover:text-white transition-colors border border-saviere-gold/30 px-2 py-1 rounded">
+                        + New Post
+                    </button>
+                </div>
+                <div id="article-list" class="space-y-3 overflow-y-auto pr-2 flex-grow max-h-[400px]">
+                    <p class="text-xs text-white/40 font-light italic">Connect to fetch older publications...</p>
+                </div>
             </div>
         </div>
 
-        <form id="editor-form" class="space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 border border-white/10 rounded-2xl bg-white/5">
-                <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">GitHub PAT</label>
-                    <input type="password" id="gh-token" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="ghp_...">
-                </div>
-                <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Repository</label>
-                    <input type="text" id="gh-repo" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="owner/repo">
-                </div>
-            </div>
+        <!-- Right Column: The Editor -->
+        <div class="lg:col-span-8 bg-white/5 border border-white/10 p-8 rounded-2xl shadow-xl flex flex-col">
+            <h2 class="font-serif text-2xl text-saviere-gold mb-6 border-b border-white/10 pb-4">3. Editorial Composer</h2>
+            
+            <form id="editor-form" class="space-y-6 flex-grow flex flex-col">
+                <input type="hidden" id="article-id">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">Headline</label>
+                        <input type="text" id="title" required class="w-full bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-lg font-serif focus:outline-none focus:border-saviere-gold transition-colors" placeholder="Savière Group announces...">
+                    </div>
+                    
+                    <div>
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">Category</label>
+                        <select id="category" class="w-full bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-sm focus:outline-none focus:border-saviere-gold transition-colors appearance-none">
+                            <option value="Press Release">Press Release</option>
+                            <option value="Media Coverage">Media Coverage</option>
+                            <option value="Company Announcement">Company Announcement</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">Publication Date</label>
+                        <input type="text" id="date" required class="w-full bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="e.g. September 12, 2026">
+                    </div>
 
-            <div>
-                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Headline</label>
-                <input type="text" id="title" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="Savière Group announces...">
-            </div>
+                    <div>
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">State</label>
+                        <select id="status" class="w-full bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-sm focus:outline-none focus:border-saviere-gold transition-colors appearance-none">
+                            <option value="Published">Published (Live)</option>
+                            <option value="Draft">Draft (Hidden)</option>
+                        </select>
+                    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Category</label>
-                    <select id="category" class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors appearance-none">
-                        <option value="Press Release">Press Release</option>
-                        <option value="Media Coverage">Media Coverage</option>
-                        <option value="Announcement">Announcement</option>
-                    </select>
+                    <div>
+                        <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">Media Upload (Optional)</label>
+                        <input type="file" id="media-upload" accept="image/*" class="w-full bg-black/50 border border-white/20 px-4 py-2 rounded-lg text-xs focus:outline-none focus:border-saviere-gold transition-colors text-white/70 file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-[10px] file:uppercase file:tracking-widest file:font-bold file:bg-saviere-gold file:text-black hover:file:bg-white transition-all">
+                        <input type="hidden" id="media-base64">
+                    </div>
                 </div>
-                <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Publication Date</label>
-                    <input type="text" id="date" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="e.g. September 2026">
-                </div>
-                <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">State</label>
-                    <select id="status" class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors appearance-none">
-                        <option value="Published">Published (Live)</option>
-                        <option value="Draft">Draft (Hidden)</option>
-                        <option value="Archived">Archived</option>
-                    </select>
-                </div>
-            </div>
 
-            <div>
-                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Editorial Summary / Content</label>
-                <textarea id="summary" required rows="5" class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors"></textarea>
-            </div>
+                <div class="flex-grow flex flex-col pt-2">
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/50 mb-2">Full Content Release</label>
+                    <textarea id="content" required class="w-full flex-grow bg-black/50 border border-white/20 px-4 py-3 rounded-lg text-sm focus:outline-none focus:border-saviere-gold transition-colors min-h-[250px]" placeholder="Draft the full press release here..."></textarea>
+                </div>
 
-            <button type="submit" id="submit-btn" class="w-full bg-saviere-crimson text-white font-subheading text-xs font-bold uppercase tracking-widest py-5 rounded-xl hover:bg-saviere-gold hover:text-black transition-all shadow-lg">
-                Commit to Remote Protocol
-            </button>
-            <p id="feedback" class="text-center font-subheading text-[10px] uppercase tracking-widest mt-6 hidden"></p>
-        </form>
-    </div>
+                <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                    <button type="submit" id="save-btn" disabled class="flex-grow bg-saviere-crimson text-white font-subheading text-xs font-bold uppercase tracking-widest py-4 rounded-lg hover:bg-saviere-gold hover:text-black transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                        Commit to Cloudflare Edge
+                    </button>
+                    <button type="button" id="delete-btn" class="hidden bg-red-900/50 text-red-200 border border-red-500/30 font-subheading text-xs font-bold uppercase tracking-widest px-6 py-4 rounded-lg hover:bg-red-600 transition-all">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
 
     <script>
-        document.getElementById('editor-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn'); const feedback = document.getElementById('feedback');
-            btn.innerText = 'Transmitting...'; btn.disabled = true; btn.classList.add('opacity-70');
-            feedback.className = 'text-center font-subheading text-[10px] font-bold uppercase tracking-widest mt-6 text-saviere-gold block'; 
-            feedback.innerText = 'Establishing Handshake...';
+        let dbCache = [];
+        let currentSha = null;
 
-            const token = document.getElementById('gh-token').value; const repo = document.getElementById('gh-repo').value;
-            const newRecord = { 
-                id: Date.now().toString(), 
-                title: document.getElementById('title').value, 
-                category: document.getElementById('category').value, 
-                date: document.getElementById('date').value, 
-                status: document.getElementById('status').value, 
-                summary: document.getElementById('summary').value 
+        const ui = {
+            token: document.getElementById('gh-token'),
+            repo: document.getElementById('gh-repo'),
+            connectBtn: document.getElementById('connect-btn'),
+            status: document.getElementById('connection-status'),
+            list: document.getElementById('article-list'),
+            form: document.getElementById('editor-form'),
+            saveBtn: document.getElementById('save-btn'),
+            deleteBtn: document.getElementById('delete-btn'),
+            newBtn: document.getElementById('new-post-btn'),
+            mediaUpload: document.getElementById('media-upload'),
+            mediaBase64: document.getElementById('media-base64'),
+            inputs: {
+                id: document.getElementById('article-id'),
+                title: document.getElementById('title'),
+                category: document.getElementById('category'),
+                date: document.getElementById('date'),
+                status: document.getElementById('status'),
+                content: document.getElementById('content')
+            }
+        };
+
+        // Media to Base64 Converter
+        ui.mediaUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => { ui.mediaBase64.value = event.target.result; };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 1. Fetch & Parse Data
+        ui.connectBtn.addEventListener('click', async () => {
+            const token = ui.token.value; const repo = ui.repo.value;
+            if(!token || !repo) return alert("Credentials required.");
+            
+            ui.status.innerText = "Syncing..."; ui.status.className = "font-subheading text-[10px] font-bold uppercase tracking-widest text-blue-400 border border-blue-400/30 px-3 py-1 bg-blue-400/10 rounded-sm";
+            
+            try {
+                const res = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, { headers: { 'Authorization': `token ${token}` } });
+                if (!res.ok) throw new Error("Verification Failed");
+                
+                const file = await res.json();
+                currentSha = file.sha;
+                dbCache = JSON.parse(decodeURIComponent(escape(window.atob(file.content))));
+                
+                ui.status.innerText = "Connected"; ui.status.className = "font-subheading text-[10px] font-bold uppercase tracking-widest text-green-400 border border-green-400/30 px-3 py-1 bg-green-400/10 rounded-sm";
+                ui.saveBtn.disabled = false;
+                renderList();
+            } catch (err) {
+                ui.status.innerText = "Auth Failed"; ui.status.className = "font-subheading text-[10px] font-bold uppercase tracking-widest text-red-400 border border-red-400/30 px-3 py-1 bg-red-400/10 rounded-sm";
+            }
+        });
+
+        // 2. Render List for Editing Older Posts
+        function renderList() {
+            ui.list.innerHTML = '';
+            if(dbCache.length === 0) { ui.list.innerHTML = '<p class="text-xs text-white/40">No entries found.</p>'; return; }
+            
+            [...dbCache].reverse().forEach(article => {
+                const div = document.createElement('div');
+                div.className = "p-3 border border-white/10 rounded-lg hover:border-saviere-gold cursor-pointer transition-colors bg-black/20";
+                div.innerHTML = `
+                    <p class="text-[9px] uppercase tracking-widest text-saviere-gold mb-1">${article.date} • ${article.status}</p>
+                    <p class="font-serif text-sm text-white truncate">${article.title}</p>
+                `;
+                div.onclick = () => loadArticle(article.id);
+                ui.list.appendChild(div);
+            });
+        }
+
+        // 3. Load Article to Form
+        function loadArticle(id) {
+            const article = dbCache.find(a => a.id === id);
+            if(!article) return;
+            ui.inputs.id.value = article.id;
+            ui.inputs.title.value = article.title;
+            ui.inputs.category.value = article.category;
+            ui.inputs.date.value = article.date;
+            ui.inputs.status.value = article.status;
+            ui.inputs.content.value = article.content;
+            ui.mediaBase64.value = article.media || '';
+            ui.deleteBtn.classList.remove('hidden');
+        }
+
+        // Clear Form
+        ui.newBtn.addEventListener('click', () => {
+            ui.form.reset();
+            ui.inputs.id.value = '';
+            ui.mediaBase64.value = '';
+            ui.deleteBtn.classList.add('hidden');
+        });
+
+        // 4. Save/Commit Logic
+        ui.form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            ui.saveBtn.innerText = "Encrypting & Pushing..."; ui.saveBtn.disabled = true;
+
+            const articleData = {
+                id: ui.inputs.id.value || Date.now().toString(),
+                title: ui.inputs.title.value,
+                category: ui.inputs.category.value,
+                date: ui.inputs.date.value,
+                status: ui.inputs.status.value,
+                content: ui.inputs.content.value,
+                media: ui.mediaBase64.value
             };
 
+            const existingIndex = dbCache.findIndex(a => a.id === articleData.id);
+            if(existingIndex >= 0) { dbCache[existingIndex] = articleData; } 
+            else { dbCache.push(articleData); }
+
+            await pushToGitHub(`docs(press): Upsert "${articleData.title}"`);
+        });
+
+        // 5. Delete Logic
+        ui.deleteBtn.addEventListener('click', async () => {
+            const id = ui.inputs.id.value;
+            if(!id || !confirm("Eradicate this record?")) return;
+            ui.deleteBtn.innerText = "Deleting...";
+            dbCache = dbCache.filter(a => a.id !== id);
+            await pushToGitHub(`docs(press): Delete record`);
+            ui.newBtn.click();
+        });
+
+        // Universal Push Function
+        async function pushToGitHub(message) {
+            const token = ui.token.value; const repo = ui.repo.value;
+            const content = window.btoa(unescape(encodeURIComponent(JSON.stringify(dbCache, null, 2))));
+            
             try {
-                let data = []; let sha = null;
-                const getReq = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, { headers: { 'Authorization': `token ${token}` } });
-                if (getReq.ok) { const res = await getReq.json(); sha = res.sha; data = JSON.parse(decodeURIComponent(escape(window.atob(res.content)))); }
-                
-                data.push(newRecord);
                 const putReq = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, {
                     method: 'PUT',
                     headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: `docs(press): Upsert record - ${newRecord.title}`, content: window.btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)))), sha: sha })
+                    body: JSON.stringify({ message: message, content: content, sha: currentSha })
                 });
 
-                if (putReq.ok) {
-                    feedback.className = 'text-center font-subheading text-[10px] font-bold uppercase tracking-widest mt-6 text-green-400 block'; 
-                    feedback.innerText = 'Record committed. Cloudflare edge cache rebuilding.'; 
-                    document.getElementById('title').value = ''; document.getElementById('summary').value = '';
-                } else throw new Error('API Access Denied.');
-            } catch (err) { 
-                feedback.className = 'text-center font-subheading text-[10px] font-bold uppercase tracking-widest mt-6 text-red-400 block'; 
-                feedback.innerText = `Protocol Error: ${err.message}`; 
+                if(putReq.ok) {
+                    const res = await putReq.json();
+                    currentSha = res.content.sha;
+                    renderList();
+                    ui.saveBtn.innerText = "Commit Successful (Edge Syncing)";
+                    ui.deleteBtn.innerText = "Delete";
+                } else throw new Error("Push Rejected.");
+            } catch(err) {
+                alert(err.message);
+                ui.saveBtn.innerText = "Commit to Cloudflare Edge";
             }
-            setTimeout(() => { btn.innerText = 'Commit to Remote Protocol'; btn.disabled = false; btn.classList.remove('opacity-70'); }, 3000);
-        });
+            setTimeout(() => { ui.saveBtn.innerText = "Commit to Cloudflare Edge"; ui.saveBtn.disabled = false; }, 3000);
+        }
     </script>
 </body>
 </html>
