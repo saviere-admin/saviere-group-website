@@ -3,100 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Portal | Savière Group</title>
-    <meta name="robots" content="noindex, nofollow"> <!-- Explicitly hidden from indexers[cite: 1] -->
-    
+    <title>Editorial Control | Savière Group</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config={
-            theme:{
-                extend:{
-                    fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},
-                    colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}
-                }
-            }
-        };
-    </script>
-    <style>body { background-color: #0A0A0A; color: #FFFFFF; font-family: 'Nunito Sans', sans-serif; }</style>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],ui:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};</script>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
-    <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-saviere-crimson/20 rounded-full blur-[100px] pointer-events-none"></div>
-    <div class="absolute -left-32 top-0 w-64 h-64 bg-saviere-gold/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-    <div class="w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl p-10 backdrop-blur-2xl shadow-2xl relative z-10">
-        <div class="text-center mb-10">
-            <h1 class="font-serif text-3xl text-saviere-gold mb-2">Corporate Press Registry</h1>
-            <p class="font-subheading text-[10px] uppercase tracking-widest text-white/50">Restricted Access • GitHub Edge Sync</p>
+<body class="bg-[#F5F5F5] text-black antialiased p-8 flex justify-center min-h-screen items-start">
+    <div class="w-full max-w-4xl bg-white shadow-xl border border-black/10 p-12">
+        
+        <div class="border-b border-black/10 pb-8 mb-8 flex justify-between items-end">
+            <div>
+                <h1 class="font-serif text-3xl text-saviere-crimson mb-2">Editorial Dashboard</h1>
+                <p class="font-ui text-[10px] uppercase tracking-widest text-black/50">Restricted Corporate Node</p>
+            </div>
+            <div class="font-ui text-[10px] uppercase tracking-widest text-black/30 border border-black/10 px-3 py-1 bg-gray-50">
+                GitHub API Status: <span id="conn-status" class="text-yellow-600 font-bold">Awaiting Credentials</span>
+            </div>
         </div>
 
-        <form id="cms-form" class="space-y-6">
-            <div class="grid md:grid-cols-2 gap-6">
+        <form id="editor-form" class="space-y-8">
+            <div class="grid grid-cols-2 gap-6 bg-gray-50 p-6 border border-black/5">
                 <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">GitHub PAT Token</label>
-                    <input type="password" id="gh-token" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white" placeholder="ghp_xxxxxxxxxxxx">
+                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">GitHub PAT</label>
+                    <input type="password" id="gh-token" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="ghp_...">
                 </div>
                 <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Repository (owner/repo)</label>
-                    <input type="text" id="gh-repo" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white" placeholder="saviere/website">
+                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Repository</label>
+                    <input type="text" id="gh-repo" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="owner/repo">
                 </div>
             </div>
-            <hr class="border-white/10 my-6">
+
             <div>
-                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Article Title</label>
-                <input type="text" id="article-title" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white">
+                <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Headline</label>
+                <input type="text" id="title" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="Savière Group announces...">
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
+
+            <div class="grid grid-cols-3 gap-6">
                 <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Category</label>
-                    <select id="article-category" class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white">
-                        <option value="Operations">Operations</option>
-                        <option value="Governance">Governance</option>
-                        <option value="Research">Research</option>
+                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Category</label>
+                    <select id="category" class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson appearance-none bg-white">
+                        <option value="Press Release">Press Release</option>
+                        <option value="Media Coverage">Media Coverage</option>
+                        <option value="Announcement">Announcement</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Date</label>
-                    <input type="text" id="article-date" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white" placeholder="e.g. October 2026">
+                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Publication Date</label>
+                    <input type="text" id="date" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="e.g. September 2026">
+                </div>
+                <div>
+                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">State</label>
+                    <select id="status" class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson appearance-none bg-white">
+                        <option value="Published">Published (Live)</option>
+                        <option value="Draft">Draft (Hidden)</option>
+                        <option value="Archived">Archived</option>
+                    </select>
                 </div>
             </div>
+
             <div>
-                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Content Excerpt</label>
-                <textarea id="article-excerpt" required rows="4" class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white"></textarea>
+                <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Editorial Summary / Content</label>
+                <textarea id="summary" required rows="5" class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson"></textarea>
             </div>
-            <button type="submit" id="submit-btn" class="w-full bg-saviere-crimson hover:bg-saviere-gold hover:text-saviere-black text-white font-subheading text-xs font-bold uppercase tracking-widest py-4 rounded-lg transition-colors">
-                Commit & Deploy to Cloudflare
+
+            <button type="submit" id="submit-btn" class="w-full bg-saviere-crimson text-white font-ui text-xs uppercase tracking-widest py-4 hover:bg-black transition-colors">
+                Commit to Remote Protocol
             </button>
-            <p id="status-msg" class="text-center font-subheading text-xs mt-4 hidden"></p>
+            <p id="feedback" class="text-center font-ui text-[10px] uppercase tracking-widest mt-4 hidden"></p>
         </form>
     </div>
 
     <script>
-        document.getElementById('cms-form').addEventListener('submit', async (e) => {
+        document.getElementById('editor-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submit-btn'); const status = document.getElementById('status-msg');
-            btn.innerText = 'Authenticating & Pushing...'; status.className = 'text-center font-subheading text-xs mt-4 text-white/70 block'; status.innerText = 'Initiating API Handshake...';
+            const btn = document.getElementById('submit-btn'); const feedback = document.getElementById('feedback');
+            btn.innerText = 'Transmitting...'; btn.disabled = true;
+            feedback.className = 'text-center font-ui text-[10px] uppercase tracking-widest mt-4 text-saviere-gold block'; 
+            feedback.innerText = 'Establishing Handshake...';
 
             const token = document.getElementById('gh-token').value; const repo = document.getElementById('gh-repo').value;
-            const newArticle = { title: document.getElementById('article-title').value, category: document.getElementById('article-category').value, date: document.getElementById('article-date').value, excerpt: document.getElementById('article-excerpt').value };
+            const newRecord = { 
+                id: Date.now().toString(), 
+                title: document.getElementById('title').value, 
+                category: document.getElementById('category').value, 
+                date: document.getElementById('date').value, 
+                status: document.getElementById('status').value, 
+                summary: document.getElementById('summary').value 
+            };
 
             try {
-                let currentData = []; let sha = null;
-                const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, { headers: { 'Authorization': `token ${token}` } });
-                if (getRes.ok) { const fileData = await getRes.json(); sha = fileData.sha; currentData = JSON.parse(atob(fileData.content)); }
+                let data = []; let sha = null;
+                const getReq = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, { headers: { 'Authorization': `token ${token}` } });
+                if (getReq.ok) { const res = await getReq.json(); sha = res.sha; data = JSON.parse(decodeURIComponent(escape(window.atob(res.content)))); }
                 
-                currentData.push(newArticle);
-                const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, {
+                data.push(newRecord);
+                const putReq = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, {
                     method: 'PUT',
                     headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: `docs(press): Publish - ${newArticle.title}`, content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))), sha: sha })
+                    body: JSON.stringify({ message: `docs(press): Upsert record - ${newRecord.title}`, content: window.btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)))), sha: sha })
                 });
 
-                if (putRes.ok) {
-                    status.className = 'text-center font-subheading text-xs mt-4 text-green-400 block'; status.innerText = 'Success. Deploying edge cache (approx. 2 min).'; btn.innerText = 'Deploy Successful'; document.getElementById('cms-form').reset();
-                } else throw new Error('API Rejection. Check repository or token permissions.');
-            } catch (err) { status.className = 'text-center font-subheading text-xs mt-4 text-red-400 block'; status.innerText = `Error: ${err.message}`; btn.innerText = 'Publish Failed'; }
-            setTimeout(() => { btn.innerText = 'Commit & Deploy to Cloudflare'; }, 3000);
+                if (putReq.ok) {
+                    feedback.className = 'text-center font-ui text-[10px] uppercase tracking-widest mt-4 text-green-700 block'; 
+                    feedback.innerText = 'Record committed. Edge cache rebuilding.'; 
+                    document.getElementById('title').value = ''; document.getElementById('summary').value = '';
+                } else throw new Error('API Access Denied.');
+            } catch (err) { 
+                feedback.className = 'text-center font-ui text-[10px] uppercase tracking-widest mt-4 text-red-700 block'; 
+                feedback.innerText = `Protocol Error: ${err.message}`; 
+            }
+            setTimeout(() => { btn.innerText = 'Commit to Remote Protocol'; btn.disabled = false; }, 3000);
         });
     </script>
 </body>
