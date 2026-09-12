@@ -5,56 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editorial Control | Savière Group</title>
     <meta name="robots" content="noindex, nofollow">
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],ui:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};</script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};</script>
 </head>
-<body class="bg-[#F5F5F5] text-black antialiased p-8 flex justify-center min-h-screen items-start">
-    <div class="w-full max-w-4xl bg-white shadow-xl border border-black/10 p-12">
+<body class="bg-[#0A0A0A] text-white antialiased p-6 md:p-12 flex justify-center min-h-screen items-center relative overflow-hidden">
+    <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-saviere-crimson/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute -left-32 top-0 w-64 h-64 bg-saviere-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="w-full max-w-3xl bg-[#111111] shadow-2xl border border-white/10 p-10 md:p-16 rounded-3xl relative z-10">
         
-        <div class="border-b border-black/10 pb-8 mb-8 flex justify-between items-end">
+        <div class="border-b border-white/10 pb-8 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
             <div>
-                <h1 class="font-serif text-3xl text-saviere-crimson mb-2">Editorial Dashboard</h1>
-                <p class="font-ui text-[10px] uppercase tracking-widest text-black/50">Restricted Corporate Node</p>
+                <h1 class="font-serif text-4xl text-saviere-gold mb-2">Editorial Dashboard</h1>
+                <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-white/50">Restricted Edge Deployment Gateway</p>
             </div>
-            <div class="font-ui text-[10px] uppercase tracking-widest text-black/30 border border-black/10 px-3 py-1 bg-gray-50">
-                GitHub API Status: <span id="conn-status" class="text-yellow-600 font-bold">Awaiting Credentials</span>
+            <div class="font-subheading text-[10px] font-bold uppercase tracking-widest text-black border border-saviere-gold/30 px-3 py-1 bg-saviere-gold/90 rounded-sm">
+                Node: Active
             </div>
         </div>
 
         <form id="editor-form" class="space-y-8">
-            <div class="grid grid-cols-2 gap-6 bg-gray-50 p-6 border border-black/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 border border-white/10 rounded-2xl bg-white/5">
                 <div>
-                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">GitHub PAT</label>
-                    <input type="password" id="gh-token" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="ghp_...">
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">GitHub PAT</label>
+                    <input type="password" id="gh-token" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="ghp_...">
                 </div>
                 <div>
-                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Repository</label>
-                    <input type="text" id="gh-repo" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="owner/repo">
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Repository</label>
+                    <input type="text" id="gh-repo" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="owner/repo">
                 </div>
             </div>
 
             <div>
-                <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Headline</label>
-                <input type="text" id="title" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="Savière Group announces...">
+                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Headline</label>
+                <input type="text" id="title" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="Savière Group announces...">
             </div>
 
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Category</label>
-                    <select id="category" class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson appearance-none bg-white">
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Category</label>
+                    <select id="category" class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors appearance-none">
                         <option value="Press Release">Press Release</option>
                         <option value="Media Coverage">Media Coverage</option>
                         <option value="Announcement">Announcement</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Publication Date</label>
-                    <input type="text" id="date" required class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson" placeholder="e.g. September 2026">
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Publication Date</label>
+                    <input type="text" id="date" required class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors" placeholder="e.g. September 2026">
                 </div>
                 <div>
-                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">State</label>
-                    <select id="status" class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson appearance-none bg-white">
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">State</label>
+                    <select id="status" class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors appearance-none">
                         <option value="Published">Published (Live)</option>
                         <option value="Draft">Draft (Hidden)</option>
                         <option value="Archived">Archived</option>
@@ -63,14 +66,14 @@
             </div>
 
             <div>
-                <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-black/60 mb-2">Editorial Summary / Content</label>
-                <textarea id="summary" required rows="5" class="w-full border border-black/20 px-4 py-3 text-sm focus:outline-none focus:border-saviere-crimson"></textarea>
+                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Editorial Summary / Content</label>
+                <textarea id="summary" required rows="5" class="w-full bg-black/50 border border-white/20 px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-saviere-gold transition-colors"></textarea>
             </div>
 
-            <button type="submit" id="submit-btn" class="w-full bg-saviere-crimson text-white font-ui text-xs uppercase tracking-widest py-4 hover:bg-black transition-colors">
+            <button type="submit" id="submit-btn" class="w-full bg-saviere-crimson text-white font-subheading text-xs font-bold uppercase tracking-widest py-5 rounded-xl hover:bg-saviere-gold hover:text-black transition-all shadow-lg">
                 Commit to Remote Protocol
             </button>
-            <p id="feedback" class="text-center font-ui text-[10px] uppercase tracking-widest mt-4 hidden"></p>
+            <p id="feedback" class="text-center font-subheading text-[10px] uppercase tracking-widest mt-6 hidden"></p>
         </form>
     </div>
 
@@ -78,8 +81,8 @@
         document.getElementById('editor-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn'); const feedback = document.getElementById('feedback');
-            btn.innerText = 'Transmitting...'; btn.disabled = true;
-            feedback.className = 'text-center font-ui text-[10px] uppercase tracking-widest mt-4 text-saviere-gold block'; 
+            btn.innerText = 'Transmitting...'; btn.disabled = true; btn.classList.add('opacity-70');
+            feedback.className = 'text-center font-subheading text-[10px] font-bold uppercase tracking-widest mt-6 text-saviere-gold block'; 
             feedback.innerText = 'Establishing Handshake...';
 
             const token = document.getElementById('gh-token').value; const repo = document.getElementById('gh-repo').value;
@@ -105,15 +108,15 @@
                 });
 
                 if (putReq.ok) {
-                    feedback.className = 'text-center font-ui text-[10px] uppercase tracking-widest mt-4 text-green-700 block'; 
-                    feedback.innerText = 'Record committed. Edge cache rebuilding.'; 
+                    feedback.className = 'text-center font-subheading text-[10px] font-bold uppercase tracking-widest mt-6 text-green-400 block'; 
+                    feedback.innerText = 'Record committed. Cloudflare edge cache rebuilding.'; 
                     document.getElementById('title').value = ''; document.getElementById('summary').value = '';
                 } else throw new Error('API Access Denied.');
             } catch (err) { 
-                feedback.className = 'text-center font-ui text-[10px] uppercase tracking-widest mt-4 text-red-700 block'; 
+                feedback.className = 'text-center font-subheading text-[10px] font-bold uppercase tracking-widest mt-6 text-red-400 block'; 
                 feedback.innerText = `Protocol Error: ${err.message}`; 
             }
-            setTimeout(() => { btn.innerText = 'Commit to Remote Protocol'; btn.disabled = false; }, 3000);
+            setTimeout(() => { btn.innerText = 'Commit to Remote Protocol'; btn.disabled = false; btn.classList.remove('opacity-70'); }, 3000);
         });
     </script>
 </body>
