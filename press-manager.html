@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Portal | Savière Group</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Explicitly hidden from indexers[cite: 1] -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},
+                    colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}
+                }
+            }
+        };
+    </script>
+    <style>body { background-color: #0A0A0A; color: #FFFFFF; font-family: 'Nunito Sans', sans-serif; }</style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+    <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-saviere-crimson/20 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute -left-32 top-0 w-64 h-64 bg-saviere-gold/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl p-10 backdrop-blur-2xl shadow-2xl relative z-10">
+        <div class="text-center mb-10">
+            <h1 class="font-serif text-3xl text-saviere-gold mb-2">Corporate Press Registry</h1>
+            <p class="font-subheading text-[10px] uppercase tracking-widest text-white/50">Restricted Access • GitHub Edge Sync</p>
+        </div>
+
+        <form id="cms-form" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">GitHub PAT Token</label>
+                    <input type="password" id="gh-token" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white" placeholder="ghp_xxxxxxxxxxxx">
+                </div>
+                <div>
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Repository (owner/repo)</label>
+                    <input type="text" id="gh-repo" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white" placeholder="saviere/website">
+                </div>
+            </div>
+            <hr class="border-white/10 my-6">
+            <div>
+                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Article Title</label>
+                <input type="text" id="article-title" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white">
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Category</label>
+                    <select id="article-category" class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white">
+                        <option value="Operations">Operations</option>
+                        <option value="Governance">Governance</option>
+                        <option value="Research">Research</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Date</label>
+                    <input type="text" id="article-date" required class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white" placeholder="e.g. October 2026">
+                </div>
+            </div>
+            <div>
+                <label class="block font-subheading text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2">Content Excerpt</label>
+                <textarea id="article-excerpt" required rows="4" class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-saviere-gold text-white"></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="w-full bg-saviere-crimson hover:bg-saviere-gold hover:text-saviere-black text-white font-subheading text-xs font-bold uppercase tracking-widest py-4 rounded-lg transition-colors">
+                Commit & Deploy to Cloudflare
+            </button>
+            <p id="status-msg" class="text-center font-subheading text-xs mt-4 hidden"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('cms-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn'); const status = document.getElementById('status-msg');
+            btn.innerText = 'Authenticating & Pushing...'; status.className = 'text-center font-subheading text-xs mt-4 text-white/70 block'; status.innerText = 'Initiating API Handshake...';
+
+            const token = document.getElementById('gh-token').value; const repo = document.getElementById('gh-repo').value;
+            const newArticle = { title: document.getElementById('article-title').value, category: document.getElementById('article-category').value, date: document.getElementById('article-date').value, excerpt: document.getElementById('article-excerpt').value };
+
+            try {
+                let currentData = []; let sha = null;
+                const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, { headers: { 'Authorization': `token ${token}` } });
+                if (getRes.ok) { const fileData = await getRes.json(); sha = fileData.sha; currentData = JSON.parse(atob(fileData.content)); }
+                
+                currentData.push(newArticle);
+                const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/press-data.json`, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `docs(press): Publish - ${newArticle.title}`, content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))), sha: sha })
+                });
+
+                if (putRes.ok) {
+                    status.className = 'text-center font-subheading text-xs mt-4 text-green-400 block'; status.innerText = 'Success. Deploying edge cache (approx. 2 min).'; btn.innerText = 'Deploy Successful'; document.getElementById('cms-form').reset();
+                } else throw new Error('API Rejection. Check repository or token permissions.');
+            } catch (err) { status.className = 'text-center font-subheading text-xs mt-4 text-red-400 block'; status.innerText = `Error: ${err.message}`; btn.innerText = 'Publish Failed'; }
+            setTimeout(() => { btn.innerText = 'Commit & Deploy to Cloudflare'; }, 3000);
+        });
+    </script>
+</body>
+</html>

@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Roadmap | Savière Group</title>
+    <title>Press | Savière Group</title>
     <!-- [Include exact HEAD tags, CSS, Tailwind config from index.html] -->
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         body { background-color: #FFFFFF; color: #0A0A0A; overflow-x: hidden; }
         .pill-header { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 80rem; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(24px); border: 1px solid rgba(10, 10, 10, 0.08); border-radius: 9999px; z-index: 90; padding: 0.6rem 2rem; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s ease; }
@@ -19,13 +17,10 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         #mobile-menu { transform: translateY(-100%); transition: transform 0.5s; z-index: 100; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(30px); }
         #mobile-menu.open { transform: translateY(0); }
-        .timeline-card { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(10, 10, 10, 0.08); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 15px 35px -10px rgba(82, 10, 30, 0.05); transition: all 0.4s ease; }
-        .timeline-card:hover { transform: translateX(8px); border-color: #D4AF37; }
-        .reveal { opacity: 0; transform: translateY(30px); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen relative">
-
+    
     <!-- MASTER CAPSULE HEADER -->
     <header class="pill-header" id="navbar">
         <a href="index.html" class="flex-shrink-0 hover-trigger">
@@ -36,8 +31,8 @@
             <a href="about.html" class="nav-link hover-trigger">About</a>
             <a href="governance.html" class="nav-link hover-trigger">Governance</a>
             <a href="active-operations.html" class="nav-link hover-trigger">Operations</a>
-            <a href="roadmap.html" class="nav-link active font-bold hover-trigger">Roadmap</a>
-            <a href="press.html" class="nav-link hover-trigger">Press</a>
+            <a href="roadmap.html" class="nav-link hover-trigger">Roadmap</a>
+            <a href="press.html" class="nav-link active font-bold hover-trigger">Press</a>
         </nav>
         <div class="flex items-center gap-4">
             <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-flex font-subheading text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-6 py-2.5 rounded-full hover:bg-saviere-gold hover:text-saviere-black transition-colors shadow-sm hover-trigger">Connect</a>
@@ -56,47 +51,21 @@
         <a href="about.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">About</a>
         <a href="governance.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Governance</a>
         <a href="active-operations.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Operations</a>
-        <a href="roadmap.html" class="text-3xl font-serif text-saviere-crimson font-bold hover-trigger">Roadmap</a>
-        <a href="press.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Press</a>
+        <a href="roadmap.html" class="text-3xl font-serif text-saviere-black hover:text-saviere-crimson transition-colors hover-trigger">Roadmap</a>
+        <a href="press.html" class="text-3xl font-serif text-saviere-crimson font-bold hover-trigger">Press</a>
         <a href="mailto:connect@savieregroup.com" class="mt-8 font-subheading text-xs font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-4 rounded-full hover-trigger">Contact Us</a>
     </div>
 
-    <main class="flex-grow pt-36 pb-0 w-full relative">
-        <section class="min-h-[45vh] flex flex-col justify-center text-center pb-16 px-6 max-w-[80rem] mx-auto">
-            <div class="reveal">
-                <p class="font-subheading text-xs font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Strategic Horizons</p>
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-saviere-crimson leading-[1.05] tracking-tight mb-8 max-w-5xl mx-auto">
-                    Building <span class="italic font-serif text-saviere-gold">Savière</span>.
-                </h1>
-                <p class="font-sans text-lg md:text-2xl text-saviere-black/80 font-light leading-relaxed max-w-3xl mx-auto">
-                    Our expansion is sequenced deliberately. Priorities evolve with capital availability, technical readiness, and verified market evidence[cite: 1].
-                </p>
-            </div>
+    <main class="flex-grow pt-48 pb-24 relative w-full max-w-[80rem] mx-auto px-6">
+        <section class="mb-20">
+            <h1 class="font-serif text-5xl md:text-7xl text-saviere-crimson mb-6 tracking-tight">Public Journal.</h1>
+            <p class="font-sans text-lg text-saviere-black/60 font-light">Official correspondence, research notes, and operational updates.</p>
         </section>
 
-        <!-- Phased Sequence -->
-        <section class="py-28 px-6 max-w-4xl mx-auto relative z-10">
-            <div class="border-l-2 border-saviere-crimson/30 pl-8 md:pl-12 ml-4 space-y-12 reveal">
-                <div class="relative timeline-card hover-trigger">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-saviere-crimson border-4 border-white"></div>
-                    <span class="font-subheading text-[10px] font-bold text-saviere-crimson uppercase tracking-widest block mb-2">01 / Foundation</span>
-                    <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Core Infrastructure</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Establishing core corporate, legal, intellectual property, and governance frameworks.</p>
-                </div>
-
-                <div class="relative timeline-card hover-trigger">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-saviere-gold border-4 border-white"></div>
-                    <span class="font-subheading text-[10px] font-bold text-saviere-gold uppercase tracking-widest block mb-2">02 / First Business</span>
-                    <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Consumer Validation</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Developing and validating our initial sustainable consumer product through rigorous laboratory testing[cite: 1].</p>
-                </div>
-
-                <div class="relative timeline-card hover-trigger">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-8 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
-                    <span class="font-subheading text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">03 / Capability Building</span>
-                    <h3 class="font-serif text-2xl md:text-3xl text-saviere-crimson mb-3">Operational Scale</h3>
-                    <p class="font-sans text-sm md:text-base text-saviere-black/70 font-light leading-relaxed">Strengthening in-house operational quality, scaling manufacturing capacity, and securing resilient supply chains[cite: 1].</p>
-                </div>
+        <!-- Press Feed Container -->
+        <section class="grid md:grid-cols-2 gap-8" id="press-feed">
+            <div class="col-span-2 text-center py-12 text-saviere-black/50 font-subheading text-xs uppercase tracking-widest">
+                Fetching Corporate Updates...
             </div>
         </section>
     </main>
@@ -119,10 +88,38 @@
             </div>
         </div>
     </footer>
+
     <script>
         const menuBtn = document.getElementById('menu-btn'); const closeMenuBtn = document.getElementById('close-menu-btn'); const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); }); closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
-        document.addEventListener("DOMContentLoaded", () => { gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.reveal').forEach(element => { gsap.to(element, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } }); }); });
+        
+        async function loadPress() {
+            try {
+                const response = await fetch('/press-data.json');
+                if (response.ok) {
+                    const articles = await response.json();
+                    const feed = document.getElementById('press-feed');
+                    feed.innerHTML = ''; 
+                    if(articles.length === 0) {
+                         feed.innerHTML = `<div class="col-span-2 text-center py-12 text-saviere-black/50 font-subheading text-xs uppercase tracking-widest">No active updates published yet.</div>`;
+                         return;
+                    }
+                    // Reverse to show newest first
+                    articles.reverse().forEach(article => {
+                        feed.innerHTML += `
+                            <article class="border border-saviere-black/10 p-8 rounded-3xl hover:border-saviere-gold/50 transition-colors bg-white shadow-sm">
+                                <span class="font-subheading text-[10px] font-bold uppercase tracking-widest text-saviere-gold block mb-4">${article.category} • ${article.date}</span>
+                                <h3 class="font-serif text-2xl text-saviere-black mb-4">${article.title}</h3>
+                                <p class="font-sans text-sm text-saviere-black/70 font-light leading-relaxed">${article.excerpt}</p>
+                            </article>
+                        `;
+                    });
+                }
+            } catch (error) { 
+                document.getElementById('press-feed').innerHTML = `<div class="col-span-2 text-center py-12 text-saviere-black/50 font-subheading text-xs uppercase tracking-widest">Awaiting Database Initialization.</div>`;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadPress);
     </script>
 </body>
 </html>
