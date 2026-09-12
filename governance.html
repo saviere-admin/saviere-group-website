@@ -12,7 +12,7 @@
     <style>
         body { background-color: #FFFFFF; color: #0A0A0A; -webkit-font-smoothing: antialiased; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-link { position: relative; color: #0A0A0A; padding-bottom: 4px; transition: color 0.3s; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+        .nav-link { position: relative; color: #0A0A0A; padding-bottom: 4px; transition: color 0.3s; font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
@@ -25,8 +25,8 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass-header" id="navbar">
         <div class="max-w-[90rem] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
             <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto"></a>
-            <nav class="hidden lg:flex gap-10">
-                <a href="index.html" class="nav-link">Group</a>
+            <nav class="hidden lg:flex gap-10 font-ui text-[10px] uppercase tracking-widest font-semibold text-gray-500">
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="governance.html" class="nav-link active text-saviere-crimson">Governance</a>
                 <a href="active-operations.html" class="nav-link">Operations</a>
@@ -34,21 +34,21 @@
                 <a href="press.html" class="nav-link">Press</a>
             </nav>
             <div class="flex items-center gap-6">
-                <a href="mailto:connect@savieregroup.com" class="hidden lg:inline-flex font-ui text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-3 rounded-sm hover:bg-black transition-colors">Connect</a>
+                <a href="mailto:connect@savieregroup.com" class="hidden lg:block font-ui text-[10px] font-bold uppercase tracking-widest text-white bg-saviere-crimson px-8 py-3 rounded-sm hover:bg-black transition-colors">Connect</a>
                 <button id="menu-toggle" class="lg:hidden text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
             </div>
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 transition-transform transform translate-y-full duration-300 ease-in-out flex flex-col hidden pt-32 px-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 transition-transform transform translate-y-full duration-300 ease-in-out flex flex-col hidden pt-24 px-8">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <nav class="flex flex-col gap-8 font-serif text-4xl">
-            <a href="index.html" class="text-black mobile-link">Group</a>
-            <a href="about.html" class="text-black mobile-link">About</a>
+        <nav class="flex flex-col gap-6 font-serif text-3xl mt-8">
+            <a href="index.html" class="text-gray-400 hover:text-saviere-black mobile-link">Home</a>
+            <a href="about.html" class="text-gray-400 hover:text-saviere-black mobile-link">About</a>
             <a href="governance.html" class="text-saviere-crimson mobile-link">Governance</a>
-            <a href="active-operations.html" class="text-black mobile-link">Operations</a>
-            <a href="roadmap.html" class="text-black mobile-link">Roadmap</a>
-            <a href="press.html" class="text-black mobile-link">Press</a>
+            <a href="active-operations.html" class="text-gray-400 hover:text-saviere-black mobile-link">Operations</a>
+            <a href="roadmap.html" class="text-gray-400 hover:text-saviere-black mobile-link">Roadmap</a>
+            <a href="press.html" class="text-gray-400 hover:text-saviere-black mobile-link">Press</a>
         </nav>
     </div>
 
@@ -110,7 +110,6 @@
         const btn = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); const closeBtn = document.getElementById('close-menu-btn');
         btn.addEventListener('click', () => { menu.classList.remove('hidden'); menu.classList.add('flex'); setTimeout(() => menu.style.transform = 'translateY(0)', 10); });
         closeBtn.addEventListener('click', () => { menu.style.transform = 'translateY(100%)'; setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); });
-        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => { menu.style.transform = 'translateY(100%)'; setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); }));
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
             gsap.utils.toArray('.reveal').forEach(element => {
