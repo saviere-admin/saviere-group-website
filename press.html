@@ -17,21 +17,22 @@
     <style>
         body { background-color: #FFFFFF; color: #0A0A0A; -webkit-font-smoothing: antialiased; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(10, 10, 30, 0.05); }
-        .nav-link { position: relative; color: #0A0A0A; padding-bottom: 4px; transition: color 0.3s; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+        .nav-link { position: relative; color: #0A0A0A; padding-bottom: 4px; transition: color 0.3s; font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         
-        /* Flawless Corporate Print Engine */
+        /* Flawless Corporate Print Engine - Stripped of web padding */
         @media print {
-            body, html { background: white !important; color: black !important; }
+            body, html { background: white !important; color: black !important; margin: 0; padding: 0; }
             .print\:hidden, #navbar, #mobile-menu, footer, .action-bar { display: none !important; }
             .print\:block { display: block !important; }
+            main { padding-top: 0 !important; padding-bottom: 0 !important; margin: 0 !important; max-width: 100% !important; }
             .print-document { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
             #single-media { max-height: 400px; object-fit: contain; page-break-inside: avoid; }
-            @page { margin: 20mm; size: A4 portrait; }
+            @page { margin: 15mm; size: A4 portrait; }
         }
     </style>
 </head>
@@ -70,7 +71,7 @@
     </div>
 
     <!-- MAIN WORKSPACE -->
-    <main class="flex-grow pt-40 pb-24 px-6 max-w-[90rem] mx-auto w-full">
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-[90rem] mx-auto w-full print:pt-0 print:pb-0 print:px-0">
         
         <!-- ================= FEED VIEW (Grid of Cards) ================= -->
         <div id="view-feed" class="block print:hidden">
@@ -97,7 +98,7 @@
         </div>
 
         <!-- ================= SINGLE POST VIEW (Corporate Letterhead) ================= -->
-        <div id="view-single" class="hidden print:block max-w-4xl mx-auto">
+        <div id="view-single" class="hidden print:block max-w-4xl mx-auto print:max-w-full">
             
             <!-- Action Bar (Hidden on Print) -->
             <div class="action-bar mb-8 flex flex-col md:flex-row justify-between items-center gap-6 reveal">
@@ -118,18 +119,19 @@
             </div>
 
             <!-- The Letterhead Canvas -->
-            <article class="print-document bg-white border border-gray-200 shadow-xl rounded-2xl p-10 md:p-16 reveal relative overflow-hidden">
-                <!-- Abstract Top Border -->
-                <div class="absolute top-0 left-0 right-0 h-2 bg-saviere-crimson print:block"></div>
+            <article class="print-document bg-white border border-gray-200 shadow-xl rounded-2xl p-10 md:p-16 reveal relative overflow-hidden print:shadow-none print:border-none print:p-0 print:m-0">
+                
+                <!-- Abstract Top Border for Web -->
+                <div class="absolute top-0 left-0 right-0 h-2 bg-saviere-crimson print:hidden"></div>
 
-                <!-- Letterhead Header -->
-                <div class="text-center border-b border-gray-200 pb-8 mb-10 flex flex-col items-center">
-                    <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 object-contain mb-4">
-                    <p class="font-ui text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400">Official Corporate Communication</p>
+                <!-- Letterhead Header (Strictly formatted for print & single view) -->
+                <div class="hidden print:block text-center border-b-2 border-saviere-crimson pb-6 mb-8 print:mt-0">
+                    <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 object-contain mx-auto mb-4">
+                    <p class="font-ui text-[9px] font-bold uppercase tracking-[0.3em] text-gray-500">Official Corporate Communication</p>
                 </div>
 
                 <!-- Verified Security Badge -->
-                <div class="flex items-center gap-2.5 mb-8 border border-saviere-gold/40 bg-saviere-gold/5 px-4 py-2 w-fit rounded-full">
+                <div class="flex items-center gap-2 mb-8 border border-saviere-gold/40 bg-saviere-gold/5 px-4 py-2 w-fit rounded-full">
                     <svg class="w-4 h-4 text-saviere-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     <span class="font-ui text-[9px] font-bold uppercase tracking-widest text-saviere-crimson">Savière Secure • Verified Origin</span>
                 </div>
@@ -148,15 +150,10 @@
                 <!-- Content Body -->
                 <div id="single-content" class="font-sans text-base md:text-lg text-gray-800 font-light leading-relaxed whitespace-pre-wrap">Content</div>
 
-                <!-- Letterhead Sign-off -->
-                <div class="mt-20 pt-10 border-t border-gray-200">
+                <!-- Letterhead Sign-off (Only visible on print) -->
+                <div class="hidden print:block mt-16 pt-8 border-t-2 border-saviere-crimson text-center">
                     <p class="font-serif text-xl text-saviere-black mb-1">Savière Group Private Limited</p>
-                    <p class="font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500">Hyderabad, Telangana, India.</p>
-                </div>
-
-                <!-- Formal Footer (Anchored to bottom of document) -->
-                <div class="mt-12 text-center font-ui text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 bg-gray-50 py-4 rounded-lg">
-                    +91 79895 02040 &nbsp;•&nbsp; connect@savieregroup.com &nbsp;•&nbsp; savieregroup.com
+                    <p class="font-ui text-[9px] font-bold uppercase tracking-widest text-gray-500">Hyderabad, India | +91 79895 02040 | connect@savieregroup.com | savieregroup.com</p>
                 </div>
             </article>
         </div>
@@ -180,7 +177,7 @@
                 </div>
             </div>
         </div>
-        <div class="max-w-[90rem] mx-auto text-center md:text-left text-[10px] text-gray-400 tracking-widest uppercase font-bold flex justify-between">
+        <div class="max-w-[90rem] mx-auto flex justify-between items-center text-[10px] text-gray-400 tracking-widest uppercase font-bold">
             <p>© 2026 Savière Group Pvt Ltd. Hyderabad, India.</p>
             <a href="editorial-manager.html" class="opacity-10 hover:opacity-100 transition-opacity text-xl" title="Editorial Node">🔒</a>
         </div>
@@ -193,12 +190,12 @@
         btn.addEventListener('click', () => { menu.classList.remove('hidden'); menu.classList.add('flex'); setTimeout(() => menu.style.transform = 'translateY(0)', 10); });
         closeBtn.addEventListener('click', () => { menu.style.transform = 'translateY(100%)'; setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); });
         
-        // Share API Logic
+        // Share API Logic - Passes title explicitly
         async function sharePost() {
             const url = window.location.href;
             const title = document.getElementById('single-title').innerText;
             if (navigator.share) {
-                try { await navigator.share({ title: title, url: url }); } catch (err) { console.log('Share dismissed.'); }
+                try { await navigator.share({ title: title, text: title, url: url }); } catch (err) { console.log('Share dismissed.'); }
             } else {
                 navigator.clipboard.writeText(url); alert('Official Link copied to clipboard.');
             }
@@ -217,6 +214,9 @@
                 if (postId) {
                     const article = published.find(a => a.id === postId);
                     if (article) {
+                        // Dynamically update the browser tab title to the post headline
+                        document.title = article.title + " | Savière Group";
+                        
                         document.getElementById('view-feed').classList.add('hidden');
                         document.getElementById('view-single').classList.remove('hidden');
                         
@@ -227,7 +227,8 @@
                         
                         if(article.media) {
                             const img = document.getElementById('single-media');
-                            img.src = article.media; img.classList.remove('hidden');
+                            img.src = article.media;
+                            img.classList.remove('hidden');
                         }
                     }
                 } else if (published.length > 0) {
@@ -249,7 +250,9 @@
         document.addEventListener('DOMContentLoaded', () => { 
             loadPressSystem();
             gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray('.reveal').forEach(element => { gsap.fromTo(element, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } }); });
+            gsap.utils.toArray('.reveal').forEach(element => {
+                gsap.fromTo(element, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } });
+            });
         });
     </script>
 </body>
