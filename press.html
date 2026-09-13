@@ -6,34 +6,41 @@
     <title>Press & Media | Savière Group</title>
     <meta name="theme-color" content="#FFFFFF">
     <link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],subheading:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}}</script>
+    <script>
+        tailwind.config={theme:{extend:{fontFamily:{sans:['"Nunito Sans"','sans-serif'],serif:['Marcellus','serif'],ui:['Poppins','sans-serif']},colors:{saviere:{crimson:'#520A1E',gold:'#D4AF37',black:'#0A0A0A',white:'#FFFFFF'}}}}};
+    </script>
     <style>
         body { background-color: #FFFFFF; color: #0A0A0A; -webkit-font-smoothing: antialiased; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(10, 10, 30, 0.05); }
-        .nav-link { position: relative; color: #0A0A0A; padding-bottom: 4px; transition: color 0.3s; font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+        .nav-link { position: relative; color: #0A0A0A; padding-bottom: 4px; transition: color 0.3s; font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #520A1E; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-link:hover, .nav-link.active { color: #520A1E; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         
+        /* Flawless Corporate Print Engine */
         @media print {
-            body { background: white !important; color: black !important; }
-            .print\:hidden { display: none !important; }
+            body, html { background: white !important; color: black !important; }
+            .print\:hidden, #navbar, #mobile-menu, footer, .action-bar { display: none !important; }
             .print\:block { display: block !important; }
-            .print-wrapper { margin: 0; padding: 0; width: 100%; }
-            #single-media { max-height: 350px; object-fit: contain; page-break-inside: avoid; }
-            @page { margin: 20mm; }
+            .print-document { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            #single-media { max-height: 400px; object-fit: contain; page-break-inside: avoid; }
+            @page { margin: 20mm; size: A4 portrait; }
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
+    <!-- MASTER HEADER -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header print:hidden" id="navbar">
         <div class="max-w-[90rem] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-            <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto object-contain"></a>
+            <a href="index.html" class="flex-shrink-0"><img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 md:h-10 w-auto"></a>
             <nav class="hidden lg:flex gap-10 font-ui text-[10px] uppercase tracking-widest font-semibold text-gray-500">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -49,6 +56,7 @@
         </div>
     </header>
 
+    <!-- MASTER MOBILE MENU -->
     <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 transition-transform transform translate-y-full duration-300 ease-in-out flex flex-col hidden pt-32 px-8 print:hidden">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-saviere-crimson"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <nav class="flex flex-col gap-8 font-serif text-4xl mt-8">
@@ -61,61 +69,100 @@
         </nav>
     </div>
 
-    <main class="flex-grow pt-40 pb-24 px-6 max-w-[80rem] mx-auto w-full print-wrapper">
+    <!-- MAIN WORKSPACE -->
+    <main class="flex-grow pt-40 pb-24 px-6 max-w-[90rem] mx-auto w-full">
         
-        <!-- FEED VIEW -->
+        <!-- ================= FEED VIEW (Grid of Cards) ================= -->
         <div id="view-feed" class="block print:hidden">
-            <div class="mb-16 grid md:grid-cols-12 gap-12 reveal">
+            <div class="mb-16 grid md:grid-cols-12 gap-12 reveal border-b border-gray-100 pb-20">
                 <div class="md:col-span-8">
-                    <p class="font-subheading text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Corporate Journal</p>
+                    <p class="font-ui text-[10px] font-bold uppercase tracking-[0.25em] text-saviere-gold mb-6">Corporate Journal</p>
                     <h1 class="font-serif text-5xl md:text-7xl mb-6 tracking-tight">Savière in the Press.</h1>
                     <p class="font-sans text-xl text-gray-700 font-light max-w-2xl leading-relaxed">Official press releases, verified media coverage, and corporate announcements.</p>
                 </div>
                 <div class="md:col-span-4 md:border-l border-saviere-crimson/20 md:pl-8 flex flex-col justify-center mt-6 md:mt-0">
-                    <p class="font-subheading text-[10px] uppercase tracking-widest text-saviere-gold font-bold mb-2">Media Enquiries</p>
+                    <p class="font-ui text-[10px] uppercase tracking-widest text-saviere-gold font-bold mb-2">Media Enquiries</p>
                     <a href="mailto:connect@savieregroup.com" class="font-serif text-xl text-saviere-black hover:text-saviere-crimson transition-colors">connect@savieregroup.com</a>
                 </div>
             </div>
 
-            <section id="press-feed" class="space-y-8 border-t border-gray-100 pt-16 reveal">
-                <div class="text-center py-24 bg-[#FAFAFA] border border-gray-100 rounded-3xl shadow-sm">
+            <!-- Dynamic Feed Injection -->
+            <section id="press-feed" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 reveal">
+                <!-- Fallback empty state -->
+                <div class="col-span-2 text-center py-24 bg-[#FAFAFA] border border-gray-100 rounded-2xl shadow-sm">
                     <p class="font-serif text-2xl text-gray-400 mb-3">No active public announcements.</p>
-                    <p class="font-subheading text-[10px] font-bold text-gray-400 uppercase tracking-widest">The group communicates strictly on verifiable milestones.</p>
+                    <p class="font-ui text-[10px] font-bold text-gray-400 uppercase tracking-widest">The group communicates strictly on verifiable milestones.</p>
                 </div>
             </section>
         </div>
 
-        <!-- SINGLE POST VIEW / PRINT VIEW -->
-        <div id="view-single" class="hidden print:block max-w-4xl mx-auto bg-white rounded-3xl md:p-12 md:shadow-2xl md:border border-gray-100 print:shadow-none print:border-none print:p-0">
-            <a href="press.html" class="print:hidden font-ui text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-saviere-crimson transition-colors mb-12 inline-block border border-gray-200 px-5 py-2 rounded-full">← Back to Registry</a>
+        <!-- ================= SINGLE POST VIEW (Corporate Letterhead) ================= -->
+        <div id="view-single" class="hidden print:block max-w-4xl mx-auto">
             
-            <div class="hidden print:block text-center border-b-2 border-saviere-crimson pb-6 mb-10">
-                <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 mx-auto mb-4 object-contain">
-                <p class="font-ui text-[9px] uppercase tracking-widest text-gray-500 font-bold">Official Corporate Communication</p>
+            <!-- Action Bar (Hidden on Print) -->
+            <div class="action-bar mb-8 flex flex-col md:flex-row justify-between items-center gap-6 reveal">
+                <a href="press.html" class="font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-saviere-crimson transition-colors flex items-center gap-2 border border-gray-200 px-5 py-2.5 rounded-full bg-white hover:border-saviere-crimson">
+                    ← Return to Registry
+                </a>
+                
+                <div class="flex gap-4">
+                    <button onclick="sharePost()" class="font-ui text-[10px] font-bold uppercase tracking-widest text-black border border-gray-200 px-5 py-2.5 rounded-full hover:bg-black hover:text-white transition-all flex items-center gap-2 bg-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                        Share Protocol
+                    </button>
+                    <button onclick="window.print()" class="font-ui text-[10px] font-bold uppercase tracking-widest text-white border border-saviere-crimson bg-saviere-crimson px-5 py-2.5 rounded-full hover:bg-black hover:border-black transition-all flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        Export PDF
+                    </button>
+                </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4 print:mb-4">
-                <span id="single-category" class="font-ui text-[10px] font-bold uppercase tracking-widest text-saviere-gold border border-saviere-gold/20 px-3 py-1.5 rounded bg-saviere-gold/5 w-fit">Category</span>
-                <button onclick="window.print()" class="print:hidden font-ui text-[10px] font-bold uppercase tracking-widest text-saviere-crimson border border-saviere-crimson px-6 py-2 rounded-full hover:bg-saviere-crimson hover:text-white transition-all flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                    Download / Print PDF
-                </button>
-            </div>
-            
-            <h1 id="single-title" class="font-serif text-3xl md:text-4xl text-black leading-tight mb-4">Headline</h1>
-            <p id="single-date" class="font-ui text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-10 pb-8 border-b border-gray-100 print:mb-8 print:pb-6">Date</p>
+            <!-- The Letterhead Canvas -->
+            <article class="print-document bg-white border border-gray-200 shadow-xl rounded-2xl p-10 md:p-16 reveal relative overflow-hidden">
+                <!-- Abstract Top Border -->
+                <div class="absolute top-0 left-0 right-0 h-2 bg-saviere-crimson print:block"></div>
 
-            <img id="single-media" src="" alt="Media Attachment" class="hidden w-full max-h-[450px] object-cover rounded-xl mb-10 border border-gray-100 shadow-sm">
-            
-            <div id="single-content" class="font-sans text-base md:text-lg text-gray-800 font-light leading-relaxed whitespace-pre-wrap">Content</div>
+                <!-- Letterhead Header -->
+                <div class="text-center border-b border-gray-200 pb-8 mb-10 flex flex-col items-center">
+                    <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-10 md:h-12 object-contain mb-4">
+                    <p class="font-ui text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400">Official Corporate Communication</p>
+                </div>
 
-            <div class="hidden print:block mt-16 pt-6 border-t-2 border-saviere-crimson text-center">
-                <p class="font-serif text-lg text-saviere-black mb-1">Savière Group Private Limited</p>
-                <p class="font-ui text-[9px] uppercase tracking-widest text-gray-500 font-bold">Hyderabad, India | +91 79895 02040 | connect@savieregroup.com | savieregroup.com</p>
-            </div>
+                <!-- Verified Security Badge -->
+                <div class="flex items-center gap-2.5 mb-8 border border-saviere-gold/40 bg-saviere-gold/5 px-4 py-2 w-fit rounded-full">
+                    <svg class="w-4 h-4 text-saviere-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <span class="font-ui text-[9px] font-bold uppercase tracking-widest text-saviere-crimson">Savière Secure • Verified Origin</span>
+                </div>
+
+                <!-- Post Metadata -->
+                <div class="mb-8">
+                    <span id="single-category" class="font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 block mb-2">Category</span>
+                    <h1 id="single-title" class="font-serif text-3xl md:text-4xl text-black leading-snug">Headline</h1>
+                </div>
+                
+                <p id="single-date" class="font-ui text-[10px] font-bold uppercase tracking-widest text-saviere-gold mb-12">Date</p>
+
+                <!-- Media (Optional) -->
+                <img id="single-media" src="" alt="Official Attachment" class="hidden w-full max-h-[500px] object-cover rounded-xl mb-12 border border-gray-100 shadow-sm">
+                
+                <!-- Content Body -->
+                <div id="single-content" class="font-sans text-base md:text-lg text-gray-800 font-light leading-relaxed whitespace-pre-wrap">Content</div>
+
+                <!-- Letterhead Sign-off -->
+                <div class="mt-20 pt-10 border-t border-gray-200">
+                    <p class="font-serif text-xl text-saviere-black mb-1">Savière Group Private Limited</p>
+                    <p class="font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500">Hyderabad, Telangana, India.</p>
+                </div>
+
+                <!-- Formal Footer (Anchored to bottom of document) -->
+                <div class="mt-12 text-center font-ui text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 bg-gray-50 py-4 rounded-lg">
+                    +91 79895 02040 &nbsp;•&nbsp; connect@savieregroup.com &nbsp;•&nbsp; savieregroup.com
+                </div>
+            </article>
         </div>
     </main>
 
+    <!-- MASTER WEB FOOTER -->
     <footer class="bg-[#FAFAFA] border-t border-gray-200 pt-20 pb-12 px-6 mt-auto print:hidden">
         <div class="max-w-[90rem] mx-auto grid md:grid-cols-12 gap-12 border-b border-gray-200 pb-12 mb-8">
             <div class="md:col-span-5">
@@ -124,6 +171,7 @@
             </div>
             <div class="md:col-span-7 flex flex-col md:items-end justify-between">
                 <div class="flex gap-4 mb-8">
+                    <!-- Social Links -->
                     <a href="mailto:connect@savieregroup.com" class="w-10 h-10 bg-white rounded-full border border-gray-200 flex items-center justify-center text-black hover:border-saviere-crimson hover:text-saviere-crimson transition-all"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
                     <a href="https://wa.me/917989502040" target="_blank" class="w-10 h-10 bg-white rounded-full border border-gray-200 flex items-center justify-center text-black hover:border-saviere-crimson hover:text-saviere-crimson transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
                     <a href="https://www.linkedin.com/company/saviere-group" target="_blank" class="w-10 h-10 bg-white rounded-full border border-gray-200 flex items-center justify-center text-black hover:border-saviere-crimson hover:text-saviere-crimson transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
@@ -134,7 +182,7 @@
         </div>
         <div class="max-w-[90rem] mx-auto text-center md:text-left text-[10px] text-gray-400 tracking-widest uppercase font-bold flex justify-between">
             <p>© 2026 Savière Group Pvt Ltd. Hyderabad, India.</p>
-            <a href="editorial-manager.html" class="opacity-0 hover:opacity-100 transition-opacity text-xl">🔒</a>
+            <a href="editorial-manager.html" class="opacity-10 hover:opacity-100 transition-opacity text-xl" title="Editorial Node">🔒</a>
         </div>
     </footer>
 
@@ -145,6 +193,17 @@
         btn.addEventListener('click', () => { menu.classList.remove('hidden'); menu.classList.add('flex'); setTimeout(() => menu.style.transform = 'translateY(0)', 10); });
         closeBtn.addEventListener('click', () => { menu.style.transform = 'translateY(100%)'; setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 300); });
         
+        // Share API Logic
+        async function sharePost() {
+            const url = window.location.href;
+            const title = document.getElementById('single-title').innerText;
+            if (navigator.share) {
+                try { await navigator.share({ title: title, url: url }); } catch (err) { console.log('Share dismissed.'); }
+            } else {
+                navigator.clipboard.writeText(url); alert('Official Link copied to clipboard.');
+            }
+        }
+
         async function loadPressSystem() {
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
@@ -168,25 +227,19 @@
                         
                         if(article.media) {
                             const img = document.getElementById('single-media');
-                            img.src = article.media;
-                            img.classList.remove('hidden');
+                            img.src = article.media; img.classList.remove('hidden');
                         }
                     }
                 } else if (published.length > 0) {
                     const feed = document.getElementById('press-feed');
                     feed.innerHTML = '';
                     published.reverse().forEach(article => {
-                        const mediaHtml = article.media ? `<img src="${article.media}" alt="Media" class="w-full max-h-[500px] object-cover rounded-xl mb-8 border border-gray-100 shadow-sm">` : '';
                         feed.innerHTML += `
-                            <article class="print-article p-10 md:p-14 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
-                                <div class="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4 border-b border-gray-100 pb-6">
-                                    <span class="font-ui text-[10px] font-bold uppercase tracking-widest text-saviere-gold border border-saviere-gold/20 px-3 py-1.5 rounded bg-saviere-gold/5 w-fit">${article.category}</span>
-                                    <span class="font-ui text-[10px] font-bold uppercase tracking-widest text-gray-400">${article.date}</span>
-                                </div>
-                                <h3 class="font-serif text-3xl md:text-5xl mb-8 text-black leading-tight">${article.title}</h3>
-                                ${mediaHtml}
-                                <div class="font-sans text-lg text-gray-700 font-light leading-relaxed whitespace-pre-wrap">${article.content}</div>
-                            </article>
+                            <a href="press.html?id=${article.id}" class="block p-8 bg-white border border-gray-100 rounded-2xl shadow-sm hover:border-saviere-crimson transition-colors">
+                                <span class="font-ui text-[10px] font-bold uppercase tracking-widest text-saviere-gold mb-3 block">${article.category} • ${article.date}</span>
+                                <h3 class="font-serif text-2xl mb-3 text-black">${article.title}</h3>
+                                <p class="font-sans text-sm text-gray-500 font-light truncate">${article.content.substring(0, 150)}...</p>
+                            </a>
                         `;
                     });
                 }
@@ -196,9 +249,7 @@
         document.addEventListener('DOMContentLoaded', () => { 
             loadPressSystem();
             gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray('.reveal').forEach(element => {
-                gsap.fromTo(element, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } });
-            });
+            gsap.utils.toArray('.reveal').forEach(element => { gsap.fromTo(element, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } }); });
         });
     </script>
 </body>
