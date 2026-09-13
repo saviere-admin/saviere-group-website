@@ -207,7 +207,7 @@
 
         function initMap() {
             const map = L.map('india-map', { center: [21.0000, 78.0000], zoom: 4.4, zoomControl: false, scrollWheelZoom: false, doubleClickZoom: false, dragging: false });
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png?key=cb1_3ixv_1_064759c398d7a2d1d3dd08c1', { maxZoom: 19 }).addTo(map);
 
             const hqIcon = L.divIcon({ className: 'bg-transparent', html: '<div class="pulse-hq"></div>', iconSize: [16,16] });
             const stIcon = L.divIcon({ className: 'bg-transparent', html: '<div class="node-standard"></div>', iconSize: [12,12] });
