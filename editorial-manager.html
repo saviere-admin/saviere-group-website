@@ -19,126 +19,120 @@
         .input-field:disabled { opacity: 0.6; cursor: not-allowed; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col hidden" id="secure-body">
 
-    <div id="security-screen" class="fixed inset-0 bg-white z-[100] flex items-center justify-center p-6">
-        <div class="glass-panel p-10 rounded-2xl max-w-sm w-full text-center">
-            <img src="./assets/TransBGRHorizontal.png" alt="Savière Group" class="h-8 mx-auto mb-6 object-contain">
-            <h2 class="font-serif text-2xl text-saviere-black mb-2">Restricted Access</h2>
-            <p class="font-ui text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-8">Internal Editorial Node</p>
-            <form id="passcode-form" class="space-y-4">
-                <input type="password" id="passcode-input" class="input-field text-center font-mono tracking-[0.3em]" placeholder="•••••••••" autocomplete="off">
-                <p id="passcode-error" class="text-xs text-red-500 hidden">Unauthorized Passcode.</p>
-                <button type="submit" class="w-full bg-saviere-black text-white font-ui text-xs font-bold uppercase tracking-widest py-3 rounded-lg hover:bg-saviere-crimson transition-all">Verify Identity</button>
-            </form>
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-[90rem] mx-auto px-6 py-5 flex justify-between items-center">
+            <div>
+                <h1 class="font-serif text-2xl text-saviere-black">Editorial Dashboard</h1>
+                <p class="font-ui text-[9px] uppercase tracking-widest text-gray-500 font-bold mt-1">Savière Group Edge Gateway</p>
+            </div>
+            <div id="status-badge" class="font-ui text-[10px] font-bold uppercase tracking-widest text-yellow-600 border border-yellow-200 px-4 py-1.5 bg-yellow-50 rounded-full transition-colors">
+                Awaiting Connection
+            </div>
         </div>
-    </div>
+    </header>
 
-    <div id="dashboard-screen" class="hidden flex-col min-h-screen">
-        <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-            <div class="max-w-[90rem] mx-auto px-6 py-5 flex justify-between items-center">
-                <div>
-                    <h1 class="font-serif text-2xl text-saviere-black">Editorial Dashboard</h1>
-                    <p class="font-ui text-[9px] uppercase tracking-widest text-gray-500 font-bold mt-1">Savière Group Edge Gateway</p>
-                </div>
-                <div id="status-badge" class="font-ui text-[10px] font-bold uppercase tracking-widest text-yellow-600 border border-yellow-200 px-4 py-1.5 bg-yellow-50 rounded-full transition-colors">
-                    Awaiting Connection
-                </div>
-            </div>
-        </header>
-
-        <main class="flex-grow max-w-[90rem] mx-auto w-full px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div class="lg:col-span-4 flex flex-col gap-10 h-[calc(100vh-140px)]">
-                <div class="glass-panel p-8 rounded-2xl">
-                    <h2 class="font-serif text-xl text-saviere-crimson mb-6 border-b border-gray-100 pb-3">1. Authenticate</h2>
-                    <form id="auth-form" class="space-y-5">
-                        <div>
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">GitHub PAT (Fine-Grained)</label>
-                            <input type="password" id="gh-token" required class="input-field" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-                        </div>
-                        <div>
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Repository Target</label>
-                            <input type="text" id="gh-repo" required class="input-field" value="saviere-admin/saviere-group-website">
-                        </div>
-                        <button type="submit" id="connect-btn" class="w-full bg-saviere-black text-white font-ui text-xs font-bold uppercase tracking-widest py-3.5 rounded-lg hover:bg-saviere-crimson transition-all">
-                            Connect Database
-                        </button>
-                    </form>
-                </div>
-
-                <div class="glass-panel p-8 rounded-2xl flex-grow flex flex-col overflow-hidden">
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
-                        <h2 class="font-serif text-xl text-saviere-crimson">2. Publication Ledger</h2>
-                        <button id="new-btn" class="font-ui text-[9px] font-bold uppercase tracking-widest text-saviere-black border border-gray-200 px-3 py-1.5 rounded-full hover:border-saviere-crimson hover:text-saviere-crimson transition-colors hidden">
-                            + New Post
-                        </button>
+    <main class="flex-grow max-w-[90rem] mx-auto w-full px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4 flex flex-col gap-10 h-[calc(100vh-140px)]">
+            <div class="glass-panel p-8 rounded-2xl">
+                <h2 class="font-serif text-xl text-saviere-crimson mb-6 border-b border-gray-100 pb-3">1. Authenticate</h2>
+                <form id="auth-form" class="space-y-5">
+                    <div>
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">GitHub PAT (Fine-Grained)</label>
+                        <input type="password" id="gh-token" required class="input-field" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
                     </div>
-                    <div id="article-list" class="space-y-3 overflow-y-auto pr-2 flex-grow">
-                        <p class="text-xs text-gray-400 italic">Connect to fetch the corporate database...</p>
+                    <div>
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Repository Target</label>
+                        <input type="text" id="gh-repo" required class="input-field" value="saviere-admin/saviere-group-website">
                     </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-8 glass-panel p-10 md:p-12 rounded-2xl flex flex-col h-[calc(100vh-140px)] overflow-y-auto">
-                <h2 class="font-serif text-3xl text-saviere-black mb-8 border-b border-gray-100 pb-4">3. Editorial Composer</h2>
-                <form id="editor-form" class="space-y-8 flex-grow flex flex-col">
-                    <input type="hidden" id="post-id">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="md:col-span-2">
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Headline</label>
-                            <input type="text" id="post-title" required disabled class="input-field font-serif text-xl py-4" placeholder="Enter official headline...">
-                        </div>
-                        <div>
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Category Taxonomy</label>
-                            <select id="post-category" disabled class="input-field appearance-none cursor-pointer">
-                                <option value="Press Release">Press Release</option>
-                                <option value="Company Announcement">Company Announcement</option>
-                                <option value="Corporate Update">Corporate Update</option>
-                                <option value="Media Coverage">Media Coverage</option>
-                                <option value="Wishes & Greetings">Wishes & Greetings</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Publication Date</label>
-                            <input type="text" id="post-date" required disabled class="input-field" placeholder="e.g. October 15, 2026">
-                        </div>
-                        <div>
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Visibility State</label>
-                            <select id="post-status" disabled class="input-field appearance-none cursor-pointer">
-                                <option value="Published">Published (Live on Site)</option>
-                                <option value="Draft">Draft (Hidden)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Media Attachment (Optional Image)</label>
-                            <input type="file" id="post-media" accept="image/*" disabled class="input-field !py-2 text-xs file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-gray-200 file:text-black hover:file:bg-saviere-gold cursor-pointer transition-all">
-                            <input type="hidden" id="post-media-b64">
-                        </div>
-                    </div>
-                    <div class="flex-grow flex flex-col">
-                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Official Content Body</label>
-                        <textarea id="post-content" required disabled class="input-field flex-grow min-h-[300px] resize-none" placeholder="Draft the full content here. Line breaks and spacing will be preserved."></textarea>
-                    </div>
-                    <div class="flex items-center gap-4 pt-6 border-t border-gray-100">
-                        <button type="submit" id="save-btn" disabled class="flex-grow bg-saviere-crimson text-white font-ui text-xs font-bold uppercase tracking-widest py-4 rounded-lg hover:bg-black transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
-                            Commit to Live Server
-                        </button>
-                        <button type="button" id="delete-btn" class="hidden bg-white text-red-600 border border-red-200 font-ui text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-red-50 hover:border-red-600 transition-all">
-                            Eradicate Record
-                        </button>
-                    </div>
+                    <button type="submit" id="connect-btn" class="w-full bg-saviere-black text-white font-ui text-xs font-bold uppercase tracking-widest py-3.5 rounded-lg hover:bg-saviere-crimson transition-all">
+                        Connect Database
+                    </button>
                 </form>
             </div>
-        </main>
-    </div>
+
+            <div class="glass-panel p-8 rounded-2xl flex-grow flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
+                    <h2 class="font-serif text-xl text-saviere-crimson">2. Publication Ledger</h2>
+                    <button id="new-btn" class="font-ui text-[9px] font-bold uppercase tracking-widest text-saviere-black border border-gray-200 px-3 py-1.5 rounded-full hover:border-saviere-crimson hover:text-saviere-crimson transition-colors hidden">
+                        + New Post
+                    </button>
+                </div>
+                <div id="article-list" class="space-y-3 overflow-y-auto pr-2 flex-grow">
+                    <p class="text-xs text-gray-400 italic">Connect to fetch the corporate database...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-8 glass-panel p-10 md:p-12 rounded-2xl flex flex-col h-[calc(100vh-140px)] overflow-y-auto">
+            <h2 class="font-serif text-3xl text-saviere-black mb-8 border-b border-gray-100 pb-4">3. Editorial Composer</h2>
+            <form id="editor-form" class="space-y-8 flex-grow flex flex-col">
+                <input type="hidden" id="post-id">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="md:col-span-2">
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Headline</label>
+                        <input type="text" id="post-title" required disabled class="input-field font-serif text-xl py-4" placeholder="Enter official headline...">
+                    </div>
+                    <div>
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Category Taxonomy</label>
+                        <select id="post-category" disabled class="input-field appearance-none cursor-pointer">
+                            <option value="Press Release">Press Release</option>
+                            <option value="Company Announcement">Company Announcement</option>
+                            <option value="Corporate Update">Corporate Update</option>
+                            <option value="Media Coverage">Media Coverage</option>
+                            <option value="Wishes & Greetings">Wishes & Greetings</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Publication Date</label>
+                        <input type="text" id="post-date" required disabled class="input-field" placeholder="e.g. October 15, 2026">
+                    </div>
+                    <div>
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Visibility State</label>
+                        <select id="post-status" disabled class="input-field appearance-none cursor-pointer">
+                            <option value="Published">Published (Live on Site)</option>
+                            <option value="Draft">Draft (Hidden)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Media Attachment (Optional Image)</label>
+                        <input type="file" id="post-media" accept="image/*" disabled class="input-field !py-2 text-xs file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-gray-200 file:text-black hover:file:bg-saviere-gold cursor-pointer transition-all">
+                        <input type="hidden" id="post-media-b64">
+                    </div>
+                </div>
+                <div class="flex-grow flex flex-col">
+                    <label class="block font-ui text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Official Content Body</label>
+                    <textarea id="post-content" required disabled class="input-field flex-grow min-h-[300px] resize-none" placeholder="Draft the full content here. Line breaks and spacing will be preserved."></textarea>
+                </div>
+                <div class="flex items-center gap-4 pt-6 border-t border-gray-100">
+                    <button type="submit" id="save-btn" disabled class="flex-grow bg-saviere-crimson text-white font-ui text-xs font-bold uppercase tracking-widest py-4 rounded-lg hover:bg-black transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
+                        Commit to Live Server
+                    </button>
+                    <button type="button" id="delete-btn" class="hidden bg-white text-red-600 border border-red-200 font-ui text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-red-50 hover:border-red-600 transition-all">
+                        Eradicate Record
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
 
     <script>
-        const passForm = document.getElementById('passcode-form'); const passInput = document.getElementById('passcode-input'); const passError = document.getElementById('passcode-error'); const screenSecurity = document.getElementById('security-screen'); const screenDashboard = document.getElementById('dashboard-screen');
-        passForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (passInput.value === 'P@$$79895w0rd') { screenSecurity.classList.add('hidden'); screenDashboard.classList.remove('hidden'); screenDashboard.classList.add('flex'); } 
-            else { passError.classList.remove('hidden'); passInput.value = ''; }
-        });
+        // JS NATIVE POP-UP PASSCODE GATEWAY
+        const authorizedPasscode = "9885679895P@$$79895w0rd1204002040";
+        const userPasscode = prompt("Please enter the Editorial Passcode to access this node:");
+
+        if (userPasscode === authorizedPasscode) {
+            // Unhide the body, allowing full DOM inspection
+            document.getElementById('secure-body').classList.remove('hidden');
+        } else {
+            // Block execution and clear the screen
+            document.body.innerHTML = `<div style="display:flex; height:100vh; align-items:center; justify-content:center; background:#FAFAFA; color:#520A1E; font-family:sans-serif; font-size:1.5rem; text-transform:uppercase; letter-spacing:0.1em;">Unauthorized Access.</div>`;
+            document.body.classList.remove('hidden');
+            throw new Error("Unauthorized Access Attempt.");
+        }
+
+        // ------------------ EXISTING CMS LOGIC BELOW ------------------
 
         let database = []; let currentSha = null;
         const ui = { authForm: document.getElementById('auth-form'), token: document.getElementById('gh-token'), repo: document.getElementById('gh-repo'), badge: document.getElementById('status-badge'), list: document.getElementById('article-list'), btnNew: document.getElementById('new-btn'), form: document.getElementById('editor-form'), btnSave: document.getElementById('save-btn'), btnDelete: document.getElementById('delete-btn'), mediaUpload: document.getElementById('post-media'), mediaBase64: document.getElementById('post-media-b64'), fields: ['post-id', 'post-title', 'post-category', 'post-date', 'post-status', 'post-content'] };
