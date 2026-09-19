@@ -91,20 +91,18 @@
                     </li>
                 </ul>
 
-                <!-- AJAX Form Integration -->
+                <!-- Redirect Form -->
                 <div class="bg-[#FAFAFA] p-6 rounded-xl border border-gray-100 max-w-xl">
                     <h4 class="font-serif text-lg mb-2 text-black">Join the dots. Waitlist</h4>
                     <p class="font-sans text-xs text-gray-500 mb-4 leading-relaxed">
                         Are you willing to <a href="https://usedots.in" target="_blank" class="font-semibold text-saviere-crimson hover:text-black underline decoration-saviere-crimson/30 hover:decoration-black transition-all">usedots.in</a> your daily life? You can reach us directly at <a href="mailto:wantto@usedots.in" class="font-semibold text-saviere-crimson hover:text-black underline decoration-saviere-crimson/30 hover:decoration-black transition-all">wantto@usedots.in</a> or subscribe below to be the first to experience the new equation in everyday oral care.
                     </p>
                     
-                    <form id="waitlist-form" action="https://usedots.in/api/waitlist" method="POST" class="flex flex-col sm:flex-row gap-3 relative">
+                    <!-- Action points directly to usedots.in homepage via GET -->
+                    <form action="https://usedots.in/" method="GET" class="flex flex-col sm:flex-row gap-3">
                         <input type="email" name="email" placeholder="Enter your email address" required class="flex-grow border border-gray-200 rounded-sm px-4 py-3 text-sm font-sans focus:outline-none focus:border-saviere-crimson transition-colors bg-white">
-                        <button type="submit" id="waitlist-submit" class="bg-black text-white px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-saviere-crimson transition-colors whitespace-nowrap">Subscribe</button>
+                        <button type="submit" class="bg-black text-white px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-saviere-crimson transition-colors whitespace-nowrap">Continue to dots.</button>
                     </form>
-                    
-                    <!-- Status message container -->
-                    <div id="waitlist-message" class="hidden mt-3 text-xs font-sans font-medium"></div>
                 </div>
             </div>
             <div class="md:w-1/3 border-t md:border-t-0 md:border-l border-gray-100 bg-[#FAFAFA] p-12 flex flex-col justify-center">
@@ -152,58 +150,6 @@
                 gsap.fromTo(element, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" } });
             });
         });
-
-        // AJAX Form Handler for dots. waitlist
-        const waitlistForm = document.getElementById('waitlist-form');
-        const waitlistMsg = document.getElementById('waitlist-message');
-        const waitlistSubmit = document.getElementById('waitlist-submit');
-
-        if (waitlistForm) {
-            waitlistForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Set loading state
-                const originalText = waitlistSubmit.textContent;
-                waitlistSubmit.textContent = 'Submitting...';
-                waitlistSubmit.disabled = true;
-                waitlistMsg.classList.add('hidden');
-                waitlistMsg.classList.remove('text-green-600', 'text-saviere-crimson');
-
-                try {
-                    const formData = new FormData(waitlistForm);
-                    
-                    // We use fetch to send data to your Cloudflare/backend worker
-                    const response = await fetch(waitlistForm.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json' // Ensure the backend knows we want JSON
-                        }
-                    });
-                    
-                    const data = await response.json();
-                    
-                    waitlistMsg.classList.remove('hidden');
-                    
-                    if (response.ok && data.ok !== false) {
-                        waitlistMsg.textContent = data.message || "Thank you! You've been added to the waitlist.";
-                        waitlistMsg.classList.add('text-green-600');
-                        waitlistForm.reset();
-                    } else {
-                        // Display the exact JSON error message your backend sent (e.g. "The waitlist service is temporarily unavailable.")
-                        waitlistMsg.textContent = data.message || "Something went wrong. Please try again.";
-                        waitlistMsg.classList.add('text-saviere-crimson');
-                    }
-                } catch (error) {
-                    waitlistMsg.classList.remove('hidden');
-                    waitlistMsg.classList.add('text-saviere-crimson');
-                    waitlistMsg.textContent = "Unable to connect to the waitlist service. Please try again later.";
-                } finally {
-                    waitlistSubmit.textContent = originalText;
-                    waitlistSubmit.disabled = false;
-                }
-            });
-        }
     </script>
 </body>
 </html>
