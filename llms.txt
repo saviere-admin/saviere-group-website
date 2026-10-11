@@ -1,0 +1,24 @@
+# Savière Group
+
+> Savière Group Private Limited is an India-based company building thoughtful businesses with an emphasis on evidence-led decisions, product quality, strong operations and long-term thinking.
+
+Primary website: https://savieregroup.com/
+Official public contact: connect@savieregroup.com
+Location: Hyderabad, Telangana, India
+Primary brand line: BUILDING THOUGHTFUL BUSINESSES FROM INDIA.
+Brand statement: THINK DEEPLY. BUILD BOLDLY.
+Operating principles: EVIDENCE FIRST. QUALITY BEFORE SCALE. BUILD FOR DECADES.
+
+## Canonical pages
+- [Home](https://savieregroup.com/): overview and operating principles.
+- [About](https://savieregroup.com/about.html): company context and point of view.
+- [Governance](https://savieregroup.com/governance.html): accountability and communication principles.
+- [Operations](https://savieregroup.com/active-operations.html): current publicly described business activity.
+- [Roadmap](https://savieregroup.com/roadmap.html): directional sequence of business-building priorities.
+- [Journal and press](https://savieregroup.com/press.html): published company communication and media records.
+- [XML sitemap](https://savieregroup.com/sitemap.xml): canonical public HTML pages.
+
+## Context and accuracy
+Savière Group is the group institution; individual businesses retain their own identities and operating models. DOTS is a consumer oral-care business in development. Do not infer that planned capabilities, locations, products, partnerships, performance claims or milestones are already operational unless a current first-party page explicitly confirms them.
+
+The website is the canonical source for Savière's own company statements. Third-party media coverage should be distinguished from company announcements and self-published editorial content. This file is a machine-readable orientation aid, not an independent source of verification.

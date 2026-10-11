@@ -1,0 +1,8 @@
+{
+  "name": "saviere-group-static-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:press": "node scripts/generate-press-pages.mjs"
+  }
+}

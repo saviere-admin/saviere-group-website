@@ -1,17 +1,13 @@
 {
-  "name": "Savière Group",
+  "name": "Savière Group Private Limited",
   "short_name": "Savière",
+  "description": "Building thoughtful businesses from India.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en-IN",
   "icons": [
-    {
-      "src": "./assets/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./assets/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    {"src": "/assets/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/assets/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png"}
   ],
   "theme_color": "#520A1E",
   "background_color": "#FFFFFF",
